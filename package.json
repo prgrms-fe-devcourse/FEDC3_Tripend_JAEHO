@@ -1,0 +1,63 @@
+{
+  "name": "FEDC",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development webpack-dev-server --config webpack.dev.js",
+    "start": "NODE_ENV=production webpack-dev-server --config webpack.prod.js",
+    "build": "NODE_ENV=production webpack --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/~~~"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/~~~"
+  },
+  "homepage": "",
+  "dependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/plugin-transform-runtime": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.3",
+    "@svgr/webpack": "^6.3.1",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "D": "^1.0.0",
+    "autoprefixer": "^10.4.8",
+    "babel-loader": "^8.2.5",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "postcss-loader": "^7.0.2",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.6.1",
+    "recoil": "^0.7.6",
+    "sass": "^1.54.5",
+    "sass-loader": "^13.0.2",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.3.1",
+    "webpack": "^5.74.0",
+    "webpack-bundle-analyzer": "^4.6.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.10.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "typescript": "^4.9.4"
+  }
+}

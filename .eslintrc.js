@@ -1,14 +1,14 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
   ignorePatterns: ['*.js'],
   extends: ['plugin:react/recommended', 'standard-with-typescript'],
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['react'],
   rules: {
@@ -18,6 +18,6 @@ module.exports = {
     'no-unused-vars': 'error',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
-    semi: ['error', 'always']
-  }
-}
+    semi: ['error', 'always'],
+  },
+};

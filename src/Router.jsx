@@ -6,7 +6,7 @@ import AccountPage from './pages/AccountPage';
 import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
 
-const isAuthorization = true; // 로그인 상태 불러온 거
+const isAuthorization = false; // 로그인 상태 불러온 거
 
 const AppRouter = () => {
   return (
@@ -25,7 +25,7 @@ const AppRouter = () => {
           </>
         )}
       </Routes>
-      {isAuthorization ? <Footer /> : <></>}
+      {isAuthorization && <Footer />}
     </Router>
   );
 };

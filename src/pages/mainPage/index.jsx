@@ -6,9 +6,9 @@ import Trips from '../../components/trips';
 const MainView = () => {
   return (
     <MainPageContainer>
-      <SidebarLeft/>
-      <Trips/>
-      <SideBarRight/>
+      <SidebarLeft />
+      <Trips />
+      <SideBarRight />
     </MainPageContainer>
   );
 };
@@ -16,6 +16,6 @@ const MainView = () => {
 export default MainView;
 
 const MainPageContainer = styled.div`
-  height:100vh;
-  display:flex;
+  height: 100vh;
+  display: flex;
 `;

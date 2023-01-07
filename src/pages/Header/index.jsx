@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import AddPost from '../components/addPost';
-import Alarm from '../components/alarm';
+import AddPost from '../../components/addPost';
+import Alarm from '../../components/alarm';
 
 const Header = () => {
   return (

@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './pages/Footer';
 import Header from './pages/Header';
-import MainPage from './pages/MainPage';
+import HomePage from './pages/HomePage';
 import AccountPage from './pages/AccountPage';
 import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
 
-const isAuthorization = false; // 로그인 상태 불러온 거
+const isAuthorization = true; // 로그인 상태 불러온 거
 
 const AppRouter = () => {
   return (
@@ -15,7 +15,7 @@ const AppRouter = () => {
       <Routes>
         {isAuthorization ? (
           <>
-            <Route exact path="/" element={<MainPage />} />
+            <Route exact path="/" element={<HomePage />} />
             <Route exact path="/account" element={<AccountPage />} />
           </>
         ) : (

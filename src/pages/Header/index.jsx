@@ -6,8 +6,8 @@ const Header = () => {
   return (
     <HeaderContainer>
       <span>HEADER자리</span>
-      <Alarm/>
-      <AddPost/>
+      <Alarm />
+      <AddPost />
     </HeaderContainer>
   );
 };
@@ -15,6 +15,7 @@ const Header = () => {
 export default Header;
 
 const HeaderContainer = styled.div`
-  display:flex;
-  border-bottom:1px solid #000; 
+  display: flex;
+  border-bottom: 1px solid #000;
+  height: 100px;
 `;

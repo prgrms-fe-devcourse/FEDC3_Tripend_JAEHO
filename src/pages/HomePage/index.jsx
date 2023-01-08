@@ -16,6 +16,6 @@ const MainPage = () => {
 export default MainPage;
 
 const MainPageContainer = styled.div`
-  height: 100vh;
+  height: calc(100vh - 101px);
   display: flex;
 `;

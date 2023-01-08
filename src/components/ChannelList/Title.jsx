@@ -5,7 +5,7 @@ const Title = ({ title }) => {
   return <Text>{title}</Text>;
 };
 
-export default memo(Title);
+export default memo(Title, (prev, next) => prev.title === next.title);
 
 const Text = styled.h2`
   margin: 0;

@@ -1,19 +1,19 @@
 import styled from '@emotion/styled';
-import SidebarLeft from '../../components/sidebarLeft';
+import ChannelList from '../../components/ChannelList';
 import SideBarRight from '../../components/sidebarRIght';
 import Trips from '../../components/trips';
 
-const MainView = () => {
+const MainPage = () => {
   return (
     <MainPageContainer>
-      <SidebarLeft />
+      <ChannelList />
       <Trips />
       <SideBarRight />
     </MainPageContainer>
   );
 };
 
-export default MainView;
+export default MainPage;
 
 const MainPageContainer = styled.div`
   height: 100vh;

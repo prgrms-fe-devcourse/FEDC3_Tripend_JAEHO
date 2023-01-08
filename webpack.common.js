@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+const Dotenv = require('dotenv-webpack');
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
@@ -32,6 +32,7 @@ module.exports = {
         filename: '[name].css',
       }),
     new CleanWebpackPlugin(),
+    new Dotenv(),
   ].filter(Boolean),
   module: {
     rules: [

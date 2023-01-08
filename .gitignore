@@ -25,6 +25,9 @@
 # Icon must end with two \r
 Icon
 
+# env 설정
+.env
+
 
 # Thumbnails
 ._*

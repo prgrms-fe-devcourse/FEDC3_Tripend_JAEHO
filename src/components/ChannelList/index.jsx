@@ -1,10 +1,19 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { getChannels } from '../../apis/post';
 import Skeleton from '../Skeleton';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { useCallback } from 'react';
+import SortedChannel from './SortedChannel';
+
+const arrowStyle = { position: 'relative', top: '4px' };
+const RightIcon = <ArrowRightIcon style={arrowStyle} />;
+const BottomIcon = <ArrowDropDownIcon style={arrowStyle} />;
 
 const ChannelList = () => {
   const [channels, setChannels] = useState();
+  const [fold, setFold] = useState([true, true, true, true]);
 
   const getChannelData = async () => {
     const response = await getChannels();
@@ -21,6 +30,15 @@ const ChannelList = () => {
     });
   };
 
+  const onClickFold = useCallback(
+    (i) => {
+      const newFoldState = [...fold];
+      newFoldState[i] = !newFoldState[i];
+      setFold([...newFoldState]);
+    },
+    [fold]
+  );
+
   useEffect(() => {
     getChannelData();
   }, []);
@@ -30,30 +48,30 @@ const ChannelList = () => {
       <Title>여행지 목록</Title>
       {channels ? (
         <>
-          <ChannelDescription>
-            <DescriptionTitle>동유럽</DescriptionTitle>
-            {channels.eastEurope.map(({ name }, i) => (
-              <Channel key={i}>{name}</Channel>
-            ))}
-          </ChannelDescription>
-          <ChannelDescription>
-            <DescriptionTitle>서유럽</DescriptionTitle>
-            {channels.westEurope.map(({ name }, i) => (
-              <Channel key={i}>{name}</Channel>
-            ))}
-          </ChannelDescription>
-          <ChannelDescription>
-            <DescriptionTitle>남유럽</DescriptionTitle>
-            {channels.southEurope.map(({ name }, i) => (
-              <Channel key={i}>{name}</Channel>
-            ))}
-          </ChannelDescription>
-          <ChannelDescription>
-            <DescriptionTitle>북유럽</DescriptionTitle>
-            {channels.northEurope.map(({ name }, i) => (
-              <Channel key={i}>{name}</Channel>
-            ))}
-          </ChannelDescription>
+          <SortedChannel
+            title="동유럽"
+            channels={channels.eastEurope}
+            fold={fold[0]}
+            onClickFold={() => onClickFold(0)}
+          />
+          <SortedChannel
+            title="서유럽"
+            channels={channels.westEurope}
+            fold={fold[1]}
+            onClickFold={() => onClickFold(1)}
+          />
+          <SortedChannel
+            title="남유럽"
+            channels={channels.westEurope}
+            fold={fold[2]}
+            onClickFold={() => onClickFold(2)}
+          />
+          <SortedChannel
+            title="북유럽"
+            channels={channels.westEurope}
+            fold={fold[3]}
+            onClickFold={() => onClickFold(3)}
+          />
         </>
       ) : (
         <>
@@ -78,17 +96,4 @@ const Title = styled.h2`
   margin: 0;
   padding: 10px 3px;
   border-bottom: 1px solid;
-`;
-const ChannelDescription = styled.ul`
-  list-style: none;
-  padding: 10px;
-  margin: 0;
-`;
-const DescriptionTitle = styled.span`
-  font-size: 20px;
-  font-weight: bold;
-`;
-const Channel = styled.li`
-  font-size: 15px;
-  padding: 3px 0 3px 8px;
 `;

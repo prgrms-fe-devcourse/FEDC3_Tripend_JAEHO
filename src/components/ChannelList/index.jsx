@@ -1,15 +1,10 @@
 import styled from '@emotion/styled';
-import { memo, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getChannels } from '../../apis/post';
 import Skeleton from '../Skeleton';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useCallback } from 'react';
 import SortedChannel from './SortedChannel';
-
-const arrowStyle = { position: 'relative', top: '4px' };
-const RightIcon = <ArrowRightIcon style={arrowStyle} />;
-const BottomIcon = <ArrowDropDownIcon style={arrowStyle} />;
+import Title from './Title';
 
 const ChannelList = () => {
   const [channels, setChannels] = useState();
@@ -32,9 +27,7 @@ const ChannelList = () => {
 
   const onClickFold = useCallback(
     (i) => {
-      const newFoldState = [...fold];
-      newFoldState[i] = !newFoldState[i];
-      setFold([...newFoldState]);
+      setFold((fold) => fold.map((data, n) => (n === i ? !data : data)));
     },
     [fold]
   );
@@ -45,7 +38,7 @@ const ChannelList = () => {
 
   return (
     <ChannelListContainer>
-      <Title>여행지 목록</Title>
+      <Title title="나라 목록" />
       {channels ? (
         <>
           <SortedChannel
@@ -91,9 +84,4 @@ const ChannelListContainer = styled.div`
   width: 200px;
   border-right: 1px solid #000;
   overflow-y: scroll;
-`;
-const Title = styled.h2`
-  margin: 0;
-  padding: 10px 3px;
-  border-bottom: 1px solid;
 `;

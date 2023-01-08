@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
@@ -7,7 +7,7 @@ const arrowStyle = { position: 'relative', top: '4px' };
 const RightIcon = <ArrowRightIcon style={arrowStyle} />;
 const BottomIcon = <ArrowDropDownIcon style={arrowStyle} />;
 
-const SortedChannel = memo(({ title, channels, fold, onClickFold }) => {
+const SortedChannel = ({ title, channels, fold = true, onClickFold }) => {
   return (
     <SortedChannelContainer>
       <DescriptionTitle onClick={onClickFold}>
@@ -17,9 +17,9 @@ const SortedChannel = memo(({ title, channels, fold, onClickFold }) => {
       {!fold && channels.map(({ name }, i) => <Channel key={i}>{name}</Channel>)}
     </SortedChannelContainer>
   );
-});
+};
 
-export default SortedChannel;
+export default memo(SortedChannel, (prev, next) => prev.fold === next.fold);
 
 const SortedChannelContainer = styled.div`
   list-style: none;

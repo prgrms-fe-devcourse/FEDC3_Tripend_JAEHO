@@ -14,7 +14,12 @@ const SortedChannels = ({ title, channels, fold = true, onClickFold }) => {
         {fold ? RightIcon : BottomIcon}
         <span>{title}</span>
       </style.DescriptionTitle>
-      {!fold && channels.map(({ name }, i) => <Channel key={i}>{name}</Channel>)}
+      {!fold &&
+        channels.map(({ name }, i) => (
+          <style.Channel key={i} onClick={() => onClickFold(i)}>
+            {name}
+          </style.Channel>
+        ))}
     </style.SortedChannelContainer>
   );
 };

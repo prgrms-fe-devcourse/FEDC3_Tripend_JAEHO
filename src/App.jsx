@@ -1,7 +1,12 @@
 import AppRouter from './Router';
+import { RecoilRoot } from 'recoil';
 
 const App = () => {
-  return <AppRouter/>;
+  return (
+    <RecoilRoot>
+      <AppRouter />
+    </RecoilRoot>
+  );
 };
 
 export default App;

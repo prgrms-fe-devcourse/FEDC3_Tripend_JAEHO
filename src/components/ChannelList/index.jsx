@@ -1,13 +1,12 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { getChannels } from '../../apis/post';
+import SortedChannels from './SortedChannels';
 import Skeleton from '../Skeleton';
-import { useCallback } from 'react';
-import SortedChannel from './SortedChannel';
 
 const ChannelList = () => {
   const [channels, setChannels] = useState();
-  const [fold, setFold] = useState([true, true, true, true]);
+  const [foldList, setFoldList] = useState([true, true, true, true]);
 
   const getChannelData = async () => {
     const response = await getChannels();
@@ -26,9 +25,9 @@ const ChannelList = () => {
 
   const onClickFold = useCallback(
     (i) => {
-      setFold((fold) => fold.map((data, n) => (n === i ? !data : data)));
+      setFoldList(foldList.map((data, n) => (n === i ? !data : data)));
     },
-    [fold]
+    [foldList]
   );
 
   useEffect(() => {
@@ -37,31 +36,30 @@ const ChannelList = () => {
 
   return (
     <ChannelListContainer>
-      
       {channels ? (
         <>
-          <SortedChannel
+          <SortedChannels
             title="동유럽"
             channels={channels.eastEurope}
-            fold={fold[0]}
+            fold={foldList[0]}
             onClickFold={() => onClickFold(0)}
           />
-          <SortedChannel
+          <SortedChannels
             title="서유럽"
             channels={channels.westEurope}
-            fold={fold[1]}
+            fold={foldList[1]}
             onClickFold={() => onClickFold(1)}
           />
-          <SortedChannel
+          <SortedChannels
             title="남유럽"
             channels={channels.westEurope}
-            fold={fold[2]}
+            fold={foldList[2]}
             onClickFold={() => onClickFold(2)}
           />
-          <SortedChannel
+          <SortedChannels
             title="북유럽"
             channels={channels.westEurope}
-            fold={fold[3]}
+            fold={foldList[3]}
             onClickFold={() => onClickFold(3)}
           />
         </>

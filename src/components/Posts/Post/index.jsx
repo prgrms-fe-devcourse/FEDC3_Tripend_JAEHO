@@ -15,7 +15,6 @@ import {
 } from './style';
 
 const Post = ({ title, image, author, likes, commentLength, userId }) => {
-  console.log(userId);
   const { fullName, username } = author;
   const [_, author_age, author_gender] = fullName.split('/');
   const [travel_name, travel_date, travel_personnel, travel_gender] = title.split('/');

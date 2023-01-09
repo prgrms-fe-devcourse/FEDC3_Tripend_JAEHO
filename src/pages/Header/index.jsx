@@ -11,13 +11,11 @@ const Header = () => {
   const [isNextPage, setIsNextPage] = useRecoilState(userLoginButtonShowState);
 
   const handleSignUp = (e) => {
-    console.log(e.target);
     setIsNextPage(!isNextPage);
     naviaget('/signup');
   };
 
   const handleSignIn = (e) => {
-    console.log(e.target);
     setIsNextPage(!isNextPage);
     naviaget('/');
   };

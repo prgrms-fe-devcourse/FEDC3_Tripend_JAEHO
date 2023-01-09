@@ -6,7 +6,6 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 const arrowStyle = { position: 'relative', top: '4px' };
 const RightIcon = <ArrowRightIcon style={arrowStyle} />;
 const BottomIcon = <ArrowDropDownIcon style={arrowStyle} />;
-
 const SortedChannels = ({ title, channels, fold = true, onClickFold }) => {
   return (
     <style.SortedChannelContainer>

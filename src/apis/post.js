@@ -9,6 +9,7 @@ const postId = '63bafb514bf56420ea29af47';
 export const getChannels = async () => {
   try {
     const data = await baseRequest.get(`/channels`);
+
     return data;
   } catch (error) {
     console.error(error);

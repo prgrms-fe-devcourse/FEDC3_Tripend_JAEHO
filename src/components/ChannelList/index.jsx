@@ -10,10 +10,10 @@ const ChannelList = () => {
 
   const getChannelData = async () => {
     const response = await getChannels();
-    const eastEurope = response.filter(({ description }) => description === '동유럽');
-    const westEurope = response.filter(({ description }) => description === '서유럽');
-    const southEurope = response.filter(({ description }) => description === '남유럽');
-    const northEurope = response.filter(({ description }) => description === '북유럽');
+    const eastEurope = response.data.filter(({ description }) => description === '동유럽');
+    const westEurope = response.data.filter(({ description }) => description === '서유럽');
+    const southEurope = response.data.filter(({ description }) => description === '남유럽');
+    const northEurope = response.data.filter(({ description }) => description === '북유럽');
 
     setChannels({
       eastEurope,

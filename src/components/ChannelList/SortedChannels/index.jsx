@@ -6,7 +6,6 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 const arrowStyle = { position: 'relative', top: '4px' };
 const RightIcon = <ArrowRightIcon style={arrowStyle} />;
 const BottomIcon = <ArrowDropDownIcon style={arrowStyle} />;
-
 const SortedChannels = ({ title, channels, fold = true, onClickFold }) => {
   return (
     <style.SortedChannelContainer>
@@ -14,7 +13,12 @@ const SortedChannels = ({ title, channels, fold = true, onClickFold }) => {
         {fold ? RightIcon : BottomIcon}
         <span>{title}</span>
       </style.DescriptionTitle>
-      {!fold && channels.map(({ name }, i) => <Channel key={i}>{name}</Channel>)}
+      {!fold &&
+        channels.map(({ name }, i) => (
+          <style.Channel key={i} onClick={() => onClickFold(i)}>
+            {name}
+          </style.Channel>
+        ))}
     </style.SortedChannelContainer>
   );
 };

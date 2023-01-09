@@ -2,6 +2,9 @@ import { baseRequest } from './core';
 import swal from 'sweetalert';
 import { getStorage, setStorage } from '../utils/storage';
 import { AUTH, BEARER, ERROR_MESSAGE, TOKEN, URL, USER } from '../utils/auth/constant';
+import { ERROR_MESSAGE_SIGNUP } from '../utils/auth/constant';
+
+const { DUPLICATE_EMAIL } = ERROR_MESSAGE_SIGNUP;
 
 // 로그인
 export const postUserLogin = async (email, password) => {
@@ -25,4 +28,19 @@ export const getUser = async () => {
       Authorization: `${BEARER} ${getStorage(TOKEN)}`,
     },
   });
+};
+
+export const signup = async (values) => {
+  const { userName, userAge, userGender, userId, userPassword } = values;
+  const fullName = `${userName}/${userAge}/${userGender}`;
+  try {
+    await baseRequest.post(`/signup`, {
+      email: userId,
+      fullName,
+      password: userPassword,
+    });
+  } catch (error) {
+    alert(DUPLICATE_EMAIL);
+    return error;
+  }
 };

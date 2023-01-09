@@ -7,7 +7,7 @@ const arrowStyle = { position: 'relative', top: '4px' };
 const RightIcon = <ArrowRightIcon style={arrowStyle} />;
 const BottomIcon = <ArrowDropDownIcon style={arrowStyle} />;
 
-const SortedChannel = ({ title, channels, fold = true, onClickFold }) => {
+const SortedChannels = ({ title, channels, fold = true, onClickFold }) => {
   return (
     <SortedChannelContainer>
       <DescriptionTitle onClick={onClickFold}>
@@ -19,7 +19,7 @@ const SortedChannel = ({ title, channels, fold = true, onClickFold }) => {
   );
 };
 
-export default memo(SortedChannel, (prev, next) => prev.fold === next.fold);
+export default memo(SortedChannels, (prev, next) => prev.fold === next.fold);
 
 const SortedChannelContainer = styled.div`
   list-style: none;

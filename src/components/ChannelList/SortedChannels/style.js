@@ -8,10 +8,10 @@ export const SortedChannelContainer = styled.div`
 export const DescriptionTitle = styled.div`
   font-size: 20px;
   font-weight: bold;
-
   cursor: pointer;
 `;
 export const Channel = styled.li`
   font-size: 15px;
   padding: 3px 0 3px 25px;
+  cursor: pointer;
 `;

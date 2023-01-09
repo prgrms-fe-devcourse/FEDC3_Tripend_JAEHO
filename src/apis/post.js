@@ -16,8 +16,7 @@ export const getChannels = async () => {
   }
 };
 
-// 특정 채널의 post 불러오기
-export const getChannelPosts = async () => {
+export const getChannelPosts = async (channelId) => {
   try {
     const data = await baseRequest.get(`/posts/channel/${channelId}`);
     return data;

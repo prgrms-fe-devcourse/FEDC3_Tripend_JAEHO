@@ -7,14 +7,19 @@ const arrowStyle = { position: 'relative', top: '4px' };
 const RightIcon = <ArrowRightIcon style={arrowStyle} />;
 const BottomIcon = <ArrowDropDownIcon style={arrowStyle} />;
 
-const SortedChannels = ({ title, channels, fold = true, onClickFold }) => {
+const SortedChannels = ({ title, channels, fold = true, onClickFold, onClickChannel }) => {
   return (
     <style.SortedChannelContainer>
       <style.DescriptionTitle onClick={onClickFold}>
         {fold ? RightIcon : BottomIcon}
         <span>{title}</span>
       </style.DescriptionTitle>
-      {!fold && channels.map(({ name }, i) => <Channel key={i}>{name}</Channel>)}
+      {!fold &&
+        channels.map(({ name, _id }) => (
+          <style.Channel key={_id} onClick={() => onClickChannel(_id)}>
+            {name}
+          </style.Channel>
+        ))}
     </style.SortedChannelContainer>
   );
 };

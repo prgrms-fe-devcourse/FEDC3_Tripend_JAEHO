@@ -8,13 +8,14 @@ const token =
 export const getChannels = async () => {
   try {
     const data = await baseRequest.get(`/channels`);
+
     return data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const getChannelPosts = async () => {
+export const getChannelPosts = async (channelId) => {
   try {
     const data = await baseRequest.get(`/posts/channel/${channelId}`);
 

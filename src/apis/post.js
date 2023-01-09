@@ -8,7 +8,6 @@ const token =
 export const getChannels = async () => {
   try {
     const data = await baseRequest.get(`/channels`);
-    //console.log(data);
     return data;
   } catch (error) {
     console.error(error);

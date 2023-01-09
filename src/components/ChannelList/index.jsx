@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import * as style from './style';
 import { useEffect, useState, useCallback } from 'react';
 import { getChannels } from '../../apis/post';
 import SortedChannels from './SortedChannels';
@@ -35,7 +35,7 @@ const ChannelList = () => {
   }, []);
 
   return (
-    <ChannelListContainer>
+    <style.ChannelListContainer>
       {channels ? (
         <>
           <SortedChannels
@@ -71,14 +71,8 @@ const ChannelList = () => {
           <Skeleton.Paragraph line={4} style={{ paddingBottom: '10px' }} />
         </>
       )}
-    </ChannelListContainer>
+    </style.ChannelListContainer>
   );
 };
 
 export default ChannelList;
-
-const ChannelListContainer = styled.div`
-  width: 200px;
-  border-right: 1px solid #000;
-  overflow-y: scroll;
-`;

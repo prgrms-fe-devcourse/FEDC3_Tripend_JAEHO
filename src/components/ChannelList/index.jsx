@@ -4,7 +4,6 @@ import { getChannels } from '../../apis/post';
 import Skeleton from '../Skeleton';
 import { useCallback } from 'react';
 import SortedChannel from './SortedChannel';
-import Title from './Title';
 
 const ChannelList = () => {
   const [channels, setChannels] = useState();
@@ -38,7 +37,7 @@ const ChannelList = () => {
 
   return (
     <ChannelListContainer>
-      <Title title="나라 목록" />
+      
       {channels ? (
         <>
           <SortedChannel

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { getChannelPosts } from '../../apis/post';
 import { postsState, selectedChannelState } from '../../utils/channelState';
+import Post from './Post';
 import * as style from './style';
 
 const Posts = () => {
@@ -14,7 +15,6 @@ const Posts = () => {
     setPostList({
       posts: response,
     });
-    console.log(postList);
   };
 
   useEffect(() => {
@@ -29,7 +29,16 @@ const Posts = () => {
         postList.posts.length > 0 ? (
           <>
             {postList.posts.map((post) => {
-              return <div key={post._id}>{post.title}</div>;
+              return (
+                <Post
+                  key={post._id}
+                  title={post.title}
+                  image={post.image}
+                  author={post.author}
+                  likes={post.likes}
+                  commentLength={post.comments.length}
+                />
+              );
             })}
           </>
         ) : (

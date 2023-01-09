@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
+import { getUser } from '../../apis/auth';
 import { getChannelPosts } from '../../apis/post';
 import { postsState, selectedChannelState } from '../../utils/channelState';
 import Post from './Post';
@@ -8,19 +9,26 @@ import * as style from './style';
 const Posts = () => {
   const selectedChannelId = useRecoilValue(selectedChannelState);
   const [postList, setPostList] = useRecoilState(postsState(selectedChannelId));
+  const [userId, setUserId] = useState('');
 
   const getPostData = async () => {
-    const response = await getChannelPosts(selectedChannelId);
-    console.log(response);
+    const { data } = await getChannelPosts(selectedChannelId);
+
     setPostList({
-      posts: response,
+      posts: data,
     });
-    console.log(postList);
+  };
+
+  const getUserData = async () => {
+    const { data } = await getUser();
+
+    setUserId(data._id);
   };
 
   useEffect(() => {
     if (selectedChannelId) {
       getPostData();
+      getUserData();
     }
   }, [selectedChannelId]);
 
@@ -38,6 +46,7 @@ const Posts = () => {
                   author={post.author}
                   likes={post.likes}
                   commentLength={post.comments.length}
+                  userId={userId}
                 />
               );
             })}

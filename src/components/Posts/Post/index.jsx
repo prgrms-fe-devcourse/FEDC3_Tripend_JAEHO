@@ -1,9 +1,8 @@
-import React from 'react';
+import Image from '../../common/Image';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
   PostContainer,
   ImageContainer,
-  Image,
   InfoContainer,
   TravelName,
   TagContainer,
@@ -12,19 +11,27 @@ import {
   InfoContainerHeader,
   AuthorInfoContainer,
   LikeAndCommentContainer,
-  UserImage,
+  AvatarWrapper,
 } from './style';
 
-const Post = ({ title, image, author, likes, commentLength }) => {
+const Post = ({ title, image, author, likes, commentLength, userId }) => {
+  console.log(userId);
   const { fullName, username } = author;
   const [_, author_age, author_gender] = fullName.split('/');
   const [travel_name, travel_date, travel_personnel, travel_gender] = title.split('/');
-  const likesUserList = likes.filter(({ user }) => user === '63b92f37230951110b843cbd').length > 0;
+  const likesUserList = likes.filter(({ user }) => user === userId).length > 0;
 
   return (
     <PostContainer>
       <ImageContainer>
-        <Image src={image} />
+        <Image
+          src={image}
+          width="100%"
+          height="100%"
+          style={{ borderRadius: '16px' }}
+          lazy={true}
+          threshold={0.5}
+        />
       </ImageContainer>
       <InfoContainer>
         <InfoContainerHeader>
@@ -38,7 +45,16 @@ const Post = ({ title, image, author, likes, commentLength }) => {
         </TagContainer>
         <BottomContainer>
           <AuthorInfoContainer>
-            {author.image ? <UserImage src={author.image} /> : <div>프로필없음</div>}
+            <AvatarWrapper>
+              <Image
+                src={author.image}
+                width="100%"
+                height="100%"
+                style={{ borderRadius: '50%' }}
+                lazy={true}
+                threshold={0.5}
+              />
+            </AvatarWrapper>
             <div>
               <div>{username}</div>
               <div>

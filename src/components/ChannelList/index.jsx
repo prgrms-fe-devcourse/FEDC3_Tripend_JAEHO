@@ -12,12 +12,12 @@ const ChannelList = () => {
   const setSelectedChannel = useSetRecoilState(selectedChannelState);
 
   const getChannelData = async () => {
-    const response = await getChannels();
+    const { data } = await getChannels();
 
-    const eastEurope = response.filter(({ description }) => description === '동유럽');
-    const westEurope = response.filter(({ description }) => description === '서유럽');
-    const southEurope = response.filter(({ description }) => description === '남유럽');
-    const northEurope = response.filter(({ description }) => description === '북유럽');
+    const eastEurope = data.filter(({ description }) => description === '동유럽');
+    const westEurope = data.filter(({ description }) => description === '서유럽');
+    const southEurope = data.filter(({ description }) => description === '남유럽');
+    const northEurope = data.filter(({ description }) => description === '북유럽');
 
     setChannels({
       eastEurope,

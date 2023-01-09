@@ -10,13 +10,12 @@ export const PostContainer = styled.div`
 `;
 export const ImageContainer = styled.div`
   width: 280px;
-  padding: 10px;
+  margin: 10px;
   border-radius: 16px;
-`;
-export const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  border-radius: 16px;
+  background-color: #eee;
+  > img {
+    transition: opacity 0.4s ease-out;
+  }
 `;
 export const InfoContainer = styled.div`
   position: relative;
@@ -68,10 +67,14 @@ export const LikeAndCommentContainer = styled.div`
   width: 40%;
   justify-content: space-around;
 `;
-
-export const UserImage = styled.img`
+export const AvatarWrapper = styled.div`
   width: 40px;
   height: 40px;
-  border-radius: 100%;
+  border-radius: 50%;
   margin-right: 15px;
+  border: 1px solid #dadada;
+  background-color: #eee;
+  > img {
+    transition: opacity 0.4s ease-out;
+  }
 `;

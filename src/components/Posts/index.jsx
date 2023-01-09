@@ -15,6 +15,7 @@ const Posts = () => {
     setPostList({
       posts: response,
     });
+    console.log(postList);
   };
 
   useEffect(() => {

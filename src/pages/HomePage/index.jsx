@@ -1,5 +1,5 @@
 import ChannelList from '../../components/ChannelList';
-import SideBarRight from '../../components/sidebarRIght';
+import SideBarRight from '../../components/SidebarRIght';
 import MainSection from '../../components/MainSection';
 import * as style from './style';
 

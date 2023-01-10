@@ -36,6 +36,10 @@ const Posts = () => {
       {selectedChannelId ? (
         postList.length > 0 ? (
           <>
+            <div style={{ display: 'flex' }}>
+              <div>검색창 자리</div>
+              <button>포스트 등록</button>
+            </div>
             {postList.map((post) => {
               return (
                 <Post

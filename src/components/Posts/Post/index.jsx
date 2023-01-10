@@ -16,8 +16,8 @@ import {
 } from './style';
 
 const Post = ({ title, image, author, likes, commentLength, userId }) => {
-  const { fullName, username } = author;
-  const [_, author_age, author_gender] = fullName.split('/');
+  const { fullName } = author;
+  const [name, author_age, author_gender] = fullName.split('/');
   const [travel_name, travel_date, travel_personnel, travel_gender] = title.split('/');
   const likesUserList = likes.filter(({ user }) => user === userId).length > 0;
 
@@ -69,7 +69,7 @@ const Post = ({ title, image, author, likes, commentLength, userId }) => {
               )}
             </AvatarWrapper>
             <div>
-              <div>{username}</div>
+              <div>{name}</div>
               <div>
                 {author_age} / {author_gender}
               </div>

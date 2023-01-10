@@ -1,5 +1,6 @@
 import Image from '../../common/Image';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import PersonIcon from '@mui/icons-material/Person';
 import {
   PostContainer,
   ImageContainer,
@@ -24,7 +25,7 @@ const Post = ({ title, image, author, likes, commentLength, userId }) => {
     <PostContainer>
       <ImageContainer>
         <Image
-          src={image}
+          src={image ? image : 'https://via.placeholder.com/280x180'}
           width="100%"
           height="100%"
           style={{ borderRadius: '16px' }}
@@ -45,14 +46,27 @@ const Post = ({ title, image, author, likes, commentLength, userId }) => {
         <BottomContainer>
           <AuthorInfoContainer>
             <AvatarWrapper>
-              <Image
-                src={author.image}
-                width="100%"
-                height="100%"
-                style={{ borderRadius: '50%' }}
-                lazy={true}
-                threshold={0.5}
-              />
+              {author.image ? (
+                <Image
+                  src={author.image}
+                  width="100%"
+                  height="100%"
+                  style={{ borderRadius: '50%' }}
+                  lazy={true}
+                  threshold={0.5}
+                />
+              ) : (
+                <PersonIcon
+                  style={{
+                    position: 'relative',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%,-50%)',
+                    fontSize: '35px',
+                    color: '#adadad',
+                  }}
+                />
+              )}
             </AvatarWrapper>
             <div>
               <div>{username}</div>

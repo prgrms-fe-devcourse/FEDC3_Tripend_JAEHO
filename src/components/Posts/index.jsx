@@ -13,10 +13,9 @@ const Posts = () => {
 
   const getPostData = async () => {
     const { data } = await getChannelPosts(selectedChannelId);
-
-    setPostList({
-      posts: data,
-    });
+    
+    data.sort(() => Math.random() - 0.5);
+    setPostList(data);
   };
 
   const getUserData = async () => {
@@ -35,9 +34,9 @@ const Posts = () => {
   return (
     <style.PostsContainer>
       {selectedChannelId ? (
-        postList.posts.length > 0 ? (
+        postList.length > 0 ? (
           <>
-            {postList.posts.map((post) => {
+            {postList.map((post) => {
               return (
                 <Post
                   key={post._id}

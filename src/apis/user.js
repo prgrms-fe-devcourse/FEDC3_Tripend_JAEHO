@@ -9,3 +9,13 @@ export const getUsers = async () => {
     console.error(error);
   }
 };
+
+// 검색된 유저 정보 가져오기
+export const getUserInfo = async (keyword) => {
+  try {
+    const data = await baseRequest.get(`/search/users/${keyword}`);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

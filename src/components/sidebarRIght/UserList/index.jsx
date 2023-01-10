@@ -6,13 +6,13 @@ import { extractName } from '../../../utils/validate/userList';
 const UserList = () => {
   const [userInfos, setUserInfos] = useState([]);
 
-  const getUsetData = async () => {
+  const getUserData = async () => {
     const { data } = await getUsers();
     setUserInfos(data);
   };
 
   useEffect(() => {
-    getUsetData();
+    getUserData();
   }, []);
 
   return (

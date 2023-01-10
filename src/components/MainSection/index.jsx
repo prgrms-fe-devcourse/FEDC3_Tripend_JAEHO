@@ -8,6 +8,8 @@ import { getUser } from '../../apis/auth';
 import { getChannelPosts } from '../../apis/post';
 import { channelState, selectedChannelState } from '../../recoil/RecoilChannelState';
 import { selectedPostState } from '../../recoil/RecoilPostStates';
+import { selectedChannelState } from '../../utils/channelState';
+import { isVisibleModalState } from '../../utils/addPostState';
 
 const Posts = () => {
   const selectedChannelId = useRecoilValue(selectedChannelState);
@@ -17,13 +19,13 @@ const Posts = () => {
   const [userId, setUserId] = useState('');
   const [visible, setVisible] = useState(false);
 
-  const getPostsData = async () => {
-    if (postList.posts === null) {
-      const { data } = await getChannelPosts(selectedChannelId);
+  const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
 
-      data.sort(() => Math.random() - 0.5);
-      setPostList({ id: selectedChannelId, posts: data });
-    }
+  const getPostData = async () => {
+    const { data } = await getChannelPosts(selectedChannelId);
+
+    data.sort(() => Math.random() - 0.5);
+    setPostList({ id: selectedChannelId, posts: data });
   };
 
   const getUserData = async () => {
@@ -44,6 +46,10 @@ const Posts = () => {
     }
   }, [selectedChannelId]);
 
+  const onOpenAddPostModal = () => {
+    setIsVisibleModal(true);
+  };
+
   return (
     <style.PostsContainer>
       {selectedChannelId ? (
@@ -51,7 +57,7 @@ const Posts = () => {
           <>
             <div style={{ display: 'flex' }}>
               <div>검색창 자리</div>
-              <button>포스트 등록</button>
+              <button onClick={onOpenAddPostModal}>포스트 등록</button>
             </div>
             <div className="postContainer">
               {postList.posts.map((post) => {

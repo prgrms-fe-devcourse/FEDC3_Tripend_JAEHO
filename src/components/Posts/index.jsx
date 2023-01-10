@@ -13,7 +13,7 @@ const Posts = () => {
 
   const getPostData = async () => {
     const { data } = await getChannelPosts(selectedChannelId);
-    
+
     data.sort(() => Math.random() - 0.5);
     setPostList(data);
   };

@@ -4,7 +4,7 @@ import { getChannels } from '../../apis/post';
 import SortedChannels from './SortedChannels';
 import Skeleton from '../common/Skeleton';
 import { useSetRecoilState } from 'recoil';
-import { selectedChannelState } from '../../utils/channelState';
+import { selectedChannelState } from '../../recoil/RecoilChannelState';
 
 const ChannelList = () => {
   const [channels, setChannels] = useState();

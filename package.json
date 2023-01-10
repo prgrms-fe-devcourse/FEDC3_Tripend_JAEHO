@@ -5,11 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
-<<<<<<< HEAD
-    "start": "NODE_ENV=production webpack-dev-server --config webpack.prod.js",
-=======
     "start": "cross-env NODE_ENV=production webpack-dev-server --config webpack.prod.js",
->>>>>>> feat: 클릭한 포스트의 데이터 불러오기, atomFamily 적용
     "build": "NODE_ENV=production webpack --config webpack.prod.js"
   },
   "repository": {
@@ -60,7 +56,7 @@
     "webpack-bundle-analyzer": "^4.6.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.10.0",
-    "webpack-merge": "^5.8.0",
+    "webpack-merge": "^5.8.0",  
     "yup": "^0.32.11"
   },
   "devDependencies": {

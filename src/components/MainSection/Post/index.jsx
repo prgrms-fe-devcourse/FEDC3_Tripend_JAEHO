@@ -12,17 +12,17 @@ import LeftImage from './LeftImage';
 import Heart from './Heart';
 
 const Post = ({ id, title, image, author, likes, commentLength, userId, onClickPost }) => {
-  const [travel_name, travel_date, travel_personnel, travel_gender] = title.split('/');
+  const travel_name = title.split('/')[0];
 
   return (
     <PostContainer onClick={() => onClickPost(id)}>
-      <LeftImage src={image} size="100%" style={{ borderRadius: '16px' }} />
+      <LeftImage src={image} width={'280px'} height={'180px'} style={{ borderRadius: '16px' }} />
       <InfoContainer>
         <InfoContainerHeader>
           <TravelName>{travel_name}</TravelName>
           <Heart likes={likes} userId={userId} styleProps={{ fontSize: '35px' }} />
         </InfoContainerHeader>
-        <Tags date={travel_date} personnel={travel_personnel} gender={travel_gender} />
+        <Tags title={title} />
         <BottomContainer>
           <AuthorInfo image={author.image} fullName={author.fullName} />
           <LikeAndCommentContainer>

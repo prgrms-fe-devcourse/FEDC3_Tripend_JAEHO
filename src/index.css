@@ -1,9 +1,9 @@
 :root {
   --primary: #8dd3bb;
   /* var(--primary)   */
-  --secodary: #374151;
-  /* var(--secodary)   */
-  --dark: #333333;
+  --secondary: #112211;
+  /* var(--secondary)   */
+  --dark: #000000;
   /* var(--dark)   */
   --dark4: #2c353d;
   /* var(--dark4)   */

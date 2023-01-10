@@ -70,7 +70,12 @@ const Posts = () => {
                 );
               })}
             </div>
-            <Modal visible={visible} onClose={() => setVisible(false)}>
+            <Modal
+              visible={visible}
+              onClose={() => setVisible(false)}
+              width="1100px"
+              height="600px"
+            >
               <PostDetail />
             </Modal>
           </>

@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const ImageContainer = styled.div`
-  width: 280px;
-  margin: 10px;
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
   border-radius: 16px;
   background-color: #eee;
   > img {

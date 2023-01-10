@@ -5,8 +5,9 @@ export const PostContainer = styled.div`
   padding: 20px;
   margin: 20px;
   display: flex;
+  align-items: center;
   border-radius: 16px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #f7f9fb;
   cursor: pointer;
 `;
 export const InfoContainer = styled.div`

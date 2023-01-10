@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
+<<<<<<< HEAD
     "start": "NODE_ENV=production webpack-dev-server --config webpack.prod.js",
+=======
+    "start": "cross-env NODE_ENV=production webpack-dev-server --config webpack.prod.js",
+>>>>>>> feat: 클릭한 포스트의 데이터 불러오기, atomFamily 적용
     "build": "NODE_ENV=production webpack --config webpack.prod.js"
   },
   "repository": {

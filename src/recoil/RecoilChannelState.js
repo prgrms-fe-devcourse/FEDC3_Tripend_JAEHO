@@ -1,5 +1,4 @@
 import { atom, atomFamily } from 'recoil';
-import { getChannelPosts } from '../apis/post';
 
 export const selectedChannelState = atom({
   key: 'selectedChannelState',
@@ -10,8 +9,8 @@ export const postsState = atomFamily({
   key: 'postsState',
   default: (id) => {
     return {
-      id,
-      posts: [],
+      key: id,
+      posts: null,
     };
   },
 });

@@ -7,15 +7,7 @@ export const PostContainer = styled.div`
   display: flex;
   border-radius: 16px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-export const ImageContainer = styled.div`
-  width: 280px;
-  margin: 10px;
-  border-radius: 16px;
-  background-color: #eee;
-  > img {
-    transition: opacity 0.4s ease-out;
-  }
+  cursor: pointer;
 `;
 export const InfoContainer = styled.div`
   position: relative;
@@ -33,23 +25,6 @@ export const TravelName = styled.h3`
   margin: 0;
   font-size: 18px;
 `;
-export const TagContainer = styled.div`
-  height: 50px;
-  display: flex;
-  align-items: center;
-`;
-export const Tag = styled.span`
-  background-color: var(--dark4);
-  color: var(--white);
-  padding: 10px;
-  margin: 0 5px;
-  border-radius: 20px;
-  font-size: 10px;
-
-  &:nth-of-type(1) {
-    margin-left: 0;
-  }
-`;
 export const BottomContainer = styled.div`
   width: 100%;
   display: flex;
@@ -57,24 +32,9 @@ export const BottomContainer = styled.div`
   bottom: 30px;
 `;
 
-export const AuthorInfoContainer = styled.div`
-  display: flex;
-  width: 60%;
-`;
 export const LikeAndCommentContainer = styled.div`
   display: flex;
   align-items: center;
   width: 40%;
   justify-content: space-around;
-`;
-export const AvatarWrapper = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 15px;
-  border: 1px solid #dadada;
-  background-color: #eee;
-  > img {
-    transition: opacity 0.4s ease-out;
-  }
 `;

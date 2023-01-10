@@ -40,7 +40,7 @@ export const createPost = async (title) => {
 };
 
 // postDetail 받아오기
-export const getPostDetail = async () => {
+export const getPostDetail = async (postId) => {
   try {
     const data = await baseRequest.get(`/posts/${postId}`);
     return data;

@@ -8,10 +8,17 @@ export const SortedChannelContainer = styled.div`
 export const DescriptionTitle = styled.div`
   font-size: 20px;
   font-weight: bold;
-
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px 0;
 `;
 export const Channel = styled.li`
   font-size: 15px;
-  padding: 3px 0 3px 25px;
+  cursor: pointer;
+  opacity: ${({ opacity }) => opacity};
+  visibility: ${({ opacity }) => (opacity ? 'visible' : 'hidden')};
+  height: ${({ opacity }) => (opacity ? '18px' : '0')};
+  padding: ${({ opacity }) => (opacity ? '3px 0 3px 25px' : '0 0 0 25px')};
+  transition: opacity 0.2s ease-in-out, height 0.2s ease-in-out;
 `;

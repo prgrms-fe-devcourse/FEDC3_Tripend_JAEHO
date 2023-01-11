@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
-function Sidebar() {
+const Sidebar = () => {
   const menus = [
     { name: '작성한 글', path: '/myhome' },
     { name: '내 정보 수정', path: '/setting' },
@@ -32,7 +32,7 @@ function Sidebar() {
       </Side>
     </SideBlcok>
   );
-}
+};
 
 export default Sidebar;
 

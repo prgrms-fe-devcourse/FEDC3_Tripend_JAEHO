@@ -6,8 +6,37 @@ import {
   LoginWrapper,
 } from '../Signin/Login.style';
 import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
 
 const MyHomeSetting = () => {
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setConfirmPassword] = useState('');
+  const [ispasswordError, setPasswordError] = useState(false);
+  const [passwordConfirmError, setPasswordConfirmError] = useState('');
+
+  const handlerPassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handlerNewPassword = (e) => {
+    setConfirmPassword(e.target.value);
+    if (password !== passwordConfirm) {
+      setPasswordError(false);
+      setPasswordConfirmError('비밀번호가 틀렸어요 ㅠㅠ');
+    }
+  };
+
+  const handlerSubmit = async (e) => {
+    e.preventDefault();
+
+    if (res.status === 200) {
+      swal('비밀번호 변경이 완료되었습니다.', '', 'success');
+    }
+
+    setPassword('');
+    setConfirmPassword('');
+  };
+
   return (
     <>
       <PasswordBlock>
@@ -18,15 +47,32 @@ const MyHomeSetting = () => {
 
               <Fieldset>
                 <legend>비밀번호</legend>
-                <Input />
+                <Input
+                  value={password}
+                  type="text"
+                  style={{ '-webkit-text-security': 'circle' }}
+                  onChange={handlerPassword}
+                />
               </Fieldset>
 
               <Fieldset>
                 <legend>비밀번호 확인</legend>
-                <Input />
+                <Input
+                  value={passwordConfirm}
+                  style={{ '-webkit-text-security': 'circle' }}
+                  type="text"
+                  onChange={handlerNewPassword}
+                />
               </Fieldset>
-
-              <FormButton>버튼</FormButton>
+              {passwordConfirm.length > 0 && password !== passwordConfirm && (
+                <PasswordText>{passwordConfirmError}</PasswordText>
+              )}
+              <FormButton
+                type="submit"
+                disabled={!password || !passwordConfirm || password !== passwordConfirm}
+              >
+                버튼
+              </FormButton>
             </FormLogin>
           </LoginContainer>
         </LoginWrapper>

@@ -23,11 +23,11 @@ export const CommentInfo = styled.div`
   color: var(--secondary);
   justify-content: space-around;
 
-  & > div:first-child {
+  & > div:first-of-type {
     font-weight: bold;
     font-size: 15px;
   }
-  & > div:last-child {
+  & > div:last-of-type {
     font-size: 14px;
   }
 `;

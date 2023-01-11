@@ -1,7 +1,10 @@
 import React from 'react';
 import Modal from '../Modal';
+import AddPostForm from './addPostForm';
 import { useSetRecoilState } from 'recoil';
 import { isVisibleModalState } from '../../utils/addPostState';
+
+import { ModalHeader, CloseButton, ModalTitle } from './style';
 
 const AddPost = ({ visible }) => {
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
@@ -23,10 +26,11 @@ const AddPost = ({ visible }) => {
       onClose={onCloseAddPostModal}
       style={modalStyle}
     >
-      <div>
-        <h1>새 게시글 만들기</h1>
-        <button onClick={onCloseAddPostModal}>닫기</button>
-      </div>
+      <ModalHeader>
+        <ModalTitle>새 게시글 만들기</ModalTitle>
+        <CloseButton onClick={onCloseAddPostModal}>닫기</CloseButton>
+      </ModalHeader>
+      <AddPostForm />
     </Modal>
   );
 };

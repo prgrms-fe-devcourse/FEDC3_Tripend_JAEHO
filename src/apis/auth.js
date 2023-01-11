@@ -18,6 +18,9 @@ export const postUserLogin = async (email, password) => {
     });
 
   setStorage(TOKEN, response.data.token);
+
+  console.log(response.data);
+  setStorage('id', response.data.user._id);
   return response;
 };
 

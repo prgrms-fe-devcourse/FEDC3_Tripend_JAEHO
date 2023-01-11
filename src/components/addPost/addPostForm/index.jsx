@@ -1,6 +1,27 @@
 import { useState } from 'react';
 import { InputWrapper } from './style';
 import { useRef } from 'react';
+import { useRecoilValue } from 'recoil';
+import { selectedChannelState } from '../../../utils/channelState';
+
+const imageToBinary = (imgSrc) => {
+  const byteString = atob(imgSrc.split(',')[1]);
+  console.log(byteString);
+
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  const blob = new Blob([ia], {
+    type: 'image/jpeg',
+  });
+
+  console.log(blob);
+
+  return blob;
+};
 
 const AddPostForm = () => {
   const imageFileInputRef = useRef('');
@@ -9,6 +30,8 @@ const AddPostForm = () => {
   const [personnel, setPersonnel] = useState(1);
   const [gender, setGender] = useState('');
   const [name, setName] = useState('');
+
+  const selectedChannel = useRecoilValue(selectedChannelState);
 
   const onImageFileChange = async (e) => {
     let fileBlob = e.target.files[0];
@@ -49,6 +72,8 @@ const AddPostForm = () => {
       return;
     }
 
+    const binaryImage = imageSrc ? imageToBinary(imageSrc) : null;
+
     const travel_name = name;
     const travel_date = date;
     const travel_personnel = personnel;
@@ -57,10 +82,12 @@ const AddPostForm = () => {
 
     const userData = {
       title: `${travel_name}/${travel_date}/${travel_personnel}/${travel_gender}`,
-      image: null,
-      channelId: '63b93150230951110b843cee',
+      image: binaryImage,
+      channelId: selectedChannel,
     };
-    console.log(userData);
+
+    const formData = new FormData();
+    Object.keys(userData).forEach((key) => formData.append(key, userData[key]));
   };
 
   return (

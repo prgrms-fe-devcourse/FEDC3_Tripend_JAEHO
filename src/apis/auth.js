@@ -1,4 +1,4 @@
-import { baseRequest } from './core';
+import { authRequest, baseRequest } from './core';
 import swal from 'sweetalert';
 import { getStorage, setStorage } from '../utils/storage';
 import { AUTH, BEARER, ERROR_MESSAGE, TOKEN, URL, USER } from '../utils/auth/constant';
@@ -25,26 +25,14 @@ export const postUserLogin = async (email, password) => {
 
 // 로그인 유저 정보 가져오기 (인증된 유저)
 export const getUser = async () => {
-  return await baseRequest.get(URL.AUTH_USER, {
-    headers: {
-      Authorization: `${BEARER} ${getStorage(TOKEN)}`,
-    },
-  });
+  return await authRequest.get(URL.AUTH_USER);
 };
 
 // 비밀번호 변경
 export const putPaswwordChange = async (password) => {
-  return await baseRequest.put(
-    `/settings/update-password`,
-    {
-      password,
-    },
-    {
-      headers: {
-        Authorization: `${BEARER} ${getStorage(TOKEN)}`,
-      },
-    }
-  );
+  return await authRequest.put(`/settings/update-password`, {
+    password,
+  });
 };
 
 export const signup = async (values) => {

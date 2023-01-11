@@ -6,28 +6,32 @@ import {
   LoginWrapper,
 } from '../Signin/Login.style';
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { putPaswwordChange } from '../../apis/auth';
 
 const MyHomeSetting = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setConfirmPassword] = useState('');
-  const [ispasswordError, setPasswordError] = useState(false);
   const [passwordConfirmError, setPasswordConfirmError] = useState('');
 
-  const handlerPassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const handlePassword = useCallback(
+    (e) => {
+      setPassword(e.target.value);
+    },
+    [password]
+  );
 
-  const handlerNewPassword = (e) => {
-    setConfirmPassword(e.target.value);
-    if (password !== passwordConfirm) {
-      setPasswordError(false);
-      setPasswordConfirmError('비밀번호가 틀렸어요 ㅠㅠ');
-    }
-  };
+  const handleNewPassword = useCallback(
+    (e) => {
+      setConfirmPassword(e.target.value);
+      if (password !== passwordConfirm) {
+        setPasswordConfirmError('비밀번호가 틀렸어요 ㅠㅠ');
+      }
+    },
+    [passwordConfirm]
+  );
 
-  const handlerSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const res = await putPaswwordChange(password);
@@ -41,46 +45,44 @@ const MyHomeSetting = () => {
   };
 
   return (
-    <>
-      <PasswordBlock>
-        <LoginWrapper>
-          <LoginContainer>
-            <FormLogin onSubmit={handlerSubmit}>
-              <FormSettingText>비밀번호 변경</FormSettingText>
+    <PasswordBlock>
+      <LoginWrapper>
+        <LoginContainer>
+          <FormLogin onSubmit={handleSubmit}>
+            <FormSettingText>비밀번호 변경</FormSettingText>
 
-              <Fieldset>
-                <legend>비밀번호</legend>
-                <Input
-                  value={password}
-                  type="text"
-                  style={{ '-webkit-text-security': 'circle' }}
-                  onChange={handlerPassword}
-                />
-              </Fieldset>
+            <Fieldset>
+              <legend>비밀번호</legend>
+              <Input
+                value={password}
+                type="text"
+                style={{ '-webkit-text-security': 'circle' }}
+                onChange={handlePassword}
+              />
+            </Fieldset>
 
-              <Fieldset>
-                <legend>비밀번호 확인</legend>
-                <Input
-                  value={passwordConfirm}
-                  style={{ '-webkit-text-security': 'circle' }}
-                  type="text"
-                  onChange={handlerNewPassword}
-                />
-              </Fieldset>
-              {passwordConfirm.length > 0 && password !== passwordConfirm && (
-                <PasswordText>{passwordConfirmError}</PasswordText>
-              )}
-              <FormButton
-                type="submit"
-                disabled={!password || !passwordConfirm || password !== passwordConfirm}
-              >
-                버튼
-              </FormButton>
-            </FormLogin>
-          </LoginContainer>
-        </LoginWrapper>
-      </PasswordBlock>
-    </>
+            <Fieldset>
+              <legend>비밀번호 확인</legend>
+              <Input
+                value={passwordConfirm}
+                style={{ '-webkit-text-security': 'circle' }}
+                type="text"
+                onChange={handleNewPassword}
+              />
+            </Fieldset>
+            {passwordConfirm.length > 0 && password !== passwordConfirm && (
+              <PasswordText>{passwordConfirmError}</PasswordText>
+            )}
+            <FormButton
+              type="submit"
+              disabled={!password || !passwordConfirm || password !== passwordConfirm}
+            >
+              버튼
+            </FormButton>
+          </FormLogin>
+        </LoginContainer>
+      </LoginWrapper>
+    </PasswordBlock>
   );
 };
 export default MyHomeSetting;

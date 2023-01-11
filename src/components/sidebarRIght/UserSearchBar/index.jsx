@@ -26,6 +26,7 @@ const UserSearchBar = () => {
 
   return (
     <div>
+      <style.UserListTitle>유저 목록</style.UserListTitle>
       <style.UserSearchBar
         vlaue={keyword}
         onChange={(e) => setKeyword(e.target.value)}

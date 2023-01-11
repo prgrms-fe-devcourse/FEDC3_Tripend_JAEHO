@@ -23,7 +23,6 @@ const LoginPoster = () => {
 
   const handlePoster = async (id) => {
     setVisible(true);
-
     const todo = await getMyPostDetail(id);
     setPostDetail(todo);
   };

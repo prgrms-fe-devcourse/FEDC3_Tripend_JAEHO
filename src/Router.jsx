@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Footer from './pages/Footer';
 import Header from './pages/Header';
 import AccountPage from './pages/AccountPage';
@@ -21,9 +21,13 @@ const AppRouter = () => {
     if (token) setIsLogin(true);
   });
 
+  // 슬라이드바를 elemetn로 가져오고
+  //
+
   return (
     <Router>
       <Header />
+
       <Routes>
         <Route exact path="/main" element={<HomePage />} />
         <Route exact path="/account" element={<AccountPage />} />

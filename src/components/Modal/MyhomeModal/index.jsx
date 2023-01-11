@@ -42,13 +42,14 @@ const ModalBlock = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 
   &.openModal {
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: modal-bg-show 0.3s;
+    animation: modal-bg-show 1s;
   }
 `;
 

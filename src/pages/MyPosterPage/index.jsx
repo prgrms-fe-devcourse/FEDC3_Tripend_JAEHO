@@ -1,10 +1,10 @@
 import UserInfo from '../../components/MyHome/UserInfo';
 
-const MyPostePage = () => {
+const MyPosterPage = () => {
   return (
     <>
       <UserInfo />
     </>
   );
 };
-export default MyPostePage;
+export default MyPosterPage;

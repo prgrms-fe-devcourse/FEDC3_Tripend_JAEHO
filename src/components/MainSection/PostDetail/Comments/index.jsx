@@ -1,9 +1,16 @@
 import { useState } from 'react';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { postStateFamily } from '../../../../recoil/RecoilPostStates';
+import { channelState, selectedChannelState } from '../../../../recoil/RecoilChannelState';
 import { createComment } from '../../../../apis/comment';
 import Comment from '../Comment';
 import { CommentCount, InputContainer, CommentContainer } from './style';
 
 const Comments = ({ postId, comments }) => {
+  const selectedChannelId = useRecoilValue(selectedChannelState);
+  const [{ post }, setPostDetail] = useRecoilState(postStateFamily(postId));
+  const [postList, setPostList] = useRecoilState(channelState(selectedChannelId));
+
   const [comment, setComment] = useState('');
   const [newComments, setComments] = useState(comments);
 
@@ -19,6 +26,20 @@ const Comments = ({ postId, comments }) => {
       if (result.status === 200) {
         setComment('');
         setComments([...newComments, result.data]);
+
+        const newPost = { ...post };
+        newPost.comments = [...newPost.comments, result.data];
+        setPostDetail({ key: postId, post: newPost });
+
+        const newPostList = [...postList.posts];
+        const changedPost = newPostList.map((post) => {
+          if (post._id === postId) {
+            const commentList = post.comments;
+            return { ...post, comments: [...commentList, result] };
+          }
+          return post;
+        });
+        setPostList({ id: postList, posts: changedPost });
       }
     }
   };

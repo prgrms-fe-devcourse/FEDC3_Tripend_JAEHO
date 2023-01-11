@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { selectedPostState, postStateFamily } from '../../../recoil/RecoilPostStates';
 import { getPostDetail } from '../../../apis/post';
 import AuthorInfo from '../Post/AuthorInfo';
 import LeftImage from '../Post/LeftImage';
 import Tags from '../Post/Tags';
-import Heart from '../Post/Heart';
+import Heart from '../Heart';
 import Comments from './Comments';
 import {
   PostDetailContainer,
@@ -75,4 +75,4 @@ const PostDetail = () => {
   );
 };
 
-export default PostDetail;
+export default memo(PostDetail, (p, n) => console.log(p));

@@ -5,8 +5,8 @@ export const selectedChannelState = atom({
   default: '',
 });
 
-export const postsState = atomFamily({
-  key: 'postsState',
+export const channelState = atomFamily({
+  key: 'channelState',
   default: (id) => {
     return {
       key: id,

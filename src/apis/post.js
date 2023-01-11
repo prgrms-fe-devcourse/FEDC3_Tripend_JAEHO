@@ -50,3 +50,22 @@ export const getPostDetail = async (postId) => {
     console.error(error);
   }
 };
+
+// 마이페이지 (게시글 삭제)
+export const removePost = async (postId) => {
+  const data = await authRequest.delete(`/posts/delete`, {
+    data: {
+      id: postId,
+    },
+  });
+
+  if (data.status === 200) {
+    window.location.reload();
+    return data;
+  }
+};
+
+// 마이페이지 포스트 불러오기 (모달용)
+export const getMyPostDetail = async (postId) => {
+  return await baseRequest.get(`/posts/${postId}`);
+};

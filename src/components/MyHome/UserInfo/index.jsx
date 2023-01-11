@@ -1,7 +1,7 @@
 import { getUser } from '../../../apis/auth';
 import { useEffect, useState } from 'react';
 
-const Index = () => {
+const UserInfo = () => {
   const [getLoginData, setLoginData] = useState({});
   const [name, setName] = useState('');
 
@@ -23,4 +23,4 @@ const Index = () => {
     </>
   );
 };
-export default Index;
+export default UserInfo;

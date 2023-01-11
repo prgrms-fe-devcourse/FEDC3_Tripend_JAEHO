@@ -10,7 +10,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { putPaswwordChange } from '../../apis/auth';
 import { ERROR_MESSAGE_AUTH, USER as AUTH, USER } from '../../utils/auth/constant';
 
-const SettingPassoword = () => {
+const SettingPassword = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setConfirmPassword] = useState('');
   const [passwordConfirmError, setPasswordConfirmError] = useState('');
@@ -86,7 +86,8 @@ const SettingPassoword = () => {
     </PasswordBlock>
   );
 };
-export default SettingPassoword;
+
+export default SettingPassword;
 
 const FormSettingText = styled.h3`
   font-size: 0.4rem;

@@ -1,6 +1,6 @@
 import * as style from './style';
 import { useEffect, useState } from 'react';
-import { getUsers } from '../../../apis/user';
+import { getUsers, getClickedUserInfo } from '../../../apis/user';
 import { extractName } from '../../../utils/validate/userList';
 
 const UserList = () => {
@@ -11,6 +11,11 @@ const UserList = () => {
     setUserInfos(data);
   };
 
+  const showUserDetail = async (currentUserId) => {
+    const { data } = await getClickedUserInfo(currentUserId);
+    console.log('clicked user data', data);
+  };
+
   useEffect(() => {
     getUserData();
   }, []);
@@ -18,9 +23,11 @@ const UserList = () => {
   return (
     <div>
       {userInfos ? (
-        <style.UserListContainer>
+        <style.UserListContainer id="userInfoList">
           {userInfos.map((userInfo) => (
-            <li key={userInfo._id}>{extractName.exec(userInfo.fullName)[0]}</li>
+            <li key={userInfo._id} onClick={() => showUserDetail(userInfo._id)}>
+              {extractName.exec(userInfo.fullName)[0]}
+            </li>
           ))}
         </style.UserListContainer>
       ) : (

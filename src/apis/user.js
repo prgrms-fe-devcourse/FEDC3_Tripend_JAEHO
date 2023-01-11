@@ -19,3 +19,13 @@ export const getUserInfo = async (keyword) => {
     console.error(error);
   }
 };
+
+// 클릭된 유저 정보 가져오기
+export const getClickedUserInfo = async (userId) => {
+  try {
+    const data = await baseRequest.get(`/users/${userId}`);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

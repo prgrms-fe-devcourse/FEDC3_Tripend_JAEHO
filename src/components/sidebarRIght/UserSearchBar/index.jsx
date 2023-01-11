@@ -3,7 +3,7 @@ import * as style from './style';
 import { encodeKeyword } from '../../../utils/validate/userList';
 import { getUserInfo } from '../../../apis/user';
 import useDebounce from '../../../hooks/useDebounce';
-import { extractName } from '../../../utils/validate/userList';
+import Avatar from '../../common/Avatar';
 
 const UserSearchBar = () => {
   const [keyword, setKeyword] = useState('');
@@ -36,7 +36,16 @@ const UserSearchBar = () => {
         {result ? (
           <>
             {result.map((userInfo) => (
-              <li key={userInfo._id}>{extractName.exec(userInfo.fullName)[0]}</li>
+              <li key={userInfo._id}>
+                <Avatar
+                  src={userInfo.image}
+                  size={30}
+                  style={{ borderRadius: '16px' }}
+                  lazy={true}
+                  threshold={0.5}
+                />
+                {userInfo.fullName}
+              </li>
             ))}
           </>
         ) : (

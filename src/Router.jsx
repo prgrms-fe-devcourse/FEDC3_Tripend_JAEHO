@@ -7,6 +7,9 @@ import SignupPage from './pages/SignupPage';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userLoginState } from './recoil/auth';
 import HomePage from './pages/HomePage';
+import MyPostePage from './pages/MyPosterPage';
+import MySettingPage from './pages/MySettingPage';
+import MyPosterPage from './pages/MyPosterPage';
 
 const AppRouter = () => {
   const isLogin = useRecoilValue(userLoginState);
@@ -19,6 +22,9 @@ const AppRouter = () => {
         <Route exact path="/account" element={<AccountPage />} />
         <Route exact path="/" element={<SigninPage />} />
         <Route exact path="/signup" element={<SignupPage />} />
+
+        <Route exact path="/myhome" element={<MyPosterPage />} />
+        <Route exact path="/setting" element={<MySettingPage />} />
       </Routes>
 
       {isLogin && <Footer />}

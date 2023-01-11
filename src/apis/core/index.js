@@ -26,7 +26,7 @@ baseRequest.interceptors.response.use(
 
 authRequest.interceptors.request.use(
   (config) => {
-    config.headers.authorization = 'bearer ' + getStorage(TOKEN, '');
+    config.headers.authorization = 'bearer ' + getStorage(TOKEN);
     return config;
   },
   (error) => {

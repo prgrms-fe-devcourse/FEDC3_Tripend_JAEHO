@@ -1,22 +1,23 @@
-export const AUTH = {
-  LOGIN_FAILED: '로그인 실패',
-};
-
 export const USER = {
   ID_PASSWORD: '아이디와 비밀번호를 확인해주세요',
+  LOGIN_FAILED: '로그인 실패',
+  PASSWORD_FAILED: '비밀번호가 틀렸어요 ㅠㅠ',
+  CHANGE_PASSWORD_SUCCESS: '비밀번호 변경이 완료되었습니다',
 };
 
-export const ERROR_MESSAGE = {
-  AUTH_ERROR: 'error',
+export const ERROR_MESSAGE_AUTH = {
+  LOGIN_ERROR: 'error',
+  PASSWORD_SUCCESS: 'success',
 };
 
 export const URL = {
   LOGIN: '/login',
   AUTH_USER: '/auth-user',
+  PASSWORD_UPADTE: '/settings/update-password',
 };
 
 export const TOKEN = 'Token';
-export const BEARER = 'Bearer';
+export const ID = 'id';
 
 export const ERROR_MESSAGE_SIGNUP = {
   NEED_INPUT: '* 입력이 필요합니다.',

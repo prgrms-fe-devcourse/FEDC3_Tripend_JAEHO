@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { InputWrapper } from './style';
+import { createPost } from '../../../apis/post';
 import { useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 import { selectedChannelState } from '../../../utils/channelState';
@@ -88,6 +89,9 @@ const AddPostForm = () => {
 
     const formData = new FormData();
     Object.keys(userData).forEach((key) => formData.append(key, userData[key]));
+
+    const { data } = await createPost(formData);
+    console.log(data);
   };
 
   return (

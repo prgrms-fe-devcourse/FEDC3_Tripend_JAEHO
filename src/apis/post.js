@@ -1,6 +1,4 @@
-import { authRequest, baseRequest } from './core';
-import { TOKEN } from '../utils/auth/constant';
-import { getStorage } from '../utils/storage';
+import { authRequest, baseRequest, formDataRequest } from './core';
 
 // test
 const channelId = '63b93150230951110b843cee';
@@ -28,14 +26,12 @@ export const getChannelPosts = async (channelId) => {
 };
 
 // post 생성하기
-export const createPost = async (title) => {
+export const createPost = async (data) => {
+  /// ????
   localStorage.setItem('Token', token);
+
   try {
-    return await authRequest.post(`posts/create`, {
-      channelId,
-      image: null,
-      title,
-    });
+    return await formDataRequest.post(`posts/create`, data);
   } catch (error) {
     console.error(error);
   }

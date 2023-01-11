@@ -1,78 +1,113 @@
-import styled from '@emotion/styled';
-import AddPost from '../../components/addPost';
-import Alarm from '../../components/alarm';
+import AddPost from '../../components/AddPost';
+import Alarm from '../../components/Alarm';
+import Avatar from '../../components/common/Avatar';
+import AlarmPopup from '../../components/Alarm/AlarmPopup';
+import Logo from '../../assets/Icon/Logo.svg';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userLoginButtonShowState, userLoginState } from '../../recoil/auth';
+import { HeaderButton } from '../../components/common/Button';
+import { toggleStateFamily } from '../../recoil/RecoilToggleStates';
+import { getMyAlarms } from '../../apis/alarm';
+import LogoutIcon from '@mui/icons-material/Logout';
+import {
+  HeaderContainer,
+  LogoContaniner,
+  ButtonContainer,
+  SearchContainer,
+  HeaderUl,
+  IconItem,
+  AlarmContainer,
+} from './style';
 
 const Header = () => {
-  const naviaget = useNavigate();
+  const navigate = useNavigate();
+  const [alarmBox, setAlarmBox] = useState();
+  const [alarms, setAlarms] = useState([]);
   const isLogin = useRecoilValue(userLoginState);
   const [isNextPage, setIsNextPage] = useRecoilState(userLoginButtonShowState);
+  const [isAlarmOpen, setIsAlarmOpen] = useRecoilState(toggleStateFamily('alarm'));
 
-  const handleSignUp = (e) => {
-    setIsNextPage(!isNextPage);
-    naviaget('/signup');
+  const handleClickLogo = () => {
+    isLogin ? navigate('/HomePage') : navigate('/');
   };
 
-  const handleSignIn = (e) => {
+  const handleSignUp = () => {
     setIsNextPage(!isNextPage);
-    naviaget('/');
+    navigate('/signup');
   };
+
+  const handleSignIn = () => {
+    setIsNextPage(!isNextPage);
+    navigate('/');
+  };
+
+  const handleAlarmOpen = async ({ target }) => {
+    if (!isAlarmOpen) {
+      setAlarmBox(target.closest('section'));
+      setIsAlarmOpen(true);
+      const response = await getMyAlarms();
+      setAlarms(response.data);
+    }
+  };
+
+  const handleAlarmClose = () => {
+    setIsAlarmOpen(false);
+  };
+  const handleClickAddPost = () => {};
 
   return (
     <>
-      {isLogin ? (
-        <>
-          <HeaderContainer>
-            <span>HEADER자리</span>
-            <Alarm />
-            <AddPost />
-          </HeaderContainer>
-        </>
-      ) : (
-        <>
-          <LoginHeader>
-            <HeaderNavbar>
-              <div>
-                <span>로그인 회원가입 헤더</span>
-              </div>
-
-              {isNextPage ? (
-                <HeaderUl>
-                  <button onClick={handleSignUp}>회원가입</button>
-                </HeaderUl>
-              ) : (
-                <HeaderUl>
-                  <button onClick={handleSignIn}>로그인</button>
-                </HeaderUl>
-              )}
-            </HeaderNavbar>
-          </LoginHeader>
-        </>
-      )}
+      <HeaderContainer>
+        <LogoContaniner onClick={handleClickLogo}>
+          <Logo />
+        </LogoContaniner>
+        {isLogin ? (
+          <>
+            <SearchContainer>
+              <input type="text" />
+            </SearchContainer>
+            <ButtonContainer>
+              <IconItem onClick={handleClickAddPost}>
+                <AddPost />
+              </IconItem>
+              <AlarmContainer>
+                <IconItem onClick={handleAlarmOpen}>
+                  <Alarm />
+                </IconItem>
+              </AlarmContainer>
+              <IconItem onClick={handleClickAddPost}>
+                <LogoutIcon />
+              </IconItem>
+              <IconItem>
+                <Avatar src="https://picsum.photos/200" size={35} />
+              </IconItem>
+            </ButtonContainer>
+            <AlarmPopup
+              visible={isAlarmOpen}
+              onClose={handleAlarmClose}
+              target={alarmBox}
+              alarms={alarms}
+            />
+          </>
+        ) : (
+          <></>
+          // <ButtonContainer>
+          //   {isNextPage ? (
+          //     <HeaderUl>
+          //       <HeaderButton onClick={handleSignUp}>회원가입</HeaderButton>
+          //     </HeaderUl>
+          //   ) : (
+          //     <HeaderUl>
+          //       <HeaderButton onClick={handleSignIn}>로그인</HeaderButton>
+          //     </HeaderUl>
+          //   )}
+          // </ButtonContainer>
+        )}
+      </HeaderContainer>
     </>
   );
 };
 
 export default Header;
-
-const HeaderContainer = styled.div`
-  display: flex;
-  border-bottom: 1px solid #000;
-`;
-
-const LoginHeader = styled.div`
-  text-align: start;
-  padding-bottom: 1rem;
-  height: 3rem;
-  border-bottom: 2px solid #dee2e6;
-`;
-
-const HeaderNavbar = styled.nav`
-  display: flex;
-  height: 60px;
-  justify-content: space-between;
-`;
-
-const HeaderUl = styled.ul``;

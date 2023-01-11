@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { selectedPostState, postStateFamily } from '../../../recoil/RecoilPostStates';
 import { getPostDetail } from '../../../apis/post';
@@ -75,4 +75,4 @@ const PostDetail = () => {
   );
 };
 
-export default PostDetail;
+export default memo(PostDetail, (p, n) => console.log(p));

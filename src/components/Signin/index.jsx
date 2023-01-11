@@ -13,7 +13,7 @@ import {
   FormButton,
   FormFailedText,
   FormSignupText,
-} from './Login.style';
+} from './index.style';
 
 const Login = () => {
   const { email, password, handleEmail, handlePassword, isLoading, handleSubmit } = useForm();

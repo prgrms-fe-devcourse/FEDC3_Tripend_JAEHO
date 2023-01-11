@@ -1,11 +1,11 @@
-import UserInfo from '../../components/MyHome/UserInfo';
-import MyHomeSetting from '../../components/MyHome/MyHomeSetting';
+import UserInfo from '../../components/MyHome/UserInfo/';
+import SettingPassoword from '../../components/MyHome';
 
 const MySettingPage = () => {
   return (
     <>
       <UserInfo />
-      <MyHomeSetting />
+      <SettingPassoword />
     </>
   );
 };

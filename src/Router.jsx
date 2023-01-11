@@ -7,6 +7,8 @@ import SignupPage from './pages/SignupPage';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userLoginState } from './recoil/auth';
 import HomePage from './pages/HomePage';
+import MyPostePage from './pages/MyPosterPage';
+import MySettingPage from './pages/MySettingPage';
 
 const AppRouter = () => {
   const isLogin = useRecoilValue(userLoginState);

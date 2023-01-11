@@ -6,14 +6,14 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import { getUser } from '../../apis/auth';
 import { getChannelPosts } from '../../apis/post';
-import { postsState, selectedChannelState } from '../../recoil/RecoilChannelState';
+import { channelState, selectedChannelState } from '../../recoil/RecoilChannelState';
 import { selectedPostState } from '../../recoil/RecoilPostStates';
 
 const Posts = () => {
   const selectedChannelId = useRecoilValue(selectedChannelState);
   const setSelectedPostId = useSetRecoilState(selectedPostState);
 
-  const [postList, setPostList] = useRecoilState(postsState(selectedChannelId));
+  const [postList, setPostList] = useRecoilState(channelState(selectedChannelId));
   const [userId, setUserId] = useState('');
   const [visible, setVisible] = useState(false);
 

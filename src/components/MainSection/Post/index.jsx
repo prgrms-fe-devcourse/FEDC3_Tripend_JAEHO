@@ -9,7 +9,7 @@ import {
 import Tags from './Tags';
 import AuthorInfo from './AuthorInfo';
 import LeftImage from './LeftImage';
-import Heart from './Heart';
+import Heart from '../Heart';
 
 const Post = ({ id, title, image, author, likes, commentLength, userId, onClickPost }) => {
   const travel_name = title.split('/')[0];
@@ -20,7 +20,7 @@ const Post = ({ id, title, image, author, likes, commentLength, userId, onClickP
       <InfoContainer>
         <InfoContainerHeader>
           <TravelName>{travel_name}</TravelName>
-          <Heart likes={likes} userId={userId} styleProps={{ fontSize: '35px' }} />
+          <Heart likes={likes} userId={userId} postId={id} styleProps={{ fontSize: '35px' }} />
         </InfoContainerHeader>
         <Tags title={title} />
         <BottomContainer>

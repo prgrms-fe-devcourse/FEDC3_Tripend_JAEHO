@@ -30,6 +30,21 @@ export const getUser = async () => {
   });
 };
 
+// 비밀번호 변경
+export const putPaswwordChange = async (password) => {
+  return await baseRequest.put(
+    `/settings/update-password`,
+    {
+      password,
+    },
+    {
+      headers: {
+        Authorization: `${BEARER} ${getStorage(TOKEN)}`,
+      },
+    }
+  );
+};
+
 export const signup = async (values) => {
   const { userName, userAge, userGender, userId, userPassword } = values;
   const fullName = `${userName}/${userAge}/${userGender}`;

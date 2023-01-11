@@ -7,6 +7,7 @@ import {
 } from '../Signin/Login.style';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
+import { putPaswwordChange } from '../../apis/auth';
 
 const MyHomeSetting = () => {
   const [password, setPassword] = useState('');
@@ -29,6 +30,8 @@ const MyHomeSetting = () => {
   const handlerSubmit = async (e) => {
     e.preventDefault();
 
+    const res = await putPaswwordChange(password);
+
     if (res.status === 200) {
       swal('비밀번호 변경이 완료되었습니다.', '', 'success');
     }
@@ -42,7 +45,7 @@ const MyHomeSetting = () => {
       <PasswordBlock>
         <LoginWrapper>
           <LoginContainer>
-            <FormLogin>
+            <FormLogin onSubmit={handlerSubmit}>
               <FormSettingText>비밀번호 변경</FormSettingText>
 
               <Fieldset>

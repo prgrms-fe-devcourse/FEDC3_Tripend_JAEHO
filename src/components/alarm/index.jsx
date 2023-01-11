@@ -1,10 +1,10 @@
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 
 const Alarm = () => {
   return (
-    <div>
-      <NotificationsActiveIcon/>
-    </div>
+    <>
+      <NotificationsNoneOutlinedIcon />
+    </>
   );
 };
 

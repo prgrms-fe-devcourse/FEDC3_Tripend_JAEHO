@@ -1,10 +1,9 @@
-import CreateIcon from '@mui/icons-material/Create';
-
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 const AddPost = () => {
   return (
-    <div>
-      <CreateIcon/>
-    </div>
+    <>
+      <AddBoxOutlinedIcon />
+    </>
   );
 };
 

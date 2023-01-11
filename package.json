@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development webpack-dev-server --config webpack.dev.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
     "start": "NODE_ENV=production webpack-dev-server --config webpack.prod.js",
     "build": "NODE_ENV=production webpack --config webpack.prod.js"
   },
@@ -57,7 +57,6 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.10.0",
     "webpack-merge": "^5.8.0",
-    "win-node-env": "^0.6.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {

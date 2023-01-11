@@ -2,7 +2,7 @@ import AddPost from '../../components/AddPost';
 import Alarm from '../../components/Alarm';
 import Avatar from '../../components/common/Avatar';
 import AlarmPopup from '../../components/Alarm/AlarmPopup';
-import Logo from '../../assets/Icon/Logo.svg';
+import Logo from '../../../static/images/Logo.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';

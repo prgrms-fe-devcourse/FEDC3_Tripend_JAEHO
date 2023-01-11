@@ -44,8 +44,6 @@ const LoginPoster = () => {
     });
   };
 
-  // 클릭을 했을때 클릭한 post 정보가 모달에 들어가야함
-
   return (
     <>
       <PostWrapper>

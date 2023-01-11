@@ -21,9 +21,6 @@ const AppRouter = () => {
     if (token) setIsLogin(true);
   });
 
-  // 슬라이드바를 elemetn로 가져오고
-  //
-
   return (
     <Router>
       <Header />

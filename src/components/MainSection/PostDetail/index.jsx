@@ -6,15 +6,13 @@ import AuthorInfo from '../Post/AuthorInfo';
 import LeftImage from '../Post/LeftImage';
 import Tags from '../Post/Tags';
 import Heart from '../Post/Heart';
-import Comment from './Comment';
+import Comments from './Comments';
 import {
   PostDetailContainer,
   RightContainer,
   RightContainerContent,
   AccompanyButton,
   BottomContainer,
-  CommentCount,
-  InputContainer,
 } from './style';
 
 const PostDetail = () => {
@@ -66,14 +64,7 @@ const PostDetail = () => {
               </RightContainerContent>
             </RightContainerContent>
             <BottomContainer alignItem="flex-start">
-              <CommentCount>댓글 {post.comments.length}</CommentCount>
-              <InputContainer>
-                <img src={require('../../../../static/images/smile_emoji.png')} />
-                <input placeholder="댓글달기..." />
-              </InputContainer>
-              {post.comments.map(({ _id, comment, author }) => (
-                <Comment key={_id} comment={comment} author={author} />
-              ))}
+              <Comments postId={postId} comments={post.comments} />
             </BottomContainer>
           </RightContainer>
         </>

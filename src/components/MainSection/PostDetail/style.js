@@ -37,22 +37,5 @@ export const AccompanyButton = styled.button`
 export const BottomContainer = styled.div`
   position: absolute;
   bottom: 50px;
-`;
-export const CommentCount = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  padding-bottom: 10px;
-`;
-
-export const InputContainer = styled.div`
-  display: flex;
-  padding-bottom: 20px;
-  & > img {
-    width: 24px;
-    height: 24px;
-    padding-right: 10px;
-  }
-  & > input {
-    font-size: 14px;
-  }
+  width: calc(100% - 28px);
 `;

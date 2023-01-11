@@ -1,14 +1,14 @@
-import styled from '@emotion/styled';
+import * as style from './style';
+import UserList from './UserList';
+import UserSearchBar from './UserSearchBar';
 
 const SideBarRight = () => {
   return (
-    <SideBarRightContainer> SideBarRight</SideBarRightContainer>
+    <style.SidebarRightContainer>
+      <UserSearchBar />
+      <UserList />
+    </style.SidebarRightContainer>
   );
 };
 
 export default SideBarRight;
-
-const SideBarRightContainer = styled.div`
-  width:100px;
-  border-left:1px solid #000 
-`;

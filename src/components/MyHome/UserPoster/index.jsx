@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { getUser } from '../../../apis/auth';
 import { getMyPostDetail, removePost } from '../../../apis/post';
+import MyhomeModal from '../../Modal/MyhomeModal';
 
 const LoginPoster = () => {
   const [getLoginData, setLoginData] = useState({});
@@ -21,7 +22,6 @@ const LoginPoster = () => {
   }, []);
 
   const handlePoster = async (id) => {
-    console.log(id);
     setVisible(true);
 
     const todo = await getMyPostDetail(id);
@@ -74,6 +74,13 @@ const LoginPoster = () => {
             </PostContainer2>
           ))}
 
+        {visible && (
+          <MyhomeModal
+            visible={visible}
+            handlerModalClose={handlerModalClose}
+            postDetail={postDetail}
+          />
+        )}
         {/*<Modal visible={visible} onClose={handlePoster} width="500px" height="600px">*/}
         {/*  <h1>fdsadf</h1>*/}
         {/*  <button onClick={handlerModalClose}>x</button>*/}

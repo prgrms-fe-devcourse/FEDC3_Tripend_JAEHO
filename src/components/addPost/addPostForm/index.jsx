@@ -56,7 +56,6 @@ const AddPostForm = () => {
   };
 
   const handleCountryChange = (e) => {
-    console.log(e.target.value);
     setCountry(e.target.value);
   };
 

@@ -40,24 +40,6 @@ const Comments = ({ postId, comments }) => {
         //PostList atom 업데이트
         const res = await getChannelPosts(selectedChannelId);
         setPostList({ id: selectedChannelId, posts: res.data });
-
-        /*
-        setComments([...newComments, result.data]);
-
-        const newPost = { ...post };
-        newPost.comments = [...newPost.comments, result.data];
-        setPostDetail({ key: postId, post: newPost });
-
-        const newPostList = [...postList.posts];
-        const changedPost = newPostList.map((post) => {
-          if (post._id === postId) {
-            const commentList = post.comments;
-            return { ...post, comments: [...commentList, result] };
-          }
-          return post;
-        });
-        setPostList({ id: postList, posts: changedPost });
-        */
       }
     }
   };

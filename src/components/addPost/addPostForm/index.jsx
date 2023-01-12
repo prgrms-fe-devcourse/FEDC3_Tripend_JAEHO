@@ -28,7 +28,13 @@ const AddPostForm = () => {
     const southEurope = data.filter(({ description }) => description === '남유럽');
     const northEurope = data.filter(({ description }) => description === '북유럽');
 
-    setCountries([...eastEurope, ...westEurope, ...southEurope, ...northEurope]);
+    setCountries([
+      { _id: '0', name: '=== 선택 ===' },
+      ...eastEurope,
+      ...westEurope,
+      ...southEurope,
+      ...northEurope,
+    ]);
   };
 
   useEffect(() => {
@@ -50,6 +56,7 @@ const AddPostForm = () => {
   };
 
   const handleCountryChange = (e) => {
+    console.log(e.target.value);
     setCountry(e.target.value);
   };
 
@@ -72,8 +79,6 @@ const AddPostForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setIsLoading(true);
-
     const token = localStorage.getItem('Token');
 
     if (!token) {
@@ -83,6 +88,8 @@ const AddPostForm = () => {
     if (!country || !name || !date || !personnel || !gender) {
       return;
     }
+
+    setIsLoading(true);
 
     const binaryImage = imageSrc ? imageToBinary(imageSrc) : null;
     const allowableGender =
@@ -97,7 +104,7 @@ const AddPostForm = () => {
     const formData = new FormData();
     Object.keys(userData).forEach((key) => formData.append(key, userData[key]));
 
-    const { data } = await createPost(formData);
+    await createPost(formData);
 
     setIsLoading(false);
     setIsVisibleModal(false);
@@ -135,6 +142,7 @@ const AddPostForm = () => {
       <InputWrapper>
         <label htmlFor="gender">원하는 성별</label>
         <select id="gender" value={gender} onChange={handleGenderChange}>
+          <option value={null}>=== 선택 ===</option>
           <option value="male">남자만</option>
           <option value="female">여자만</option>
           <option value="both">남여 무관</option>

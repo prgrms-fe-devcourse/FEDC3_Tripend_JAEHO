@@ -9,14 +9,11 @@ import HomePage from './pages/HomePage';
 import MySettingPage from './pages/MySettingPage';
 import MyPosterPage from './pages/MyPosterPage';
 
-import RequireUser from './components/RequireAuth';
-import { useRecoilValue } from 'recoil';
-import { userLoginState } from './recoil/auth';
 import MissingPage from './pages/NotFound';
 
-const AppRouter = () => {
-  const isLogin = useRecoilValue(userLoginState);
+import AuthUserRoute from './components/RequireAuth';
 
+const AppRouter = () => {
   return (
     <Router>
       <Header />
@@ -27,17 +24,47 @@ const AppRouter = () => {
         <Route exact path="/signup" element={<SignupPage />} />
 
         {/* login routes */}
-        <Route element={<RequireUser isLogin={isLogin} />}>
-          <Route exact path="/main" element={<HomePage />} />
+        <Route
+          exact
+          path="/main"
+          element={
+            <AuthUserRoute>
+              <HomePage />
+            </AuthUserRoute>
+          }
+        />
 
-          <Route exact path="/account" element={<AccountPage />} />
+        <Route
+          exact
+          path="/account"
+          element={
+            <AuthUserRoute>
+              <AccountPage />
+            </AuthUserRoute>
+          }
+        />
 
-          <Route exact path="/myhome" element={<MyPosterPage />} />
+        <Route
+          exact
+          path="/myhome"
+          element={
+            <AuthUserRoute>
+              <MyPosterPage />
+            </AuthUserRoute>
+          }
+        />
 
-          <Route exact path="/setting" element={<MySettingPage />} />
-        </Route>
+        <Route
+          exact
+          path="/setting"
+          element={
+            <AuthUserRoute>
+              <MySettingPage />
+            </AuthUserRoute>
+          }
+        />
 
-        <Route path="*" element={<MissingPage />} />
+        <Route path="/*" element={<MissingPage />} />
       </Routes>
     </Router>
   );

@@ -34,6 +34,7 @@ const Header = () => {
 
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
 
+  // 새로고침시 로고 누르면 로그아웃되고 있음 -> 수정 필요
   const handleClickLogo = () => {
     isLogin ? navigate('/main') : navigate('/');
   };

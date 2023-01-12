@@ -6,7 +6,9 @@ import { useState, useEffect } from 'react';
 import { createLike, deleteLike } from '../../../apis/like';
 import { createAlarm } from '../../../apis/alarm';
 
-const Heart = ({ likes, userId, postId, styleProps }) => {
+const Heart = ({ likes, postId, styleProps }) => {
+  const userId = localStorage.getItem('id');
+
   const selectedChannelId = useRecoilValue(selectedChannelState);
   const [postList, setPostList] = useRecoilState(channelState(selectedChannelId));
 

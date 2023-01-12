@@ -3,6 +3,9 @@ import { AuthorInfoContainer, AvatarWrapper } from './style';
 import PersonIcon from '@mui/icons-material/Person';
 
 const AuthorInfo = ({ image, fullName }) => {
+  if (fullName === null) {
+    fullName = '임시/20대/남';
+  }
   const [name, author_age, author_gender] = fullName.split('/');
   return (
     <AuthorInfoContainer>

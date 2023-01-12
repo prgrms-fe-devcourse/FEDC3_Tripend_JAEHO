@@ -21,4 +21,5 @@ export const Channel = styled.li`
   height: ${({ opacity }) => (opacity ? '18px' : '0')};
   padding: ${({ opacity }) => (opacity ? '3px 0 3px 25px' : '0 0 0 25px')};
   transition: opacity 0.2s ease-in-out, height 0.2s ease-in-out;
+  font-weight: ${({ isClicked }) => (isClicked ? 'bold' : 'normal')}; ;
 `;

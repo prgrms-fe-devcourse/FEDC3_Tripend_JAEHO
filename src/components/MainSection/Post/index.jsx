@@ -12,7 +12,7 @@ import LeftImage from './LeftImage';
 import Heart from '../Heart';
 import { memo } from 'react';
 
-const Post = ({ id, title, image, author, likes, commentLength, userId, onClickPost }) => {
+const Post = ({ id, title, image, author, likes, commentLength, onClickPost }) => {
   const travel_name = title.split('/')[0];
 
   return (
@@ -21,7 +21,7 @@ const Post = ({ id, title, image, author, likes, commentLength, userId, onClickP
       <InfoContainer>
         <InfoContainerHeader>
           <TravelName>{travel_name}</TravelName>
-          <Heart likes={likes} userId={userId} postId={id} styleProps={{ fontSize: '35px' }} />
+          <Heart likes={likes} postId={id} styleProps={{ fontSize: '35px' }} />
         </InfoContainerHeader>
         <Tags title={title} />
         <BottomContainer>

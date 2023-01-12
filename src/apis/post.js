@@ -72,11 +72,7 @@ export const getMyPostDetail = async (postId) => {
 
 // 마이페이지 게시글 수정
 export const updatePost = async (post) => {
-  const res = await authRequest.put(`/posts/update`, post, {
-    headers: {
-      Authorization: `Bearer ${getStorage(TOKEN)}`,
-    },
-  });
+  const res = await authRequest.put(`/posts/update`, post);
 
   if (res.status === 200) {
     swal('수정이 완료되었습니다.');

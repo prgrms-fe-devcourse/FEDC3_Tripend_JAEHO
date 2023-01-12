@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { InputWrapper } from './style';
+import { useState, useRef, useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { createPost } from '../../../apis/post';
-import { useRef } from 'react';
-import { useRecoilValue } from 'recoil';
-import { selectedChannelState } from '../../../utils/channelState';
+import { getChannels } from '../../../apis/post';
+import { isVisibleModalState } from '../../../utils/addPostState';
 
-const imageToBinary = (imgSrc) => {
+import { InputWrapper } from './style';
+
+export const imageToBinary = (imgSrc) => {
   const byteString = atob(imgSrc.split(',')[1]);
-  console.log(byteString);
 
   const ab = new ArrayBuffer(byteString.length);
   const ia = new Uint8Array(ab);
@@ -19,22 +19,38 @@ const imageToBinary = (imgSrc) => {
     type: 'image/jpeg',
   });
 
-  console.log(blob);
-
   return blob;
 };
 
 const AddPostForm = () => {
+  const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
   const imageFileInputRef = useRef('');
   const [imageSrc, setImageSrc] = useState('');
+  const [countries, setCountries] = useState([]);
   const [date, setDate] = useState('');
   const [personnel, setPersonnel] = useState(1);
   const [gender, setGender] = useState('');
   const [name, setName] = useState('');
+  const [country, setCountry] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const selectedChannel = useRecoilValue(selectedChannelState);
+  // ChannelList 컴포넌트 내부 getChannelData 함수와 중복 => 분리
+  const getChannelData = async () => {
+    const { data } = await getChannels();
 
-  const onImageFileChange = async (e) => {
+    const eastEurope = data.filter(({ description }) => description === '동유럽');
+    const westEurope = data.filter(({ description }) => description === '서유럽');
+    const southEurope = data.filter(({ description }) => description === '남유럽');
+    const northEurope = data.filter(({ description }) => description === '북유럽');
+
+    setCountries([...eastEurope, ...westEurope, ...southEurope, ...northEurope]);
+  };
+
+  useEffect(() => {
+    getChannelData();
+  }, []);
+
+  const handleImageFileChange = async (e) => {
     let fileBlob = e.target.files[0];
 
     if (!fileBlob) {
@@ -46,6 +62,10 @@ const AddPostForm = () => {
     reader.onload = () => {
       setImageSrc(reader.result);
     };
+  };
+
+  const handleCountryChange = (e) => {
+    setCountry(e.target.value);
   };
 
   const handleDateChange = (e) => {
@@ -67,31 +87,39 @@ const AddPostForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setIsLoading(true);
+
     const token = localStorage.getItem('Token');
 
     if (!token) {
       return;
     }
 
-    const binaryImage = imageSrc ? imageToBinary(imageSrc) : null;
+    if (!country || !name || !date || !personnel || !gender) {
+      console.log('d');
+      return;
+    }
 
-    const travel_name = name;
-    const travel_date = date;
-    const travel_personnel = personnel;
-    const travel_gender =
+    const binaryImage = imageSrc ? imageToBinary(imageSrc) : null;
+    const allowableGender =
       gender === 'male' ? '남자만' : gender === 'female' ? '여자만' : '남여 무관';
 
     const userData = {
-      title: `${travel_name}/${travel_date}/${travel_personnel}/${travel_gender}`,
+      title: `${name}/${date}/${personnel}/${allowableGender}`,
       image: binaryImage,
-      channelId: selectedChannel,
+      channelId: country,
     };
+
+    console.log(userData);
 
     const formData = new FormData();
     Object.keys(userData).forEach((key) => formData.append(key, userData[key]));
 
     const { data } = await createPost(formData);
     console.log(data);
+
+    setIsLoading(false);
+    setIsVisibleModal(false);
   };
 
   return (
@@ -102,16 +130,26 @@ const AddPostForm = () => {
           ref={imageFileInputRef}
           type="file"
           accept="image/png, image/jpeg, image/jpg"
-          onChange={onImageFileChange}
+          onChange={handleImageFileChange}
         />
       </div>
+      <InputWrapper>
+        <label htmlFor="country">나라</label>
+        <select id="country" value={country} onChange={handleCountryChange}>
+          {countries.map(({ name, _id }) => (
+            <option key={_id} value={_id}>
+              {name}
+            </option>
+          ))}
+        </select>
+      </InputWrapper>
       <InputWrapper>
         <label htmlFor="date">날짜</label>
         <input type="date" id="date" value={date} onChange={handleDateChange} />
       </InputWrapper>
       <InputWrapper>
-        <label htmlFor="number">인원</label>
-        <input type="number" id="number" value={personnel} onChange={handlePersonnelChange} />
+        <label htmlFor="personnel">인원</label>
+        <input type="number" id="personnel" value={personnel} onChange={handlePersonnelChange} />
       </InputWrapper>
       <InputWrapper>
         <label htmlFor="gender">원하는 성별</label>
@@ -125,7 +163,7 @@ const AddPostForm = () => {
         <label htmlFor="name">제목</label>
         <input type="text" id="name" value={name} onChange={handleNameChange} />
       </InputWrapper>
-      <button>등록</button>
+      <button>{isLoading ? '등록 중...' : '등록'}</button>
     </form>
   );
 };

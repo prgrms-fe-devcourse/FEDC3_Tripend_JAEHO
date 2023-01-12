@@ -11,7 +11,7 @@ import { createAlarm } from '../../../../apis/alarm';
 const Comments = ({ postId, comments }) => {
   const selectedChannelId = useRecoilValue(selectedChannelState);
   const [postDetail, setPostDetail] = useRecoilState(postStateFamily(postId));
-  const [postList, setPostList] = useRecoilState(channelState(selectedChannelId));
+  const [postList, setPostList] = useRecoilState(channelState(selectedChannelId ?? 'all'));
 
   const [comment, setComment] = useState('');
   const [newComments, setComments] = useState(comments);
@@ -38,8 +38,10 @@ const Comments = ({ postId, comments }) => {
         setPostDetail({ key: postId, post: data });
 
         //PostList atom 업데이트
-        const res = await getChannelPosts(selectedChannelId);
-        setPostList({ id: selectedChannelId, posts: res.data });
+        const newResult = selectedChannelId
+          ? await getChannelPosts(selectedChannelId)
+          : await getPostDetail('');
+        setPostList({ id: selectedChannelId, posts: newResult.data });
       }
     }
   };

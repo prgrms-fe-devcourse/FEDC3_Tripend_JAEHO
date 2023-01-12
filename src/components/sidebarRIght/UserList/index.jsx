@@ -12,8 +12,7 @@ const UserList = () => {
   };
 
   const showUserDetail = async (currentUserId) => {
-    const { data } = await getClickedUserInfo(currentUserId);
-    console.log('clicked user data', data);
+    await getClickedUserInfo(currentUserId);
   };
 
   useEffect(() => {

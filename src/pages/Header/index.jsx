@@ -64,6 +64,10 @@ const Header = () => {
     setIsVisibleModal(true);
   };
 
+  const handleOpenMyPage = () => {
+    navigate('/myhome');
+  };
+
   return (
     <>
       {getToken ? (
@@ -86,7 +90,7 @@ const Header = () => {
               <IconItem onClick={handleOpenAddPostModal}>
                 <LogoutIcon />
               </IconItem>
-              <IconItem>
+              <IconItem onClick={handleOpenMyPage}>
                 <Avatar src="https://picsum.photos/200" size={35} />
               </IconItem>
             </ButtonContainer>

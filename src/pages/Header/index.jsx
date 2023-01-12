@@ -22,7 +22,7 @@ import {
 } from './style';
 import { setStorage } from '../../utils/storage';
 import { TOKEN } from '../../utils/auth/constant';
-import { isVisibleModalState } from '../../utils/addPostState';
+import { isVisibleModalState } from '../../recoil/addPostStates';
 
 const Header = () => {
   const navigate = useNavigate();

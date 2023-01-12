@@ -3,10 +3,13 @@ import styled from '@emotion/styled';
 import { getUser } from '../../../apis/auth';
 import { getMyPostDetail, removePost } from '../../../apis/post';
 import MyhomeModal from '../../Modal/MyhomeModal';
+import Modal from '../../Modal';
+import UploadAndDisplayImage from '../../UploadImage';
 
 const LoginPoster = () => {
   const [getLoginData, setLoginData] = useState({});
   const [Poster, setPoster] = useState([]);
+  const [postId, setPostId] = useState('');
 
   const [visible, setVisible] = useState(false);
 
@@ -24,6 +27,8 @@ const LoginPoster = () => {
   const handlePoster = async (id) => {
     setVisible(true);
     const todo = await getMyPostDetail(id);
+
+    setPostId(id);
     setPostDetail(todo);
   };
 
@@ -71,22 +76,41 @@ const LoginPoster = () => {
             </PostContainer2>
           ))}
 
+        {/*{visible && (*/}
+        {/*  <MyhomeModal*/}
+        {/*    visible={visible}*/}
+        {/*    handlerModalClose={handlerModalClose}*/}
+        {/*    postDetail={postDetail}*/}
+        {/*  />*/}
+        {/*)}*/}
         {visible && (
-          <MyhomeModal
-            visible={visible}
-            handlerModalClose={handlerModalClose}
-            postDetail={postDetail}
-          />
+          <Modal visible={visible} onClose={handlePoster} width="500px" height="600px">
+            <h1>fdsadf</h1>
+            <button onClick={handlerModalClose}>x</button>
+            <MyhomeModal postDetail={postDetail} postId={postId} />
+          </Modal>
         )}
-        {/*<Modal visible={visible} onClose={handlePoster} width="500px" height="600px">*/}
-        {/*  <h1>fdsadf</h1>*/}
-        {/*  <button onClick={handlerModalClose}>x</button>*/}
-        {/*</Modal>*/}
       </PostWrapper>
     </>
   );
 };
 export default LoginPoster;
+
+const ModalRight = styled.div`
+  width: 50%;
+  height: 450px;
+  float: right;
+  box-sizing: border-box;
+  border: 3px solid black;
+`;
+
+const ModalLeft = styled.div`
+  width: 50%;
+  height: 450px;
+  float: left;
+  box-sizing: border-box;
+  border: 3px solid blue;
+`;
 
 const PostTitle = styled.div`
   display: flex;

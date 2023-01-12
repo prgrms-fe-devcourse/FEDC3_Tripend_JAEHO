@@ -1,75 +1,117 @@
 import styled from '@emotion/styled';
 import UploadAndDisplayImage from '../../UploadImage';
 import { useRecoilValue } from 'recoil';
-import { uploadImageState } from '../../../recoil/uploadImage';
+import { formatDataState, uploadImageState } from '../../../recoil/uploadImage';
+import { useState } from 'react';
+import { updatePost } from '../../../apis/post';
 
-const MyhomeModal = ({ visible, handlerModalClose, postDetail }) => {
+const MyhomeModal = ({ postDetail, postId }) => {
   // postDetail 가지고 수정해줘야함
 
-  console.log(postDetail);
+  const [detail, setDetailDate] = useState(postDetail);
 
   const imageValue = useRecoilValue(uploadImageState);
 
-  console.log(imageValue);
+  const formatData = useRecoilValue(formatDataState);
+
+  const [day, setDay] = useState('');
+  const [person, setPerson] = useState('');
+  const [man, setMan] = useState('');
+  const [PosterTitle, setPosterTitle] = useState('');
+
+  const [title, setTitle] = useState('');
+
+  const [formImage, setFormImage] = useState('');
+
+  const handlerDay = (e) => {
+    setDay(e.target.value);
+  };
+
+  const handlerPerson = (e) => {
+    setPerson(e.target.value);
+  };
+
+  const handlerMan = (e) => {
+    setMan(e.target.value);
+  };
+
+  const handlePosterTitle = (e) => {
+    setPosterTitle(e.target.value);
+  };
+
+  console.log(postDetail);
+  // 수정할때 body에 들어가야함
+  //     "postId": "63b9510e66dd96196cde83f0" // 완료
+  //     "title": "seunghwan" // 완료
+  //     "image":  null // 완료
+  //     "channelId": "63b93c0935c05a12cd3da627" // 완료
+
+  const sendFileImage = async (e) => {
+    e.preventDefault();
+    if (imageValue) {
+      const str = `${PosterTitle} / ${day} / ${person} / ${man}`;
+      console.log(postId);
+      console.log(str);
+      console.log(imageValue);
+      console.log(detail.data.channel._id);
+      const formatData = new FormData();
+
+      formatData.append('postId', postId);
+      formatData.append('image', imageValue);
+      formatData.append('title', title);
+      formatData.append('channelId', detail.data.channel._id);
+
+      const res = await updatePost(formatData);
+      if (res.status === 200) {
+        alert('수정완료');
+      }
+    }
+  };
+
   return (
-    <>
-      {/*<button className="open" onClick={handlerModal}>*/}
-      {/*  모달 사진*/}
-      {/*</button>*/}
+    <div>
+      <ModalLeft>
+        <UploadAndDisplayImage />
+      </ModalLeft>
 
-      <ModalBlock className={visible ? 'openModal modal' : 'modal'}>
-        {visible ? (
-          <ModalContent>
-            <header>
-              <div>
-                <button className="close" onClick={handlerModalClose}>
-                  {' '}
-                  &times;{' '}
-                </button>
-              </div>
+      <ModalRight>
+        <div>
+          <div>
+            <h3>AR JaKir</h3>
+            <span>20대 중반/남자</span>
+          </div>
 
-              <div>
-                <ModalLeft>
-                  <UploadAndDisplayImage />
-                </ModalLeft>
+          <form onSubmit={sendFileImage}>
+            <div>
+              <p>날짜</p>
+              <Input type="text" placeholder="날짜를 입력해주세요" onChange={handlerDay} />
+            </div>
 
-                <ModalRight>
-                  <div>
-                    <div>
-                      <h3>AR JaKir</h3>
-                      <span>20대 중반/남자</span>
-                    </div>
+            <div>
+              <p>인원</p>
+              <Input type="text" placeholder="인원을 입력해주세요" onChange={handlerPerson} />
+              <p>원하는 성별</p>
+              <Input type="text" placeholder="원하는 성별 선택해주세요" onChange={handlerMan} />
+            </div>
 
-                    <div>
-                      <div>
-                        <span>날짜</span>
-                        <input type="text" placeholder="날짜를 입력해주세요" />
-                      </div>
+            <div>
+              <p>제목</p>
+              <Input type="text" placeholder="제목을 입력해주세요" onChange={handlePosterTitle} />
+            </div>
 
-                      <div>
-                        <span>인원</span>
-                        <input type="text" placeholder="인원을 입력해주세요" />
-                        <span>원하는 성별</span>
-                        <input type="text" placeholder="원하는 성별 선택해주세요" />
-                      </div>
-
-                      <div>
-                        <span>제목</span>
-                        <input type="text" placeholder="제목을 입력해주세요" />
-                      </div>
-                    </div>
-                  </div>
-                </ModalRight>
-              </div>
-            </header>
-          </ModalContent>
-        ) : null}
-      </ModalBlock>
-    </>
+            <button type="submit">확인</button>
+          </form>
+        </div>
+      </ModalRight>
+    </div>
   );
 };
 
 export default MyhomeModal;
+
+const Input = styled.input`
+  border: 1px solid black;
+`;
 
 const ModalRight = styled.div`
   width: 50%;

@@ -1,16 +1,16 @@
 import { useRecoilState } from 'recoil';
-import { uploadImageState } from '../../recoil/uploadImage';
-import { useState } from 'react';
+import { formatDataState, uploadImageState } from '../../recoil/uploadImage';
+import { useCallback, useRef, useState } from 'react';
 
 const UploadAndDisplayImage = () => {
   const [selectedImage, setSelectedImage] = useRecoilState(uploadImageState);
+  const [formatImage, setFormatImage] = useRecoilState(formatDataState);
 
-  const [filename, setFileName] = useState('');
-  console.log(selectedImage);
+  const [data, setData] = useState(null);
 
-  const handleDeleteImage = () => {
-    setSelectedImage(null);
-    setFileName('');
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedImage(file);
   };
 
   return (
@@ -20,22 +20,25 @@ const UploadAndDisplayImage = () => {
         <div>
           <img alt="not fount" width={'250px'} src={URL.createObjectURL(selectedImage)} />
           <br />
-          <button onClick={handleDeleteImage}>Remove</button>
+          <button>이미지 업로드</button>
         </div>
       )}
       <br />
 
       <br />
-      <input
-        type="file"
-        name="myImage"
-        onChange={(event) => {
-          console.log(event.target.files[0]);
-          setSelectedImage(event.target.files[0]);
-        }}
-      />
+      <input type="file" accept="image/*" onChange={handleImageChange} />
     </div>
   );
 };
 
 export default UploadAndDisplayImage;
+
+// onChange={(e) => {
+//     console.log(e.target.files[0]);
+//
+//     const formData = new FormData();
+//     formData.append('image', e.target.files[0]);
+//     setFormatImage(formData);
+//     setFileName(formData);
+//     setSelectedImage(e.target.files[0]);
+// }}

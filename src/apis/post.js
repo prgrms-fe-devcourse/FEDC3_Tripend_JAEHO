@@ -69,3 +69,13 @@ export const removePost = async (postId) => {
 export const getMyPostDetail = async (postId) => {
   return await baseRequest.get(`/posts/${postId}`);
 };
+
+// 마이페이지 게시글 수정
+export const updatePost = async (post) => {
+  const res = await authRequest.put(`/posts/update`, post, {
+    headers: {
+      Authorization: `Bearer ${getStorage(TOKEN)}`,
+    },
+  });
+  return res;
+};

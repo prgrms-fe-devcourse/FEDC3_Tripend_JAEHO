@@ -1,5 +1,6 @@
 import { ImageContainer } from './style';
 import Image from '../../../common/Image';
+import { memo } from 'react';
 
 const LeftImage = ({ src, width, height, style }) => {
   return (
@@ -14,4 +15,4 @@ const LeftImage = ({ src, width, height, style }) => {
   );
 };
 
-export default LeftImage;
+export default memo(LeftImage, (prev, next) => prev.src === next.src);

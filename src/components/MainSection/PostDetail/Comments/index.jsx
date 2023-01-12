@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import Comment from '../Comment';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { postStateFamily } from '../../../../recoil/RecoilPostStates';
 import { channelState, selectedChannelState } from '../../../../recoil/RecoilChannelState';
 import { createComment } from '../../../../apis/comment';
-import Comment from '../Comment';
+import { getChannelPosts, getPostDetail } from '../../../../apis/post';
 import { CommentCount, InputContainer, CommentContainer } from './style';
 
 const Comments = ({ postId, comments }) => {
@@ -20,11 +21,20 @@ const Comments = ({ postId, comments }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     if (comment.length > 1) {
       const result = await createComment(postId, comment);
 
       if (result.status === 200) {
         setComment('');
+
+        const { data } = await getPostDetail(postId);
+        setPostDetail({ key: postId, post: data });
+
+        const res = await getChannelPosts(selectedChannelId);
+        setPostList({ id: selectedChannelId, posts: res.data });
+
+        /*
         setComments([...newComments, result.data]);
 
         const newPost = { ...post };
@@ -40,6 +50,7 @@ const Comments = ({ postId, comments }) => {
           return post;
         });
         setPostList({ id: postList, posts: changedPost });
+        */
       }
     }
   };

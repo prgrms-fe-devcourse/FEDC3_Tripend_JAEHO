@@ -8,7 +8,7 @@ export const CommentCount = styled.div`
 
 export const InputContainer = styled.form`
   display: flex;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   & > img {
     width: 24px;
     height: 24px;

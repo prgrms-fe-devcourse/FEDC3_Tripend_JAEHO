@@ -1,4 +1,6 @@
 import { authRequest, baseRequest } from './core';
+import { TOKEN } from '../utils/auth/constant';
+import { getStorage } from '../utils/storage';
 
 // test
 const channelId = '63b93150230951110b843cee';
@@ -47,4 +49,37 @@ export const getPostDetail = async (postId) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+// 마이페이지 (게시글 삭제)
+export const removePost = async (postId) => {
+  const data = await authRequest.delete(`/posts/delete`, {
+    data: {
+      id: postId,
+    },
+  });
+
+  if (data.status === 200) {
+    window.location.reload();
+    return data;
+  }
+};
+
+// 마이페이지 포스트 불러오기 (모달용)
+export const getMyPostDetail = async (postId) => {
+  return await baseRequest.get(`/posts/${postId}`);
+};
+
+// 마이페이지 게시글 수정
+export const updatePost = async (post) => {
+  const res = await authRequest.put(`/posts/update`, post);
+
+  if (res.status === 200) {
+    swal('수정이 완료되었습니다.');
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  }
+  return res;
 };

@@ -4,13 +4,13 @@ import {
   FormLogin,
   LoginContainer,
   LoginWrapper,
-} from '../Signin/Login.style';
+} from '../Signin/index.style';
 import styled from '@emotion/styled';
 import { useCallback, useEffect, useState } from 'react';
 import { putPaswwordChange } from '../../apis/auth';
-import { ERROR_MESSAGE_AUTH, USER } from '../../utils/auth/constant';
+import { ERROR_MESSAGE_AUTH, USER as AUTH, USER } from '../../utils/auth/constant';
 
-const MyHomeSetting = () => {
+const SettingPassword = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setConfirmPassword] = useState('');
   const [passwordConfirmError, setPasswordConfirmError] = useState('');
@@ -86,7 +86,8 @@ const MyHomeSetting = () => {
     </PasswordBlock>
   );
 };
-export default MyHomeSetting;
+
+export default SettingPassword;
 
 const FormSettingText = styled.h3`
   font-size: 0.4rem;

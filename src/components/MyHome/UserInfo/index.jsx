@@ -1,4 +1,4 @@
-import { getUser } from '../../apis/auth';
+import { getUser } from '../../../apis/auth';
 import { useEffect, useState } from 'react';
 
 const UserInfo = () => {

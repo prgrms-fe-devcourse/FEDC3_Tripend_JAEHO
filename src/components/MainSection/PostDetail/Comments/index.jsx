@@ -22,6 +22,7 @@ const Comments = ({ postId, comments }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     if (comment.length > 1) {
       const result = await createComment(postId, comment);
 

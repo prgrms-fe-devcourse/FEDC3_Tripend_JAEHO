@@ -21,7 +21,7 @@ const Posts = () => {
     if (postList.posts === null) {
       const { data } = await getChannelPosts(selectedChannelId);
 
-      data.sort(() => Math.random() - 0.5);
+      //data.sort(() => Math.random() - 0.5);
       setPostList({ id: selectedChannelId, posts: data });
     }
   };

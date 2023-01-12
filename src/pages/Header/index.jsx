@@ -32,7 +32,7 @@ const Header = () => {
   const [isAlarmOpen, setIsAlarmOpen] = useRecoilState(toggleStateFamily('alarm'));
 
   const handleClickLogo = () => {
-    isLogin ? navigate('/HomePage') : navigate('/');
+    isLogin ? navigate('/main') : navigate('/');
   };
 
   const handleSignUp = () => {

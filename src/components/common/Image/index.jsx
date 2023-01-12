@@ -18,8 +18,8 @@ const Image = ({
   placeholder,
   src,
   block,
-  width,
-  height,
+  width = '100%',
+  height = '100%',
   alt,
   mode,
   ...props

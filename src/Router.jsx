@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 const AppRouter = () => {
   const token = getStorage(TOKEN);
   const [isLogin, setIsLogin] = useRecoilState(userLoginState);
+
   useEffect(() => {
     if (token) setIsLogin(true);
   });

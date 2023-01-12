@@ -1,17 +1,16 @@
-import { atomFamily, selector } from 'recoil';
+import { atomFamily, atom } from 'recoil';
+
+export const selectedPostState = atom({
+  key: 'selectedPostState',
+  default: '',
+});
 
 export const postStateFamily = atomFamily({
   key: 'postDetailState',
-  default: {
-    likes: [],
-    comments: [],
-    _id: '',
-    image: '',
-    imagePublicId: '',
-    title: '',
-    channel: {},
-    author: {},
-    createdAt: '',
-    updatedAt: '',
+  default: (id) => {
+    return {
+      key: id,
+      post: null,
+    };
   },
 });

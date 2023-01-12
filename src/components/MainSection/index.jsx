@@ -17,13 +17,10 @@ const Posts = () => {
   const [userId, setUserId] = useState('');
   const [visible, setVisible] = useState(false);
 
-  const getPostsData = async () => {
-    if (postList.posts === null) {
-      const { data } = await getChannelPosts(selectedChannelId);
+  const getPostData = async () => {
+    const { data } = await getChannelPosts(selectedChannelId);
 
-      data.sort(() => Math.random() - 0.5);
-      setPostList({ id: selectedChannelId, posts: data });
-    }
+    setPostList({ id: selectedChannelId, posts: data });
   };
 
   const getUserData = async () => {
@@ -39,7 +36,7 @@ const Posts = () => {
 
   useEffect(() => {
     if (selectedChannelId) {
-      getPostsData();
+      getPostData();
       getUserData();
     }
   }, [selectedChannelId]);
@@ -49,10 +46,6 @@ const Posts = () => {
       {selectedChannelId ? (
         postList.posts?.length > 0 ? (
           <>
-            <div style={{ display: 'flex' }}>
-              <div>검색창 자리</div>
-              <button>포스트 등록</button>
-            </div>
             <div className="postContainer">
               {postList.posts.map((post) => {
                 return (

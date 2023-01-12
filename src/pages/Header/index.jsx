@@ -1,16 +1,16 @@
-import AddPost from '../../components/addPost';
 import Alarm from '../../components/Alarm';
 import Avatar from '../../components/common/Avatar';
 import AlarmPopup from '../../components/Alarm/AlarmPopup';
 import Logo from '../../../static/images/Logo.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { userLoginButtonShowState, userLoginState } from '../../recoil/auth';
 import { HeaderButton } from '../../components/common/Button';
 import { toggleStateFamily } from '../../recoil/RecoilToggleStates';
 import { getMyAlarms } from '../../apis/alarm';
 import LogoutIcon from '@mui/icons-material/Logout';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import {
   HeaderContainer,
   LogoContaniner,
@@ -22,6 +22,7 @@ import {
 } from './style';
 import { setStorage } from '../../utils/storage';
 import { TOKEN } from '../../utils/auth/constant';
+import { isVisibleModalState } from '../../recoil/addPostStates';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -30,6 +31,8 @@ const Header = () => {
   const [isLogin, setIsLogin] = useRecoilState(userLoginState);
   const [isNextPage, setIsNextPage] = useRecoilState(userLoginButtonShowState);
   const [isAlarmOpen, setIsAlarmOpen] = useRecoilState(toggleStateFamily('alarm'));
+
+  const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
 
   const handleClickLogo = () => {
     isLogin ? navigate('/main') : navigate('/');
@@ -62,7 +65,10 @@ const Header = () => {
   const handleAlarmClose = () => {
     setIsAlarmOpen(false);
   };
-  const handleClickAddPost = () => {};
+
+  const handleOpenAddPostModal = () => {
+    setIsVisibleModal(true);
+  };
 
   return (
     <>
@@ -76,15 +82,15 @@ const Header = () => {
               <input type="text" />
             </SearchContainer>
             <ButtonContainer>
-              <IconItem onClick={handleClickAddPost}>
-                <AddPost />
+              <IconItem onClick={handleOpenAddPostModal}>
+                <AddBoxOutlinedIcon />
               </IconItem>
               <AlarmContainer>
                 <IconItem onClick={handleAlarmOpen}>
                   <Alarm />
                 </IconItem>
               </AlarmContainer>
-              <IconItem onClick={handleLogout}>
+              <IconItem onClick={handleOpenAddPostModal}>
                 <LogoutIcon />
               </IconItem>
               <IconItem>

@@ -8,6 +8,7 @@ export const AlarmPopupContainer = styled.div`
   border-radius: 8px;
   padding: 5px 20px;
   width: 200px;
+  z-index: 1;
 
   &::before {
     content: '';

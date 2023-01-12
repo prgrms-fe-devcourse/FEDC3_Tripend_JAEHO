@@ -4,7 +4,6 @@ import { getUser } from '../../../apis/auth';
 import { getMyPostDetail, removePost } from '../../../apis/post';
 import MyhomeModal from '../../Modal/MyhomeModal';
 import Modal from '../../Modal';
-import UploadAndDisplayImage from '../../UploadImage';
 
 const LoginPoster = () => {
   const [getLoginData, setLoginData] = useState({});
@@ -76,15 +75,8 @@ const LoginPoster = () => {
             </PostContainer2>
           ))}
 
-        {/*{visible && (*/}
-        {/*  <MyhomeModal*/}
-        {/*    visible={visible}*/}
-        {/*    handlerModalClose={handlerModalClose}*/}
-        {/*    postDetail={postDetail}*/}
-        {/*  />*/}
-        {/*)}*/}
         {visible && (
-          <Modal visible={visible} onClose={handlePoster} width="500px" height="600px">
+          <Modal visible={visible} onClose={handlePoster} width="1000px" height="600px">
             <h1>fdsadf</h1>
             <button onClick={handlerModalClose}>x</button>
             <MyhomeModal postDetail={postDetail} postId={postId} />
@@ -138,6 +130,7 @@ const PostButton = styled.div`
 
 const ImageContainer2 = styled.div`
   width: 100px;
+  height: 70px;
   margin: 20px;
   border-radius: 16px;
   background-color: #eee;

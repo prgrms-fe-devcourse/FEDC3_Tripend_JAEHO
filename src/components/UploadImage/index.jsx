@@ -1,6 +1,7 @@
 import { useRecoilState } from 'recoil';
 import { formatDataState, uploadImageState } from '../../recoil/uploadImage';
 import { useCallback, useRef, useState } from 'react';
+import styled from '@emotion/styled';
 
 const UploadAndDisplayImage = () => {
   const [selectedImage, setSelectedImage] = useRecoilState(uploadImageState);
@@ -8,37 +9,41 @@ const UploadAndDisplayImage = () => {
 
   const [data, setData] = useState(null);
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setSelectedImage(file);
-  };
+  const handleImageChange = useCallback(
+    (e) => {
+      const file = e.target.files[0];
+      setSelectedImage(file);
+    },
+    [selectedImage]
+  );
 
   return (
     <div>
       <h1>파일 업로드</h1>
       {selectedImage && (
         <div>
-          <img alt="not fount" width={'250px'} src={URL.createObjectURL(selectedImage)} />
+          <img
+            alt="not fount"
+            width={'200px'}
+            height={'200px'}
+            src={URL.createObjectURL(selectedImage)}
+          />
           <br />
-          <button>이미지 업로드</button>
         </div>
       )}
       <br />
 
       <br />
-      <input type="file" accept="image/*" onChange={handleImageChange} />
+      <Button type="file" accept="image/*" onChange={handleImageChange} />
     </div>
   );
 };
 
 export default UploadAndDisplayImage;
 
-// onChange={(e) => {
-//     console.log(e.target.files[0]);
-//
-//     const formData = new FormData();
-//     formData.append('image', e.target.files[0]);
-//     setFormatImage(formData);
-//     setFileName(formData);
-//     setSelectedImage(e.target.files[0]);
-// }}
+const Button = styled.input`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+`;

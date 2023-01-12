@@ -1,59 +1,54 @@
 import styled from '@emotion/styled';
 import UploadAndDisplayImage from '../../UploadImage';
 import { useRecoilValue } from 'recoil';
-import { formatDataState, uploadImageState } from '../../../recoil/uploadImage';
-import { useState } from 'react';
+import { uploadImageState } from '../../../recoil/uploadImage';
+import { useCallback, useState } from 'react';
 import { updatePost } from '../../../apis/post';
 
 const MyhomeModal = ({ postDetail, postId }) => {
   // postDetail 가지고 수정해줘야함
-
   const [detail, setDetailDate] = useState(postDetail);
 
   const imageValue = useRecoilValue(uploadImageState);
 
-  const formatData = useRecoilValue(formatDataState);
-
   const [day, setDay] = useState('');
   const [person, setPerson] = useState('');
-  const [man, setMan] = useState('');
-  const [PosterTitle, setPosterTitle] = useState('');
+  const [gender, setGender] = useState('');
+  const [posterTitle, setPosterTitle] = useState('');
 
-  const [title, setTitle] = useState('');
+  const handleDay = useCallback(
+    (e) => {
+      setDay(e.target.value);
+    },
+    [day]
+  );
 
-  const [formImage, setFormImage] = useState('');
+  const handlePerson = useCallback(
+    (e) => {
+      setPerson(e.target.value);
+    },
+    [person]
+  );
 
-  const handlerDay = (e) => {
-    setDay(e.target.value);
-  };
+  const handleGender = useCallback(
+    (e) => {
+      setGender(e.target.value);
+    },
+    [gender]
+  );
 
-  const handlerPerson = (e) => {
-    setPerson(e.target.value);
-  };
-
-  const handlerMan = (e) => {
-    setMan(e.target.value);
-  };
-
-  const handlePosterTitle = (e) => {
-    setPosterTitle(e.target.value);
-  };
-
-  console.log(postDetail);
-  // 수정할때 body에 들어가야함
-  //     "postId": "63b9510e66dd96196cde83f0" // 완료
-  //     "title": "seunghwan" // 완료
-  //     "image":  null // 완료
-  //     "channelId": "63b93c0935c05a12cd3da627" // 완료
+  const handlePosterTitle = useCallback(
+    (e) => {
+      setPosterTitle(e.target.value);
+    },
+    [posterTitle]
+  );
 
   const handleSendFileImage = async (e) => {
     e.preventDefault();
     if (imageValue) {
-      const str = `${PosterTitle} / ${day} / ${person} / ${man}`;
-      console.log(postId);
-      console.log(str);
-      console.log(imageValue);
-      console.log(detail.data.channel._id);
+      const str = `${posterTitle} / ${day} / ${person} / ${gender}`;
+
       const formatData = new FormData();
 
       formatData.append('postId', postId);
@@ -61,15 +56,9 @@ const MyhomeModal = ({ postDetail, postId }) => {
       formatData.append('title', str);
       formatData.append('channelId', detail.data.channel._id);
 
-      const res = await updatePost(formatData);
-
-      if (res.status === 200) {
-        swal('수정이 완료되었습니다.');
-
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-      }
+      await updatePost(formatData);
+    } else {
+      swal('사진을 업로드해주세요');
     }
   };
 
@@ -89,14 +78,14 @@ const MyhomeModal = ({ postDetail, postId }) => {
           <form onSubmit={handleSendFileImage}>
             <div>
               <p>날짜</p>
-              <Input type="text" placeholder="날짜를 입력해주세요" onChange={handlerDay} />
+              <Input type="text" placeholder="날짜를 입력해주세요" onChange={handleDay} />
             </div>
 
             <div>
               <p>인원</p>
-              <Input type="text" placeholder="인원을 입력해주세요" onChange={handlerPerson} />
+              <Input type="text" placeholder="인원을 입력해주세요" onChange={handlePerson} />
               <p>원하는 성별</p>
-              <Input type="text" placeholder="원하는 성별 선택해주세요" onChange={handlerMan} />
+              <Input type="text" placeholder="원하는 성별 선택해주세요" onChange={handleGender} />
             </div>
 
             <div>

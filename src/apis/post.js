@@ -77,5 +77,13 @@ export const updatePost = async (post) => {
       Authorization: `Bearer ${getStorage(TOKEN)}`,
     },
   });
+
+  if (res.status === 200) {
+    swal('수정이 완료되었습니다.');
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  }
   return res;
 };

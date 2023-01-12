@@ -23,6 +23,7 @@ import { getStorage, setStorage } from '../../utils/storage';
 import { TOKEN } from '../../utils/auth/constant';
 import { isVisibleModalState } from '../../recoil/addPostStates';
 import PrivateHeader from './PrivateHeaderContainer';
+import SearchPost from '../../components/SearchPost';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -72,9 +73,7 @@ const Header = () => {
           </LogoContaniner>
 
           <>
-            <SearchContainer>
-              <input type="text" />
-            </SearchContainer>
+            <SearchPost />
             <ButtonContainer>
               <IconItem onClick={handleOpenAddPostModal}>
                 <AddBoxOutlinedIcon />

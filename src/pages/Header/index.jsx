@@ -55,7 +55,7 @@ const Header = () => {
   };
   const handleLogout = () => {
     setStorage(TOKEN, '');
-    setIsLogin();
+    setIsLogin(false);
     navigate('/');
   };
 

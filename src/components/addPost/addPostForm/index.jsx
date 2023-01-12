@@ -3,24 +3,9 @@ import { useSetRecoilState } from 'recoil';
 import { createPost } from '../../../apis/post';
 import { getChannels } from '../../../apis/post';
 import { isVisibleModalState } from '../../../utils/addPostState';
+import { imageToBinary } from '../../../utils/imageConverter';
 
 import { InputWrapper } from './style';
-
-export const imageToBinary = (imgSrc) => {
-  const byteString = atob(imgSrc.split(',')[1]);
-
-  const ab = new ArrayBuffer(byteString.length);
-  const ia = new Uint8Array(ab);
-
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
-  }
-  const blob = new Blob([ia], {
-    type: 'image/jpeg',
-  });
-
-  return blob;
-};
 
 const AddPostForm = () => {
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
@@ -96,7 +81,6 @@ const AddPostForm = () => {
     }
 
     if (!country || !name || !date || !personnel || !gender) {
-      console.log('d');
       return;
     }
 
@@ -110,13 +94,10 @@ const AddPostForm = () => {
       channelId: country,
     };
 
-    console.log(userData);
-
     const formData = new FormData();
     Object.keys(userData).forEach((key) => formData.append(key, userData[key]));
 
     const { data } = await createPost(formData);
-    console.log(data);
 
     setIsLoading(false);
     setIsVisibleModal(false);

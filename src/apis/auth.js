@@ -1,16 +1,14 @@
-import { authRequest, baseRequest } from './core';
+import { authRequest, baseRequest, formDataRequest } from './core';
 import swal from 'sweetalert';
 import { getStorage, setStorage } from '../utils/storage';
 import { ERROR_MESSAGE_AUTH, ID, TOKEN, URL, USER as AUTH, USER } from '../utils/auth/constant';
 import { ERROR_MESSAGE_SIGNUP } from '../utils/auth/constant';
-import { useState } from 'react';
-import { setAuthToken } from '../service/authToken';
 
 const { DUPLICATE_EMAIL } = ERROR_MESSAGE_SIGNUP;
 
 // 로그인
 export const postUserLogin = async (email, password) => {
-  const response = await baseRequest
+  const response = await formDataRequest
     .post(URL.LOGIN, {
       email,
       password,

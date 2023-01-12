@@ -7,7 +7,7 @@ const MyPosterPage = () => {
     <>
       <UserInfo />
       <UserPoster />
-      <Sidebar />
+      <UserSidebar />
     </>
   );
 };

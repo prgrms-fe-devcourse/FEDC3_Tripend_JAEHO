@@ -3,7 +3,7 @@ import Post from './Post';
 import Modal from '../Modal';
 import PostDetail from './PostDetail';
 import { useEffect, useState } from 'react';
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { getUser } from '../../apis/auth';
 import { getChannelPosts } from '../../apis/post';
 import { channelState, selectedChannelState } from '../../recoil/RecoilChannelState';
@@ -18,8 +18,6 @@ const Posts = () => {
 
   const [userId, setUserId] = useState('');
   const [visible, setVisible] = useState(false);
-
-  const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
 
   const getPostData = async () => {
     const { data } = await getChannelPosts(selectedChannelId);
@@ -45,10 +43,6 @@ const Posts = () => {
       getUserData();
     }
   }, [selectedChannelId]);
-
-  const onOpenAddPostModal = () => {
-    setIsVisibleModal(true);
-  };
 
   return (
     <style.PostsContainer>

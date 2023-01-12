@@ -38,13 +38,9 @@ const Comments = ({ postId, comments }) => {
         setPostDetail({ key: postId, post: data });
 
         //PostList atom 업데이트
-        let newResult = '';
-        if (selectedChannelId) {
-          newResult = await getChannelPosts(selectedChannelId);
-        } else {
-          newResult = await getPostDetail('');
-        }
-
+        const newResult = selectedChannelId
+          ? await getChannelPosts(selectedChannelId)
+          : await getPostDetail('');
         setPostList({ id: selectedChannelId, posts: newResult.data });
       }
     }

@@ -4,6 +4,7 @@ import { createPost } from '../../../apis/post';
 import { getChannels } from '../../../apis/post';
 import { isVisibleModalState } from '../../../recoil/addPostStates';
 import { imageToBinary } from '../../../utils/imageConverter';
+import { getStorage } from '../../../utils/storage';
 
 import { InputWrapper } from './style';
 
@@ -78,9 +79,7 @@ const AddPostForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem('Token');
-
-    if (!token) {
+    if (!getStorage('Token')) {
       return;
     }
 

@@ -9,11 +9,6 @@ import { ModalHeader, CloseButton, ModalTitle } from './style';
 const AddPost = ({ visible }) => {
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
 
-  const modalStyle = {
-    padding: 34,
-    borderRadius: 10,
-  };
-
   const handleCloseAddPostModal = () => {
     setIsVisibleModal(false);
   };
@@ -24,7 +19,10 @@ const AddPost = ({ visible }) => {
       height={600}
       visible={visible}
       onClose={handleCloseAddPostModal}
-      style={modalStyle}
+      style={{
+        padding: '34px',
+        borderRadius: '10px',
+      }}
     >
       <ModalHeader>
         <ModalTitle>새 게시글 만들기</ModalTitle>

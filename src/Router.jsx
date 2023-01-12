@@ -10,9 +10,16 @@ import HomePage from './pages/HomePage';
 import MyPostePage from './pages/MyPosterPage';
 import MySettingPage from './pages/MySettingPage';
 import MyPosterPage from './pages/MyPosterPage';
+import { TOKEN } from './utils/auth/constant';
+import { getStorage } from './utils/storage';
+import { useEffect } from 'react';
 
 const AppRouter = () => {
-  const isLogin = useRecoilValue(userLoginState);
+  const token = getStorage(TOKEN);
+  const [isLogin, setIsLogin] = useRecoilState(userLoginState);
+  useEffect(() => {
+    if (token) setIsLogin(true);
+  });
 
   return (
     <Router>

@@ -1,4 +1,4 @@
-import AddPost from '../../components/AddPost';
+import AddPost from '../../components/addPost';
 import Alarm from '../../components/Alarm';
 import Avatar from '../../components/common/Avatar';
 import AlarmPopup from '../../components/Alarm/AlarmPopup';
@@ -20,12 +20,14 @@ import {
   IconItem,
   AlarmContainer,
 } from './style';
+import { setStorage } from '../../utils/storage';
+import { TOKEN } from '../../utils/auth/constant';
 
 const Header = () => {
   const navigate = useNavigate();
   const [alarmBox, setAlarmBox] = useState();
   const [alarms, setAlarms] = useState([]);
-  const isLogin = useRecoilValue(userLoginState);
+  const [isLogin, setIsLogin] = useRecoilState(userLoginState);
   const [isNextPage, setIsNextPage] = useRecoilState(userLoginButtonShowState);
   const [isAlarmOpen, setIsAlarmOpen] = useRecoilState(toggleStateFamily('alarm'));
 
@@ -50,6 +52,11 @@ const Header = () => {
       const response = await getMyAlarms();
       setAlarms(response.data);
     }
+  };
+  const handleLogout = () => {
+    setStorage(TOKEN, '');
+    setIsLogin();
+    navigate('/');
   };
 
   const handleAlarmClose = () => {
@@ -77,7 +84,7 @@ const Header = () => {
                   <Alarm />
                 </IconItem>
               </AlarmContainer>
-              <IconItem onClick={handleClickAddPost}>
+              <IconItem onClick={handleLogout}>
                 <LogoutIcon />
               </IconItem>
               <IconItem>

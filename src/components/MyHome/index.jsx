@@ -5,7 +5,6 @@ import {
   LoginContainer,
   LoginWrapper,
 } from '../Signin/index.style';
-import styled from '@emotion/styled';
 import { useCallback, useEffect, useState } from 'react';
 import { putPaswwordChange } from '../../apis/auth';
 import { ERROR_MESSAGE_AUTH, USER as AUTH, USER } from '../../utils/auth/constant';

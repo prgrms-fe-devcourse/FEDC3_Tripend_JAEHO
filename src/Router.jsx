@@ -4,38 +4,41 @@ import Header from './pages/Header';
 import AccountPage from './pages/AccountPage';
 import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { userLoginState } from './recoil/auth';
+
 import HomePage from './pages/HomePage';
 import MySettingPage from './pages/MySettingPage';
 import MyPosterPage from './pages/MyPosterPage';
-import { TOKEN } from './utils/auth/constant';
-import { getStorage } from './utils/storage';
-import { useEffect } from 'react';
+
+import RequireUser from './components/RequireAuth';
+import { useRecoilValue } from 'recoil';
+import { userLoginState } from './recoil/auth';
+import MissingPage from './pages/NotFound';
 
 const AppRouter = () => {
-  const token = getStorage(TOKEN);
-  const [isLogin, setIsLogin] = useRecoilState(userLoginState);
-
-  useEffect(() => {
-    if (token) setIsLogin(true);
-  });
+  const isLogin = useRecoilValue(userLoginState);
 
   return (
     <Router>
       <Header />
 
       <Routes>
-        <Route exact path="/main" element={<HomePage />} />
-        <Route exact path="/account" element={<AccountPage />} />
+        {/* public routes /*/}
         <Route exact path="/" element={<SigninPage />} />
         <Route exact path="/signup" element={<SignupPage />} />
 
-        <Route exact path="/myhome" element={<MyPosterPage />} />
-        <Route exact path="/setting" element={<MySettingPage />} />
-      </Routes>
+        {/* login routes */}
+        <Route element={<RequireUser isLogin={isLogin} />}>
+          <Route exact path="/main" element={<HomePage />} />
 
-      {isLogin && <Footer />}
+          <Route exact path="/account" element={<AccountPage />} />
+
+          <Route exact path="/myhome" element={<MyPosterPage />} />
+
+          <Route exact path="/setting" element={<MySettingPage />} />
+        </Route>
+
+        <Route path="*" element={<MissingPage />} />
+      </Routes>
     </Router>
   );
 };

@@ -7,6 +7,7 @@ import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import { getChannelPosts, getPostDetail } from '../../apis/post';
 import { channelState, selectedChannelState } from '../../recoil/RecoilChannelState';
 import { selectedPostState } from '../../recoil/RecoilPostStates';
+import Skeleton from '../common/Skeleton';
 
 const Posts = () => {
   const selectedChannelId = useRecoilValue(selectedChannelState);
@@ -15,8 +16,6 @@ const Posts = () => {
   const [visible, setVisible] = useState(false);
 
   const getPostData = async () => {
-    let receivedData = '';
-
     if (postList.posts) {
       receivedData = postList.posts;
     } else {
@@ -47,33 +46,41 @@ const Posts = () => {
     }
   }, [selectedChannelId]);
 
+  const renderWithData = () => {
+    return postList.posts.length > 0 ? (
+      <>
+        <div className="postContainer">
+          {postList.posts.map((post) => {
+            return (
+              <Post
+                key={post._id}
+                id={post._id}
+                title={post.title}
+                image={post.image}
+                author={post.author}
+                likes={post.likes}
+                commentLength={post.comments.length}
+                onClickPost={onClickPost}
+              />
+            );
+          })}
+        </div>
+        <Modal visible={visible} onClose={() => setVisible(false)} width="1100px" height="600px">
+          <PostDetail />
+        </Modal>
+      </>
+    ) : (
+      <div>결과가 없음</div>
+    );
+  };
+
   return (
     <style.PostsContainer>
-      {postList.posts && postList.posts.length > 0 ? (
-        <>
-          <div className="postContainer">
-            {postList.posts.map((post) => {
-              return (
-                <Post
-                  key={post._id}
-                  id={post._id}
-                  title={post.title}
-                  image={post.image}
-                  author={post.author}
-                  likes={post.likes}
-                  commentLength={post.comments.length}
-                  onClickPost={onClickPost}
-                />
-              );
-            })}
-          </div>
-          <Modal visible={visible} onClose={() => setVisible(false)} width="1100px" height="600px">
-            <PostDetail />
-          </Modal>
-        </>
-      ) : (
-        <div>결과가 없음</div>
-      )}
+      {postList && postList.posts
+        ? renderWithData()
+        : Array.from(Array(4), (_, i) => (
+            <Skeleton.Card line={4} style={{ margin: '20px' }} key={i} />
+          ))}
     </style.PostsContainer>
   );
 };

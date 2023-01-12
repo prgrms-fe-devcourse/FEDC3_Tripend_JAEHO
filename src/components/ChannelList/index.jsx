@@ -61,12 +61,9 @@ const ChannelList = () => {
           />
         </>
       ) : (
-        <>
-          <Skeleton.Paragraph line={4} style={{ padding: '10px' }} />
-          <Skeleton.Paragraph line={4} style={{ padding: '10px' }} />
-          <Skeleton.Paragraph line={4} style={{ padding: '10px' }} />
-          <Skeleton.Paragraph line={4} style={{ padding: '10px' }} />
-        </>
+        Array.from(Array(4), (_, i) => (
+          <Skeleton.Paragraph line={4} style={{ padding: '10px' }} key={i} />
+        ))
       )}
     </style.ChannelListContainer>
   );

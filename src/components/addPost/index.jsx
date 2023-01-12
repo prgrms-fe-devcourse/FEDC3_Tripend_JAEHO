@@ -2,7 +2,7 @@ import { useSetRecoilState } from 'recoil';
 
 import Modal from '../Modal';
 import AddPostForm from './addPostForm';
-import { isVisibleModalState } from '../../utils/addPostState';
+import { isVisibleModalState } from '../../recoil/addPostStates';
 
 import { ModalHeader, CloseButton, ModalTitle } from './style';
 

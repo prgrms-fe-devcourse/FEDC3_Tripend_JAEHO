@@ -4,7 +4,7 @@ import MainSection from '../../components/MainSection';
 import AddPost from '../../components/addPost';
 
 import { useRecoilValue } from 'recoil';
-import { isVisibleModalState } from '../../utils/addPostState';
+import { isVisibleModalState } from '../../recoil/addPostStates';
 
 import * as style from './style';
 

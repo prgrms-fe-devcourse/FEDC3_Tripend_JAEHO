@@ -6,10 +6,11 @@ import { channelState, selectedChannelState } from '../../../../recoil/RecoilCha
 import { createComment } from '../../../../apis/comment';
 import { getChannelPosts, getPostDetail } from '../../../../apis/post';
 import { CommentCount, InputContainer, CommentContainer } from './style';
+import { createAlarm } from '../../../../apis/alarm';
 
 const Comments = ({ postId, comments }) => {
   const selectedChannelId = useRecoilValue(selectedChannelState);
-  const [{ post }, setPostDetail] = useRecoilState(postStateFamily(postId));
+  const [postDetail, setPostDetail] = useRecoilState(postStateFamily(postId));
   const [postList, setPostList] = useRecoilState(channelState(selectedChannelId));
 
   const [comment, setComment] = useState('');
@@ -28,9 +29,15 @@ const Comments = ({ postId, comments }) => {
       if (result.status === 200) {
         setComment('');
 
+        //알림보내기
+        const { _id, post } = result.data;
+        await createAlarm('COMMENT', _id, postDetail.post.author._id, post);
+
+        //PostDetail atom 업데이트
         const { data } = await getPostDetail(postId);
         setPostDetail({ key: postId, post: data });
 
+        //PostList atom 업데이트
         const res = await getChannelPosts(selectedChannelId);
         setPostList({ id: selectedChannelId, posts: res.data });
 

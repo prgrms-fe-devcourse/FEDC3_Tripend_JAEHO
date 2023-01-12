@@ -10,6 +10,7 @@ import Tags from './Tags';
 import AuthorInfo from './AuthorInfo';
 import LeftImage from './LeftImage';
 import Heart from '../Heart';
+import { memo } from 'react';
 
 const Post = ({ id, title, image, author, likes, commentLength, userId, onClickPost }) => {
   const travel_name = title.split('/')[0];
@@ -35,4 +36,4 @@ const Post = ({ id, title, image, author, likes, commentLength, userId, onClickP
   );
 };
 
-export default Post;
+export default memo(Post, (prev, next) => JSON.stringify(prev) === JSON.stringify(next));

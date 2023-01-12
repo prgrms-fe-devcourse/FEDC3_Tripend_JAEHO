@@ -12,8 +12,8 @@ import { selectedPostState } from '../../recoil/RecoilPostStates';
 const Posts = () => {
   const selectedChannelId = useRecoilValue(selectedChannelState);
   const setSelectedPostId = useSetRecoilState(selectedPostState);
-
   const [postList, setPostList] = useRecoilState(channelState(selectedChannelId));
+
   const [userId, setUserId] = useState('');
   const [visible, setVisible] = useState(false);
 
@@ -21,7 +21,7 @@ const Posts = () => {
     if (postList.posts === null) {
       const { data } = await getChannelPosts(selectedChannelId);
 
-      data.sort(() => Math.random() - 0.5);
+      //data.sort(() => Math.random() - 0.5);
       setPostList({ id: selectedChannelId, posts: data });
     }
   };

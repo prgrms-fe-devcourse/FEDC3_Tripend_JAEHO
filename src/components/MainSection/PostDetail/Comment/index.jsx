@@ -1,6 +1,7 @@
 import Image from '../../../common/Image';
 import PersonIcon from '@mui/icons-material/Person';
 import { CommentContainer, AvatarWrapper, CommentInfo } from './style';
+import { memo } from 'react';
 
 const Comment = ({ comment, author }) => {
   return (
@@ -36,4 +37,4 @@ const Comment = ({ comment, author }) => {
   );
 };
 
-export default Comment;
+export default memo(Comment, (prev, next) => JSON.stringify(prev) === JSON.stringify(next));

@@ -46,7 +46,7 @@ const MyhomeModal = ({ postDetail, postId }) => {
   //     "image":  null // 완료
   //     "channelId": "63b93c0935c05a12cd3da627" // 완료
 
-  const sendFileImage = async (e) => {
+  const handleSendFileImage = async (e) => {
     e.preventDefault();
     if (imageValue) {
       const str = `${PosterTitle} / ${day} / ${person} / ${man}`;
@@ -58,12 +58,17 @@ const MyhomeModal = ({ postDetail, postId }) => {
 
       formatData.append('postId', postId);
       formatData.append('image', imageValue);
-      formatData.append('title', title);
+      formatData.append('title', str);
       formatData.append('channelId', detail.data.channel._id);
 
       const res = await updatePost(formatData);
+
       if (res.status === 200) {
-        alert('수정완료');
+        swal('수정이 완료되었습니다.');
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       }
     }
   };
@@ -81,7 +86,7 @@ const MyhomeModal = ({ postDetail, postId }) => {
             <span>20대 중반/남자</span>
           </div>
 
-          <form onSubmit={sendFileImage}>
+          <form onSubmit={handleSendFileImage}>
             <div>
               <p>날짜</p>
               <Input type="text" placeholder="날짜를 입력해주세요" onChange={handlerDay} />

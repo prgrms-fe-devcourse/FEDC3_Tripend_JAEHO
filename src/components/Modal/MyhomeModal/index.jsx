@@ -15,11 +15,10 @@ import {
   ModalTitleWrapper,
 } from './style';
 
-const MyhomeModal = ({ postDetail, postId }) => {
+const MyhomeModal = ({ postDetail, postId, imageValue }) => {
   // postDetail 가지고 수정해줘야함
   const [detail, setDetailDate] = useState(postDetail);
   const [imageSrc, setImageSrc] = useState('');
-  const imageValue = useRecoilValue(uploadImageState);
 
   const [day, setDay] = useState('');
   const [person, setPerson] = useState('');

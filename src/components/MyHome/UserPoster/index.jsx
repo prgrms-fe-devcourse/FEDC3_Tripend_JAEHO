@@ -10,6 +10,7 @@ import {
   PostTitle,
   PostWrapper,
 } from '../../../pages/MyPosterPage/style';
+import styled from '@emotion/styled';
 
 const LoginPoster = () => {
   const [getLoginData, setLoginData] = useState({});
@@ -78,9 +79,11 @@ const LoginPoster = () => {
           ))}
 
         {visible && (
-          <Modal visible={visible} onClose={handlePoster} width="1000px" height="600px">
-            <h1>fdsadf</h1>
-            <button onClick={handlerModalClose}>x</button>
+          <Modal visible={visible} onClose={handlerModalClose} width="1000px" height="600px">
+            <ModalTitleWrapper>
+              <ModalTitle>게시글 수정</ModalTitle>
+              <ModalTitleButton onClick={handlerModalClose}>x</ModalTitleButton>
+            </ModalTitleWrapper>
             <MyhomeModal postDetail={postDetail} postId={postId} />
           </Modal>
         )}
@@ -89,3 +92,24 @@ const LoginPoster = () => {
   );
 };
 export default LoginPoster;
+
+const ModalTitleWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalTitleButton = styled.button`
+  background-color: white;
+  font-size: 28px;
+  font-weight: bold;
+  margin-left: 10px;
+  cursor: pointer;
+  position: relative;
+  left: 43%;
+  width: 30px;
+  bottom: 30%;
+  border: none;
+  color: darkgray;
+`;
+const ModalTitle = styled.h3``;

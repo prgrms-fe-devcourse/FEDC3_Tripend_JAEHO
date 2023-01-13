@@ -2,11 +2,12 @@ import styled from '@emotion/styled';
 import UploadAndDisplayImage from '../../UploadImage';
 import { useRecoilValue } from 'recoil';
 import { uploadImageState } from '../../../recoil/uploadImage';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { updatePost } from '../../../apis/post';
 
 const MyhomeModal = ({ postDetail, postId }) => {
   // postDetail 가지고 수정해줘야함
+
   const [detail, setDetailDate] = useState(postDetail);
 
   const imageValue = useRecoilValue(uploadImageState);
@@ -15,6 +16,16 @@ const MyhomeModal = ({ postDetail, postId }) => {
   const [person, setPerson] = useState('');
   const [gender, setGender] = useState('');
   const [posterTitle, setPosterTitle] = useState('');
+
+  const [profile, setProfile] = useState([]);
+
+  useEffect(() => {
+    if (detail.data) {
+      setProfile(detail.data.author.fullName.split('/'));
+    }
+  }, []);
+
+  console.log(profile);
 
   const handleDay = useCallback(
     (e) => {
@@ -70,26 +81,33 @@ const MyhomeModal = ({ postDetail, postId }) => {
 
       <ModalRight>
         <div>
-          <div>
-            <h3>AR JaKir</h3>
-            <span>20대 중반/남자</span>
-          </div>
+          <ModalTitleWrapper>
+            <ModalTitle>{profile[0]}</ModalTitle>
+            <span>
+              {profile[1]}/{profile[2]}
+            </span>
+          </ModalTitleWrapper>
 
           <form onSubmit={handleSendFileImage}>
             <div>
-              <p>날짜</p>
-              <Input type="text" placeholder="날짜를 입력해주세요" onChange={handleDay} />
+              <p style={{ fontWeight: 'bold' }}>날짜</p>
+              <Input type="date" onChange={handleDay} />
             </div>
 
             <div>
-              <p>인원</p>
+              <p style={{ fontWeight: 'bold' }}>인원</p>
               <Input type="text" placeholder="인원을 입력해주세요" onChange={handlePerson} />
-              <p>원하는 성별</p>
-              <Input type="text" placeholder="원하는 성별 선택해주세요" onChange={handleGender} />
+              <p style={{ fontWeight: 'bold' }}>원하는 성별</p>
+              <select onChange={handleGender}>
+                <option>=== 선택 ===</option>
+                <option>남자만</option>
+                <option>여자만</option>
+                <option>남여무관</option>
+              </select>
             </div>
 
             <div>
-              <p>제목</p>
+              <p style={{ fontWeight: 'bold' }}>제목</p>
               <Input type="text" placeholder="제목을 입력해주세요" onChange={handlePosterTitle} />
             </div>
 
@@ -105,6 +123,8 @@ export default MyhomeModal;
 
 const Input = styled.input`
   border: 1px solid black;
+  width: 100%;
+  height: 30px;
 `;
 
 const ModalRight = styled.div`
@@ -112,7 +132,6 @@ const ModalRight = styled.div`
   height: 400px;
   float: right;
   box-sizing: border-box;
-  border: 3px solid black;
 `;
 
 const ModalLeft = styled.div`
@@ -122,3 +141,6 @@ const ModalLeft = styled.div`
   box-sizing: border-box;
   border: 3px solid blue;
 `;
+
+const ModalTitleWrapper = styled.div``;
+const ModalTitle = styled.h3``;

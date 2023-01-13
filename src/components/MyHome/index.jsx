@@ -9,7 +9,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { putPaswwordChange } from '../../apis/auth';
 import { ERROR_MESSAGE_AUTH, USER as AUTH, USER } from '../../utils/auth/constant';
 import { FormSettingText, Input, PasswordBlock, PasswordText } from './style';
-import styled from '@emotion/styled';
 
 const UserSettingPassword = () => {
   const [password, setPassword] = useState('');

@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const AlarmItem = styled.li`
   display: flex;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
+  align-items: center;
   padding: 10px 15px;
   cursor: pointer;
 
@@ -15,11 +16,10 @@ export const AlarmItem = styled.li`
   }
 `;
 
-export const AlarmImg = styled.img`
+export const AlarmImg = styled.div`
   max-width: 25px;
   max-height: 25px;
-  border-radius: 50%;
-  margin-right: 20px;
+  margin-right: 15px;
   opacity: 0.5;
   transition: 0.5s;
 `;

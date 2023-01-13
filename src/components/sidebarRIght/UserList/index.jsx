@@ -27,7 +27,7 @@ const UserList = () => {
           {userInfos.map(({ _id, image, fullName }) => (
             <style.UserInfo key={_id} onClick={() => showUserDetail(_id)}>
               <Avatar shape="circle" size="24px" src={image} lazy={true} threshold={0.1} />
-              <span>{extractName.exec(fullName)[0]}</span>
+              <style.UserName>{extractName.exec(fullName)[0]}</style.UserName>
             </style.UserInfo>
           ))}
         </style.UserListContainer>

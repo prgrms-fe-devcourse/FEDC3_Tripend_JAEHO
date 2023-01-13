@@ -4,7 +4,7 @@ import AlarmPopup from '../../components/Alarm/AlarmPopup';
 import Logo from '../../../static/images/Logo.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { userLoginButtonShowState, userLoginState } from '../../recoil/auth';
 import { toggleStateFamily } from '../../recoil/RecoilToggleStates';
 import { getMyAlarms } from '../../apis/alarm';
@@ -14,13 +14,11 @@ import {
   HeaderContainer,
   LogoContaniner,
   ButtonContainer,
-  SearchContainer,
-  HeaderUl,
   IconItem,
   AlarmContainer,
 } from './style';
 import { getStorage, setStorage } from '../../utils/storage';
-import { TOKEN } from '../../utils/auth/constant';
+import { TOKEN, USERIMAGE } from '../../utils/auth/constant';
 import { isVisibleModalState } from '../../recoil/addPostStates';
 import PrivateHeader from './PrivateHeaderContainer';
 import SearchPost from '../../components/SearchPost';
@@ -30,12 +28,12 @@ const Header = () => {
   const [alarmBox, setAlarmBox] = useState();
   const [alarms, setAlarms] = useState([]);
   const [isLogin, setIsLogin] = useRecoilState(userLoginState);
-  const [isNextPage, setIsNextPage] = useRecoilState(userLoginButtonShowState);
   const [isAlarmOpen, setIsAlarmOpen] = useRecoilState(toggleStateFamily('alarm'));
 
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
 
   const getToken = getStorage(TOKEN);
+  const userImage = getStorage(USERIMAGE);
 
   const handleClickLogo = () => {
     // isLogin ? navigate('/main') : navigate('/');
@@ -87,11 +85,11 @@ const Header = () => {
                   <Alarm />
                 </IconItem>
               </AlarmContainer>
-              <IconItem onClick={handleOpenAddPostModal}>
+              <IconItem onClick={handleLogout}>
                 <LogoutIcon />
               </IconItem>
               <IconItem onClick={handleOpenMyPage}>
-                <Avatar src="https://picsum.photos/200" size={35} />
+                <Avatar shape="circle" size="30px" src={userImage} lazy={true} threshold={0.1} />
               </IconItem>
             </ButtonContainer>
             <AlarmPopup

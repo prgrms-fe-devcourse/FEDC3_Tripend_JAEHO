@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { signup } from '../../apis/auth';
 import { useNavigate } from 'react-router-dom';
 import { ERROR_MESSAGE_SIGNUP } from '../../utils/auth/constant';
-import { isValidAge, isValidId } from '../../utils/validate/signup';
+import { isValidName, isValidAge, isValidId } from '../../utils/validate/signup';
 
 const {
   NEED_INPUT,
@@ -27,7 +27,10 @@ const Signup = () => {
       userPasswordConfirm: '',
     },
     validationSchema: Yup.object({
-      userName: Yup.string().min(2, INCORRECT_NAME).required(NEED_INPUT),
+      userName: Yup.string()
+        .min(2, INCORRECT_NAME)
+        .matches(isValidName, INCORRECT_NAME)
+        .required(NEED_INPUT),
       userAge: Yup.string().matches(isValidAge, INCORRECT_AGE).required(NEED_INPUT),
       userGender: Yup.string().required(NEED_INPUT),
       userId: Yup.string().matches(isValidId, INCORRECT_EMAIL).required(NEED_INPUT),

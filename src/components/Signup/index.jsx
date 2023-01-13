@@ -37,6 +37,7 @@ const Signup = () => {
         .required(NEED_INPUT),
     }),
     onSubmit: async (values) => {
+      values.userName = values.userName.replace(/ /g, '');
       try {
         const response = await signup(values);
         if (response) {

@@ -4,8 +4,9 @@ import {
   PostItemContainer,
   PostTitle,
 } from '../../../pages/MyPosterPage/style';
+import { memo } from 'react';
 
-const UserPosterItem = ({ id, title, image, handlePoster, handleDeletePoster }) => {
+const UserPosterItem = memo(function ({ id, title, image, handlePoster, handleDeletePoster }) {
   return (
     <PostItemContainer key={id}>
       <PostButton>
@@ -28,5 +29,6 @@ const UserPosterItem = ({ id, title, image, handlePoster, handleDeletePoster }) 
       </ImageItemContainer>
     </PostItemContainer>
   );
-};
+});
+
 export default UserPosterItem;

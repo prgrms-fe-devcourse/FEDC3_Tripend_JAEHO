@@ -10,7 +10,7 @@ import {
   ImageUploaderContainer,
 } from './style';
 import { ImageFileInput } from '../addPost/addPostForm/style';
-import styled from '@emotion/styled';
+import { FILE } from '../../utils/myhome/constant';
 
 const UploadAndDisplayImage = () => {
   const [selectedImage, setSelectedImage] = useRecoilState(uploadImageState);
@@ -18,10 +18,24 @@ const UploadAndDisplayImage = () => {
 
   const [data, setData] = useState(null);
 
+  const checkImage = (file) => {
+    if (
+      file.type === FILE.JPEG ||
+      file.type === FILE.GIF ||
+      file.type === FILE.SVG ||
+      file.type === FILE.PNG
+    ) {
+      setSelectedImage(file);
+    } else {
+      swal('이미지 파일만 업로드 가능합니다.');
+      return;
+    }
+  };
+
   const handleImageChange = useCallback(
     (e) => {
       const file = e.target.files[0];
-      setSelectedImage(file);
+      checkImage(file);
     },
     [selectedImage]
   );
@@ -47,9 +61,15 @@ const UploadAndDisplayImage = () => {
             <TitleWrapper>
               <p>사진 업로드</p>
             </TitleWrapper>
-            <UploadDescription>
-              Supported formates: JPEG,PNG,GIF,MP4,PDF,PSD,SVG,WEBP
-            </UploadDescription>
+            <div
+              style={{
+                width: '500px',
+                marginRight: '300px',
+                border: '1px solid red',
+              }}
+            >
+              <UploadDescription>Supported formates: JPEG,PNG,GIF,SVG</UploadDescription>
+            </div>
           </UploadImageWrapper>
         )}
       </ImageContainar>

@@ -16,14 +16,12 @@ const UploadImageWrapper = styled.div`
   width: 100px;
 `;
 
-const UploadDescription = styled.span`
+const UploadDescription = styled.p`
   color: #676767;
-  width: 350px;
-  font-size: 10px;
-  display: block;
+  width: 400px;
+  font-size: 15px;
   font-weight: 400;
-  position: absolute;
-  right: 5%;
+  margin-right: 50px;
 `;
 
 const TitleWrapper = styled.div`

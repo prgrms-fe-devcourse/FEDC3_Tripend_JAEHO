@@ -1,7 +1,6 @@
 import UploadAndDisplayImage from '../../UploadImage';
-import { useRecoilValue } from 'recoil';
-import { uploadImageState } from '../../../recoil/uploadImage';
-import { useCallback, useEffect, useState } from 'react';
+
+import { memo, useCallback, useEffect, useState } from 'react';
 import { updatePost } from '../../../apis/post';
 import {
   Button,
@@ -15,8 +14,7 @@ import {
   ModalTitleWrapper,
 } from './style';
 
-const MyhomeModal = ({ postDetail, postId, imageValue }) => {
-  // postDetail 가지고 수정해줘야함
+const MyhomeModal = memo(function ({ postDetail, postId, imageValue }) {
   const [detail, setDetailDate] = useState(postDetail);
   const [imageSrc, setImageSrc] = useState('');
 
@@ -32,8 +30,6 @@ const MyhomeModal = ({ postDetail, postId, imageValue }) => {
       setProfile(detail.data.author.fullName.split('/'));
     }
   }, []);
-
-  console.log(profile);
 
   const handleDay = useCallback(
     (e) => {
@@ -132,6 +128,6 @@ const MyhomeModal = ({ postDetail, postId, imageValue }) => {
       </ModalRight>
     </>
   );
-};
+});
 
 export default MyhomeModal;

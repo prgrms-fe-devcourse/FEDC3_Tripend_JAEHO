@@ -28,9 +28,10 @@ export const useForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const res = await postUserLogin(email, password);
+
+      const { token } = res.data;
 
       if (res.status === 200) {
         setLogin(true);

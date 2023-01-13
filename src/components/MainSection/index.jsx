@@ -13,6 +13,7 @@ const Posts = () => {
   const selectedChannelId = useRecoilValue(selectedChannelState);
   const setSelectedPostId = useSetRecoilState(selectedPostState);
   const [postList, setPostList] = useRecoilState(channelState(selectedChannelId ?? 'all'));
+  const postId = useRecoilValue(selectedPostState);
   const [visible, setVisible] = useState(false);
 
   const getPostData = async () => {
@@ -42,6 +43,12 @@ const Posts = () => {
       getAllPostData();
     }
   }, [selectedChannelId]);
+
+  useEffect(() => {
+    if (postId) {
+      setVisible(true);
+    }
+  }, [postId]);
 
   const renderWithData = () => {
     return postList.posts.length > 0 ? (

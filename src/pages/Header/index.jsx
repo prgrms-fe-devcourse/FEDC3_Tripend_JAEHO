@@ -23,6 +23,7 @@ import { getStorage, setStorage } from '../../utils/storage';
 import { TOKEN } from '../../utils/auth/constant';
 import { isVisibleModalState } from '../../recoil/addPostStates';
 import PrivateHeader from './PrivateHeaderContainer';
+import SearchPost from '../../components/SearchPost';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -63,6 +64,10 @@ const Header = () => {
     setIsVisibleModal(true);
   };
 
+  const handleOpenMyPage = () => {
+    navigate('/myhome');
+  };
+
   return (
     <>
       {getToken ? (
@@ -72,9 +77,7 @@ const Header = () => {
           </LogoContaniner>
 
           <>
-            <SearchContainer>
-              <input type="text" />
-            </SearchContainer>
+            <SearchPost />
             <ButtonContainer>
               <IconItem onClick={handleOpenAddPostModal}>
                 <AddBoxOutlinedIcon />
@@ -87,7 +90,7 @@ const Header = () => {
               <IconItem onClick={handleOpenAddPostModal}>
                 <LogoutIcon />
               </IconItem>
-              <IconItem>
+              <IconItem onClick={handleOpenMyPage}>
                 <Avatar src="https://picsum.photos/200" size={35} />
               </IconItem>
             </ButtonContainer>

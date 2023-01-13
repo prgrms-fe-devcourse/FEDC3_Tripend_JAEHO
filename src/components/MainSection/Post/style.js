@@ -32,10 +32,3 @@ export const BottomContainer = styled.div`
   position: absolute;
   bottom: 30px;
 `;
-
-export const LikeAndCommentContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 40%;
-  justify-content: space-around;
-`;

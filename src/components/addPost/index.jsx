@@ -4,7 +4,8 @@ import Modal from '../Modal';
 import AddPostForm from './addPostForm';
 import { isVisibleModalState } from '../../recoil/addPostStates';
 
-import { ModalHeader, CloseButton, ModalTitle } from './style';
+import { ModalHeader, CloseButton, Title } from './style';
+import CloseIcon from '@mui/icons-material/Close';
 
 const AddPost = ({ visible }) => {
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
@@ -22,11 +23,16 @@ const AddPost = ({ visible }) => {
       style={{
         padding: '34px',
         borderRadius: '10px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
       }}
     >
       <ModalHeader>
-        <ModalTitle>새 게시글 만들기</ModalTitle>
-        <CloseButton onClick={handleCloseAddPostModal}>닫기</CloseButton>
+        <Title>새 게시글 만들기</Title>
+        <CloseButton onClick={handleCloseAddPostModal}>
+          <CloseIcon style={{ color: '#9D9D99' }} />
+        </CloseButton>
       </ModalHeader>
       <AddPostForm />
     </Modal>

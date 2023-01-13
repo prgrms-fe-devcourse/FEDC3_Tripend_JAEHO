@@ -37,4 +37,6 @@ input:focus {
 * {
   font-family: 'Pretendard-Regular';
   letter-spacing: 1px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }

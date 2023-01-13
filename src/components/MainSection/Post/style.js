@@ -7,7 +7,7 @@ export const PostContainer = styled.div`
   display: flex;
   align-items: center;
   border-radius: 16px;
-  background-color: #f7f9fb;
+  background-color: var(--gray);
   cursor: pointer;
 `;
 export const InfoContainer = styled.div`
@@ -31,11 +31,4 @@ export const BottomContainer = styled.div`
   display: flex;
   position: absolute;
   bottom: 30px;
-`;
-
-export const LikeAndCommentContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 40%;
-  justify-content: space-around;
 `;

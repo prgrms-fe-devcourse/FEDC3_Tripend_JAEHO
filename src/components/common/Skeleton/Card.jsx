@@ -26,6 +26,6 @@ export const CardContainer = styled.div`
   flex-direction: column;
 
   border-radius: 16px;
-  background-color: #f7f9fb;
+  background-color: var(--gray);
   cursor: pointer;
 `;

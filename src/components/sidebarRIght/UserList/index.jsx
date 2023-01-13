@@ -2,6 +2,7 @@ import * as style from './style';
 import { useEffect, useState } from 'react';
 import { getUsers, getClickedUserInfo } from '../../../apis/user';
 import { extractName } from '../../../utils/validate/userList';
+import Avatar from '../../common/Avatar';
 
 const UserList = () => {
   const [userInfos, setUserInfos] = useState([]);
@@ -23,10 +24,11 @@ const UserList = () => {
     <div>
       {userInfos ? (
         <style.UserListContainer id="userInfoList">
-          {userInfos.map((userInfo) => (
-            <li key={userInfo._id} onClick={() => showUserDetail(userInfo._id)}>
-              {extractName.exec(userInfo.fullName)[0]}
-            </li>
+          {userInfos.map(({ _id, image, fullName }) => (
+            <style.UserInfo key={_id} onClick={() => showUserDetail(_id)}>
+              <Avatar shape="circle" size="24px" src={image} lazy={true} threshold={0.1} />
+              <span>{extractName.exec(fullName)[0]}</span>
+            </style.UserInfo>
           ))}
         </style.UserListContainer>
       ) : (

@@ -6,6 +6,7 @@ import Modal from '../../Modal';
 import { PostWrapper } from '../../../pages/MyPosterPage/style';
 import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
 import UserPosterItem from '../UserPosteItem';
+import { ERROR_MESSAGE_AUTH, USER } from '../../../utils/auth/constant';
 
 const LoginPoster = () => {
   const [getLoginData, setLoginData] = useState({});
@@ -35,9 +36,9 @@ const LoginPoster = () => {
 
   const handleDeletePoster = async (id) => {
     swal({
-      title: '게시글을 삭제하시겠습니까?',
-      text: '삭제하면 되돌릴수 없습니다.',
-      icon: 'warning',
+      title: USER.DELETE_POSTER,
+      text: USER.DELETE,
+      icon: ERROR_MESSAGE_AUTH.DELETE_POSTER_WARNING,
       dangerMode: true,
     }).then(async (willDelete) => {
       if (willDelete) {

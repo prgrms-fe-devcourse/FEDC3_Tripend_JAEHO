@@ -1,4 +1,5 @@
 import { authRequest, baseRequest, formDataRequest } from './core';
+import { URL } from '../utils/auth/constant';
 
 // test
 const channelId = '63b93150230951110b843cee';
@@ -49,7 +50,7 @@ export const getPostDetail = async (postId) => {
 
 // 마이페이지 (게시글 삭제)
 export const removePost = async (postId) => {
-  const data = await authRequest.delete(`/posts/delete`, {
+  const data = await authRequest.delete(URL.MYPAGE_DELETE, {
     data: {
       id: postId,
     },
@@ -63,19 +64,19 @@ export const removePost = async (postId) => {
 
 // 마이페이지 포스트 불러오기 (모달용)
 export const getMyPostDetail = async (postId) => {
-  return await baseRequest.get(`/posts/${postId}`);
+  return await baseRequest.get(`${URL.MYPAGE_GET_POSTER}/${postId}`);
 };
 
 // 마이페이지 게시글 수정
 export const updatePost = async (post) => {
-  const res = await authRequest.put(`/posts/update`, post);
+  const res = await authRequest.put(URL.MYPAGE_UPDATE, post);
 
   if (res.status === 200) {
     swal('수정이 완료되었습니다.');
 
     setTimeout(() => {
       window.location.reload();
-    }, 2000);
+    }, 3000);
   }
   return res;
 };

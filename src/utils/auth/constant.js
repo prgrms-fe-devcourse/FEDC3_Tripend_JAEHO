@@ -3,17 +3,23 @@ export const USER = {
   LOGIN_FAILED: '로그인 실패',
   PASSWORD_FAILED: '비밀번호가 틀렸어요 ㅠㅠ',
   CHANGE_PASSWORD_SUCCESS: '비밀번호 변경이 완료되었습니다',
+  DELETE_POSTER: '게시글을 삭제하시겠습니까?',
+  DELETE: '삭제하면 되돌릴수 없습니다.',
 };
 
 export const ERROR_MESSAGE_AUTH = {
   LOGIN_ERROR: 'error',
   PASSWORD_SUCCESS: 'success',
+  DELETE_POSTER_WARNING: 'warning',
 };
 
 export const URL = {
   LOGIN: '/login',
   AUTH_USER: '/auth-user',
   PASSWORD_UPADTE: '/settings/update-password',
+  MYPAGE_DELETE: '/posts/delete',
+  MYPAGE_UPDATE: '/posts/update',
+  MYPAGE_GET_POSTER: '/posts',
 };
 
 export const TOKEN = 'Token';

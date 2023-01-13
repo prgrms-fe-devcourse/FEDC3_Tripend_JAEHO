@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { selectedChannelState } from '../../../recoil/RecoilChannelState';
 import { Channel, ChannelUl, DescriptionTitle, SortedChannelContainer } from './style';
+import { useParams } from 'react-router-dom';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
 const arrowStyle = { position: 'relative', top: '-2px', transition: 'transform 0.2s ease-out' };
 const rotate = { transform: 'rotate(180deg)' };
 
@@ -10,8 +13,9 @@ const UpIcon = <KeyboardArrowUpIcon style={arrowStyle} />;
 const BottomIcon = <KeyboardArrowUpIcon style={{ ...arrowStyle, ...rotate }} />;
 
 const SortedChannels = ({ title, channels, onClickChannel }) => {
-  const selectedChannelId = useRecoilValue(selectedChannelState);
-  const [fold, setFold] = useState(true);
+  const useParamsId = useParams().id;
+  const isFold = channels.filter(({ _id }) => _id === useParamsId).length === 0;
+  const [fold, setFold] = useState(isFold);
 
   return (
     <SortedChannelContainer>
@@ -21,7 +25,7 @@ const SortedChannels = ({ title, channels, onClickChannel }) => {
       </DescriptionTitle>
       <ChannelUl>
         {channels.map(({ name, _id }) => {
-          const isClicked = selectedChannelId === _id;
+          const isClicked = useParamsId === _id;
 
           return (
             <Channel
@@ -30,7 +34,9 @@ const SortedChannels = ({ title, channels, onClickChannel }) => {
               opacity={fold ? 0 : 1}
               isClicked={isClicked}
             >
-              <span>{name}</span>
+              <Link to={_id}>
+                <span>{name}</span>
+              </Link>
             </Channel>
           );
         })}

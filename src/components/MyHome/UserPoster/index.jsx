@@ -54,20 +54,20 @@ const LoginPoster = () => {
     <>
       <PostWrapper>
         {getLoginData.posts &&
-          getLoginData.posts.map((post) => (
+          getLoginData.posts.map(({ _id, title, image }) => (
             <PostContainer2>
               <PostButton>
-                <button onClick={() => handlePoster(post._id)}>수정</button>
+                <button onClick={() => handlePoster(_id)}>수정</button>
 
-                <button onClick={() => handleDeletePoster(post._id)}>삭제</button>
+                <button onClick={() => handleDeletePoster(_id)}>삭제</button>
               </PostButton>
               <PostTitle>
-                <p>{post.title.split('/')[0]}</p>
-                <p style={{ marginRight: '50px' }}>{post.title.split('/')[1]}</p>
+                <p>{title.split('/')[0]}</p>
+                <p style={{ marginRight: '50px' }}>{title.split('/')[1]}</p>
               </PostTitle>
               <ImageContainer2>
                 <img
-                  src={post.image ? post.image : 'https://via.placeholder.com/280x180'}
+                  src={image ? image : 'https://via.placeholder.com/280x180'}
                   alt="post image"
                   width="100%"
                   height="100%"

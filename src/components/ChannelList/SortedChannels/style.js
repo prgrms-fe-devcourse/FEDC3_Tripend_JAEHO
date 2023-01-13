@@ -34,6 +34,6 @@ export const Channel = styled.li`
   border-radius: 6px;
 
   &:first-of-type {
-    padding: ${({ opacity }) => (opacity ? '10px 0 3px 10px' : '0 0 0 10px')};
+    margin-top: ${({ opacity }) => (opacity ? '10px' : '0')};
   }
 `;

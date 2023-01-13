@@ -2,7 +2,13 @@ import { useRecoilState } from 'recoil';
 import { formatDataState, uploadImageState } from '../../recoil/uploadImage';
 import { useCallback, useRef, useState } from 'react';
 import UploadIcon from '../../../static/images/upload.svg';
-import { ImageContainar, TitleWrapper, UploadDescription, UploadImageWrapper } from './style';
+import {
+  ImageContainar,
+  TitleWrapper,
+  UploadDescription,
+  UploadImageWrapper,
+  ImageUploaderContainer,
+} from './style';
 import { ImageFileInput } from '../addPost/addPostForm/style';
 import styled from '@emotion/styled';
 
@@ -21,7 +27,7 @@ const UploadAndDisplayImage = () => {
   );
 
   return (
-    <div>
+    <ImageUploaderContainer>
       <ImageContainar>
         {selectedImage ? (
           <div>
@@ -53,7 +59,7 @@ const UploadAndDisplayImage = () => {
       <br />
 
       <ImageFileInput type="file" onChange={handleImageChange} />
-    </div>
+    </ImageUploaderContainer>
   );
 };
 

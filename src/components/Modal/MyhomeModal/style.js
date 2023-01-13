@@ -66,6 +66,8 @@ const ModalLeft = styled.div`
   box-sizing: border-box;
 `;
 
+const ModalForm = styled.form``;
+
 const ModalTitleWrapper = styled.div`
   margin-bottom: 20px;
 `;
@@ -80,4 +82,5 @@ export {
   ModalTitleWrapper,
   ModalTitle,
   ImageUploader,
+  ModalForm,
 };

@@ -8,6 +8,7 @@ import {
   ImageUploader,
   Input,
   Label,
+  ModalForm,
   ModalLeft,
   ModalRight,
   ModalTitle,
@@ -82,7 +83,7 @@ const MyhomeModal = ({ postDetail, postId }) => {
   };
 
   return (
-    <div>
+    <>
       <ModalLeft>
         <ImageUploader>
           <UploadAndDisplayImage />
@@ -90,57 +91,47 @@ const MyhomeModal = ({ postDetail, postId }) => {
       </ModalLeft>
 
       <ModalRight>
-        <div>
-          <ModalTitleWrapper>
-            <ModalTitle>{profile[0]}</ModalTitle>
-            <span>
-              {profile[1]}/{profile[2]}
-            </span>
-          </ModalTitleWrapper>
+        <ModalTitleWrapper>
+          <ModalTitle>{profile[0]}</ModalTitle>
+          <span>
+            {profile[1]}/{profile[2]}
+          </span>
+        </ModalTitleWrapper>
 
-          <form onSubmit={handleSendFileImage}>
-            <div>
-              <Label htmlFor="date" style={{ fontWeight: 'bold' }}>
-                날짜
-              </Label>
-              <Input type="date" onChange={handleDay} />
-            </div>
+        <ModalForm onSubmit={handleSendFileImage}>
+          <Label htmlFor="date" style={{ fontWeight: 'bold' }}>
+            날짜
+          </Label>
+          <Input type="date" onChange={handleDay} />
 
-            <div>
-              <div>
-                <Label htmlFor="text" style={{ fontWeight: 'bold' }}>
-                  인원
-                </Label>
-                <Input type="text" placeholder="인원을 입력해주세요" onChange={handlePerson} />
-                <Label style={{ fontWeight: 'bold' }}>원하는 성별</Label>
-                <select
-                  style={{
-                    borderRadius: '5px',
-                    width: '100%',
-                    height: '40px',
-                  }}
-                  onChange={handleGender}
-                >
-                  <option>=== 선택 ===</option>
-                  <option>남자만</option>
-                  <option>여자만</option>
-                  <option>남여무관</option>
-                </select>
-              </div>
-            </div>
+          <Label htmlFor="text" style={{ fontWeight: 'bold' }}>
+            인원
+          </Label>
+          <Input type="text" placeholder="인원을 입력해주세요" onChange={handlePerson} />
+          <Label style={{ fontWeight: 'bold' }}>원하는 성별</Label>
+          <select
+            style={{
+              borderRadius: '5px',
+              width: '100%',
+              height: '40px',
+            }}
+            onChange={handleGender}
+          >
+            <option>=== 선택 ===</option>
+            <option>남자만</option>
+            <option>여자만</option>
+            <option>남여무관</option>
+          </select>
 
-            <div>
-              <Label htmlFor="text" style={{ fontWeight: 'bold' }}>
-                제목
-              </Label>
-              <Input type="text" placeholder="제목을 입력해주세요" onChange={handlePosterTitle} />
-            </div>
+          <Label htmlFor="text" style={{ fontWeight: 'bold' }}>
+            제목
+          </Label>
+          <Input type="text" placeholder="제목을 입력해주세요" onChange={handlePosterTitle} />
 
-            <Button type="submit">확인</Button>
-          </form>
-        </div>
+          <Button type="submit">확인</Button>
+        </ModalForm>
       </ModalRight>
-    </div>
+    </>
   );
 };
 

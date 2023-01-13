@@ -71,7 +71,11 @@ export const updatePost = async (post) => {
   const res = await authRequest.put(`/posts/update`, post);
 
   if (res.status === 200) {
-    window.location.reload();
+    swal('수정이 완료되었습니다.');
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   }
   return res;
 };

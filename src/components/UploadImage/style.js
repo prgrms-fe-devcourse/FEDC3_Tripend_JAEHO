@@ -9,6 +9,7 @@ const ImageContainar = styled.div`
   align-items: center;
   margin-top: 80px;
 `;
+const ImageUploaderContainer = styled.div``;
 
 const UploadImageWrapper = styled.div`
   height: 50px;
@@ -31,4 +32,10 @@ const TitleWrapper = styled.div`
   justify-content: center;
 `;
 
-export { ImageContainar, UploadImageWrapper, UploadDescription, TitleWrapper };
+export {
+  ImageContainar,
+  UploadImageWrapper,
+  UploadDescription,
+  TitleWrapper,
+  ImageUploaderContainer,
+};

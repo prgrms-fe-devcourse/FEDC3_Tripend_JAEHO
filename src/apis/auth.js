@@ -40,9 +40,16 @@ export const getUser = async () => {
 
 // 비밀번호 변경
 export const putPaswwordChange = async (password) => {
-  return await authRequest.put(URL.PASSWORD_UPADTE, {
-    password,
-  });
+  if (!getStorage(TOKEN)) {
+    throw new Error('로그인 유저가 없습니다');
+  }
+  try {
+    return await authRequest.put(URL.PASSWORD_UPADTE, {
+      password,
+    });
+  } catch (e) {
+    throw new Error('로그인 유저가 없습니다.');
+  }
 };
 
 export const signup = async (values) => {

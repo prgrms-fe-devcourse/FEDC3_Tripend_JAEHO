@@ -14,10 +14,6 @@ const authRequest = axios.create({
   baseURL,
 });
 
-const formDataRequest = axios.create({
-  baseURL,
-});
-
 // 요청에 대한 인터셉터 작성
 baseRequest.interceptors.response.use(
   (response) => {
@@ -38,14 +34,4 @@ authRequest.interceptors.request.use(
   }
 );
 
-formDataRequest.interceptors.request.use(
-  (config) => {
-    config.headers.authorization = 'bearer ' + getStorage(TOKEN, '');
-    return config;
-  },
-  (error) => {
-    Promise.reject(error.response);
-  }
-);
-
-export { baseRequest, authRequest, formDataRequest };
+export { baseRequest, authRequest };

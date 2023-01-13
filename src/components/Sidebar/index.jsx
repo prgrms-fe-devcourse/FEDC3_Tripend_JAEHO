@@ -13,12 +13,7 @@ const UserSidebar = () => {
         <Menu>
           {menus.map(({ path, name }, index) => {
             return (
-              <NavLink
-                style={{ color: 'gray', textDecoration: 'none' }}
-                to={path}
-                key={index}
-                activeStyle={{ color: 'black' }}
-              >
+              <NavLink style={{ color: 'gray', textDecoration: 'none' }} to={path} key={index}>
                 {
                   <ul>
                     <li>{name}</li>

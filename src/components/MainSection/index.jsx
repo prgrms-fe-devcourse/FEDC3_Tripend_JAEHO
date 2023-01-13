@@ -16,11 +16,8 @@ const Posts = () => {
   const [visible, setVisible] = useState(false);
 
   const getPostData = async () => {
-    if (postList.posts) {
-      receivedData = postList.posts;
-    } else {
+    if (postList.posts === null) {
       const { data } = await getChannelPosts(selectedChannelId);
-      receivedData = data;
 
       setPostList({ id: selectedChannelId, posts: data });
     }

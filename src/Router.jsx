@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Footer from './pages/Footer';
 import Header from './pages/Header';
 import AccountPage from './pages/AccountPage';
 import SigninPage from './pages/SigninPage';
@@ -17,7 +16,6 @@ const AppRouter = () => {
   return (
     <Router>
       <Header />
-
       <Routes>
         {/* public routes /*/}
         <Route exact path="/" element={<SigninPage />} />

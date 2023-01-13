@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { userLoginButtonShowState, userLoginState } from '../../recoil/auth';
-import { HeaderButton } from '../../components/common/Button';
 import { toggleStateFamily } from '../../recoil/RecoilToggleStates';
 import { getMyAlarms } from '../../apis/alarm';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -38,17 +37,8 @@ const Header = () => {
   const getToken = getStorage(TOKEN);
 
   const handleClickLogo = () => {
+    // isLogin ? navigate('/main') : navigate('/');
     navigate('/main');
-  };
-
-  const handleSignUp = () => {
-    setIsNextPage(!isNextPage);
-    navigate('/signup');
-  };
-
-  const handleSignIn = () => {
-    setIsNextPage(!isNextPage);
-    navigate('/');
   };
 
   const handleAlarmOpen = async ({ target }) => {

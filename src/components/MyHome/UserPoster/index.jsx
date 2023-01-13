@@ -3,13 +3,10 @@ import { getUser } from '../../../apis/auth';
 import { getMyPostDetail, removePost } from '../../../apis/post';
 import MyhomeModal from '../../Modal/MyhomeModal';
 import Modal from '../../Modal';
-import {
-  ImageContainer2,
-  PostButton,
-  PostContainer2,
-  PostTitle,
-  PostWrapper,
-} from '../../../pages/MyPosterPage/style';
+import { PostWrapper } from '../../../pages/MyPosterPage/style';
+import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
+import UserPosterItem from '../UserPosteItem';
+import { ERROR_MESSAGE_AUTH, USER } from '../../../utils/auth/constant';
 
 const LoginPoster = () => {
   const [getLoginData, setLoginData] = useState({});
@@ -39,9 +36,9 @@ const LoginPoster = () => {
 
   const handleDeletePoster = async (id) => {
     swal({
-      title: '게시글을 삭제하시겠습니까?',
-      text: '삭제하면 되돌릴수 없습니다.',
-      icon: 'warning',
+      title: USER.DELETE_POSTER,
+      text: USER.DELETE,
+      icon: ERROR_MESSAGE_AUTH.DELETE_POSTER_WARNING,
       dangerMode: true,
     }).then(async (willDelete) => {
       if (willDelete) {
@@ -54,33 +51,25 @@ const LoginPoster = () => {
     <>
       <PostWrapper>
         {getLoginData.posts &&
-          getLoginData.posts.map((post) => (
-            <PostContainer2>
-              <PostButton>
-                <button onClick={() => handlePoster(post._id)}>수정</button>
-
-                <button onClick={() => handleDeletePoster(post._id)}>삭제</button>
-              </PostButton>
-              <PostTitle>
-                <p>{post.title.split('/')[0]}</p>
-                <p style={{ marginRight: '50px' }}>{post.title.split('/')[1]}</p>
-              </PostTitle>
-              <ImageContainer2>
-                <img
-                  src={post.image ? post.image : 'https://via.placeholder.com/280x180'}
-                  alt="post image"
-                  width="100%"
-                  height="100%"
-                  style={{ borderRadius: '16px' }}
-                />
-              </ImageContainer2>
-            </PostContainer2>
-          ))}
+          getLoginData.posts.map(({ _id, title, image }) => {
+            return (
+              <UserPosterItem
+                key={_id}
+                id={_id}
+                title={title}
+                image={image}
+                handlePoster={handlePoster}
+                handleDeletePoster={handleDeletePoster}
+              />
+            );
+          })}
 
         {visible && (
-          <Modal visible={visible} onClose={handlePoster} width="1000px" height="600px">
-            <h1>fdsadf</h1>
-            <button onClick={handlerModalClose}>x</button>
+          <Modal visible={visible} onClose={handlerModalClose} width="1000px" height="600px">
+            <ModalTitleWrapper>
+              <ModalTitle>게시글 수정</ModalTitle>
+              <ModalTitleButton onClick={handlerModalClose}>x</ModalTitleButton>
+            </ModalTitleWrapper>
             <MyhomeModal postDetail={postDetail} postId={postId} />
           </Modal>
         )}

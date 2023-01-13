@@ -2,18 +2,16 @@ import styled from '@emotion/styled';
 
 export const ModalRight = styled.div`
   width: 50%;
-  height: 450px;
+  height: 400px;
   float: right;
   box-sizing: border-box;
-  border: 3px solid black;
 `;
 
 export const ModalLeft = styled.div`
   width: 50%;
-  height: 450px;
+  height: 400px;
   float: left;
   box-sizing: border-box;
-  border: 3px solid blue;
 `;
 
 export const PostTitle = styled.div`
@@ -40,7 +38,7 @@ export const PostButton = styled.div`
   }
 `;
 
-export const ImageContainer2 = styled.div`
+export const ImageItemContainer = styled.div`
   width: 100px;
   height: 70px;
   margin: 20px;
@@ -58,7 +56,7 @@ export const PostWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-export const PostContainer2 = styled.div`
+export const PostItemContainer = styled.div`
   position: relative;
   height: 100px;
   margin: 10px;

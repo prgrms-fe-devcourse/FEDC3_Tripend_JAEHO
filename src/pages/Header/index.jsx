@@ -20,9 +20,10 @@ import {
   IconItem,
   AlarmContainer,
 } from './style';
-import { setStorage } from '../../utils/storage';
+import { getStorage, setStorage } from '../../utils/storage';
 import { TOKEN } from '../../utils/auth/constant';
 import { isVisibleModalState } from '../../recoil/addPostStates';
+import PrivateHeader from './PrivateHeaderContainer';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -34,9 +35,10 @@ const Header = () => {
 
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
 
-  // 새로고침시 로고 누르면 로그아웃되고 있음 -> 수정 필요
+  const getToken = getStorage(TOKEN);
+
   const handleClickLogo = () => {
-    isLogin ? navigate('/main') : navigate('/');
+    navigate('/main');
   };
 
   const handleSignUp = () => {
@@ -73,11 +75,12 @@ const Header = () => {
 
   return (
     <>
-      <HeaderContainer>
-        <LogoContaniner onClick={handleClickLogo}>
-          <Logo />
-        </LogoContaniner>
-        {isLogin ? (
+      {getToken ? (
+        <HeaderContainer>
+          <LogoContaniner onClick={handleClickLogo}>
+            <Logo />
+          </LogoContaniner>
+
           <>
             <SearchContainer>
               <input type="text" />
@@ -105,21 +108,10 @@ const Header = () => {
               alarms={alarms}
             />
           </>
-        ) : (
-          <></>
-          // <ButtonContainer>
-          //   {isNextPage ? (
-          //     <HeaderUl>
-          //       <HeaderButton onClick={handleSignUp}>회원가입</HeaderButton>
-          //     </HeaderUl>
-          //   ) : (
-          //     <HeaderUl>
-          //       <HeaderButton onClick={handleSignIn}>로그인</HeaderButton>
-          //     </HeaderUl>
-          //   )}
-          // </ButtonContainer>
-        )}
-      </HeaderContainer>
+        </HeaderContainer>
+      ) : (
+        <PrivateHeader />
+      )}
     </>
   );
 };

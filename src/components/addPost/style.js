@@ -6,12 +6,21 @@ export const ModalHeader = styled.div`
   position: relative;
 `;
 
-export const ModalTitle = styled.h1`
-  margin: 0;
+export const Title = styled.div`
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 40px;
 `;
 
 export const CloseButton = styled.button`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -5px;
+  right: -5px;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 `;

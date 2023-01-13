@@ -11,11 +11,13 @@ import useDebounce from '../../hooks/useDebounce';
 import { encodeKeyword } from '../../utils/validate/userList';
 import { searchAll } from '../../apis/search';
 import { filterdPost } from '../../utils/validate/searchedPostLIst';
-import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { selectedPostState } from '../../recoil/RecoilPostStates';
 
 const SearchPost = () => {
-  const navigate = useNavigate();
+  const setPostId = useSetRecoilState(selectedPostState);
   const [keyword, setKeyword] = useState('');
+
   const [searchResult, setSearchResult] = useState([]);
 
   const getSearchResult = async (encodedKeyword) => {
@@ -24,13 +26,17 @@ const SearchPost = () => {
   };
 
   const handleClickItem = (postId) => {
+    setPostId(postId);
     setKeyword('');
-    navigate();
   };
 
   useDebounce(
     () => {
-      keyword.length > 0 ? getSearchResult(encodeKeyword(keyword)) : setSearchResult([]);
+      if (keyword.length > 0) {
+        getSearchResult(encodeKeyword(keyword));
+      } else {
+        setSearchResult([]);
+      }
     },
     300,
     [keyword]
@@ -45,7 +51,7 @@ const SearchPost = () => {
           onChange={(e) => setKeyword(e.target.value)}
         />
       </SearchContainer>
-      {searchResult.length ? (
+      {searchResult && (
         <SearchResultList>
           {searchResult.map((item) => (
             <SearchResultItem key={item._id} onClick={() => handleClickItem(item._id)}>
@@ -53,7 +59,7 @@ const SearchPost = () => {
             </SearchResultItem>
           ))}
         </SearchResultList>
-      ) : null}
+      )}
     </SearchWrapper>
   );
 };

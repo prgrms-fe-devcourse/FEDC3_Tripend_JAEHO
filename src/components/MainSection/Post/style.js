@@ -7,7 +7,7 @@ export const PostContainer = styled.div`
   display: flex;
   align-items: center;
   border-radius: 16px;
-  background-color: #f7f9fb;
+  background-color: var(--gray);
   cursor: pointer;
 `;
 export const InfoContainer = styled.div`

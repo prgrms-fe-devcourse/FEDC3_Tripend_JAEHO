@@ -1,6 +1,7 @@
 import ImageComponent from '../Image';
 import styled from '@emotion/styled';
 import { useState, useEffect } from 'react';
+import PersonIcon from '@mui/icons-material/Person';
 
 const ShapeToCssValue = {
   circle: '50%',
@@ -14,7 +15,8 @@ const AvatarWrapper = styled.div`
   border-radius: ${({ shape }) => ShapeToCssValue[shape]};
   background-color: #eee;
   overflow: hidden;
-
+  width: ${({ size }) => size};
+  height: ${({ size }) => size};
   > img {
     transition: opacity 0.2s ease-out;
   }
@@ -23,7 +25,7 @@ const Avatar = ({
   lazy,
   threshold,
   src,
-  size = 70,
+  size = '70px',
   shape = 'circle', // round, sqare 등이 있음
   placeholder,
   alt,
@@ -39,19 +41,29 @@ const Avatar = ({
   });
 
   return (
-    <AvatarWrapper {...props} shape={shape}>
-      <ImageComponent
-        block
-        lazy={lazy}
-        threshold={threshold}
-        width={size}
-        height={size}
-        src={src}
-        placeholder={placeholder}
-        alt={alt}
-        mode={mode}
-        style={{ opacity: loaded ? 1 : 0 }}
-      />
+    <AvatarWrapper {...props} shape={shape} size={size}>
+      {src ? (
+        <ImageComponent
+          block
+          lazy={lazy}
+          threshold={threshold}
+          width={size}
+          height={size}
+          src={src}
+          placeholder={placeholder}
+          alt={alt}
+          mode={mode}
+          style={{ opacity: loaded ? 1 : 0 }}
+        />
+      ) : (
+        <PersonIcon
+          style={{
+            position: 'relative',
+            fontSize: size,
+            color: '#adadad',
+          }}
+        />
+      )}
     </AvatarWrapper>
   );
 };

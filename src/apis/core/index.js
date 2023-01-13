@@ -7,7 +7,7 @@ const baseURL = `${process.env.REACT_APP_API_ENDPOINT}`;
 // 인스턴스 생성
 const baseRequest = axios.create({
   baseURL,
-  timeout: 1000,
+  timeout: 3000,
 });
 
 const authRequest = axios.create({
@@ -15,8 +15,8 @@ const authRequest = axios.create({
 });
 
 const formDataRequest = axios.create({
-  baseURL
-})
+  baseURL,
+});
 
 // 요청에 대한 인터셉터 작성
 baseRequest.interceptors.response.use(
@@ -41,7 +41,7 @@ authRequest.interceptors.request.use(
 formDataRequest.interceptors.request.use(
   (config) => {
     config.headers.authorization = 'bearer ' + getStorage(TOKEN, '');
-    config.headers["Content-Type"] = "multipart/form-data";
+    config.headers['Content-Type'] = 'multipart/form-data';
     return config;
   },
   (error) => {

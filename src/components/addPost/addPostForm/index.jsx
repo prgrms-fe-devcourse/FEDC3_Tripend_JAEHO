@@ -1,12 +1,24 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { createPost } from '../../../apis/post';
-import { getChannels } from '../../../apis/post';
 import { isVisibleModalState } from '../../../recoil/addPostStates';
 import { imageToBinary } from '../../../utils/imageConverter';
 import { getStorage } from '../../../utils/storage';
 
-import { InputWrapper } from './style';
+import { createPost } from '../../../apis/post';
+import { getChannels } from '../../../apis/post';
+
+import UploadIcon from '../../../../static/images/upload.svg';
+import {
+  PostForm,
+  ImageUploader,
+  ImageFileInput,
+  ImageFileContent,
+  Title,
+  Description,
+  FormContent,
+  InputWrapper,
+  SubmitButton,
+} from './style';
 
 const AddPostForm = () => {
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
@@ -109,49 +121,62 @@ const AddPostForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        사진 업로드
-        <input
+    <PostForm onSubmit={handleSubmit}>
+      <ImageUploader>
+        <ImageFileInput
           ref={imageFileInputRef}
           type="file"
           accept="image/png, image/jpeg, image/jpg"
           onChange={handleImageFileChange}
+          disabled={isLoading && imageSrc}
         />
-      </div>
-      <InputWrapper>
-        <label htmlFor="country">나라</label>
-        <select id="country" value={country} onChange={handleCountryChange}>
-          {countries.map(({ name, _id }) => (
-            <option key={_id} value={_id}>
-              {name}
-            </option>
-          ))}
-        </select>
-      </InputWrapper>
-      <InputWrapper>
-        <label htmlFor="date">날짜</label>
-        <input type="date" id="date" value={date} onChange={handleDateChange} />
-      </InputWrapper>
-      <InputWrapper>
-        <label htmlFor="personnel">인원</label>
-        <input type="number" id="personnel" value={personnel} onChange={handlePersonnelChange} />
-      </InputWrapper>
-      <InputWrapper>
-        <label htmlFor="gender">원하는 성별</label>
-        <select id="gender" value={gender} onChange={handleGenderChange}>
-          <option value={null}>=== 선택 ===</option>
-          <option value="male">남자만</option>
-          <option value="female">여자만</option>
-          <option value="both">남여 무관</option>
-        </select>
-      </InputWrapper>
-      <InputWrapper>
-        <label htmlFor="name">제목</label>
-        <input type="text" id="name" value={name} onChange={handleNameChange} />
-      </InputWrapper>
-      <button>{isLoading ? '등록 중...' : '등록'}</button>
-    </form>
+        <ImageFileContent>
+          <UploadIcon />
+          <Title>사진 업로드</Title>
+          <Description>png, jpeg, jpg 포맷 파일만 업로드할 수 있습니다.</Description>
+        </ImageFileContent>
+      </ImageUploader>
+      <FormContent>
+        <InputWrapper>
+          <label htmlFor="country">나라</label>
+          <select id="country" value={country} onChange={handleCountryChange}>
+            {countries.map(({ name, _id }) => (
+              <option key={_id} value={_id}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </InputWrapper>
+        <InputWrapper>
+          <label htmlFor="date">날짜</label>
+          <input type="date" id="date" value={date} onChange={handleDateChange} />
+        </InputWrapper>
+        <InputWrapper>
+          <label htmlFor="personnel">인원</label>
+          <input type="number" id="personnel" value={personnel} onChange={handlePersonnelChange} />
+        </InputWrapper>
+        <InputWrapper>
+          <label htmlFor="gender">원하는 성별</label>
+          <select id="gender" value={gender} onChange={handleGenderChange}>
+            <option value={null}>=== 선택 ===</option>
+            <option value="male">남자만</option>
+            <option value="female">여자만</option>
+            <option value="both">남여 무관</option>
+          </select>
+        </InputWrapper>
+        <InputWrapper>
+          <label htmlFor="name">제목</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={handleNameChange}
+            placeholder="제목을 입력해주세요."
+          />
+        </InputWrapper>
+        <SubmitButton>{isLoading ? '등록 중...' : '등록'}</SubmitButton>
+      </FormContent>
+    </PostForm>
   );
 };
 

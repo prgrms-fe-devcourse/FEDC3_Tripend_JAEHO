@@ -8,7 +8,9 @@ export const AlarmPopupContainer = styled.div`
   border-radius: 8px;
   padding: 5px 20px;
   width: 200px;
-  z-index: 2;
+  max-height: 400px;
+  overflow: auto;
+  z-index: 10000;
 
   &::before {
     content: '';
@@ -18,7 +20,6 @@ export const AlarmPopupContainer = styled.div`
     top: -5px;
     right: 15px;
     background-color: #f4f4f4;
-    transform: rotate(45deg);
   }
 `;
 

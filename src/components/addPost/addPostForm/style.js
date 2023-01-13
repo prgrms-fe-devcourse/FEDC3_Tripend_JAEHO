@@ -59,6 +59,19 @@ export const Description = styled.span`
   font-weight: 400;
 `;
 
+export const UploadedImage = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
 export const FormContent = styled.div`
   display: flex;
   flex-direction: column;

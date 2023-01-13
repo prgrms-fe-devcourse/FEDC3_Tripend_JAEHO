@@ -15,6 +15,7 @@ import {
   ImageFileContent,
   Title,
   Description,
+  UploadedImage,
   FormContent,
   InputWrapper,
   SubmitButton,
@@ -131,9 +132,17 @@ const AddPostForm = () => {
           disabled={isLoading && imageSrc}
         />
         <ImageFileContent>
-          <UploadIcon />
-          <Title>사진 업로드</Title>
-          <Description>png, jpeg, jpg 포맷 파일만 업로드할 수 있습니다.</Description>
+          {imageSrc ? (
+            <UploadedImage>
+              <img src={imageSrc} alt="사진" />
+            </UploadedImage>
+          ) : (
+            <>
+              <UploadIcon />
+              <Title>사진 업로드</Title>
+              <Description>png, jpeg, jpg 포맷 파일만 업로드할 수 있습니다.</Description>
+            </>
+          )}
         </ImageFileContent>
       </ImageUploader>
       <FormContent>

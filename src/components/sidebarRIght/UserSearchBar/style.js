@@ -33,7 +33,15 @@ export const UserInfo = styled.li`
   &:last-of-type {
     margin-bottom: 20px;
   }
-  & > span {
-    padding-left: 8px;
-  }
+`;
+
+export const UserName = styled.span`
+  max-width: 160px;
+  padding-left: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 `;

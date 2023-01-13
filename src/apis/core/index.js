@@ -7,7 +7,6 @@ const baseURL = `${process.env.REACT_APP_API_ENDPOINT}`;
 // 인스턴스 생성
 const baseRequest = axios.create({
   baseURL,
-  timeout: 1000,
 });
 
 const authRequest = axios.create({

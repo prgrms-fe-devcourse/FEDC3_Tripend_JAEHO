@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { signup } from '../../apis/auth';
 import { useNavigate } from 'react-router-dom';
 import { ERROR_MESSAGE_SIGNUP } from '../../utils/auth/constant';
-import { isValidName, isValidAge, isValidId } from '../../utils/validate/signup';
+import { isValidName, isValidAge, isValidId, checkZeroOfFront } from '../../utils/validate/signup';
 import { SignupContainer, FieldSet, FormSigninText, SignupButton } from './style';
 
 const {
@@ -41,7 +41,7 @@ const Signup = () => {
         .required(NEED_INPUT),
     }),
     onSubmit: async (values) => {
-      values.userName = values.userName.replace(/ /g, '');
+      values.userAge = values.userAge.replace(checkZeroOfFront, '');
       try {
         const response = await signup(values);
         if (response) {

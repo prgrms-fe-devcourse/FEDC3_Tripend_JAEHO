@@ -9,7 +9,6 @@ const ShapeToCssValue = {
   square: '0px',
 };
 const AvatarWrapper = styled.div`
-  position: relative;
   display: inline-block;
   border: 1px solid #dadada;
   border-radius: ${({ shape }) => ShapeToCssValue[shape]};
@@ -58,7 +57,6 @@ const Avatar = ({
       ) : (
         <PersonIcon
           style={{
-            position: 'relative',
             fontSize: size,
             color: '#adadad',
           }}

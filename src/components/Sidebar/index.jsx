@@ -11,18 +11,17 @@ const UserSidebar = () => {
     <SideBlcok>
       <Side>
         <Menu>
-          {menus.map((menu, index) => {
+          {menus.map(({ path, name }, index) => {
             return (
               <NavLink
-                exact
                 style={{ color: 'gray', textDecoration: 'none' }}
-                to={menu.path}
+                to={path}
                 key={index}
                 activeStyle={{ color: 'black' }}
               >
                 {
                   <ul>
-                    <li>{menu.name}</li>
+                    <li>{name}</li>
                   </ul>
                 }
               </NavLink>

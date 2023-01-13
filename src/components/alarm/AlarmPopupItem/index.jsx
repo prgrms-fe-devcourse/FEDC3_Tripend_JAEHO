@@ -4,9 +4,9 @@ import Avatar from '../../common/Avatar';
 import { AlarmItem, AlarmImg, AlarmText } from './style';
 
 const AlarmPopupItem = ({ author, onClick }) => {
-  const alarmCategory = author && author.comments ? '댓글' : '좋아요';
+  const alarmCategory = author && author.comments ? '댓글을' : '좋아요를';
   const filteredName = extractName.exec(author.fullName)[0];
-  const alarmComment = `${filteredName}님이 회원님의 게시물에 ${alarmCategory}을 남겼습니다`;
+  const alarmComment = `${filteredName}님이 회원님의 게시물에 ${alarmCategory} 남겼습니다`;
 
   return (
     author && (

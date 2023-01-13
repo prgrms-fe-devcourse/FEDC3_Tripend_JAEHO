@@ -1,7 +1,15 @@
 import { authRequest, baseRequest } from './core';
 import swal from 'sweetalert';
 import { getStorage, setStorage } from '../utils/storage';
-import { ERROR_MESSAGE_AUTH, ID, TOKEN, URL, USER as AUTH, USER } from '../utils/auth/constant';
+import {
+  ERROR_MESSAGE_AUTH,
+  ID,
+  TOKEN,
+  URL,
+  USER as AUTH,
+  USER,
+  USERIMAGE,
+} from '../utils/auth/constant';
 import { ERROR_MESSAGE_SIGNUP } from '../utils/auth/constant';
 
 const { DUPLICATE_EMAIL } = ERROR_MESSAGE_SIGNUP;
@@ -18,10 +26,11 @@ export const postUserLogin = async (email, password) => {
     });
 
   const { token } = response.data;
-  const { _id } = response.data.user;
+  const { _id, image } = response.data.user;
 
   setStorage(TOKEN, token);
   setStorage(ID, _id);
+  setStorage(USERIMAGE, image);
 
   return response;
 };

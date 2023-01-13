@@ -18,6 +18,7 @@ export const URL = {
 
 export const TOKEN = 'Token';
 export const ID = 'id';
+export const USERIMAGE = 'userImage';
 
 export const ERROR_MESSAGE_SIGNUP = {
   NEED_INPUT: '* 입력이 필요합니다.',

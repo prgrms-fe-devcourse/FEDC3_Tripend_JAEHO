@@ -30,14 +30,6 @@ export const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-export const SearchContainer = styled.div`
-  width: 500px;
-  height: 30px;
-  border: 1px solid #dee2e6;
-`;
-
-export const HeaderUl = styled.ul``;
-
 export const IconItem = styled.div`
   display: flex;
   justify-content: center;

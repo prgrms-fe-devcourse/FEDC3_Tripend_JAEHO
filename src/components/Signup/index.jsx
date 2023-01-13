@@ -4,6 +4,7 @@ import { signup } from '../../apis/auth';
 import { useNavigate } from 'react-router-dom';
 import { ERROR_MESSAGE_SIGNUP } from '../../utils/auth/constant';
 import { isValidName, isValidAge, isValidId } from '../../utils/validate/signup';
+import { SignupContainer, FieldSet, FormSigninText, SignupButton } from './style';
 
 const {
   NEED_INPUT,
@@ -55,11 +56,11 @@ const Signup = () => {
   });
 
   return (
-    <>
+    <SignupContainer>
       <form onSubmit={formik.handleSubmit}>
-        <h1>회원가입</h1>
+        <h3>회원가입</h3>
 
-        <fieldset className="form-el">
+        <FieldSet className="form-el">
           <legend>이름</legend>
           <input
             id="userName"
@@ -69,12 +70,12 @@ const Signup = () => {
             onBlur={formik.handleBlur}
             value={formik.values.userName}
           />
-        </fieldset>
+        </FieldSet>
         {formik.touched.userName && formik.errors.userName ? (
           <div>{formik.errors.userName}</div>
         ) : null}
 
-        <fieldset className="form-el">
+        <FieldSet className="form-el">
           <legend>나이</legend>
           <input
             id="userAge"
@@ -85,12 +86,12 @@ const Signup = () => {
             value={formik.values.userAge}
             placeholder="만 나이를 입력해주세요."
           />
-        </fieldset>
+        </FieldSet>
         {formik.touched.userAge && formik.errors.userAge ? (
           <div>{formik.errors.userAge}</div>
         ) : null}
 
-        <fieldset className="form-el">
+        <FieldSet className="form-el">
           <legend>성별</legend>
           <label>
             <input
@@ -114,12 +115,12 @@ const Signup = () => {
             />
             여
           </label>
-        </fieldset>
+        </FieldSet>
         {formik.touched.userGender && formik.errors.userGender ? (
           <div>{formik.errors.userGender}</div>
         ) : null}
 
-        <fieldset className="form-el">
+        <FieldSet className="form-el">
           <legend>아이디</legend>
           <input
             id="userId"
@@ -130,10 +131,10 @@ const Signup = () => {
             value={formik.values.userId}
             placeholder="tripend@gmail.com"
           />
-        </fieldset>
+        </FieldSet>
         {formik.touched.userId && formik.errors.userId ? <div>{formik.errors.userId}</div> : null}
 
-        <fieldset className="form-el">
+        <FieldSet className="form-el">
           <legend>비밀번호</legend>
           <input
             id="userPassword"
@@ -144,12 +145,12 @@ const Signup = () => {
             value={formik.values.userPassword}
             placeholder="******"
           />
-        </fieldset>
+        </FieldSet>
         {formik.touched.userPassword && formik.errors.userPassword ? (
           <div>{formik.errors.userPassword}</div>
         ) : null}
 
-        <fieldset className="form-el">
+        <FieldSet className="form-el">
           <legend>비밀번호 확인</legend>
           <input
             id="userPasswordConfirm"
@@ -160,15 +161,19 @@ const Signup = () => {
             value={formik.values.userPasswordConfirm}
             placeholder="******"
           />
-        </fieldset>
+        </FieldSet>
         {formik.touched.userPasswordConfirm && formik.errors.userPasswordConfirm ? (
           <div>{formik.errors.userPasswordConfirm}</div>
         ) : null}
-
-        <button type="submit">create account</button>
+        <SignupButton type="submit">create account</SignupButton>
+        <FormSigninText>
+          Have an account?
+          <span onClick={() => navigate('/')} style={{ color: 'red', cursor: 'pointer' }}>
+            로그인
+          </span>
+        </FormSigninText>
       </form>
-      <button onClick={() => navigate('/')}>로그인하러 가기</button>
-    </>
+    </SignupContainer>
   );
 };
 

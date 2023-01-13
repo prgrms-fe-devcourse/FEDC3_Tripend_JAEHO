@@ -1,6 +1,9 @@
 import { useRecoilState } from 'recoil';
 import { formatDataState, uploadImageState } from '../../recoil/uploadImage';
 import { useCallback, useRef, useState } from 'react';
+import UploadIcon from '../../../static/images/upload.svg';
+import { ImageContainar, TitleWrapper, UploadDescription, UploadImageWrapper } from './style';
+import { ImageFileInput } from '../addPost/addPostForm/style';
 import styled from '@emotion/styled';
 
 const UploadAndDisplayImage = () => {
@@ -19,31 +22,39 @@ const UploadAndDisplayImage = () => {
 
   return (
     <div>
-      <h1>파일 업로드</h1>
-      {selectedImage && (
-        <div>
-          <img
-            alt="not fount"
-            width={'200px'}
-            height={'200px'}
-            src={URL.createObjectURL(selectedImage)}
-          />
-          <br />
-        </div>
-      )}
+      <ImageContainar>
+        {selectedImage ? (
+          <div>
+            <img
+              style={{
+                width: '300px',
+                height: '300px',
+                objectFit: 'cover',
+              }}
+              src={URL.createObjectURL(selectedImage)}
+              alt="사진"
+            />
+          </div>
+        ) : (
+          <UploadImageWrapper>
+            <UploadIcon />
+            <TitleWrapper>
+              <p>사진 업로드</p>
+            </TitleWrapper>
+            <UploadDescription>
+              Supported formates: JPEG,PNG,GIF,MP4,PDF,PSD,SVG,WEBP
+            </UploadDescription>
+          </UploadImageWrapper>
+        )}
+      </ImageContainar>
+
       <br />
 
       <br />
-      <Button type="file" accept="image/*" onChange={handleImageChange} />
+
+      <ImageFileInput type="file" onChange={handleImageChange} />
     </div>
   );
 };
 
 export default UploadAndDisplayImage;
-
-const Button = styled.input`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-`;

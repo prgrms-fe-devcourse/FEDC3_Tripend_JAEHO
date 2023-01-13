@@ -11,6 +11,7 @@ import {
   PostWrapper,
 } from '../../../pages/MyPosterPage/style';
 import styled from '@emotion/styled';
+import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
 
 const LoginPoster = () => {
   const [getLoginData, setLoginData] = useState({});
@@ -56,7 +57,7 @@ const LoginPoster = () => {
       <PostWrapper>
         {getLoginData.posts &&
           getLoginData.posts.map(({ _id, title, image }) => (
-            <PostContainer2>
+            <PostContainer2 key={_id}>
               <PostButton>
                 <button onClick={() => handlePoster(_id)}>수정</button>
 
@@ -92,24 +93,3 @@ const LoginPoster = () => {
   );
 };
 export default LoginPoster;
-
-const ModalTitleWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ModalTitleButton = styled.button`
-  background-color: white;
-  font-size: 28px;
-  font-weight: bold;
-  margin-left: 10px;
-  cursor: pointer;
-  position: relative;
-  left: 43%;
-  width: 30px;
-  bottom: 30%;
-  border: none;
-  color: darkgray;
-`;
-const ModalTitle = styled.h3``;

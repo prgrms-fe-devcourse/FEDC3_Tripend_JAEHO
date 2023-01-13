@@ -11,6 +11,7 @@ import AuthorInfo from './AuthorInfo';
 import LeftImage from './LeftImage';
 import Heart from '../Heart';
 import { memo } from 'react';
+import LikeAndComment from './LikeAndComment';
 
 const Post = ({ id, title, image, author, likes, commentLength, onClickPost }) => {
   const travel_name = title.split('/')[0];
@@ -26,10 +27,7 @@ const Post = ({ id, title, image, author, likes, commentLength, onClickPost }) =
         <Tags title={title} />
         <BottomContainer>
           <AuthorInfo image={author.image} fullName={author.fullName} />
-          <LikeAndCommentContainer>
-            <div>좋아요 {likes.length}</div>
-            <div>댓글 {commentLength}</div>
-          </LikeAndCommentContainer>
+          <LikeAndComment likeLength={likes.length} commentLength={commentLength} />
         </BottomContainer>
       </InfoContainer>
     </PostContainer>

@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { userLoginButtonShowState, userLoginState } from '../../recoil/auth';
-import { HeaderButton } from '../../components/common/Button';
 import { toggleStateFamily } from '../../recoil/RecoilToggleStates';
 import { getMyAlarms } from '../../apis/alarm';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -20,9 +19,10 @@ import {
   IconItem,
   AlarmContainer,
 } from './style';
-import { setStorage } from '../../utils/storage';
+import { getStorage, setStorage } from '../../utils/storage';
 import { TOKEN } from '../../utils/auth/constant';
 import { isVisibleModalState } from '../../recoil/addPostStates';
+import PrivateHeader from './PrivateHeaderContainer';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -34,18 +34,11 @@ const Header = () => {
 
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
 
+  const getToken = getStorage(TOKEN);
+
   const handleClickLogo = () => {
-    isLogin ? navigate('/main') : navigate('/');
-  };
-
-  const handleSignUp = () => {
-    setIsNextPage(!isNextPage);
-    navigate('/signup');
-  };
-
-  const handleSignIn = () => {
-    setIsNextPage(!isNextPage);
-    navigate('/');
+    // isLogin ? navigate('/main') : navigate('/');
+    navigate('/main');
   };
 
   const handleAlarmOpen = async ({ target }) => {
@@ -72,11 +65,12 @@ const Header = () => {
 
   return (
     <>
-      <HeaderContainer>
-        <LogoContaniner onClick={handleClickLogo}>
-          <Logo />
-        </LogoContaniner>
-        {isLogin ? (
+      {getToken ? (
+        <HeaderContainer>
+          <LogoContaniner onClick={handleClickLogo}>
+            <Logo />
+          </LogoContaniner>
+
           <>
             <SearchContainer>
               <input type="text" />
@@ -104,21 +98,10 @@ const Header = () => {
               alarms={alarms}
             />
           </>
-        ) : (
-          <></>
-          // <ButtonContainer>
-          //   {isNextPage ? (
-          //     <HeaderUl>
-          //       <HeaderButton onClick={handleSignUp}>회원가입</HeaderButton>
-          //     </HeaderUl>
-          //   ) : (
-          //     <HeaderUl>
-          //       <HeaderButton onClick={handleSignIn}>로그인</HeaderButton>
-          //     </HeaderUl>
-          //   )}
-          // </ButtonContainer>
-        )}
-      </HeaderContainer>
+        </HeaderContainer>
+      ) : (
+        <PrivateHeader />
+      )}
     </>
   );
 };

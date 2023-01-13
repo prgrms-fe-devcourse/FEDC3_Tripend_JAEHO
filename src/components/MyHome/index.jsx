@@ -5,12 +5,12 @@ import {
   LoginContainer,
   LoginWrapper,
 } from '../Signin/index.style';
-import styled from '@emotion/styled';
 import { useCallback, useEffect, useState } from 'react';
 import { putPaswwordChange } from '../../apis/auth';
 import { ERROR_MESSAGE_AUTH, USER as AUTH, USER } from '../../utils/auth/constant';
+import { FormSettingText, Input, PasswordBlock, PasswordText } from './style';
 
-const SettingPassword = () => {
+const UserSettingPassword = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setConfirmPassword] = useState('');
   const [passwordConfirmError, setPasswordConfirmError] = useState('');
@@ -87,33 +87,4 @@ const SettingPassword = () => {
   );
 };
 
-export default SettingPassword;
-
-const FormSettingText = styled.h3`
-  font-size: 0.4rem;
-`;
-
-const PasswordBlock = styled.div`
-  width: 100%;
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  border-radius: 2px;
-  outline: none;
-  font-size: 1rem;
-
-  &:focus {
-    color: #495057;
-    border-color: black;
-  }
-`;
-
-const PasswordText = styled.span`
-  color: red;
-  margin-top: 100px;
-`;
+export default UserSettingPassword;

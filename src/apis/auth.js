@@ -17,21 +17,39 @@ export const postUserLogin = async (email, password) => {
       swal(AUTH.LOGIN_FAILED, USER.ID_PASSWORD, ERROR_MESSAGE_AUTH.LOGIN_ERROR);
     });
 
-  setStorage(TOKEN, response.data.token);
-  setStorage(ID, response.data.user._id);
+  const { token } = response.data;
+  const { _id } = response.data.user;
+
+  setStorage(TOKEN, token);
+  setStorage(ID, _id);
+
   return response;
 };
 
 // 로그인 유저 정보 가져오기 (인증된 유저)
 export const getUser = async () => {
-  return await authRequest.get(URL.AUTH_USER);
+  if (!getStorage(TOKEN)) {
+    throw new Error('로그인 유저가 없습니다');
+  }
+  try {
+    return await authRequest.get(URL.AUTH_USER);
+  } catch (e) {
+    throw new Error('로그인 유저가 없습니다.');
+  }
 };
 
 // 비밀번호 변경
 export const putPaswwordChange = async (password) => {
-  return await authRequest.put(URL.PASSWORD_UPADTE, {
-    password,
-  });
+  if (!getStorage(TOKEN)) {
+    throw new Error('로그인 유저가 없습니다');
+  }
+  try {
+    return await authRequest.put(URL.PASSWORD_UPADTE, {
+      password,
+    });
+  } catch (e) {
+    throw new Error('로그인 유저가 없습니다.');
+  }
 };
 
 export const signup = async (values) => {

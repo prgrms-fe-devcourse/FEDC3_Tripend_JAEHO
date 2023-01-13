@@ -1,41 +1,69 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Footer from './pages/Footer';
 import Header from './pages/Header';
 import AccountPage from './pages/AccountPage';
 import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { userLoginState } from './recoil/auth';
+
 import HomePage from './pages/HomePage';
 import MySettingPage from './pages/MySettingPage';
 import MyPosterPage from './pages/MyPosterPage';
-import { TOKEN } from './utils/auth/constant';
-import { getStorage } from './utils/storage';
-import { useEffect } from 'react';
+
+import MissingPage from './pages/NotFound';
+
+import AuthUserRoute from './components/RequireAuth';
 
 const AppRouter = () => {
-  const token = getStorage(TOKEN);
-  const [isLogin, setIsLogin] = useRecoilState(userLoginState);
-
-  useEffect(() => {
-    if (token) setIsLogin(true);
-  });
-
   return (
     <Router>
       <Header />
-
       <Routes>
-        <Route exact path="/main" element={<HomePage />} />
-        <Route exact path="/account" element={<AccountPage />} />
+        {/* public routes /*/}
         <Route exact path="/" element={<SigninPage />} />
         <Route exact path="/signup" element={<SignupPage />} />
 
-        <Route exact path="/myhome" element={<MyPosterPage />} />
-        <Route exact path="/setting" element={<MySettingPage />} />
-      </Routes>
+        {/* login routes */}
+        <Route
+          exact
+          path="/main"
+          element={
+            <AuthUserRoute>
+              <HomePage />
+            </AuthUserRoute>
+          }
+        />
 
-      {isLogin && <Footer />}
+        <Route
+          exact
+          path="/account"
+          element={
+            <AuthUserRoute>
+              <AccountPage />
+            </AuthUserRoute>
+          }
+        />
+
+        <Route
+          exact
+          path="/myhome"
+          element={
+            <AuthUserRoute>
+              <MyPosterPage />
+            </AuthUserRoute>
+          }
+        />
+
+        <Route
+          exact
+          path="/setting"
+          element={
+            <AuthUserRoute>
+              <MySettingPage />
+            </AuthUserRoute>
+          }
+        />
+
+        <Route path="/*" element={<MissingPage />} />
+      </Routes>
     </Router>
   );
 };

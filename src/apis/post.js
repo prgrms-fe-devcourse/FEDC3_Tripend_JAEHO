@@ -1,50 +1,42 @@
 import { authRequest, baseRequest, formDataRequest } from './core';
-import { URL } from '../utils/auth/constant';
-
-// test
-const channelId = '63b93150230951110b843cee';
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzYjk1MTAwOWJjZDMxMTk1ZGY1MDQ1NSIsImVtYWlsIjoiZG9uZ3dvb0BuYXZlci5jb20ifSwiaWF0IjoxNjczMDg5NDc2fQ.JSHRv0sMvz_L-HqE-MrKrvUIPI7Jcn0VYzD1jjWEmp4';
-const postId = '63bafb514bf56420ea29af47';
+import { URL } from '../utils/constant/auth';
+import { POSTURL, ERROR_MESSAGE_POST } from '../utils/constant/post';
 
 export const getChannels = async () => {
   try {
-    const data = await baseRequest.get(`/channels`);
+    const data = await baseRequest.get(POSTURL.CHANNELS);
 
     return data;
   } catch (error) {
-    console.error(error);
+    throw new Error(ERROR_MESSAGE_POST.ERROR_CHANNELS);
   }
 };
 
 export const getChannelPosts = async (channelId) => {
   try {
-    const data = await baseRequest.get(`/posts/channel/${channelId}`);
+    const data = await baseRequest.get(POSTURL.POSTS_IN_CHANNEL + channelId);
     return data;
   } catch (error) {
-    console.error(error);
+    throw new Error(ERROR_MESSAGE_POST.ERROR_POSTS);
   }
 };
 
 // post 생성하기
 export const createPost = async (data) => {
-  /// ????
-  localStorage.setItem('Token', token);
-
   try {
-    return await formDataRequest.post(`posts/create`, data);
+    return await formDataRequest.post(POSTURL.CREATE_POST, data);
   } catch (error) {
-    console.error(error);
+    throw new Error(ERROR_MESSAGE_POST.ERROR_CREATE_POST);
   }
 };
 
 // postDetail 받아오기
 export const getPostDetail = async (postId) => {
   try {
-    const data = await baseRequest.get(`/posts/${postId}`);
+    const data = await baseRequest.get(POSTURL.POST_DETAIL + postId);
     return data;
   } catch (error) {
-    console.error(error);
+    throw new Error(ERROR_MESSAGE_POST.ERROR_POSTDETAIL);
   }
 };
 
@@ -64,7 +56,7 @@ export const removePost = async (postId) => {
 
 // 마이페이지 포스트 불러오기 (모달용)
 export const getMyPostDetail = async (postId) => {
-  return await baseRequest.get(`${URL.MYPAGE_GET_POSTER}/${postId}`);
+  return await baseRequest.get(POSTURL.POST_DETAIL + postId);
 };
 
 // 마이페이지 게시글 수정

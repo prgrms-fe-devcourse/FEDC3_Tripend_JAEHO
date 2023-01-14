@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { signup } from '../../apis/auth';
 import { useNavigate } from 'react-router-dom';
-import { ERROR_MESSAGE_SIGNUP } from '../../utils/auth/constant';
+import { ERROR_MESSAGE_SIGNUP, USER_PLACEHOLDER } from '../../utils/constant/auth';
 import { isValidName, isValidAge, isValidId, checkZeroOfFront } from '../../utils/validate/signup';
 import { SignupContainer, FieldSet, FormSigninText, SignupButton } from './style';
 
@@ -69,6 +69,7 @@ const Signup = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.userName}
+            placeholder={USER_PLACEHOLDER.USER_NAME}
           />
         </FieldSet>
         {formik.touched.userName && formik.errors.userName ? (
@@ -84,7 +85,7 @@ const Signup = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.userAge}
-            placeholder="만 나이를 입력해주세요."
+            placeholder={USER_PLACEHOLDER.USER_AGE}
           />
         </FieldSet>
         {formik.touched.userAge && formik.errors.userAge ? (
@@ -129,7 +130,7 @@ const Signup = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.userId}
-            placeholder="tripend@gmail.com"
+            placeholder={USER_PLACEHOLDER.USER_ID}
           />
         </FieldSet>
         {formik.touched.userId && formik.errors.userId ? <div>{formik.errors.userId}</div> : null}
@@ -143,7 +144,7 @@ const Signup = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.userPassword}
-            placeholder="******"
+            placeholder={USER_PLACEHOLDER.USER_PASSWORD}
           />
         </FieldSet>
         {formik.touched.userPassword && formik.errors.userPassword ? (
@@ -159,7 +160,7 @@ const Signup = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.userPasswordConfirm}
-            placeholder="******"
+            placeholder={USER_PLACEHOLDER.USER_PASSWORD}
           />
         </FieldSet>
         {formik.touched.userPasswordConfirm && formik.errors.userPasswordConfirm ? (

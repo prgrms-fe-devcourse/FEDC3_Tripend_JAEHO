@@ -6,7 +6,7 @@ import Modal from '../../Modal';
 import { PostWrapper } from '../../../pages/MyPosterPage/style';
 import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
 import UserPosterItem from '../UserPosteItem';
-import { ERROR_MESSAGE_AUTH, USER } from '../../../utils/auth/constant';
+import { ERROR_MESSAGE_AUTH, USER } from '../../../utils/constant/auth';
 
 const LoginPoster = () => {
   const [getLoginData, setLoginData] = useState({});

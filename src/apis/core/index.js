@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getStorage } from '../../utils/storage';
-import { TOKEN } from '../../utils/auth/constant';
+import { BEARER, TOKEN } from '../../utils/constant/auth';
 
 const baseURL = `${process.env.REACT_APP_API_ENDPOINT}`;
 
@@ -29,7 +29,7 @@ baseRequest.interceptors.response.use(
 
 authRequest.interceptors.request.use(
   (config) => {
-    config.headers.authorization = 'bearer ' + getStorage(TOKEN);
+    config.headers.authorization = BEARER + getStorage(TOKEN);
     return config;
   },
   (error) => {
@@ -39,7 +39,7 @@ authRequest.interceptors.request.use(
 
 formDataRequest.interceptors.request.use(
   (config) => {
-    config.headers.authorization = 'bearer ' + getStorage(TOKEN, '');
+    config.headers.authorization = BEARER + getStorage(TOKEN, '');
     config.headers['Content-Type'] = 'multipart/form-data';
     return config;
   },

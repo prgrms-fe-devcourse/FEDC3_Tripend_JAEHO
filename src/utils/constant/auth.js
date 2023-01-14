@@ -7,6 +7,13 @@ export const USER = {
   DELETE: '삭제하면 되돌릴수 없습니다.',
 };
 
+export const USER_PLACEHOLDER = {
+  USER_NAME: '홍길동',
+  USER_ID: 'tripend@gmail.com',
+  USER_AGE: '만 나이를 입력해주세요.',
+  USER_PASSWORD: '******',
+};
+
 export const ERROR_MESSAGE_AUTH = {
   LOGIN_ERROR: 'error',
   PASSWORD_SUCCESS: 'success',
@@ -15,13 +22,14 @@ export const ERROR_MESSAGE_AUTH = {
 
 export const URL = {
   LOGIN: '/login',
+  SIGN_UP: '/signup',
   AUTH_USER: '/auth-user',
   PASSWORD_UPADTE: '/settings/update-password',
   MYPAGE_DELETE: '/posts/delete',
   MYPAGE_UPDATE: '/posts/update',
-  MYPAGE_GET_POSTER: '/posts',
 };
 
+export const BEARER = 'bearer ';
 export const TOKEN = 'Token';
 export const ID = 'id';
 export const USERIMAGE = 'userImage';
@@ -35,3 +43,5 @@ export const ERROR_MESSAGE_SIGNUP = {
   INCORRECT_PASSWORD: '* 올바른 비밀번호(6자 이상)를 입력해주세요.',
   DIFFERENT_PASSWORD: '* 동일한 비밀번호를 입력해주세요.',
 };
+
+export const ERROR_MESSAGE_EDIT_USER = '로그인 유저가 없습니다.';

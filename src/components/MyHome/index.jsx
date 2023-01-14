@@ -7,7 +7,7 @@ import {
 } from '../Signin/index.style';
 import { useCallback, useEffect, useState } from 'react';
 import { putPaswwordChange } from '../../apis/auth';
-import { ERROR_MESSAGE_AUTH, USER as AUTH, USER } from '../../utils/auth/constant';
+import { ERROR_MESSAGE_AUTH, USER as AUTH, USER } from '../../utils/constant/auth';
 import { FormSettingText, Input, PasswordBlock, PasswordText } from './style';
 
 const UserSettingPassword = () => {

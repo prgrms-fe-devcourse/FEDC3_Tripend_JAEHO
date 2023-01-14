@@ -1,5 +1,5 @@
 import { Navigate, Outlet, Route, useLocation } from 'react-router-dom';
-import { TOKEN } from '../../utils/auth/constant';
+import { TOKEN } from '../../utils/constant/auth';
 import { getStorage } from '../../utils/storage';
 
 export const AuthUserRoute = ({ children }) => {

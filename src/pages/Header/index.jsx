@@ -18,7 +18,7 @@ import {
   AlarmContainer,
 } from './style';
 import { getStorage, setStorage } from '../../utils/storage';
-import { TOKEN, USERIMAGE } from '../../utils/auth/constant';
+import { TOKEN, USERIMAGE } from '../../utils/constant/auth';
 import { isVisibleModalState } from '../../recoil/addPostStates';
 import PrivateHeader from './PrivateHeaderContainer';
 import SearchPost from '../../components/SearchPost';

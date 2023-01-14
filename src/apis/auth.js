@@ -3,14 +3,14 @@ import swal from 'sweetalert';
 import { getStorage, setStorage } from '../utils/storage';
 import {
   ERROR_MESSAGE_AUTH,
+  ERROR_MESSAGE_SIGNUP,
   ID,
   TOKEN,
   URL,
   USER as AUTH,
   USER,
   USERIMAGE,
-} from '../utils/auth/constant';
-import { ERROR_MESSAGE_SIGNUP } from '../utils/auth/constant';
+} from '../utils/constant/auth';
 
 const { DUPLICATE_EMAIL } = ERROR_MESSAGE_SIGNUP;
 
@@ -38,26 +38,26 @@ export const postUserLogin = async (email, password) => {
 // 로그인 유저 정보 가져오기 (인증된 유저)
 export const getUser = async () => {
   if (!getStorage(TOKEN)) {
-    throw new Error('로그인 유저가 없습니다');
+    throw new Error(ERROR_MESSAGE_SIGNUP);
   }
   try {
     return await authRequest.get(URL.AUTH_USER);
   } catch (e) {
-    throw new Error('로그인 유저가 없습니다.');
+    throw new Error(ERROR_MESSAGE_SIGNUP);
   }
 };
 
 // 비밀번호 변경
 export const putPaswwordChange = async (password) => {
   if (!getStorage(TOKEN)) {
-    throw new Error('로그인 유저가 없습니다');
+    throw new Error(ERROR_MESSAGE_SIGNUP);
   }
   try {
     return await authRequest.put(URL.PASSWORD_UPADTE, {
       password,
     });
   } catch (e) {
-    throw new Error('로그인 유저가 없습니다.');
+    throw new Error(ERROR_MESSAGE_SIGNUP);
   }
 };
 
@@ -65,7 +65,7 @@ export const signup = async (values) => {
   const { userName, userAge, userGender, userId, userPassword } = values;
   const fullName = `${userName}/${userAge}/${userGender}`;
   try {
-    await baseRequest.post(`/signup`, {
+    await baseRequest.post(URL.SIGN_UP, {
       email: userId,
       fullName,
       password: userPassword,

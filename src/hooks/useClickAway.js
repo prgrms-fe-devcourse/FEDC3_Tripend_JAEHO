@@ -1,7 +1,6 @@
 import { useRef, useEffect } from 'react';
-
+import { EVENT } from '../utils/constant/hooks';
 // 추후에 constant로 옮겨도 될듯
-const events = ['mousedown', 'touchstart'];
 
 const useClickAway = (handler) => {
   const ref = useRef(null);
@@ -21,12 +20,12 @@ const useClickAway = (handler) => {
       !ref.current.contains(e.target) && savedHandler.current(e);
     };
 
-    for (const eventName of events) {
+    for (const eventName of EVENT) {
       document.addEventListener(eventName, handleEvent);
     }
 
     return () => {
-      for (const eventName of events) {
+      for (const eventName of EVENT) {
         document.removeEventListener(eventName, handleEvent);
       }
     };

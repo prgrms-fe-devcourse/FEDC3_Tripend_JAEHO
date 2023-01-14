@@ -1,8 +1,9 @@
+import { POSTURL } from '../utils/constant/post';
 import { authRequest, baseRequest } from './core';
 
 export const createLike = async (postId) => {
   try {
-    const { data } = await authRequest.post(`/likes/create`, {
+    const { data } = await authRequest.post(POSTURL.CREATE_LIKES, {
       postId,
     });
 
@@ -14,7 +15,7 @@ export const createLike = async (postId) => {
 
 export const deleteLike = async (id) => {
   try {
-    const { data } = await authRequest.delete(`/likes/delete`, {
+    const { data } = await authRequest.delete(POSTURL.DELETE_LIKES, {
       data: {
         id,
       },

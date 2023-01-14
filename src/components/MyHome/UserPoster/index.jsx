@@ -7,6 +7,8 @@ import { PostWrapper } from '../../../pages/MyPosterPage/style';
 import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
 import UserPosterItem from '../UserPosteItem';
 import { ERROR_MESSAGE_AUTH, USER } from '../../../utils/constant/auth';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { uploadImageState } from '../../../recoil/uploadImage';
 
 const LoginPoster = () => {
   const [getLoginData, setLoginData] = useState({});
@@ -14,6 +16,7 @@ const LoginPoster = () => {
   const [visible, setVisible] = useState(false);
   const [postDetail, setPostDetail] = useState({});
 
+  const [imageValue, setImageValue] = useRecoilState(uploadImageState);
   const getUserData = async () => {
     const getLoginUserData = await getUser();
     setLoginData(getLoginUserData.data);
@@ -32,6 +35,7 @@ const LoginPoster = () => {
 
   const handlerModalClose = () => {
     setVisible(false);
+    setImageValue(null);
   };
 
   const handleDeletePoster = async (id) => {
@@ -70,7 +74,7 @@ const LoginPoster = () => {
               <ModalTitle>게시글 수정</ModalTitle>
               <ModalTitleButton onClick={handlerModalClose}>x</ModalTitleButton>
             </ModalTitleWrapper>
-            <MyhomeModal postDetail={postDetail} postId={postId} />
+            <MyhomeModal postDetail={postDetail} postId={postId} imageValue={imageValue} />
           </Modal>
         )}
       </PostWrapper>

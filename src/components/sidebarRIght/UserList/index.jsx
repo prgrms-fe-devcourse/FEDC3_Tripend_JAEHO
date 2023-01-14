@@ -1,9 +1,8 @@
-import * as style from './style';
 import { useEffect, useState } from 'react';
 import { getUsers, getClickedUserInfo } from '../../../apis/user';
 import { extractName } from '../../../utils/validate/userList';
 import Avatar from '../../common/Avatar';
-
+import { UserInfo, UserListContainer, UserName } from './style';
 const UserList = () => {
   const [userInfos, setUserInfos] = useState([]);
 
@@ -23,14 +22,14 @@ const UserList = () => {
   return (
     <div>
       {userInfos ? (
-        <style.UserListContainer id="userInfoList">
+        <UserListContainer id="userInfoList">
           {userInfos.map(({ _id, image, fullName }) => (
-            <style.UserInfo key={_id} onClick={() => showUserDetail(_id)}>
+            <UserInfo key={_id} onClick={() => showUserDetail(_id)}>
               <Avatar shape="circle" size="24px" src={image} lazy={true} threshold={0.1} />
-              <style.UserName>{extractName.exec(fullName)[0]}</style.UserName>
-            </style.UserInfo>
+              <UserName>{extractName.exec(fullName)[0]}</UserName>
+            </UserInfo>
           ))}
-        </style.UserListContainer>
+        </UserListContainer>
       ) : (
         <>User does not exist!</>
       )}

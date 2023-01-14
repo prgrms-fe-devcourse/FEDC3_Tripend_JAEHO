@@ -1,10 +1,10 @@
-import * as style from './style';
 import { useEffect, useState } from 'react';
 import { getChannels } from '../../apis/post';
 import SortedChannels from './SortedChannels';
 import Skeleton from '../common/Skeleton';
 import { useSetRecoilState } from 'recoil';
 import { selectedChannelState } from '../../recoil/RecoilChannelState';
+import { ChannelListContainer } from './style';
 
 const ChannelList = () => {
   const [channels, setChannels] = useState();
@@ -36,7 +36,7 @@ const ChannelList = () => {
   }, []);
 
   return (
-    <style.ChannelListContainer>
+    <ChannelListContainer>
       {channels ? (
         <>
           <SortedChannels
@@ -65,7 +65,7 @@ const ChannelList = () => {
           <Skeleton.Paragraph line={4} style={{ padding: '10px' }} key={i} />
         ))
       )}
-    </style.ChannelListContainer>
+    </ChannelListContainer>
   );
 };
 

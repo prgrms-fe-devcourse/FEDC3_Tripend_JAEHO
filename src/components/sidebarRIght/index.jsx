@@ -1,13 +1,13 @@
-import * as style from './style';
 import UserList from './UserList';
 import UserSearchBar from './UserSearchBar';
+import { SidebarRightContainer } from './style';
 
 const SideBarRight = () => {
   return (
-    <style.SidebarRightContainer>
+    <SidebarRightContainer>
       <UserSearchBar />
       <UserList />
-    </style.SidebarRightContainer>
+    </SidebarRightContainer>
   );
 };
 

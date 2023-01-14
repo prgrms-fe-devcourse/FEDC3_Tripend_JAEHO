@@ -1,10 +1,17 @@
-import * as style from './style';
 import { useState } from 'react';
 import { encodeKeyword } from '../../../utils/validate/userList';
 import { getUserInfo } from '../../../apis/user';
 import SearchIcon from '@mui/icons-material/Search';
 import useDebounce from '../../../hooks/useDebounce';
 import Avatar from '../../common/Avatar';
+import {
+  UserListTitle,
+  UserSearchBarContainer,
+  UsersSearchBar,
+  SearchResult,
+  UserInfo,
+  UserName,
+} from './style';
 
 const UserSearchBar = () => {
   const [keyword, setKeyword] = useState('');
@@ -27,30 +34,30 @@ const UserSearchBar = () => {
 
   return (
     <div>
-      <style.UserListTitle>유저 목록</style.UserListTitle>
-      <style.UserSearchBarContainer style={{ color: '#86879C' }}>
+      <UserListTitle>유저 목록</UserListTitle>
+      <UserSearchBarContainer style={{ color: '#86879C' }}>
         <SearchIcon />
-        <style.UserSearchBar
+        <UsersSearchBar
           vlaue={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           type="text"
           placeholder="유저를 검색하세요"
         />
-      </style.UserSearchBarContainer>
-      <style.SearchResult>
+      </UserSearchBarContainer>
+      <SearchResult>
         {result ? (
           <>
             {result.map((userInfo) => (
-              <style.UserInfo key={userInfo._id}>
+              <UserInfo key={userInfo._id}>
                 <Avatar src={userInfo.image} size="30px" lazy={true} threshold={0.5} />
-                <style.UserName>{userInfo.fullName}</style.UserName>
-              </style.UserInfo>
+                <UserName>{userInfo.fullName}</UserName>
+              </UserInfo>
             ))}
           </>
         ) : (
           <>User does not exist!</>
         )}
-      </style.SearchResult>
+      </SearchResult>
     </div>
   );
 };

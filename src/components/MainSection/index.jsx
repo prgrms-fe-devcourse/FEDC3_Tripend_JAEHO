@@ -1,4 +1,3 @@
-import * as style from './style';
 import Post from './Post';
 import Modal from '../Modal';
 import PostDetail from './PostDetail';
@@ -8,6 +7,7 @@ import { getChannelPosts, getPostDetail } from '../../apis/post';
 import { channelState, selectedChannelState } from '../../recoil/RecoilChannelState';
 import { selectedPostState } from '../../recoil/RecoilPostStates';
 import Skeleton from '../common/Skeleton';
+import { PostsContainer } from './style';
 
 const Posts = () => {
   const selectedChannelId = useRecoilValue(selectedChannelState);
@@ -79,13 +79,13 @@ const Posts = () => {
   };
 
   return (
-    <style.PostsContainer>
+    <PostsContainer>
       {postList && postList.posts
         ? renderWithData()
         : Array.from(Array(4), (_, i) => (
             <Skeleton.Card line={4} style={{ margin: '20px' }} key={i} />
           ))}
-    </style.PostsContainer>
+    </PostsContainer>
   );
 };
 

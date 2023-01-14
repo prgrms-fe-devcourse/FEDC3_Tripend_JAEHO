@@ -5,19 +5,18 @@ import AddPost from '../../components/addPost';
 
 import { useRecoilValue } from 'recoil';
 import { isVisibleModalState } from '../../recoil/addPostStates';
-
-import * as style from './style';
+import { MainPageContainer } from './style';
 
 const MainPage = () => {
   const isVisibleModal = useRecoilValue(isVisibleModalState);
 
   return (
-    <style.MainPageContainer>
+    <MainPageContainer>
       {isVisibleModal && <AddPost visible={isVisibleModal} />}
       <ChannelList />
       <MainSection />
       <SideBarRight />
-    </style.MainPageContainer>
+    </MainPageContainer>
   );
 };
 

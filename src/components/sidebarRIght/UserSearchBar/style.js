@@ -15,7 +15,7 @@ export const UserSearchBarContainer = styled.div`
   border-radius: 5.5px;
   align-items: center;
 `;
-export const UserSearchBar = styled.input`
+export const UsersSearchBar = styled.input`
   background-color: var(--gray);
 `;
 

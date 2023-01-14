@@ -70,6 +70,16 @@ const AppRouter = () => {
           }
         />
 
+        <Route
+          exact
+          path="/modal/*"
+          element={
+            <AuthUserRoute>
+              <MySettingPage />
+            </AuthUserRoute>
+          }
+        />
+
         <Route path="/*" element={<MissingPage />} />
       </Routes>
     </Router>

@@ -38,6 +38,12 @@ const Posts = () => {
   const onClickPost = (postId) => {
     setVisible(true);
     setSelectedPostId(postId);
+    history.pushState(null, 'modal', `/modal/${postId}`);
+  };
+
+  const onCloseModal = () => {
+    setVisible(false);
+    history.back();
   };
 
   useEffect(() => {
@@ -73,9 +79,6 @@ const Posts = () => {
             );
           })}
         </div>
-        <Modal visible={visible} onClose={() => setVisible(false)} width="1100px" height="600px">
-          <PostDetail />
-        </Modal>
       </>
     ) : (
       <div>결과가 없음</div>
@@ -89,6 +92,9 @@ const Posts = () => {
         : Array.from(Array(4), (_, i) => (
             <Skeleton.Card line={4} style={{ margin: '20px' }} key={i} />
           ))}
+      <Modal visible={visible} onClose={() => onCloseModal()} width="1100px" height="600px">
+        <PostDetail />
+      </Modal>
     </style.PostsContainer>
   );
 };

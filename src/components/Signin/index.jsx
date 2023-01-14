@@ -1,6 +1,5 @@
 import { useForm } from '../../hooks/useForm';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { userLoginButtonShowState } from '../../recoil/auth';
 import { useNavigate } from 'react-router-dom';
 import {
   LoginBlock,
@@ -14,6 +13,7 @@ import {
   FormFailedText,
   FormSignupText,
 } from './index.style';
+import { userLoginButtonShowState } from '../../recoil/authState';
 
 const Login = () => {
   const { email, password, handleEmail, handlePassword, isLoading, handleSubmit } = useForm();

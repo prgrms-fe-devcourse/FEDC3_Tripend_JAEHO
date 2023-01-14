@@ -3,10 +3,6 @@ import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 
 const UserInfo = () => {
-  const [getLoginData, setLoginData] = useState({});
-  const [proFileName, setName] = useState('');
-  const [proFileImage, setProfileImage] = useState('');
-
   const [profile, setProfile] = useState({
     name: '',
     image: '',
@@ -54,9 +50,12 @@ const UserInfoContainer = styled.div`
   display: flex;
   align-items: center;
 
-  border: 1px solid red;
   width: 20%;
-
+  height: 100px;
+  margin-top: 20px;
+  margin-left: 100px;
+  padding: 10px;
+  background-color: #fff;
   img {
     margin-right: 20px;
   }

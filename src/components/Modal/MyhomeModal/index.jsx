@@ -14,10 +14,14 @@ import {
   ModalTitleWrapper,
 } from './style';
 import { ERROR_MESSAGE, FORMATDATA } from '../../../utils/myhome/constant';
+import { useRecoilState } from 'recoil';
+import { userListState, userLoginDateState } from '../../../recoil/uploadImageState';
 
-const MyhomeModal = memo(function ({ postDetail, postId, imageValue }) {
-  const [detail, setDetailDate] = useState(postDetail);
+const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
   const [imageSrc, setImageSrc] = useState('');
+
+  const [detail, setPostDetail] = useRecoilState(userLoginDateState);
+  const [list, setList] = useRecoilState(userListState);
 
   const [day, setDay] = useState('');
   const [person, setPerson] = useState('');
@@ -29,6 +33,7 @@ const MyhomeModal = memo(function ({ postDetail, postId, imageValue }) {
   useEffect(() => {
     if (detail.data) {
       setProfile(detail.data.author.fullName.split('/'));
+      setList(posts);
     }
   }, []);
 
@@ -62,20 +67,35 @@ const MyhomeModal = memo(function ({ postDetail, postId, imageValue }) {
 
   const handleSendFileImage = async (e) => {
     e.preventDefault();
-    if (imageValue) {
-      const title = `${posterTitle} / ${day} / ${person} / ${gender}`;
 
-      const formatData = new FormData();
+    const title = `${posterTitle} / ${day} / ${person} / ${gender}`;
 
-      formatData.append(FORMATDATA.POST_ID, postId);
-      formatData.append(FORMATDATA.IMAGE, imageValue);
-      formatData.append(FORMATDATA.TITLE, title);
-      formatData.append(FORMATDATA.CHANNEL_ID, detail.data.channel._id);
+    const formatData = new FormData();
 
-      await updatePost(formatData);
-    } else {
-      swal(ERROR_MESSAGE.UPLOAD);
-    }
+    formatData.append(FORMATDATA.POST_ID, postId);
+    formatData.append(FORMATDATA.IMAGE, imageValue);
+    formatData.append(FORMATDATA.TITLE, title);
+    formatData.append(FORMATDATA.CHANNEL_ID, detail.data._id);
+
+    const res = await updatePost(formatData);
+
+    // 수정 작업
+    // setList({
+    //   ...list,
+    //
+    //   data: {
+    //     ...list,
+    //     posts: list.map((post) => {
+    //       if (post._id === res.data._id) {
+    //         return {
+    //           ...post,
+    //           title: res.data.title,
+    //           image: res.data.image,
+    //         };
+    //       }
+    //     }),
+    //   },
+    // });
   };
 
   return (

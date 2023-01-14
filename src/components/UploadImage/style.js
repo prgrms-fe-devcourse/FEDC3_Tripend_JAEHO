@@ -13,7 +13,7 @@ const ImageUploaderContainer = styled.div``;
 
 const UploadImageWrapper = styled.div`
   height: 50px;
-  width: 100px;
+  width: 250px;
 `;
 
 const UploadDescription = styled.p`
@@ -26,8 +26,11 @@ const UploadDescription = styled.p`
 
 const TitleWrapper = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  flex-direction: column;
+  margin-bottom: 20px;
 `;
 
 export {

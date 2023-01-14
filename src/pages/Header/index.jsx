@@ -5,7 +5,6 @@ import Logo from '../../../static/images/Logo.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { userLoginButtonShowState, userLoginState } from '../../recoil/auth';
 import { toggleStateFamily } from '../../recoil/toggleStates';
 import { getMyAlarms } from '../../apis/alarm';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -22,6 +21,7 @@ import { TOKEN, USERIMAGE } from '../../utils/constant/auth';
 import { isVisibleModalState } from '../../recoil/addPostStates';
 import PrivateHeader from './PrivateHeaderContainer';
 import SearchPost from '../../components/SearchPost';
+import { userLoginState } from '../../recoil/authState';
 
 const Header = () => {
   const navigate = useNavigate();

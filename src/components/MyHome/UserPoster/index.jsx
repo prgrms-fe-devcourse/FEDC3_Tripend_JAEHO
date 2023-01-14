@@ -8,21 +8,21 @@ import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
 import UserPosterItem from '../UserPosteItem';
 import { ERROR_MESSAGE_AUTH, ERROR_MESSAGE_SIGNIN, USER } from '../../../utils/constant/auth';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { uploadImageState } from '../../../recoil/uploadImage';
 import styled, { div } from '@emotion/styled';
+import { uploadImageState, userLoginDateState } from '../../../recoil/uploadImageState';
 
 const LoginPoster = () => {
   const [getLoginData, setLoginData] = useState({});
   const [postId, setPostId] = useState('');
   const [visible, setVisible] = useState(false);
-  const [postDetail, setPostDetail] = useState({});
+
+  const [postDetail, setPostDetail] = useRecoilState(userLoginDateState);
 
   const [imageValue, setImageValue] = useRecoilState(uploadImageState);
 
   useEffect(() => {
     const getUserData = async () => {
       const getLoginUserData = await getUser();
-
       setLoginData(getLoginUserData.data);
     };
 
@@ -31,6 +31,7 @@ const LoginPoster = () => {
 
   const handlePoster = async (id) => {
     const getpostDetail = await getMyPostDetail(id);
+    console.log(getpostDetail);
     setVisible(true);
     setPostId(id);
     setPostDetail(getpostDetail);
@@ -84,7 +85,7 @@ const LoginPoster = () => {
               <ModalTitle>게시글 수정</ModalTitle>
               <ModalTitleButton onClick={handlerModalClose}>x</ModalTitleButton>
             </ModalTitleWrapper>
-            <MyhomeModal postDetail={postDetail} postId={postId} imageValue={imageValue} />
+            <MyhomeModal posts={getLoginData.posts} postId={postId} imageValue={imageValue} />
           </Modal>
         )}
       </PostWrapper>
@@ -94,5 +95,13 @@ const LoginPoster = () => {
 export default LoginPoster;
 
 const PosterTitle = styled.div`
-  border: 1px solid blue;
+  width: 10%;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  position: relative;
+  left: 25%;
 `;

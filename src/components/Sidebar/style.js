@@ -7,22 +7,20 @@ const Side = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5px;
-  min-height: 27px;
   color: #cccbc7;
   cursor: pointer;
-  padding-left: 10px;
   position: fixed;
   left: 10%;
   top: 30%;
   bottom: 0;
   width: 200px;
-  height: 50%;
-  border-right: 1px solid #dee2e6;
+  height: 20%;
   z-index: 10;
+  border-radius: 20px;
+  padding: 10px;
 `;
 
 const Menu = styled.div`
-  margin-top: 30px;
   width: 200px;
   display: flex;
   flex-direction: column;

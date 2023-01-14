@@ -1,5 +1,4 @@
 import { useRecoilState } from 'recoil';
-import { formatDataState, uploadImageState } from '../../recoil/uploadImage';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import UploadIcon from '../../../static/images/upload.svg';
 import {
@@ -11,6 +10,7 @@ import {
 } from './style';
 import { ImageFileInput } from '../addPost/addPostForm/style';
 import { ERROR_MESSAGE, FILE } from '../../utils/myhome/constant';
+import { formatDataState, uploadImageState } from '../../recoil/uploadImageState';
 
 const UploadAndDisplayImage = () => {
   const [selectedImage, setSelectedImage] = useRecoilState(uploadImageState);
@@ -53,15 +53,14 @@ const UploadAndDisplayImage = () => {
           </div>
         ) : (
           <UploadImageWrapper>
-            <UploadIcon />
             <TitleWrapper>
+              <UploadIcon />
               <p>사진 업로드</p>
             </TitleWrapper>
             <div
               style={{
-                width: '500px',
+                width: '300px',
                 marginRight: '300px',
-                border: '1px solid red',
               }}
             >
               <UploadDescription>Supported formates: JPEG,PNG,SVG</UploadDescription>

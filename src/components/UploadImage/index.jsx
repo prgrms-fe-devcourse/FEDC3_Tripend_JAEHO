@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
 import { formatDataState, uploadImageState } from '../../recoil/uploadImage';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import UploadIcon from '../../../static/images/upload.svg';
 import {
   ImageContainar,
@@ -10,7 +10,7 @@ import {
   ImageUploaderContainer,
 } from './style';
 import { ImageFileInput } from '../addPost/addPostForm/style';
-import { FILE } from '../../utils/myhome/constant';
+import { ERROR_MESSAGE, FILE } from '../../utils/myhome/constant';
 
 const UploadAndDisplayImage = () => {
   const [selectedImage, setSelectedImage] = useRecoilState(uploadImageState);
@@ -27,7 +27,7 @@ const UploadAndDisplayImage = () => {
     ) {
       setSelectedImage(file);
     } else {
-      swal('이미지 파일만 업로드 가능합니다.');
+      swal(ERROR_MESSAGE.UPLOAD_IMAGE);
       return;
     }
   };
@@ -37,6 +37,7 @@ const UploadAndDisplayImage = () => {
       const file = e.target.files[0];
       checkImage(file);
     },
+
     [selectedImage]
   );
 

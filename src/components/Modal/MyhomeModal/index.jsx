@@ -13,6 +13,7 @@ import {
   ModalTitle,
   ModalTitleWrapper,
 } from './style';
+import { ERROR_MESSAGE, FORMATDATA } from '../../../utils/myhome/constant';
 
 const MyhomeModal = memo(function ({ postDetail, postId, imageValue }) {
   const [detail, setDetailDate] = useState(postDetail);
@@ -62,18 +63,18 @@ const MyhomeModal = memo(function ({ postDetail, postId, imageValue }) {
   const handleSendFileImage = async (e) => {
     e.preventDefault();
     if (imageValue) {
-      const str = `${posterTitle} / ${day} / ${person} / ${gender}`;
+      const title = `${posterTitle} / ${day} / ${person} / ${gender}`;
 
       const formatData = new FormData();
 
-      formatData.append('postId', postId);
-      formatData.append('image', imageValue);
-      formatData.append('title', str);
-      formatData.append('channelId', detail.data.channel._id);
+      formatData.append(FORMATDATA.POST_ID, postId);
+      formatData.append(FORMATDATA.IMAGE, imageValue);
+      formatData.append(FORMATDATA.TITLE, title);
+      formatData.append(FORMATDATA.CHANNEL_ID, detail.data.channel._id);
 
       await updatePost(formatData);
     } else {
-      swal('사진을 업로드해주세요');
+      swal(ERROR_MESSAGE.UPLOAD);
     }
   };
 

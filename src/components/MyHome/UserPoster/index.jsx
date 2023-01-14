@@ -24,8 +24,8 @@ const LoginPoster = () => {
   }, []);
 
   const handlePoster = async (id) => {
-    setVisible(true);
     const getpostDetail = await getMyPostDetail(id);
+    setVisible(true);
     setPostId(id);
     setPostDetail(getpostDetail);
   };

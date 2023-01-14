@@ -9,6 +9,7 @@ import UserPosterItem from '../UserPosteItem';
 import { ERROR_MESSAGE_AUTH, ERROR_MESSAGE_SIGNIN, USER } from '../../../utils/constant/auth';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { uploadImageState } from '../../../recoil/uploadImage';
+import styled, { div } from '@emotion/styled';
 
 const LoginPoster = () => {
   const [getLoginData, setLoginData] = useState({});
@@ -17,12 +18,14 @@ const LoginPoster = () => {
   const [postDetail, setPostDetail] = useState({});
 
   const [imageValue, setImageValue] = useRecoilState(uploadImageState);
-  const getUserData = async () => {
-    const getLoginUserData = await getUser();
-    setLoginData(getLoginUserData.data);
-  };
 
   useEffect(() => {
+    const getUserData = async () => {
+      const getLoginUserData = await getUser();
+
+      setLoginData(getLoginUserData.data);
+    };
+
     getUserData();
   }, []);
 
@@ -47,12 +50,19 @@ const LoginPoster = () => {
     }).then(async (willDelete) => {
       if (willDelete) {
         await removePost(id);
+
+        setLoginData({
+          ...getLoginData,
+          posts: getLoginData.posts.filter((post) => post._id !== id),
+        });
       }
     });
   };
 
   return (
     <>
+      <PosterTitle>작성한 글</PosterTitle>
+
       <PostWrapper>
         {getLoginData.posts &&
           getLoginData.posts.map(({ _id, title, image }) => {
@@ -82,3 +92,7 @@ const LoginPoster = () => {
   );
 };
 export default LoginPoster;
+
+const PosterTitle = styled.div`
+  border: 1px solid blue;
+`;

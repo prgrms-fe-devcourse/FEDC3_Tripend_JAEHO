@@ -49,7 +49,6 @@ export const removePost = async (postId) => {
   });
 
   if (data.status === 200) {
-    window.location.reload();
     return data;
   }
 };

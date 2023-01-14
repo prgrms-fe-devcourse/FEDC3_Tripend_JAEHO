@@ -54,6 +54,7 @@ export const PostWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: 60px;
 `;
 
 export const PostItemContainer = styled.div`

@@ -3,7 +3,7 @@ import { getUser } from '../../../apis/auth';
 import { getMyPostDetail, removePost } from '../../../apis/post';
 import MyhomeModal from '../../Modal/MyhomeModal';
 import Modal from '../../Modal';
-import { PostWrapper } from '../../../pages/MyPosterPage/style';
+import { PosterTitle, PostWrapper } from '../../../pages/MyPosterPage/style';
 import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
 import UserPosterItem from '../UserPosteItem';
 import { ERROR_MESSAGE_AUTH, ERROR_MESSAGE_SIGNIN, USER } from '../../../utils/constant/auth';
@@ -93,15 +93,3 @@ const LoginPoster = () => {
   );
 };
 export default LoginPoster;
-
-const PosterTitle = styled.div`
-  width: 10%;
-  height: 50px;
-  font-size: 20px;
-  font-weight: bold;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  position: relative;
-  left: 25%;
-`;

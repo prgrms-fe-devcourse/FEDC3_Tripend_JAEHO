@@ -9,3 +9,13 @@ export const formatDataState = atom({
   key: 'formatImage',
   default: null,
 });
+
+export const userLoginDateState = atom({
+  key: 'userLoginDate',
+  default: {},
+});
+
+export const userListState = atom({
+  key: 'userList',
+  default: [],
+});

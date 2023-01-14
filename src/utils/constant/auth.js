@@ -14,10 +14,11 @@ export const USER_PLACEHOLDER = {
   USER_PASSWORD: '******',
 };
 
-export const ERROR_MESSAGE_AUTH = {
+export const ERROR_MESSAGE_SIGNIN = {
   LOGIN_ERROR: 'error',
   PASSWORD_SUCCESS: 'success',
   DELETE_POSTER_WARNING: 'warning',
+  EDIT_USER: '로그인 유저가 없습니다',
 };
 
 export const URL = {
@@ -43,5 +44,3 @@ export const ERROR_MESSAGE_SIGNUP = {
   INCORRECT_PASSWORD: '* 올바른 비밀번호(6자 이상)를 입력해주세요.',
   DIFFERENT_PASSWORD: '* 동일한 비밀번호를 입력해주세요.',
 };
-
-export const ERROR_MESSAGE_EDIT_USER = '로그인 유저가 없습니다.';

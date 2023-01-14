@@ -16,7 +16,16 @@ const UserSidebar = () => {
               <NavLink style={{ color: 'gray', textDecoration: 'none' }} to={path} key={index}>
                 {
                   <ul>
-                    <li>{name}</li>
+                    <li
+                      style={{
+                        listStyle: 'none',
+                        color: 'black',
+                        padding: '10px 0',
+                        borderBottom: '1px solid #e5e5e5',
+                      }}
+                    >
+                      {name}
+                    </li>
                   </ul>
                 }
               </NavLink>

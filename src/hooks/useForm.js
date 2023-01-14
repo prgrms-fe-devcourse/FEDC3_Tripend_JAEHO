@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { postUserLogin } from '../apis/auth';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { userLoginState } from '../recoil/auth';
+import { userLoginState } from '../recoil/authState';
 
 export const useForm = () => {
   const naviaget = useNavigate();

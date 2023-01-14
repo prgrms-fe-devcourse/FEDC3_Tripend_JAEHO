@@ -49,7 +49,6 @@ export const removePost = async (postId) => {
   });
 
   if (data.status === 200) {
-    window.location.reload();
     return data;
   }
 };
@@ -62,13 +61,9 @@ export const getMyPostDetail = async (postId) => {
 // 마이페이지 게시글 수정
 export const updatePost = async (post) => {
   const res = await authRequest.put(URL.MYPAGE_UPDATE, post);
-
   if (res.status === 200) {
-    swal('수정이 완료되었습니다.');
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
+    // 임시 리렌더링 코드
+    window.location.reload();
+    return res;
   }
-  return res;
 };

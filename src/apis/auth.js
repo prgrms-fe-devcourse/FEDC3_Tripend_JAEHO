@@ -2,7 +2,7 @@ import { authRequest, baseRequest } from './core';
 import swal from 'sweetalert';
 import { getStorage, setStorage } from '../utils/storage';
 import {
-  ERROR_MESSAGE_AUTH,
+  ERROR_MESSAGE_SIGNIN,
   ERROR_MESSAGE_SIGNUP,
   ID,
   TOKEN,
@@ -22,7 +22,7 @@ export const postUserLogin = async (email, password) => {
       password,
     })
     .catch(() => {
-      swal(AUTH.LOGIN_FAILED, USER.ID_PASSWORD, ERROR_MESSAGE_AUTH.LOGIN_ERROR);
+      swal(AUTH.LOGIN_FAILED, USER.ID_PASSWORD, ERROR_MESSAGE_SIGNIN.LOGIN_ERROR);
     });
 
   const { token } = response.data;
@@ -38,26 +38,26 @@ export const postUserLogin = async (email, password) => {
 // 로그인 유저 정보 가져오기 (인증된 유저)
 export const getUser = async () => {
   if (!getStorage(TOKEN)) {
-    throw new Error(ERROR_MESSAGE_SIGNUP);
+    throw new Error(ERROR_MESSAGE_SIGNIN.EDIT_USER);
   }
   try {
     return await authRequest.get(URL.AUTH_USER);
   } catch (e) {
-    throw new Error(ERROR_MESSAGE_SIGNUP);
+    throw new Error(ERROR_MESSAGE_SIGNIN.EDIT_USER);
   }
 };
 
 // 비밀번호 변경
 export const putPaswwordChange = async (password) => {
   if (!getStorage(TOKEN)) {
-    throw new Error(ERROR_MESSAGE_SIGNUP);
+    throw new Error(ERROR_MESSAGE_SIGNIN.EDIT_USER);
   }
   try {
     return await authRequest.put(URL.PASSWORD_UPADTE, {
       password,
     });
   } catch (e) {
-    throw new Error(ERROR_MESSAGE_SIGNUP);
+    throw new Error(ERROR_MESSAGE_SIGNIN.EDIT_USER);
   }
 };
 

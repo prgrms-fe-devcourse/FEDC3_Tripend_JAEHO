@@ -1,6 +1,5 @@
 import { useRecoilState } from 'recoil';
-import { formatDataState, uploadImageState } from '../../recoil/uploadImage';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import UploadIcon from '../../../static/images/upload.svg';
 import {
   ImageContainar,
@@ -10,7 +9,8 @@ import {
   ImageUploaderContainer,
 } from './style';
 import { ImageFileInput } from '../addPost/addPostForm/style';
-import styled from '@emotion/styled';
+import { ERROR_MESSAGE, FILE } from '../../utils/myhome/constant';
+import { formatDataState, uploadImageState } from '../../recoil/uploadImageState';
 
 const UploadAndDisplayImage = () => {
   const [selectedImage, setSelectedImage] = useRecoilState(uploadImageState);
@@ -18,11 +18,21 @@ const UploadAndDisplayImage = () => {
 
   const [data, setData] = useState(null);
 
+  const checkImage = (file) => {
+    if (file.type === FILE.JPEG || file.type === FILE.SVG || file.type === FILE.PNG) {
+      setSelectedImage(file);
+    } else {
+      swal(ERROR_MESSAGE.UPLOAD_IMAGE);
+      return;
+    }
+  };
+
   const handleImageChange = useCallback(
     (e) => {
       const file = e.target.files[0];
-      setSelectedImage(file);
+      checkImage(file);
     },
+
     [selectedImage]
   );
 
@@ -43,13 +53,18 @@ const UploadAndDisplayImage = () => {
           </div>
         ) : (
           <UploadImageWrapper>
-            <UploadIcon />
             <TitleWrapper>
+              <UploadIcon />
               <p>사진 업로드</p>
             </TitleWrapper>
-            <UploadDescription>
-              Supported formates: JPEG,PNG,GIF,MP4,PDF,PSD,SVG,WEBP
-            </UploadDescription>
+            <div
+              style={{
+                width: '300px',
+                marginRight: '300px',
+              }}
+            >
+              <UploadDescription>Supported formates: JPEG,PNG,SVG</UploadDescription>
+            </div>
           </UploadImageWrapper>
         )}
       </ImageContainar>

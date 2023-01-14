@@ -1,7 +1,6 @@
 import UploadAndDisplayImage from '../../UploadImage';
-import { useRecoilValue } from 'recoil';
-import { uploadImageState } from '../../../recoil/uploadImage';
-import { useCallback, useEffect, useState } from 'react';
+
+import { memo, useCallback, useEffect, useState } from 'react';
 import { updatePost } from '../../../apis/post';
 import {
   Button,
@@ -14,12 +13,15 @@ import {
   ModalTitle,
   ModalTitleWrapper,
 } from './style';
+import { ERROR_MESSAGE, FORMATDATA } from '../../../utils/myhome/constant';
+import { useRecoilState } from 'recoil';
+import { userListState, userLoginDateState } from '../../../recoil/uploadImageState';
 
-const MyhomeModal = ({ postDetail, postId }) => {
-  // postDetail 가지고 수정해줘야함
-  const [detail, setDetailDate] = useState(postDetail);
+const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
   const [imageSrc, setImageSrc] = useState('');
-  const imageValue = useRecoilValue(uploadImageState);
+
+  const [detail, setPostDetail] = useRecoilState(userLoginDateState);
+  const [list, setList] = useRecoilState(userListState);
 
   const [day, setDay] = useState('');
   const [person, setPerson] = useState('');
@@ -31,10 +33,9 @@ const MyhomeModal = ({ postDetail, postId }) => {
   useEffect(() => {
     if (detail.data) {
       setProfile(detail.data.author.fullName.split('/'));
+      setList(posts);
     }
   }, []);
-
-  console.log(profile);
 
   const handleDay = useCallback(
     (e) => {
@@ -66,20 +67,35 @@ const MyhomeModal = ({ postDetail, postId }) => {
 
   const handleSendFileImage = async (e) => {
     e.preventDefault();
-    if (imageValue) {
-      const str = `${posterTitle} / ${day} / ${person} / ${gender}`;
 
-      const formatData = new FormData();
+    const title = `${posterTitle} / ${day} / ${person} / ${gender}`;
 
-      formatData.append('postId', postId);
-      formatData.append('image', imageValue);
-      formatData.append('title', str);
-      formatData.append('channelId', detail.data.channel._id);
+    const formatData = new FormData();
 
-      await updatePost(formatData);
-    } else {
-      swal('사진을 업로드해주세요');
-    }
+    formatData.append(FORMATDATA.POST_ID, postId);
+    formatData.append(FORMATDATA.IMAGE, imageValue);
+    formatData.append(FORMATDATA.TITLE, title);
+    formatData.append(FORMATDATA.CHANNEL_ID, detail.data._id);
+
+    const res = await updatePost(formatData);
+
+    // 수정 작업
+    // setList({
+    //   ...list,
+    //
+    //   data: {
+    //     ...list,
+    //     posts: list.map((post) => {
+    //       if (post._id === res.data._id) {
+    //         return {
+    //           ...post,
+    //           title: res.data.title,
+    //           image: res.data.image,
+    //         };
+    //       }
+    //     }),
+    //   },
+    // });
   };
 
   return (
@@ -133,6 +149,6 @@ const MyhomeModal = ({ postDetail, postId }) => {
       </ModalRight>
     </>
   );
-};
+});
 
 export default MyhomeModal;

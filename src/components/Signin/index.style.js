@@ -15,7 +15,7 @@ const Fieldset = styled.fieldset`
 `;
 
 const LoginWrapper = styled.div`
-  width: 300px;
+  width: 400px;
   height: 320px;
   padding: 5rem;
   border-radius: 2px;

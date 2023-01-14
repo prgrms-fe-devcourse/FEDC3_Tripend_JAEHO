@@ -4,14 +4,16 @@ import {
   PostItemContainer,
   PostTitle,
 } from '../../../pages/MyPosterPage/style';
+import { memo } from 'react';
+import { PosterButton, PosterDeleteButton } from './style';
 
-const UserPosterItem = ({ id, title, image, handlePoster, handleDeletePoster }) => {
+const UserPosterItem = memo(function ({ id, title, image, handlePoster, handleDeletePoster }) {
   return (
     <PostItemContainer key={id}>
       <PostButton>
-        <button onClick={() => handlePoster(id)}>수정</button>
+        <PosterButton onClick={() => handlePoster(id)}>수정</PosterButton>
 
-        <button onClick={() => handleDeletePoster(id)}>삭제</button>
+        <PosterDeleteButton onClick={() => handleDeletePoster(id)}>삭제</PosterDeleteButton>
       </PostButton>
       <PostTitle>
         <p>{title.split('/')[0]}</p>
@@ -28,5 +30,6 @@ const UserPosterItem = ({ id, title, image, handlePoster, handleDeletePoster }) 
       </ImageItemContainer>
     </PostItemContainer>
   );
-};
+});
+
 export default UserPosterItem;

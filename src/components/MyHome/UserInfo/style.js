@@ -4,12 +4,8 @@ const UserInfoContainer = styled.div`
   display: flex;
   align-items: center;
 
-  width: 20%;
-  height: 100px;
-  margin-top: 20px;
-  margin-left: 100px;
-  padding: 10px;
-  background-color: #fff;
+  width: 100%;
+  background: #f8f9fa;
   img {
     margin-right: 20px;
   }
@@ -24,4 +20,15 @@ const UserInfoContainer = styled.div`
     color: #8d8d8d;
   }
 `;
-export { UserInfoContainer };
+
+const UserInfoWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 100px;
+  margin-top: 50px;
+  border-radius: 50%;
+`;
+
+export { UserInfoContainer, UserInfoWrapper };

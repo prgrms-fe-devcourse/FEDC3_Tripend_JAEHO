@@ -5,13 +5,13 @@ import {
   PostTitle,
 } from '../../../pages/MyPosterPage/style';
 import { memo } from 'react';
-import styled from '@emotion/styled';
+import { PosterButton, PosterDeleteButton } from './style';
 
 const UserPosterItem = memo(function ({ id, title, image, handlePoster, handleDeletePoster }) {
   return (
     <PostItemContainer key={id}>
       <PostButton>
-        <PosTerButton onClick={() => handlePoster(id)}>수정</PosTerButton>
+        <PosterButton onClick={() => handlePoster(id)}>수정</PosterButton>
 
         <PosterDeleteButton onClick={() => handleDeletePoster(id)}>삭제</PosterDeleteButton>
       </PostButton>
@@ -33,32 +33,3 @@ const UserPosterItem = memo(function ({ id, title, image, handlePoster, handleDe
 });
 
 export default UserPosterItem;
-
-const PosTerButton = styled.button`
-  width: 70px;
-  height: 40px;
-  border-radius: 5px;
-  border: 1px solid #55d4a9;
-  background-color: #ffffff;
-  color: #000;
-  font-size: 12px;
-  font-weight: 600;
-  margin: 0 5px;
-  cursor: pointer;
-`;
-
-const PosterDeleteButton = styled.button`
-  width: 70px;
-  height: 40px;
-  border-radius: 5px;
-  border: none;
-  background-color: #8dd3bb;
-  color: #000;
-  font-size: 12px;
-  font-weight: 600;
-  margin: 0 5px;
-  cursor: pointer;
-  &:hover {
-    background-color: #55d4a9;
-  }
-`;

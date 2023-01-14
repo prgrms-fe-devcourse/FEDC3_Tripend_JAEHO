@@ -3,7 +3,7 @@ import { getUser } from '../../../apis/auth';
 import { getMyPostDetail, removePost } from '../../../apis/post';
 import MyhomeModal from '../../Modal/MyhomeModal';
 import Modal from '../../Modal';
-import { PosterTitle, PostWrapper } from '../../../pages/MyPosterPage/style';
+import { PosterContainer, PosterTitle, PostWrapper } from '../../../pages/MyPosterPage/style';
 import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
 import UserPosterItem from '../UserPosteItem';
 import { ERROR_MESSAGE_AUTH, ERROR_MESSAGE_SIGNIN, USER } from '../../../utils/constant/auth';
@@ -31,7 +31,6 @@ const LoginPoster = () => {
 
   const handlePoster = async (id) => {
     const getpostDetail = await getMyPostDetail(id);
-    console.log(getpostDetail);
     setVisible(true);
     setPostId(id);
     setPostDetail(getpostDetail);
@@ -61,7 +60,7 @@ const LoginPoster = () => {
   };
 
   return (
-    <>
+    <PosterContainer>
       <PosterTitle>작성한 글</PosterTitle>
 
       <PostWrapper>
@@ -89,7 +88,7 @@ const LoginPoster = () => {
           </Modal>
         )}
       </PostWrapper>
-    </>
+    </PosterContainer>
   );
 };
 export default LoginPoster;

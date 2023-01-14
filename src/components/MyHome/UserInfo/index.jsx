@@ -1,7 +1,6 @@
 import { getUser } from '../../../apis/auth';
 import { useEffect, useState } from 'react';
-import styled from '@emotion/styled';
-import { UserInfoContainer } from './style';
+import { UserInfoContainer, UserInfoWrapper } from './style';
 
 const UserInfo = () => {
   const [profile, setProfile] = useState({
@@ -30,19 +29,25 @@ const UserInfo = () => {
   }, []);
 
   return (
-    <>
-      <UserInfoContainer>
+    <UserInfoContainer>
+      <UserInfoWrapper>
         <img
           src={profile.image}
-          style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover' }}
+          style={{
+            width: '100px',
+            height: '100px',
+            borderRadius: '50%',
+            objectFit: 'cover',
+            border: '1px solid black',
+          }}
           alt="프로필 이미지"
         />
         <div>
           <h3>{profile.name}</h3>
           <p>{profile.email}</p>
         </div>
-      </UserInfoContainer>
-    </>
+      </UserInfoWrapper>
+    </UserInfoContainer>
   );
 };
 export default UserInfo;

@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
-const SideBlcok = styled.div``;
+const SideBlcok = styled.div`
+  background: #f8f9fa;
+`;
 
 const Side = styled.div`
   display: flex;
@@ -16,13 +18,14 @@ const Side = styled.div`
   width: 200px;
   height: 20%;
   z-index: 10;
-  border-radius: 20px;
   padding: 10px;
 `;
 
 const Menu = styled.div`
+  background: #f8f9fa;
   width: 200px;
   display: flex;
+  border-radius: 50px;
   flex-direction: column;
 `;
 

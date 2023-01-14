@@ -50,15 +50,16 @@ const ImageItemContainer = styled.div`
 `;
 
 const PosterTitle = styled.div`
-  width: 10%;
-  height: 50px;
-  font-size: 20px;
+  width: 74.9%;
+  height: 100px;
+  font-size: 25px;
   font-weight: bold;
   display: flex;
   justify-content: start;
   align-items: center;
   position: relative;
   left: 25%;
+  background: #f8f9fa;
 `;
 
 const PostWrapper = styled.div`
@@ -66,7 +67,7 @@ const PostWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 20px;
+  background: #f8f9fa;
 `;
 
 const PostItemContainer = styled.div`
@@ -78,6 +79,10 @@ const PostItemContainer = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
+const PosterContainer = styled.div`
+  background: #f8f9fa;
+`;
+
 export {
   ModalRight,
   ModalLeft,
@@ -87,4 +92,5 @@ export {
   PosterTitle,
   PostWrapper,
   PostItemContainer,
+  PosterContainer,
 };

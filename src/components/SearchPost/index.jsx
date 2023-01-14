@@ -12,10 +12,11 @@ import { encodeKeyword } from '../../utils/validate/userList';
 import { searchAll } from '../../apis/search';
 import { filterdPost } from '../../utils/validate/searchedPostLIst';
 import { useSetRecoilState } from 'recoil';
-import { selectedPostState } from '../../recoil/postStates';
+import { postDetailModalState, selectedPostState } from '../../recoil/postStates';
 
 const SearchPost = () => {
   const setPostId = useSetRecoilState(selectedPostState);
+  const setPostDetailModalState = useSetRecoilState(postDetailModalState);
   const [keyword, setKeyword] = useState('');
 
   const [searchResult, setSearchResult] = useState([]);
@@ -27,6 +28,8 @@ const SearchPost = () => {
 
   const handleClickItem = (postId) => {
     setPostId(postId);
+    setPostDetailModalState(true);
+    history.pushState(null, 'modal', `/p/${postId}`);
     setKeyword('');
   };
 

@@ -15,7 +15,6 @@ const Posts = () => {
 
   const setSelectedPostId = useSetRecoilState(selectedPostState);
   const [postList, setPostList] = useRecoilState(channelState(useParamsId ?? 'all'));
-  const postId = useRecoilValue(selectedPostState);
   const [visible, setVisible] = useRecoilState(postDetailModalState);
 
   const getPostData = async () => {

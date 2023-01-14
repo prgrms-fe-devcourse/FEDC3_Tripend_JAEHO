@@ -5,7 +5,9 @@ import ReactDOM from 'react-dom';
 
 const Modal = ({ children, width = 500, height, visible = false, onClose, ...props }) => {
   const ref = useClickAway(() => {
-    onClose && onClose();
+    if (visible) {
+      onClose && onClose();
+    }
   });
 
   const containerStyle = useMemo(

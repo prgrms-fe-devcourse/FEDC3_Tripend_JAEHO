@@ -6,7 +6,7 @@ import Modal from '../../Modal';
 import { PostWrapper } from '../../../pages/MyPosterPage/style';
 import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
 import UserPosterItem from '../UserPosteItem';
-import { ERROR_MESSAGE_AUTH, USER } from '../../../utils/constant/auth';
+import { ERROR_MESSAGE_AUTH, ERROR_MESSAGE_SIGNIN, USER } from '../../../utils/constant/auth';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { uploadImageState } from '../../../recoil/uploadImage';
 
@@ -42,7 +42,7 @@ const LoginPoster = () => {
     swal({
       title: USER.DELETE_POSTER,
       text: USER.DELETE,
-      icon: ERROR_MESSAGE_AUTH.DELETE_POSTER_WARNING,
+      icon: ERROR_MESSAGE_SIGNIN.DELETE_POSTER_WARNING,
       dangerMode: true,
     }).then(async (willDelete) => {
       if (willDelete) {

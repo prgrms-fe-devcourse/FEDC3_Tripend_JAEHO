@@ -92,7 +92,7 @@ const Posts = () => {
         : Array.from(Array(4), (_, i) => (
             <Skeleton.Card line={4} style={{ margin: '20px' }} key={i} />
           ))}
-      <Modal visible={visible} onClose={() => onCloseModal()} width="1100px" height="600px">
+      <Modal visible={visible} onClose={onCloseModal} width="1100px" height="600px">
         <PostDetail />
       </Modal>
     </style.PostsContainer>

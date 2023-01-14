@@ -11,11 +11,10 @@ import useDebounce from '../../hooks/useDebounce';
 import { encodeKeyword } from '../../utils/validate/userList';
 import { searchAll } from '../../apis/search';
 import { filterdPost } from '../../utils/validate/searchedPostLIst';
-import { useSetRecoilState } from 'recoil';
-import { selectedPostState } from '../../recoil/RecoilPostStates';
+import { useNavigate } from 'react-router-dom';
 
 const SearchPost = () => {
-  const setPostId = useSetRecoilState(selectedPostState);
+  const navigate = useNavigate();
   const [keyword, setKeyword] = useState('');
 
   const [searchResult, setSearchResult] = useState([]);
@@ -26,7 +25,7 @@ const SearchPost = () => {
   };
 
   const handleClickItem = (postId) => {
-    setPostId(postId);
+    navigate(`/p/${postId}`);
     setKeyword('');
   };
 

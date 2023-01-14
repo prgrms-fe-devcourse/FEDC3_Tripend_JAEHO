@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { selectedPostState, postStateFamily } from '../../../recoil/RecoilPostStates';
+import { selectedPostState, postStateFamily } from '../../../recoil/postStates';
 import { getPostDetail } from '../../../apis/post';
 import AuthorInfo from '../Post/AuthorInfo';
 import LeftImage from '../Post/LeftImage';

@@ -4,9 +4,11 @@ import { useMemo, useEffect } from 'react';
 import AlarmPopupItem from '../AlarmPopupItem';
 import { AlarmPopupContainer, Title, AlarmList } from './style';
 import { useSetRecoilState } from 'recoil';
-import { selectedPostState } from '../../../recoil/RecoilPostStates';
+import { selectedPostState } from '../../../recoil/postStates';
+import { useNavigate } from 'react-router-dom';
 
 const AlarmPopup = ({ visible = false, onClose, target, alarms }) => {
+  const navigate = useNavigate();
   const setPostId = useSetRecoilState(selectedPostState);
 
   const ref = useClickAway(() => {
@@ -25,6 +27,7 @@ const AlarmPopup = ({ visible = false, onClose, target, alarms }) => {
 
   const handleClickAlarm = (postId) => {
     setPostId(postId);
+    navigate(`/p/${postId}`);
     onClose();
   };
 

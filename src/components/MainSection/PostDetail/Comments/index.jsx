@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Comment from '../Comment';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { postStateFamily } from '../../../../recoil/RecoilPostStates';
-import { channelState, selectedChannelState } from '../../../../recoil/RecoilChannelState';
+import { postStateFamily } from '../../../../recoil/postStates';
+import { channelState, selectedChannelState } from '../../../../recoil/channelState';
 import { createComment } from '../../../../apis/comment';
 import { getChannelPosts, getPostDetail } from '../../../../apis/post';
 import { CommentCount, InputContainer, CommentContainer } from './style';

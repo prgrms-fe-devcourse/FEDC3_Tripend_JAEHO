@@ -23,14 +23,22 @@ const AppRouter = () => {
 
         {/* login routes */}
         <Route
-          exact
-          path="/main"
+          path="/main/*"
           element={
             <AuthUserRoute>
               <HomePage />
             </AuthUserRoute>
           }
-        />
+        >
+          <Route
+            path=":id"
+            element={
+              <AuthUserRoute>
+                <HomePage />
+              </AuthUserRoute>
+            }
+          ></Route>
+        </Route>
 
         <Route
           exact
@@ -55,6 +63,16 @@ const AppRouter = () => {
         <Route
           exact
           path="/setting"
+          element={
+            <AuthUserRoute>
+              <MySettingPage />
+            </AuthUserRoute>
+          }
+        />
+
+        <Route
+          exact
+          path="/modal/*"
           element={
             <AuthUserRoute>
               <MySettingPage />

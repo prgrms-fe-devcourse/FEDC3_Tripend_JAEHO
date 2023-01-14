@@ -4,45 +4,55 @@ import PostDetail from './PostDetail';
 import { useEffect, useState } from 'react';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import { getChannelPosts, getPostDetail } from '../../apis/post';
-import { channelState, selectedChannelState } from '../../recoil/RecoilChannelState';
+import { channelState } from '../../recoil/RecoilChannelState';
 import { selectedPostState } from '../../recoil/RecoilPostStates';
+import { useParams } from 'react-router-dom';
 import Skeleton from '../common/Skeleton';
 import { PostsContainer } from './style';
 
 const Posts = () => {
-  const selectedChannelId = useRecoilValue(selectedChannelState);
+  const useParamsId = useParams().id;
+
   const setSelectedPostId = useSetRecoilState(selectedPostState);
-  const [postList, setPostList] = useRecoilState(channelState(selectedChannelId ?? 'all'));
+  const [postList, setPostList] = useRecoilState(channelState(useParamsId ?? 'all'));
   const postId = useRecoilValue(selectedPostState);
   const [visible, setVisible] = useState(false);
 
   const getPostData = async () => {
     if (postList.posts === null) {
-      const { data } = await getChannelPosts(selectedChannelId);
+      const { data } = await getChannelPosts(useParamsId);
 
-      setPostList({ id: selectedChannelId, posts: data });
+      setPostList({ id: useParamsId, posts: data });
     }
   };
 
   const getAllPostData = async () => {
-    const { data } = await getPostDetail('');
+    if (postList.posts === null) {
+      const { data } = await getPostDetail('');
 
-    data.sort(() => Math.random() - 0.5);
-    setPostList({ id: 'all', posts: data });
+      data.sort(() => Math.random() - 0.5);
+      setPostList({ id: 'all', posts: data });
+    }
   };
 
   const onClickPost = (postId) => {
     setVisible(true);
     setSelectedPostId(postId);
+    history.pushState(null, 'modal', `/modal/${postId}`);
+  };
+
+  const onCloseModal = () => {
+    setVisible(false);
+    history.back();
   };
 
   useEffect(() => {
-    if (selectedChannelId) {
+    if (useParamsId) {
       getPostData();
     } else {
       getAllPostData();
     }
-  }, [selectedChannelId]);
+  }, [useParamsId]);
 
   useEffect(() => {
     if (postId) {
@@ -69,9 +79,6 @@ const Posts = () => {
             );
           })}
         </div>
-        <Modal visible={visible} onClose={() => setVisible(false)} width="1100px" height="600px">
-          <PostDetail />
-        </Modal>
       </>
     ) : (
       <div>결과가 없음</div>
@@ -85,6 +92,9 @@ const Posts = () => {
         : Array.from(Array(4), (_, i) => (
             <Skeleton.Card line={4} style={{ margin: '20px' }} key={i} />
           ))}
+      <Modal visible={visible} onClose={onCloseModal} width="1100px" height="600px">
+        <PostDetail />
+      </Modal>
     </PostsContainer>
   );
 };

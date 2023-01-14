@@ -19,12 +19,7 @@ const UploadAndDisplayImage = () => {
   const [data, setData] = useState(null);
 
   const checkImage = (file) => {
-    if (
-      file.type === FILE.JPEG ||
-      file.type === FILE.GIF ||
-      file.type === FILE.SVG ||
-      file.type === FILE.PNG
-    ) {
+    if (file.type === FILE.JPEG || file.type === FILE.SVG || file.type === FILE.PNG) {
       setSelectedImage(file);
     } else {
       swal(ERROR_MESSAGE.UPLOAD_IMAGE);
@@ -69,7 +64,7 @@ const UploadAndDisplayImage = () => {
                 border: '1px solid red',
               }}
             >
-              <UploadDescription>Supported formates: JPEG,PNG,GIF,SVG</UploadDescription>
+              <UploadDescription>Supported formates: JPEG,PNG,SVG</UploadDescription>
             </div>
           </UploadImageWrapper>
         )}

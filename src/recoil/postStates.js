@@ -5,6 +5,11 @@ export const selectedPostState = atom({
   default: '',
 });
 
+export const postDetailModalState = atom({
+  key: 'postDetailModalState',
+  default: false,
+});
+
 export const postStateFamily = atomFamily({
   key: 'postDetailState',
   default: (id) => {

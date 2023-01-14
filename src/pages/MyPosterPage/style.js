@@ -30,8 +30,8 @@ export const PostButton = styled.div`
   align-items: center;
   width: 15%;
   position: absolute;
-  right: 10%;
-  bottom: 40%;
+  right: 5%;
+  bottom: 30%;
   color: #cccbc7;
   button {
     margin-right: 10px;

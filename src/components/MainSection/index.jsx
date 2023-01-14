@@ -4,8 +4,8 @@ import PostDetail from './PostDetail';
 import { useEffect, useState } from 'react';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import { getChannelPosts, getPostDetail } from '../../apis/post';
-import { channelState } from '../../recoil/RecoilChannelState';
-import { selectedPostState } from '../../recoil/RecoilPostStates';
+import { channelState } from '../../recoil/channelState';
+import { postDetailModalState, selectedPostState } from '../../recoil/postStates';
 import { useParams } from 'react-router-dom';
 import Skeleton from '../common/Skeleton';
 import { PostsContainer } from './style';
@@ -16,7 +16,7 @@ const Posts = () => {
   const setSelectedPostId = useSetRecoilState(selectedPostState);
   const [postList, setPostList] = useRecoilState(channelState(useParamsId ?? 'all'));
   const postId = useRecoilValue(selectedPostState);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useRecoilState(postDetailModalState);
 
   const getPostData = async () => {
     if (postList.posts === null) {
@@ -38,7 +38,7 @@ const Posts = () => {
   const onClickPost = (postId) => {
     setVisible(true);
     setSelectedPostId(postId);
-    history.pushState(null, 'modal', `/modal/${postId}`);
+    history.pushState(null, 'modal', `/p/${postId}`);
   };
 
   const onCloseModal = () => {
@@ -53,12 +53,6 @@ const Posts = () => {
       getAllPostData();
     }
   }, [useParamsId]);
-
-  useEffect(() => {
-    if (postId) {
-      setVisible(true);
-    }
-  }, [postId]);
 
   const renderWithData = () => {
     return postList.posts.length > 0 ? (

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { selectedChannelState } from '../../../recoil/RecoilChannelState';
+import { selectedChannelState } from '../../../recoil/channelState';
 import { Channel, ChannelUl, DescriptionTitle, SortedChannelContainer } from './style';
 import { useParams } from 'react-router-dom';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';

@@ -11,6 +11,7 @@ import MyPosterPage from './pages/MyPosterPage';
 import MissingPage from './pages/NotFound';
 
 import AuthUserRoute from './components/RequireAuth';
+import PostDetailPage from './pages/postDetailPage/index';
 
 const AppRouter = () => {
   return (
@@ -72,10 +73,10 @@ const AppRouter = () => {
 
         <Route
           exact
-          path="/modal/*"
+          path="/p/:postId"
           element={
             <AuthUserRoute>
-              <MySettingPage />
+              <PostDetailPage />
             </AuthUserRoute>
           }
         />

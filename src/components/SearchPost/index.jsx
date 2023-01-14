@@ -12,7 +12,7 @@ import { encodeKeyword } from '../../utils/validate/userList';
 import { searchAll } from '../../apis/search';
 import { filterdPost } from '../../utils/validate/searchedPostLIst';
 import { useSetRecoilState } from 'recoil';
-import { selectedPostState } from '../../recoil/RecoilPostStates';
+import { selectedPostState } from '../../recoil/postStates';
 
 const SearchPost = () => {
   const setPostId = useSetRecoilState(selectedPostState);

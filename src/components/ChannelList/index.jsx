@@ -3,7 +3,7 @@ import { getChannels } from '../../apis/post';
 import SortedChannels from './SortedChannels';
 import Skeleton from '../common/Skeleton';
 import { useSetRecoilState } from 'recoil';
-import { selectedChannelState } from '../../recoil/RecoilChannelState';
+import { selectedChannelState } from '../../recoil/channelState';
 import { ChannelListContainer } from './style';
 
 const ChannelList = () => {

@@ -1,7 +1,7 @@
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { channelState, selectedChannelState } from '../../../recoil/RecoilChannelState';
+import { channelState, selectedChannelState } from '../../../recoil/channelState';
 import { useState, useEffect } from 'react';
 import { createLike, deleteLike } from '../../../apis/like';
 import { createAlarm } from '../../../apis/alarm';

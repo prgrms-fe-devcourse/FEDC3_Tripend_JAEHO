@@ -3,7 +3,7 @@ import { LikeAndCommentContainer } from './style';
 const LikeAndComment = ({ likeLength, commentLength }) => {
   return (
     <LikeAndCommentContainer>
-      <div>좋아요 {likeLength}</div>
+      <div>동행 신청 {likeLength} </div>
       <div>댓글 {commentLength}</div>
     </LikeAndCommentContainer>
   );

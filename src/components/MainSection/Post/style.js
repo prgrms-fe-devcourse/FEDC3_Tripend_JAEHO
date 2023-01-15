@@ -11,9 +11,9 @@ export const PostContainer = styled.div`
   cursor: pointer;
 `;
 export const InfoContainer = styled.div`
-  width: calc(100% - 300px);
-  height: 100%;
-  padding: 10px;
+  width: calc(100% - 310px);
+  height: calc(100% - 30px);
+  padding: 15px;
   border-radius: 16px;
 `;
 export const InfoContainerHeader = styled.div`
@@ -28,5 +28,5 @@ export const TravelName = styled.h3`
 export const BottomContainer = styled.div`
   width: 100%;
   display: flex;
-  bottom: 30px;
+  margin-top: 60px;
 `;

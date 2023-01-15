@@ -13,6 +13,7 @@ export const HeaderContainer = styled.div`
   background-color: var(--white);
   height: 80px;
   box-sizing: border-box;
+  z-index: 1;
 `;
 
 export const LogoContaniner = styled.div`

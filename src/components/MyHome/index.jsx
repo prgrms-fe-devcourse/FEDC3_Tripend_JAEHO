@@ -7,7 +7,7 @@ import {
 } from '../Signin/index.style';
 import { useCallback, useEffect, useState } from 'react';
 import { putPaswwordChange } from '../../apis/auth';
-import { USER as AUTH, USER } from '../../utils/constant/auth';
+import { ERROR_MESSAGE_SIGNIN, USER as AUTH, USER } from '../../utils/constant/auth';
 import { FormSettingText, Input, PasswordBlock, PasswordText } from './style';
 
 const UserSettingPassword = () => {
@@ -38,7 +38,7 @@ const UserSettingPassword = () => {
     const res = await putPaswwordChange(password);
 
     if (res.status === 200) {
-      swal(USER.CHANGE_PASSWORD_SUCCESS, '', ERROR_MESSAGE_AUTH.PASSWORD_SUCCESS);
+      swal(USER.CHANGE_PASSWORD_SUCCESS, '', ERROR_MESSAGE_SIGNIN.PASSWORD_SUCCESS);
     }
 
     setPassword('');

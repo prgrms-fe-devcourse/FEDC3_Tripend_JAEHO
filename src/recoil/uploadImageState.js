@@ -19,3 +19,8 @@ export const userListState = atom({
   key: 'userList',
   default: [],
 });
+
+export const myhomeModalState = atom({
+  key: 'myhomeModal',
+  default: false,
+});

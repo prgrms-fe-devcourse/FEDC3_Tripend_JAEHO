@@ -11,12 +11,16 @@ import {
 import { ImageFileInput } from '../addPost/addPostForm/style';
 import { ERROR_MESSAGE, FILE } from '../../utils/myhome/constant';
 import { formatDataState, uploadImageState } from '../../recoil/uploadImageState';
+import { getMyPostDetail } from '../../apis/post';
+import styled from '@emotion/styled';
 
-const UploadAndDisplayImage = () => {
+const UploadAndDisplayImage = ({ postId }) => {
   const [selectedImage, setSelectedImage] = useRecoilState(uploadImageState);
   const [formatImage, setFormatImage] = useRecoilState(formatDataState);
 
   const [data, setData] = useState(null);
+
+  const [image, setImage] = useState(null);
 
   const checkImage = (file) => {
     if (file.type === FILE.JPEG || file.type === FILE.SVG || file.type === FILE.PNG) {
@@ -60,18 +64,14 @@ const UploadAndDisplayImage = () => {
             <div
               style={{
                 width: '300px',
-                marginRight: '300px',
               }}
             >
               <UploadDescription>Supported formates: JPEG,PNG,SVG</UploadDescription>
+              <ImageFileInput type="file" onChange={handleImageChange} />
             </div>
           </UploadImageWrapper>
         )}
       </ImageContainar>
-
-      <br />
-
-      <br />
 
       <ImageFileInput type="file" onChange={handleImageChange} />
     </ImageUploaderContainer>
@@ -79,3 +79,15 @@ const UploadAndDisplayImage = () => {
 };
 
 export default UploadAndDisplayImage;
+
+const Image = styled.img`
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+`;

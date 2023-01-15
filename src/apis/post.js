@@ -1,4 +1,4 @@
-import { authRequest, baseRequest, formDataRequest } from './core';
+import { authRequest, baseRequest, postDataRequest } from './core';
 import { URL } from '../utils/constant/auth';
 import { POSTURL, ERROR_MESSAGE_POST } from '../utils/constant/post';
 
@@ -24,7 +24,7 @@ export const getChannelPosts = async (channelId) => {
 // post 생성하기
 export const createPost = async (data) => {
   try {
-    return await formDataRequest.post(POSTURL.CREATE_POST, data);
+    return await postDataRequest.post(POSTURL.CREATE_POST, data);
   } catch (error) {
     throw new Error(ERROR_MESSAGE_POST.ERROR_CREATE_POST);
   }
@@ -49,6 +49,7 @@ export const removePost = async (postId) => {
   });
 
   if (data.status === 200) {
+    window.location.reload();
     return data;
   }
 };
@@ -61,8 +62,13 @@ export const getMyPostDetail = async (postId) => {
 // 마이페이지 게시글 수정
 export const updatePost = async (post) => {
   const res = await authRequest.put(URL.MYPAGE_UPDATE, post);
+
   if (res.status === 200) {
-    window.location.reload();
-    return res;
+    swal('수정이 완료되었습니다.');
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   }
+  return res;
 };

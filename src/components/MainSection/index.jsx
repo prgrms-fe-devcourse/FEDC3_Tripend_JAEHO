@@ -77,7 +77,7 @@ const Posts = () => {
               <Post
                 key={post._id}
                 id={post._id}
-                title={post.title}
+                data={post.title}
                 image={post.image}
                 author={post.author}
                 likes={post.likes}

@@ -1,7 +1,7 @@
 import UploadAndDisplayImage from '../../UploadImage';
 
 import { memo, useCallback, useEffect, useState } from 'react';
-import { updatePost } from '../../../apis/post';
+import { getMyPostDetail, updatePost } from '../../../apis/post';
 import {
   Button,
   ImageUploader,
@@ -15,17 +15,22 @@ import {
 } from './style';
 import { ERROR_MESSAGE, FORMATDATA } from '../../../utils/myhome/constant';
 import { useRecoilState } from 'recoil';
-import { userListState, userLoginDateState } from '../../../recoil/uploadImageState';
+import {
+  myhomeModalState,
+  userListState,
+  userLoginDateState,
+} from '../../../recoil/uploadImageState';
 
 const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
   const [imageSrc, setImageSrc] = useState('');
 
   const [detail, setPostDetail] = useRecoilState(userLoginDateState);
   const [list, setList] = useRecoilState(userListState);
+  const [visible, setVisible] = useRecoilState(myhomeModalState);
 
   const [day, setDay] = useState('');
   const [person, setPerson] = useState('');
-  const [gender, setGender] = useState('');
+
   const [posterTitle, setPosterTitle] = useState('');
 
   const [profile, setProfile] = useState([]);
@@ -35,6 +40,22 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
       setProfile(detail.data.author.fullName.split('/'));
       setList(posts);
     }
+    const getPostModalDetail = async () => {
+      const getpostDetail = await getMyPostDetail(postId);
+
+      if (getpostDetail.data.title) {
+        let str = getpostDetail.data.title.split('/');
+
+        str = str.toString().replace(/(\s*)/g, '');
+
+        setPosterTitle(str.split(',')[0]);
+        setDay(str.split(',')[1]);
+        setPerson(str.split(',')[2]);
+        setGender(str.split(',')[3]);
+      }
+    };
+
+    getPostModalDetail();
   }, []);
 
   const handleDay = useCallback(
@@ -50,6 +71,7 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
     },
     [person]
   );
+  const [gender, setGender] = useState('');
 
   const handleGender = useCallback(
     (e) => {
@@ -72,31 +94,18 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
 
     const formatData = new FormData();
 
+    console.log(gender);
+
     formatData.append(FORMATDATA.POST_ID, postId);
     formatData.append(FORMATDATA.IMAGE, imageValue);
     formatData.append(FORMATDATA.TITLE, title);
     formatData.append(FORMATDATA.CHANNEL_ID, detail.data._id);
 
     const res = await updatePost(formatData);
-
-    // 수정 작업
-    // setList({
-    //   ...list,
-    //
-    //   data: {
-    //     ...list,
-    //     posts: list.map((post) => {
-    //       if (post._id === res.data._id) {
-    //         return {
-    //           ...post,
-    //           title: res.data.title,
-    //           image: res.data.image,
-    //         };
-    //       }
-    //     }),
-    //   },
-    // });
+    setVisible(false);
   };
+
+  const selectList = ['여자만', '남자만', '남여무관'];
 
   return (
     <>
@@ -118,14 +127,20 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
           <Label htmlFor="date" style={{ fontWeight: 'bold' }}>
             날짜
           </Label>
-          <Input type="date" onChange={handleDay} />
+          <Input value={day.trim()} type="date" onChange={handleDay} />
 
           <Label htmlFor="text" style={{ fontWeight: 'bold' }}>
             인원
           </Label>
-          <Input type="text" placeholder="인원을 입력해주세요" onChange={handlePerson} />
+          <Input
+            value={person}
+            type="text"
+            placeholder="인원을 입력해주세요"
+            onChange={handlePerson}
+          />
           <Label style={{ fontWeight: 'bold' }}>원하는 성별</Label>
           <select
+            value={gender}
             style={{
               borderRadius: '5px',
               width: '100%',
@@ -134,15 +149,36 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
             onChange={handleGender}
           >
             <option>=== 선택 ===</option>
-            <option>남자만</option>
-            <option>여자만</option>
-            <option>남여무관</option>
+
+            {selectList.map((item, index) => {
+              return (
+                (item.trim() === '남자만' && (
+                  <option value={item} key={index}>
+                    {'남자만'}
+                  </option>
+                )) ||
+                (item.trim() === '여자만' && (
+                  <option value={item} key={index}>
+                    {'여자만'}
+                  </option>
+                )) ||
+                (item.trim() === '남여무관' && <option key={index}>{'남여무관'}</option>)
+              );
+            })}
+            {/*<option value={gender.trim() === '남자만'}>남자만</option>*/}
+            {/*<option value={gender.trim() === '여자만'}>여자만</option>*/}
+            {/*<option value={gender.trim() === '남여무관'}>남여무관</option>*/}
           </select>
 
           <Label htmlFor="text" style={{ fontWeight: 'bold' }}>
             제목
           </Label>
-          <Input type="text" placeholder="제목을 입력해주세요" onChange={handlePosterTitle} />
+          <Input
+            value={posterTitle}
+            type="text"
+            placeholder="제목을 입력해주세요"
+            onChange={handlePosterTitle}
+          />
 
           <Button type="submit">확인</Button>
         </ModalForm>

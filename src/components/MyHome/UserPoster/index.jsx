@@ -9,12 +9,16 @@ import UserPosterItem from '../UserPosteItem';
 import { ERROR_MESSAGE_AUTH, ERROR_MESSAGE_SIGNIN, USER } from '../../../utils/constant/auth';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled, { div } from '@emotion/styled';
-import { uploadImageState, userLoginDateState } from '../../../recoil/uploadImageState';
+import {
+  myhomeModalState,
+  uploadImageState,
+  userLoginDateState,
+} from '../../../recoil/uploadImageState';
 
 const LoginPoster = () => {
   const [getLoginData, setLoginData] = useState({});
   const [postId, setPostId] = useState('');
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useRecoilState(myhomeModalState);
 
   const [postDetail, setPostDetail] = useRecoilState(userLoginDateState);
 

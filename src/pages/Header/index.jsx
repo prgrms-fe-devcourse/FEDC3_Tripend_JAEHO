@@ -1,14 +1,13 @@
-import Alarm from '../../components/Alarm';
 import Avatar from '../../components/common/Avatar';
 import AlarmPopup from '../../components/Alarm/AlarmPopup';
 import Logo from '../../../static/images/Logo.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { isVisibleModalState } from '../../recoil/addPostStates';
 import { toggleStateFamily } from '../../recoil/toggleStates';
+import { userLoginState } from '../../recoil/authState';
 import { getMyAlarms } from '../../apis/alarm';
-import LogoutIcon from '@mui/icons-material/Logout';
-import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import {
   HeaderContainer,
   LogoContaniner,
@@ -18,18 +17,18 @@ import {
 } from './style';
 import { getStorage, setStorage } from '../../utils/storage';
 import { TOKEN, USERIMAGE } from '../../utils/constant/auth';
-import { isVisibleModalState } from '../../recoil/addPostStates';
 import PrivateHeader from './PrivateHeaderContainer';
 import SearchPost from '../../components/SearchPost';
-import { userLoginState } from '../../recoil/authState';
 import AddPost from '../../components/addPost';
+import Icon from '../../components/common/Icon';
+
 const Header = () => {
   const isVisibleModal = useRecoilValue(isVisibleModalState);
 
   const navigate = useNavigate();
   const [alarmBox, setAlarmBox] = useState();
   const [alarms, setAlarms] = useState([]);
-  const [isLogin, setIsLogin] = useRecoilState(userLoginState);
+  const setIsLogin = useSetRecoilState(userLoginState);
   const [isAlarmOpen, setIsAlarmOpen] = useRecoilState(toggleStateFamily('alarm'));
 
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
@@ -80,15 +79,15 @@ const Header = () => {
             <SearchPost />
             <ButtonContainer>
               <IconItem onClick={handleOpenAddPostModal}>
-                <AddBoxOutlinedIcon />
+                <Icon.AddPostIcon />
               </IconItem>
               <AlarmContainer>
                 <IconItem onClick={handleAlarmOpen}>
-                  <Alarm />
+                  <Icon.Alarm />
                 </IconItem>
               </AlarmContainer>
               <IconItem onClick={handleLogout}>
-                <LogoutIcon />
+                <Icon.LogoutIcon />
               </IconItem>
               <IconItem onClick={handleOpenMyPage}>
                 <Avatar shape="circle" size="30px" src={userImage} lazy={true} threshold={0.1} />

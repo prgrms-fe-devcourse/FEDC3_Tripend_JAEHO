@@ -2,13 +2,14 @@ import Post from './Post';
 import Modal from '../Modal';
 import PostDetail from './PostDetail';
 import { useEffect, useState } from 'react';
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { getChannelPosts, getPostDetail } from '../../apis/post';
 import { channelState } from '../../recoil/channelState';
 import { postDetailModalState, selectedPostState } from '../../recoil/postStates';
 import { useParams } from 'react-router-dom';
 import Skeleton from '../common/Skeleton';
-import { PostsContainer } from './style';
+import { PostsContainer, NotFoundResultContainer } from './style';
+import { getChannels } from '../../apis/post';
 
 const Posts = () => {
   const useParamsId = useParams().id;
@@ -17,9 +18,27 @@ const Posts = () => {
   const [postList, setPostList] = useRecoilState(channelState(useParamsId ?? 'all'));
   const [visible, setVisible] = useRecoilState(postDetailModalState);
 
+  const [selectedChannelName, setSelectedChannelName] = useState('');
+
+  const sleep = (ms) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
+
+  //채널 이름 가져오기 위한 함수
+  const getChannelName = async (clickedId) => {
+    const { data } = await getChannels();
+    return data.filter((channels) => channels._id === clickedId)[0].name;
+  };
+
+  const setChannelName = async () => {
+    const data = await getChannelName(useParamsId);
+    setSelectedChannelName(data);
+  };
+  setChannelName();
+
   const getPostData = async () => {
     const { data } = await getChannelPosts(useParamsId);
-
+    await sleep(300);
     setPostList({ id: useParamsId, posts: data });
   };
 
@@ -70,7 +89,11 @@ const Posts = () => {
         </div>
       </>
     ) : (
-      <div>결과가 없음</div>
+      <NotFoundResultContainer>
+        <strong>{selectedChannelName}</strong>의 글 목록이 아직 존재하지 않습니다. <br />
+        <br />
+        동행을 구하고 싶다면 포스트를 생성해보세요 :)
+      </NotFoundResultContainer>
     );
   };
 

@@ -7,11 +7,12 @@ import LeftImage from '../Post/LeftImage';
 import Tags from '../Post/Tags';
 import Heart from '../Heart';
 import Comments from './Comments';
+import Skeleton from '../../common/Skeleton';
 import {
   PostDetailContainer,
   RightContainer,
   RightContainerContent,
-  AccompanyButton,
+  Title,
   BottomContainer,
 } from './style';
 
@@ -32,46 +33,41 @@ const PostDetail = () => {
     }
   }, [postId]);
 
-  return (
+  return post ? (
     <PostDetailContainer>
-      {post ? (
-        <>
-          <LeftImage
-            src={post.image}
-            width={'50%'}
-            height={'100%'}
-            style={{ borderRadius: '16px' }}
-          />
-          <RightContainer>
-            <RightContainerContent
-              flexDirection="row"
-              justifyContent="space-between"
-              alignItem="flex-end"
-              style={{ paddingBottom: '60px' }}
-            >
-              <AuthorInfo image={post.author.image} fullName={post.author.fullName} />
-              <div>벨기에, 브리쉘</div>
-            </RightContainerContent>
-            <RightContainerContent flexDirection="row" justifyContent="space-between">
-              <Tags title={post.title} alignItem="flex-end" />
-              <RightContainerContent flexDirection="row">
-                <Heart
-                  likes={post.likes}
-                  userId={'63b92f37230951110b843cbd'}
-                  styleProps={{ fontSize: '25px' }}
-                />
-                <AccompanyButton>동행 신청하기</AccompanyButton>
-              </RightContainerContent>
-            </RightContainerContent>
-            <BottomContainer alignItem="flex-start">
-              <Comments postId={postId} comments={post.comments} />
-            </BottomContainer>
-          </RightContainer>
-        </>
-      ) : (
-        <div>로딩...</div>
-      )}
+      <LeftImage src={post.image} width={'50%'} height={'100%'} style={{ borderRadius: '16px' }} />
+      <RightContainer>
+        <RightContainerContent alignItem="flex-start" style={{ paddingBottom: '60px' }}>
+          <Title>{post.title.split('/')[0]}</Title>
+        </RightContainerContent>
+
+        <RightContainerContent
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItem="flex-end"
+          style={{ paddingBottom: '20px' }}
+        >
+          <AuthorInfo image={post.author.image} fullName={post.author.fullName} />
+          <div>벨기에, 브리쉘</div>
+        </RightContainerContent>
+        <RightContainerContent flexDirection="row" justifyContent="space-between">
+          <Tags title={post.title} alignItem="flex-end" />
+          <RightContainerContent flexDirection="row">
+            <Heart
+              likes={post.likes}
+              author={post.author}
+              postId={post._id}
+              styleProps={{ fontSize: '25px' }}
+            />
+          </RightContainerContent>
+        </RightContainerContent>
+        <BottomContainer alignItem="flex-start">
+          <Comments postId={postId} comments={post.comments} />
+        </BottomContainer>
+      </RightContainer>
     </PostDetailContainer>
+  ) : (
+    <Skeleton.Detail line={4} />
   );
 };
 

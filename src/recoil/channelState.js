@@ -1,5 +1,4 @@
-import { atom, atomFamily, selectorFamily } from 'recoil';
-import { getChannelPosts } from '../apis/post';
+import { atom, atomFamily } from 'recoil';
 
 export const selectedChannelState = atom({
   key: 'selectedChannelState',

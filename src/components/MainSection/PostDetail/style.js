@@ -22,18 +22,11 @@ export const RightContainerContent = styled.div`
   align-items: ${({ alignItem }) => (alignItem ? alignItem : 'center')};
 `;
 
-export const AccompanyButton = styled.button`
-  width: 129px;
-  height: 50px;
-  background-color: var(--primary);
-  color: #112211;
-  padding: 5px;
-  margin-left: 15px;
-  border: 0;
-  font-size: 16px;
+export const Title = styled.div`
+  font-size: 30px;
   font-weight: bold;
-  border-radius: 8px;
 `;
+
 export const BottomContainer = styled.div`
   position: absolute;
   bottom: 50px;

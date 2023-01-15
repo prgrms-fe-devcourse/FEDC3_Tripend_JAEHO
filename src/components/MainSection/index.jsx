@@ -18,20 +18,16 @@ const Posts = () => {
   const [visible, setVisible] = useRecoilState(postDetailModalState);
 
   const getPostData = async () => {
-    if (postList.posts === null) {
-      const { data } = await getChannelPosts(useParamsId);
+    const { data } = await getChannelPosts(useParamsId);
 
-      setPostList({ id: useParamsId, posts: data });
-    }
+    setPostList({ id: useParamsId, posts: data });
   };
 
   const getAllPostData = async () => {
-    if (postList.posts === null) {
-      const { data } = await getPostDetail('');
+    const { data } = await getPostDetail('');
 
-      data.sort(() => Math.random() - 0.5);
-      setPostList({ id: 'all', posts: data });
-    }
+    data.sort(() => Math.random() - 0.5);
+    setPostList({ id: 'all', posts: data });
   };
 
   const onClickPost = (postId) => {

@@ -22,7 +22,7 @@ const Post = ({ id, title, image, author, likes, commentLength, onClickPost }) =
       <InfoContainer>
         <InfoContainerHeader>
           <TravelName>{travel_name}</TravelName>
-          <Heart likes={likes} postId={id} styleProps={{ fontSize: '35px' }} />
+          {/*<Heart likes={likes} author={author} postId={id} styleProps={{ fontSize: '35px' }} />*/}
         </InfoContainerHeader>
         <Tags title={title} />
         <BottomContainer>

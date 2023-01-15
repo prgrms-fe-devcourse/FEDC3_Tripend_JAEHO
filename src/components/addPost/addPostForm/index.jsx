@@ -22,7 +22,7 @@ import {
   SubmitButton,
 } from './style';
 
-const Gender = {
+const GenderData = {
   male: '남자만',
   female: '여자만',
   both: '남여 무관',
@@ -34,6 +34,7 @@ const AddPostForm = () => {
   const [imageSrc, setImageSrc] = useState('');
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState('');
+  const [channelId, setChannelId] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [personnel, setPersonnel] = useState(1);
@@ -65,21 +66,23 @@ const AddPostForm = () => {
   }, []);
 
   const handleImageFileChange = async (e) => {
-    let fileBlob = e.target.files[0];
+    let imageFile = e.target.files[0];
 
-    if (!fileBlob) {
+    if (!imageFile) {
       return;
     }
 
     const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
+    reader.readAsDataURL(imageFile);
     reader.onload = () => {
       setImageSrc(reader.result);
     };
   };
 
   const handleCountryChange = (e) => {
-    setCountry(e.target.value);
+    const { country } = e.target.options[e.target.selectedIndex].dataset;
+    setCountry(country);
+    setChannelId(e.target.value);
   };
 
   const handleStartDateChange = (e) => {
@@ -113,7 +116,7 @@ const AddPostForm = () => {
       return;
     }
 
-    if (!country || !title || !startDate || !endDate || !personnel || !gender) {
+    if (!country || !channelId || !title || !startDate || !endDate || !personnel || !gender) {
       return;
     }
 
@@ -123,7 +126,7 @@ const AddPostForm = () => {
       country,
       date: `${startDate} ~ ${endDate}`,
       personnel,
-      gender: Gender[gender],
+      gender: GenderData[gender],
       title,
       content,
     };
@@ -133,7 +136,7 @@ const AddPostForm = () => {
     const data = {
       title: JSON.stringify(userData),
       image: binaryImage,
-      channelId: country,
+      channelId,
     };
 
     const formData = new FormData();
@@ -171,9 +174,9 @@ const AddPostForm = () => {
       <FormContainer>
         <InputWrapper>
           <label htmlFor="country">나라</label>
-          <select id="country" value={country} onChange={handleCountryChange}>
+          <select id="country" value={channelId} onChange={handleCountryChange}>
             {countries.map(({ name, _id }) => (
-              <option key={_id} value={_id}>
+              <option key={_id} value={_id} data-country={name}>
                 {name}
               </option>
             ))}

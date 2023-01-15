@@ -9,7 +9,7 @@ const MissingPage = () => {
           <SentimentDissatisfiedIcon />
           404 NOT FOUND
         </MissingMessage>
-        <MainPageLink href="/main">Do you want to go to the main page? click me!</MainPageLink>
+        <a href="/main">Do you want to go to the main page? click me!</a>
       </MissingPageContainer>
     </>
   );

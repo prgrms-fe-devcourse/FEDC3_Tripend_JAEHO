@@ -14,7 +14,3 @@ export const MissingPageContainer = styled.div`
 export const MissingMessage = styled.div`
   font-size: 40px;
 `;
-
-export const MainPageLink = styled.a`
-  text-decoration: none;
-`;

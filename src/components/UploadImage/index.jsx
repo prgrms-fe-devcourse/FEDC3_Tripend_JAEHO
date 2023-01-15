@@ -31,12 +31,22 @@ const UploadAndDisplayImage = ({ postId }) => {
     }
   };
 
+  useEffect(() => {
+    const getPostModalDetail = async () => {
+      const getpostDetail = await getMyPostDetail(postId);
+
+      if (getpostDetail.data) {
+        setImage(getpostDetail.data.image);
+      }
+    };
+    getPostModalDetail();
+  });
+
   const handleImageChange = useCallback(
     (e) => {
       const file = e.target.files[0];
       checkImage(file);
     },
-
     [selectedImage]
   );
 
@@ -66,6 +76,7 @@ const UploadAndDisplayImage = ({ postId }) => {
                 width: '300px',
               }}
             >
+              {/*{image && <Image src={image} alt="사진" />}*/}
               <UploadDescription>Supported formates: JPEG,PNG,SVG</UploadDescription>
               <ImageFileInput type="file" onChange={handleImageChange} />
             </div>

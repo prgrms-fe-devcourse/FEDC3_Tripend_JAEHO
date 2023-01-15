@@ -32,7 +32,7 @@ const UserInfo = () => {
     <UserInfoContainer>
       <UserInfoWrapper>
         <img
-          src={profile.image}
+          src={profile.image ? profile.image : 'https://via.placeholder.com/280x180'}
           style={{
             width: '100px',
             height: '100px',
@@ -40,7 +40,6 @@ const UserInfo = () => {
             objectFit: 'cover',
             border: '1px solid black',
           }}
-          alt="프로필 이미지"
         />
         <div>
           <h3>{profile.name}</h3>

@@ -21,7 +21,6 @@ const PostTitle = styled.div`
   right: 30%;
   width: 50%;
   bottom: 25%;
-
   justify-content: space-between;
 `;
 
@@ -41,7 +40,7 @@ const PostButton = styled.div`
 const ImageItemContainer = styled.div`
   width: 100px;
   height: 70px;
-  margin: 20px;
+  margin: 10px;
   border-radius: 16px;
   background-color: #eee;
   > img {
@@ -67,13 +66,13 @@ const PostWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: 30px;
   background: #f8f9fa;
 `;
 
 const PostItemContainer = styled.div`
   position: relative;
-  height: 100px;
-  margin: 10px;
+  margin: 20px 10px;
   width: 50%;
   border-radius: 16px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -81,6 +80,7 @@ const PostItemContainer = styled.div`
 
 const PosterContainer = styled.div`
   background: #f8f9fa;
+  height: 80vh;
 `;
 
 export {

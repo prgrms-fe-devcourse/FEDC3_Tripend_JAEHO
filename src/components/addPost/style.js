@@ -7,9 +7,9 @@ export const ModalHeader = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 40px;
+  margin-bottom: 34px;
 `;
 
 export const CloseButton = styled.button`

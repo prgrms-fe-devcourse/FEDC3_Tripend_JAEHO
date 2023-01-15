@@ -11,8 +11,8 @@ export const ImageUploader = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  width: 460px;
-  height: 466px;
+  width: 480px;
+  height: calc(100% - 4px);
   border-radius: 10px;
   border: 2px dashed #addbbd;
   margin-right: 40px;
@@ -33,18 +33,6 @@ export const ImageFileInput = styled.input`
   height: 100%;
   cursor: pointer;
   opacity: 0;
-
-  img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    position: absolute;
-    top: 20%;
-    left: 20%;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-  }
 `;
 
 export const ImageFileContent = styled.div`
@@ -61,7 +49,7 @@ export const ImageFileContent = styled.div`
 `;
 
 export const Title = styled.p`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
 `;
 
@@ -94,8 +82,10 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 14px;
+  font-size: 14px;
 
   label {
+    font-size: 14px;
     font-weight: 700;
     margin-bottom: 8px;
   }
@@ -103,11 +93,62 @@ export const InputWrapper = styled.div`
   input,
   select,
   textarea {
-    height: 42px;
-    padding-left: 16px;
     background-color: #fff;
     border: 1px solid #dddddd;
     border-radius: 4px;
+  }
+
+  input,
+  select {
+    height: 34px;
+    padding-left: 14px;
+  }
+
+  input[type='number'] {
+    height: 30px;
+  }
+
+  input[type='date'] {
+    position: relative;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  select {
+    border: 0;
+    border-right: 16px solid transparent;
+    outline: 1px solid #dddddd;
+  }
+
+  textarea {
+    height: 82px;
+    padding: 14px;
+    resize: none;
+    flex-grow: 1;
+  }
+
+  textarea:focus {
+    outline: none;
+  }
+`;
+
+export const InputsAlign = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+
+  input {
+    width: 200px;
+  }
+
+  select {
+    width: 254px;
   }
 `;
 

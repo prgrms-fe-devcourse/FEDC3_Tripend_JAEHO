@@ -21,7 +21,7 @@ const AddPost = ({ visible }) => {
       visible={visible}
       onClose={handleCloseAddPostModal}
       style={{
-        padding: '34px',
+        padding: '28px',
         borderRadius: '10px',
         display: 'flex',
         flexDirection: 'column',

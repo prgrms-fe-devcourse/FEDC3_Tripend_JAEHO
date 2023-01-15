@@ -4,7 +4,7 @@ import AlarmPopup from '../../components/Alarm/AlarmPopup';
 import Logo from '../../../static/images/Logo.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { toggleStateFamily } from '../../recoil/toggleStates';
 import { getMyAlarms } from '../../apis/alarm';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -22,8 +22,10 @@ import { isVisibleModalState } from '../../recoil/addPostStates';
 import PrivateHeader from './PrivateHeaderContainer';
 import SearchPost from '../../components/SearchPost';
 import { userLoginState } from '../../recoil/authState';
-
+import AddPost from '../../components/addPost';
 const Header = () => {
+  const isVisibleModal = useRecoilValue(isVisibleModalState);
+
   const navigate = useNavigate();
   const [alarmBox, setAlarmBox] = useState();
   const [alarms, setAlarms] = useState([]);
@@ -92,6 +94,7 @@ const Header = () => {
                 <Avatar shape="circle" size="30px" src={userImage} lazy={true} threshold={0.1} />
               </IconItem>
             </ButtonContainer>
+            {isVisibleModal && <AddPost visible={isVisibleModal} />}
             <AlarmPopup
               visible={isAlarmOpen}
               onClose={handleAlarmClose}

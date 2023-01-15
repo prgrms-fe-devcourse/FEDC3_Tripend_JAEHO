@@ -3,9 +3,11 @@ import styled from '@emotion/styled';
 export const PostDetailPageWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 100vh;
+  min-width: 1200px;
+  height: calc(100vh - 100px);
   background-color: var(--gray);
   justify-content: center;
+  align-items: center;
   box-sizing: border-box;
 `;
 

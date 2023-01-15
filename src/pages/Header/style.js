@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
 export const HeaderContainer = styled.div`
+  width: 100%;
+  min-width: 1200px;
   position: sticky;
   top: 0;
   display: flex;

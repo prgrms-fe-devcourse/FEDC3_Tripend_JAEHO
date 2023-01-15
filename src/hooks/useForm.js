@@ -31,8 +31,6 @@ export const useForm = () => {
     try {
       const res = await postUserLogin(email, password);
 
-      const { token } = res.data;
-
       if (res.status === 200) {
         setLogin(true);
         naviaget('/main');

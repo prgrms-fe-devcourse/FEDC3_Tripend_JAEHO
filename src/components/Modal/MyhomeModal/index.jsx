@@ -25,7 +25,6 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
   const [imageSrc, setImageSrc] = useState('');
 
   const [detail, setPostDetail] = useRecoilState(userLoginDateState);
-  const [list, setList] = useRecoilState(userListState);
   const [visible, setVisible] = useRecoilState(myhomeModalState);
 
   const [day, setDay] = useState('');
@@ -38,7 +37,6 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
   useEffect(() => {
     if (detail.data) {
       setProfile(detail.data.author.fullName.split('/'));
-      setList(posts);
     }
     const getPostModalDetail = async () => {
       const getpostDetail = await getMyPostDetail(postId);
@@ -94,8 +92,6 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
 
     const formatData = new FormData();
 
-    console.log(gender);
-
     formatData.append(FORMATDATA.POST_ID, postId);
     formatData.append(FORMATDATA.IMAGE, imageValue);
     formatData.append(FORMATDATA.TITLE, title);
@@ -111,7 +107,7 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
     <>
       <ModalLeft>
         <ImageUploader>
-          <UploadAndDisplayImage />
+          <UploadAndDisplayImage postId={postId} />
         </ImageUploader>
       </ModalLeft>
 
@@ -165,9 +161,6 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
                 (item.trim() === '남여무관' && <option key={index}>{'남여무관'}</option>)
               );
             })}
-            {/*<option value={gender.trim() === '남자만'}>남자만</option>*/}
-            {/*<option value={gender.trim() === '여자만'}>여자만</option>*/}
-            {/*<option value={gender.trim() === '남여무관'}>남여무관</option>*/}
           </select>
 
           <Label htmlFor="text" style={{ fontWeight: 'bold' }}>

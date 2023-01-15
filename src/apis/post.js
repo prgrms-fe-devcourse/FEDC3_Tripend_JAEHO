@@ -62,7 +62,7 @@ export const getMyPostDetail = async (postId) => {
 export const updatePost = async (post) => {
   const res = await authRequest.put(URL.MYPAGE_UPDATE, post);
   if (res.status === 200) {
-    // 임시 리렌더링 코드
+    window.location.reload();
     return res;
   }
 };

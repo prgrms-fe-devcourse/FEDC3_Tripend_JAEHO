@@ -33,6 +33,18 @@ export const ImageFileInput = styled.input`
   height: 100%;
   cursor: pointer;
   opacity: 0;
+
+  img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
 `;
 
 export const ImageFileContent = styled.div`

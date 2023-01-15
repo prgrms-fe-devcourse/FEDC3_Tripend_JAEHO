@@ -20,6 +20,6 @@ export const InputContainer = styled.form`
 `;
 
 export const CommentContainer = styled.div`
-  height: 200px;
+  height: calc(100% - 50px);
   overflow-y: scroll;
 `;

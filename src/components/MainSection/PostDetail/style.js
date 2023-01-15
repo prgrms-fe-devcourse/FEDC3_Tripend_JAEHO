@@ -8,7 +8,6 @@ export const PostDetailContainer = styled.div`
 `;
 
 export const RightContainer = styled.div`
-  position: relative;
   width: calc(50% - 28px);
   padding-left: 28px;
   display: flex;
@@ -28,7 +27,7 @@ export const Title = styled.div`
 `;
 
 export const BottomContainer = styled.div`
-  position: absolute;
-  bottom: 50px;
   width: calc(100% - 28px);
+  height: calc(100% - 280px);
+  margin-top: 50px;
 `;

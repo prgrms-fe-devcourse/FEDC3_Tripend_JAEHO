@@ -13,8 +13,15 @@ import Heart from '../Heart';
 import { memo } from 'react';
 import LikeAndComment from './LikeAndComment';
 
-const Post = ({ id, title, image, author, likes, commentLength, onClickPost }) => {
-  const travel_name = title.split('/')[0];
+const Post = ({ id, data, image, author, likes, commentLength, onClickPost }) => {
+  const isObject = data.includes('{');
+  let travel_name;
+
+  if (isObject) {
+    travel_name = JSON.parse(data).title;
+  } else {
+    travel_name = data.split('/')[0];
+  }
 
   return (
     <PostContainer onClick={() => onClickPost(id)}>
@@ -24,7 +31,7 @@ const Post = ({ id, title, image, author, likes, commentLength, onClickPost }) =
           <TravelName>{travel_name}</TravelName>
           {/*<Heart likes={likes} author={author} postId={id} styleProps={{ fontSize: '35px' }} />*/}
         </InfoContainerHeader>
-        <Tags title={title} />
+        <Tags data={data} />
         <BottomContainer>
           <AuthorInfo image={author.image} fullName={author.fullName} />
           <LikeAndComment likeLength={likes.length} commentLength={commentLength} />

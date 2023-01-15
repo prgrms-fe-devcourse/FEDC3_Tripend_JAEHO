@@ -121,7 +121,7 @@ const AddPostForm = () => {
 
     const userData = {
       country,
-      date: `${startDate}~${endDate}`,
+      date: `${startDate} ~ ${endDate}`,
       personnel,
       gender: Gender[gender],
       title,

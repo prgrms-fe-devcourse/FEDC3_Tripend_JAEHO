@@ -16,11 +16,17 @@ import {
   Title,
   Description,
   UploadedImage,
-  FormContent,
+  FormContainer,
   InputWrapper,
   InputsAlign,
   SubmitButton,
 } from './style';
+
+const Gender = {
+  male: '남자만',
+  female: '여자만',
+  both: '남여 무관',
+};
 
 const AddPostForm = () => {
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
@@ -107,27 +113,33 @@ const AddPostForm = () => {
       return;
     }
 
-    if (!country || !title || !startDate || !endDate || !personnel || !gender || !content) {
+    if (!country || !title || !startDate || !endDate || !personnel || !gender) {
       return;
     }
 
     setIsLoading(true);
 
-    const binaryImage = imageSrc ? imageToBinary(imageSrc) : null;
-    const allowableGender =
-      gender === 'male' ? '남자만' : gender === 'female' ? '여자만' : '남여 무관';
-
     const userData = {
-      title: `${title}/${startDate}/${endDate}/${personnel}/${allowableGender}/${content}`,
+      country,
+      date: `${startDate}~${endDate}`,
+      personnel,
+      gender: Gender[gender],
+      title,
+      content,
+    };
+
+    const binaryImage = imageSrc ? imageToBinary(imageSrc) : null;
+
+    const data = {
+      title: JSON.stringify(userData),
       image: binaryImage,
       channelId: country,
     };
 
     const formData = new FormData();
-    Object.keys(userData).forEach((key) => formData.append(key, userData[key]));
+    Object.keys(data).forEach((key) => formData.append(key, data[key]));
 
-    const { data } = await createPost(formData);
-    console.log(data);
+    await createPost(formData);
 
     setIsLoading(false);
     setIsVisibleModal(false);
@@ -141,7 +153,6 @@ const AddPostForm = () => {
           type="file"
           accept="image/png, image/jpeg, image/jpg"
           onChange={handleImageFileChange}
-          disabled={isLoading && imageSrc}
         />
         <ImageFileContent>
           {imageSrc ? (
@@ -157,7 +168,7 @@ const AddPostForm = () => {
           )}
         </ImageFileContent>
       </ImageUploader>
-      <FormContent>
+      <FormContainer>
         <InputWrapper>
           <label htmlFor="country">나라</label>
           <select id="country" value={country} onChange={handleCountryChange}>
@@ -218,7 +229,7 @@ const AddPostForm = () => {
           />
         </InputWrapper>
         <SubmitButton>{isLoading ? '등록 중...' : '등록'}</SubmitButton>
-      </FormContent>
+      </FormContainer>
     </PostForm>
   );
 };

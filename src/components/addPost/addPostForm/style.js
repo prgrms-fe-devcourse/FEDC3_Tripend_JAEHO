@@ -18,6 +18,7 @@ export const ImageUploader = styled.div`
   margin-right: 40px;
   background-color: #f2fffa;
   transition: all 100ms ease-in-out;
+  overflow: hidden;
 
   &:hover {
     background-color: #daf8ed;
@@ -33,11 +34,13 @@ export const ImageFileInput = styled.input`
   height: 100%;
   cursor: pointer;
   opacity: 0;
+  z-index: 100;
 `;
 
 export const ImageFileContent = styled.div`
   width: 100%;
   height: 100%;
+  max-height: 487px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,7 +75,7 @@ export const UploadedImage = styled.div`
   }
 `;
 
-export const FormContent = styled.div`
+export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -121,7 +124,7 @@ export const InputWrapper = styled.div`
 
   select {
     border: 0;
-    border-right: 16px solid transparent;
+    border-right: 10px solid transparent;
     outline: 1px solid #dddddd;
   }
 

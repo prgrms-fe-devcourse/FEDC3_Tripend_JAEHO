@@ -13,7 +13,7 @@ const authRequest = axios.create({
   baseURL,
 });
 
-const formDataRequest = axios.create({
+const postDataRequest = axios.create({
   baseURL,
 });
 
@@ -37,9 +37,9 @@ authRequest.interceptors.request.use(
   }
 );
 
-formDataRequest.interceptors.request.use(
+postDataRequest.interceptors.request.use(
   (config) => {
-    config.headers.authorization = BEARER + getStorage(TOKEN, '');
+    config.headers.authorization = BEARER + getStorage(TOKEN);
     config.headers['Content-Type'] = 'multipart/form-data';
     return config;
   },
@@ -48,4 +48,4 @@ formDataRequest.interceptors.request.use(
   }
 );
 
-export { baseRequest, authRequest, formDataRequest };
+export { baseRequest, authRequest, postDataRequest };

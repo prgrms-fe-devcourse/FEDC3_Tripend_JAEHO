@@ -18,12 +18,23 @@ import {
 
 const PostDetail = () => {
   const postId = useRecoilValue(selectedPostState);
-  const [{ post }, setPostDetail] = useRecoilState(postStateFamily(postId));
+  const [{ post, content, titleData }, setPostDetail] = useRecoilState(postStateFamily(postId));
 
   const getPostData = async () => {
     if (post === null) {
       const { data } = await getPostDetail(postId);
-      setPostDetail({ key: postId, post: data });
+      const { title } = data;
+      let content;
+      let titleData;
+
+      if (title.includes('{')) {
+        content = JSON.parse(title).content;
+        titleData = JSON.parse(title).title;
+      } else {
+        titleData = title.split('/')[0];
+      }
+
+      setPostDetail({ key: postId, post: data, content, titleData });
     }
   };
 
@@ -38,7 +49,7 @@ const PostDetail = () => {
       <LeftImage src={post.image} width={'50%'} height={'100%'} style={{ borderRadius: '16px' }} />
       <RightContainer>
         <RightContainerContent alignItem="flex-start" style={{ paddingBottom: '60px' }}>
-          <Title>{post.title.split('/')[0]}</Title>
+          <Title>{titleData}</Title>
         </RightContainerContent>
 
         <RightContainerContent
@@ -51,7 +62,7 @@ const PostDetail = () => {
           <div>벨기에, 브리쉘</div>
         </RightContainerContent>
         <RightContainerContent flexDirection="row" justifyContent="space-between">
-          <Tags title={post.title} alignItem="flex-end" />
+          <Tags data={post.title} alignItem="flex-end" />
           <RightContainerContent flexDirection="row">
             <Heart
               likes={post.likes}
@@ -61,6 +72,7 @@ const PostDetail = () => {
             />
           </RightContainerContent>
         </RightContainerContent>
+        <div>{content}</div>
         <BottomContainer alignItem="flex-start">
           <Comments postId={postId} comments={post.comments} />
         </BottomContainer>

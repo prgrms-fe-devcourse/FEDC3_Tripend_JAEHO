@@ -1,6 +1,6 @@
-import { ImageContainer } from './style';
-import Image from '../../../common/Image';
 import { memo } from 'react';
+import Image from '../../../common/Image';
+import { ImageContainer } from './style';
 
 const LeftImage = ({ src, width, height, style }) => {
   return (

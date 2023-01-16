@@ -1,5 +1,5 @@
-import { AuthorInfoContainer, AuthorInfoTextContainer } from './style';
 import Avatar from '../../../common/Avatar';
+import { AuthorInfoContainer, AuthorInfoTextContainer } from './style';
 
 const AuthorInfo = ({ image, fullName }) => {
   if (fullName === null) {

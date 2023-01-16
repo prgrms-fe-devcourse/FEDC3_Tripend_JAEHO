@@ -1,4 +1,4 @@
-import { TagContainer, Tag } from './style';
+import { Tag, TagContainer } from './style';
 
 const Tags = ({ date, gender, personnel, alignItem = 'center' }) => {
   return (

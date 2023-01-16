@@ -1,9 +1,9 @@
-import Post from './Post';
-import Modal from '../Modal';
-import PostDetail from './PostDetail';
-import Skeleton from '../common/Skeleton';
 import useMainSection from '../../hooks/useMainSection';
-import { PostsContainer, NotFoundResultContainer } from './style';
+import Skeleton from '../common/Skeleton';
+import Modal from '../Modal';
+import Post from './Post';
+import PostDetail from './PostDetail';
+import { NotFoundResultContainer, PostsContainer } from './style';
 
 const Posts = () => {
   const { postList, visible, selectedChannelName, onClickPost, onCloseModal } = useMainSection();

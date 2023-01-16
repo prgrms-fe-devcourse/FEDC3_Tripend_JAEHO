@@ -1,18 +1,18 @@
+import usePostDetail from '../../../hooks/usePostDetail';
+import Skeleton from '../../common/Skeleton';
+import Heart from '../Like';
 import AuthorInfo from '../Post/AuthorInfo';
 import LeftImage from '../Post/LeftImage';
 import Tags from '../Post/Tags';
-import Heart from '../Like';
 import Comments from './Comments';
-import Skeleton from '../../common/Skeleton';
-import usePostDetail from '../../../hooks/usePostDetail';
 import {
+  BottomContainer,
+  Content,
+  Country,
   PostDetailContainer,
   RightContainer,
   RightContainerContent,
   Title,
-  BottomContainer,
-  Country,
-  Content,
 } from './style';
 
 const PostDetail = () => {

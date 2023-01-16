@@ -11,7 +11,6 @@ const ImageContainar = styled.div`
 `;
 const ImageUploaderContainer = styled.div`
   width: 100%;
-  height: 100%;
 `;
 
 const UploadImageWrapper = styled.div`

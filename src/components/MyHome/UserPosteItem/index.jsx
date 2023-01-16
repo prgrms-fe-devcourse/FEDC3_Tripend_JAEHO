@@ -12,7 +12,6 @@ const UserPosterItem = memo(function ({ id, title, image, handlePoster, handleDe
     <PostItemContainer key={id}>
       <PostButton>
         <PosterButton onClick={() => handlePoster(id)}>수정</PosterButton>
-
         <PosterDeleteButton onClick={() => handleDeletePoster(id)}>삭제</PosterDeleteButton>
       </PostButton>
       <PostTitle>

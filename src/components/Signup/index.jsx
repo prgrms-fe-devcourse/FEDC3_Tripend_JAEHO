@@ -4,7 +4,14 @@ import { signup } from '../../apis/auth';
 import { useNavigate } from 'react-router-dom';
 import { ERROR_MESSAGE_SIGNUP, USER_PLACEHOLDER } from '../../utils/constant/auth';
 import { isValidName, isValidAge, isValidId, checkZeroOfFront } from '../../utils/validate/signup';
-import { SignupContainer, FieldSet, FormSigninText, SignupButton } from './style';
+import {
+  SignupContainer,
+  SignupTitle,
+  FieldSet,
+  InputWrapper,
+  FormSigninText,
+  SignupButton,
+} from './style';
 
 const {
   NEED_INPUT,
@@ -58,7 +65,7 @@ const Signup = () => {
   return (
     <SignupContainer>
       <form onSubmit={formik.handleSubmit}>
-        <h3>회원가입</h3>
+        <SignupTitle>회원가입</SignupTitle>
 
         <FieldSet className="form-el">
           <legend>이름</legend>
@@ -94,7 +101,7 @@ const Signup = () => {
 
         <FieldSet className="form-el">
           <legend>성별</legend>
-          <label>
+          <InputWrapper>
             <input
               id="userGenderMale"
               name="userGender"
@@ -103,9 +110,8 @@ const Signup = () => {
               onBlur={formik.handleBlur}
               value="남"
             />
-            남
-          </label>
-          <label>
+            <label htmlFor="userGenderMale">남</label>
+
             <input
               id="userGenderFemale"
               name="userGender"
@@ -114,8 +120,8 @@ const Signup = () => {
               onBlur={formik.handleBlur}
               value="여"
             />
-            여
-          </label>
+            <label htmlFor="userGenderFemale">여</label>
+          </InputWrapper>
         </FieldSet>
         {formik.touched.userGender && formik.errors.userGender ? (
           <div>{formik.errors.userGender}</div>
@@ -166,9 +172,9 @@ const Signup = () => {
         {formik.touched.userPasswordConfirm && formik.errors.userPasswordConfirm ? (
           <div>{formik.errors.userPasswordConfirm}</div>
         ) : null}
-        <SignupButton type="submit">create account</SignupButton>
+        <SignupButton type="submit">가입하기</SignupButton>
         <FormSigninText>
-          Have an account?
+          이미 회원이신가요?
           <span onClick={() => navigate('/')} style={{ color: 'red', cursor: 'pointer' }}>
             로그인
           </span>

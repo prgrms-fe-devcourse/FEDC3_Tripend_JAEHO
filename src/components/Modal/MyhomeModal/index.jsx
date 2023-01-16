@@ -57,6 +57,8 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
 
         setPosterTitle(loginUserObject.title);
         setPerson(loginUserObject.personnel);
+
+        console.log(loginUserObject.gender);
         setGender(loginUserObject.gender);
         setContent(loginUserObject.content);
       }
@@ -90,7 +92,7 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
     setVisible(false);
   };
 
-  const selectList = ['여자만', '남자만', '남여무관'];
+  const selectList = ['여자만', '남자만', '남여 무관'];
 
   return (
     <>
@@ -181,7 +183,7 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
                         {'여자만'}
                       </option>
                     )) ||
-                    (item.trim() === '남여무관' && <option key={index}>{'남여무관'}</option>)
+                    (item.trim() === '남여 무관' && <option key={index}>{'남여 무관'}</option>)
                   );
                 })}
               </select>

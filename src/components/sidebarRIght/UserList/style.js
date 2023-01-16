@@ -8,6 +8,9 @@ export const UserListContainer = styled.ul`
   padding: 0;
   list-style: none;
   overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const UserInfo = styled.li`

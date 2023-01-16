@@ -1,69 +1,33 @@
-import Avatar from '../../components/common/Avatar';
-import AlarmPopup from '../../components/Alarm/AlarmPopup';
 import Logo from '../../../static/images/Logo.svg';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
-import { isVisibleModalState } from '../../recoil/addPostStates';
-import { toggleStateFamily } from '../../recoil/toggleStates';
-import { userLoginState } from '../../recoil/authState';
-import { getMyAlarms } from '../../apis/alarm';
-import {
-  HeaderContainer,
-  LogoContaniner,
-  ButtonContainer,
-  IconItem,
-  AlarmContainer,
-} from './style';
-import { getStorage, setStorage } from '../../utils/storage';
-import { TOKEN, USERIMAGE } from '../../utils/constant/auth';
-import SearchPost from '../../components/SearchPost';
 import AddPost from '../../components/addPost';
+import AlarmPopup from '../../components/Alarm/AlarmPopup';
+import Avatar from '../../components/common/Avatar';
 import Icon from '../../components/common/Icons';
+import SearchPost from '../../components/SearchPost';
+import useHeader from '../../hooks/useHeader';
+import {
+  AlarmContainer,
+  ButtonContainer,
+  HeaderContainer,
+  IconItem,
+  LogoContaniner,
+} from './style';
 
 const Header = () => {
-  const isVisibleModal = useRecoilValue(isVisibleModalState);
-
-  const navigate = useNavigate();
-  const [alarmBox, setAlarmBox] = useState();
-  const [alarms, setAlarms] = useState([]);
-  const setIsLogin = useSetRecoilState(userLoginState);
-  const [isAlarmOpen, setIsAlarmOpen] = useRecoilState(toggleStateFamily('alarm'));
-
-  const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
-
-  const getToken = getStorage(TOKEN);
-  const userImage = getStorage(USERIMAGE);
-
-  const handleClickLogo = () => {
-    getToken ? navigate('/main') : navigate('/');
-  };
-
-  const handleAlarmOpen = async ({ target }) => {
-    if (!isAlarmOpen) {
-      setAlarmBox(target.closest('section'));
-      setIsAlarmOpen(true);
-      const response = await getMyAlarms();
-      setAlarms(response.data);
-    }
-  };
-  const handleLogout = () => {
-    setStorage(TOKEN, '');
-    setIsLogin(false);
-    navigate('/');
-  };
-
-  const handleAlarmClose = () => {
-    setIsAlarmOpen(false);
-  };
-
-  const handleOpenAddPostModal = () => {
-    setIsVisibleModal(true);
-  };
-
-  const handleOpenMyPage = () => {
-    navigate('/myhome');
-  };
+  const {
+    isVisibleModal,
+    handleOpenAddPostModal,
+    handleCloseAlarm,
+    handleOpenAlarm,
+    handleLogout,
+    handleClickLogo,
+    handleOpenMyPage,
+    alarms,
+    alarmBox,
+    userImage,
+    getToken,
+    isAlarmOpen,
+  } = useHeader();
 
   return (
     <HeaderContainer>
@@ -79,7 +43,7 @@ const Header = () => {
               <Icon.AddPostIcon />
             </IconItem>
             <AlarmContainer>
-              <IconItem onClick={handleAlarmOpen}>
+              <IconItem onClick={handleOpenAlarm}>
                 <Icon.Alarm />
               </IconItem>
             </AlarmContainer>
@@ -93,7 +57,7 @@ const Header = () => {
           {isVisibleModal && <AddPost visible={isVisibleModal} />}
           <AlarmPopup
             visible={isAlarmOpen}
-            onClose={handleAlarmClose}
+            onClose={handleCloseAlarm}
             target={alarmBox}
             alarms={alarms}
           />

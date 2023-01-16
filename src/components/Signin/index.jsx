@@ -12,7 +12,7 @@ import {
   FormButton,
   FormFailedText,
   FormSignupText,
-} from './index.style';
+} from './style';
 import { userLoginButtonShowState } from '../../recoil/authState';
 
 const Login = () => {
@@ -46,7 +46,7 @@ const Login = () => {
             </Fieldset>
 
             <FormButton type="submit" disabled={!email || !password}>
-              버튼
+              로그인
             </FormButton>
             <FormFailedText style={isLoading ? { color: 'red' } : { display: 'none' }}>
               등록된 계정이 없습니다.

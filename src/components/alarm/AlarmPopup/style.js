@@ -26,6 +26,7 @@ export const AlarmPopupContainer = styled.div`
 export const Title = styled.h3`
   font-size: 14px;
   margin: 10px 0;
+  border-bottom: 1px solid var(--gray);
 `;
 
 export const AlarmList = styled.ul`
@@ -33,8 +34,13 @@ export const AlarmList = styled.ul`
   padding: 0;
   margin: 10px 0;
   box-sizing: border-box;
+`;
 
-  &:last-of-type {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  }
+export const AlarmNoItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+  height: 30px;
 `;

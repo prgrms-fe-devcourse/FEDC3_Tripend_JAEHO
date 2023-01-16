@@ -71,12 +71,12 @@ const FormLogin = styled.form`
 
 const FormButton = styled.button`
   width: 100%;
-  height: 2rem;
-  padding: 0.5rem;
+  height: 3rem;
+  padding: 0.7rem;
   border: 1px solid #dee2e6;
   border-radius: 5px;
   outline: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin-top: 1rem;
   text-align: center;
   background-color: #8dd3bb;

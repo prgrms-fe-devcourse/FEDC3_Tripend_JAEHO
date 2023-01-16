@@ -1,10 +1,4 @@
-import {
-  Fieldset,
-  FormButton,
-  FormLogin,
-  LoginContainer,
-  LoginWrapper,
-} from '../Signin/index.style';
+import { Fieldset, FormButton, FormLogin, LoginContainer, LoginWrapper } from '../Signin/style';
 import { useCallback, useEffect, useState } from 'react';
 import { putPaswwordChange } from '../../apis/auth';
 import { ERROR_MESSAGE_SIGNIN, USER as AUTH, USER } from '../../utils/constant/auth';

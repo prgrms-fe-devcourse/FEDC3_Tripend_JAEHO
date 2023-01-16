@@ -1,5 +1,5 @@
 import useLike from '../../../hooks/useLike';
-import { MyPost, AccompanyButton, AccompaniedButton } from './style';
+import { AccompaniedButton, AccompanyButton, MyPost } from './style';
 
 const Heart = ({ likes, author, postId }) => {
   const userId = localStorage.getItem('id');

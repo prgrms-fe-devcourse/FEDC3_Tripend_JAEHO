@@ -1,7 +1,7 @@
-import Image from '../../../common/Image';
 import PersonIcon from '@mui/icons-material/Person';
-import { CommentContainer, AvatarWrapper, CommentInfo } from './style';
 import { memo } from 'react';
+import Image from '../../../common/Image';
+import { AvatarWrapper, CommentContainer, CommentInfo } from './style';
 
 const Comment = ({ comment, author }) => {
   return (

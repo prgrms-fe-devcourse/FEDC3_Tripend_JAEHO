@@ -1,12 +1,6 @@
-import { useState } from 'react';
-import Comment from '../Comment';
-import { useRecoilState } from 'recoil';
-import { postStateFamily } from '../../../../recoil/postStates';
-import { createComment } from '../../../../apis/comment';
-import { getChannelPosts, getPostDetail } from '../../../../apis/post';
-import { CommentCount, InputContainer, CommentContainer } from './style';
-import { createAlarm } from '../../../../apis/alarm';
 import useComment from '../../../../hooks/useComment';
+import Comment from '../Comment';
+import { CommentContainer, CommentCount, InputContainer } from './style';
 
 const Comments = ({ postId, comments }) => {
   const [comment, onChange, onSubmit] = useComment(postId);

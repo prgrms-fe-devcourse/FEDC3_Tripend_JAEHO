@@ -4,7 +4,7 @@ export const SignupContainer = styled.div`
   margin: 0 auto;
   width: 460px;
   position: relative;
-  top: 50px;
+  top: 200px;
 `;
 
 export const SignupTitle = styled.h1`

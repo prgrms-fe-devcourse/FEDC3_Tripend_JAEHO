@@ -6,7 +6,7 @@ const ImageUploader = styled.div`
   align-items: center;
   position: relative;
   width: 460px;
-  height: 466px;
+  height: 500px;
   border-radius: 10px;
   border: 2px dashed #addbbd;
   margin-right: 40px;
@@ -21,7 +21,8 @@ const ImageUploader = styled.div`
 
 const Input = styled.input`
   border: 1px solid grey;
-  width: 99%;
+  width: 60%;
+  display: inline-block;
   height: 40px;
   border-radius: 5px;
 `;
@@ -73,6 +74,88 @@ const ModalTitleWrapper = styled.div`
 `;
 const ModalTitle = styled.h3``;
 
+const InputDayWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+  font-size: 14px;
+  width: 100%;
+
+  label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  input {
+    height: 50%;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+  }
+`;
+
+const InputTitleWrapper = styled.div`
+  label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  input {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+  }
+`;
+
+const InputPersonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+  font-size: 14px;
+  width: 45%;
+
+  label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  input {
+    height: 50%;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+  }
+`;
+
+const InputGenderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+  font-size: 14px;
+  width: 50%;
+
+  margin-left: 10px;
+  label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  select {
+    width: 1000px;
+    background-color: #fff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+  }
+`;
+
 export {
   Input,
   Label,
@@ -83,4 +166,8 @@ export {
   ModalTitle,
   ImageUploader,
   ModalForm,
+  InputDayWrapper,
+  InputTitleWrapper,
+  InputPersonWrapper,
+  InputGenderWrapper,
 };

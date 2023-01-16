@@ -5,7 +5,7 @@ import { getMyPostDetail, updatePost } from '../../../apis/post';
 import {
   Button,
   ImageUploader,
-  Input,
+  Input, InputDayWrapper, InputGenderWrapper, InputPersonWrapper, InputTitleWrapper,
   Label,
   ModalForm,
   ModalLeft,
@@ -20,7 +20,8 @@ import {
   userListState,
   userLoginDateState,
 } from '../../../recoil/uploadImageState';
-import { InputWrapper } from '../../addPost/addPostForm/style';
+import styled from '@emotion/styled';
+import { InputsAlign } from '../../addPost/addPostForm/style';
 
 const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
   const [imageSrc, setImageSrc] = useState('');
@@ -121,68 +122,112 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
         </ModalTitleWrapper>
 
         <ModalForm onSubmit={handleSendFileImage}>
-          <InputWrapper>
-            <Label htmlFor="date" style={{ fontWeight: 'bold' }}>
-              날짜
-            </Label>
-            <Input value={day.trim()} type="date" onChange={handleDay} />
-          </InputWrapper>
+          <InputDayWrapper>
+            <label htmlFor="date">기간</label>
+            <InputsAlign>
+              <input
+                style={{
+                  height: '30px',
+                }}
+                type="date"
+                id="date"
+              />
+              부터
+              <input
+                style={{
+                  height: '30px',
+                }}
+                type="date"
+                id="date"
+              />
+              까지
+            </InputsAlign>
+          </InputDayWrapper>
 
-          <InputWrapper>
-            <Label htmlFor="text" style={{ fontWeight: 'bold' }}>
-              인원
-            </Label>
-            <Input
-              value={person}
-              type="text"
-              placeholder="인원을 입력해주세요"
-              onChange={handlePerson}
-            />
-          </InputWrapper>
-
-          <InputWrapper>
-            <Label style={{ fontWeight: 'bold' }}>원하는 성별</Label>
-            <select
-              value={gender}
+          <div
+            style={{
+              display: 'flex',
+            }}
+          >
+            <InputPersonWrapper
               style={{
-                borderRadius: '5px',
-                width: '100%',
-                height: '40px',
+                display: 'flex',
               }}
-              onChange={handleGender}
             >
-              <option>=== 선택 ===</option>
+              <Label htmlFor="text" style={{ fontWeight: 'bold' }}>
+                인원
+              </Label>
+              <Input
+                value={person}
+                type="text"
+                placeholder="인원을 입력해주세요"
+                onChange={handlePerson}
+              />
+            </InputPersonWrapper>
 
-              {selectList.map((item, index) => {
-                return (
-                  (item.trim() === '남자만' && (
-                    <option value={item} key={index}>
-                      {'남자만'}
-                    </option>
-                  )) ||
-                  (item.trim() === '여자만' && (
-                    <option value={item} key={index}>
-                      {'여자만'}
-                    </option>
-                  )) ||
-                  (item.trim() === '남여무관' && <option key={index}>{'남여무관'}</option>)
-                );
-              })}
-            </select>
-          </InputWrapper>
+            <InputGenderWrapper>
+              <Label style={{ fontWeight: 'bold' }}>원하는 성별</Label>
+              <select
+                value={gender}
+                style={{
+                  borderRadius: '5px',
+                  width: '100%',
+                  height: '40px',
+                }}
+                onChange={handleGender}
+              >
+                <option>=== 선택 ===</option>
 
-          <InputWrapper>
-            <Label htmlFor="text" style={{ fontWeight: 'bold' }}>
+                {selectList.map((item, index) => {
+                  return (
+                    (item.trim() === '남자만' && (
+                      <option value={item} key={index}>
+                        {'남자만'}
+                      </option>
+                    )) ||
+                    (item.trim() === '여자만' && (
+                      <option value={item} key={index}>
+                        {'여자만'}
+                      </option>
+                    )) ||
+                    (item.trim() === '남여무관' && <option key={index}>{'남여무관'}</option>)
+                  );
+                })}
+              </select>
+            </InputGenderWrapper>
+          </div>
+
+          <InputTitleWrapper>
+            <Label htmlFor="title" style={{ fontWeight: 'bold' }}>
               제목
             </Label>
             <Input
+              style={{
+                height: '40px',
+              }}
               value={posterTitle}
-              type="text"
+              id="title"
               placeholder="제목을 입력해주세요"
               onChange={handlePosterTitle}
             />
-          </InputWrapper>
+          </InputTitleWrapper>
 
+          <InputTitleWrapper>
+            <Label htmlFor="content" style={{ fontWeight: 'bold' }}>
+              내용
+            </Label>
+            <textarea
+              style={{
+                height: '60px',
+                width: '100%',
+                backgroundColor: '#fff',
+                border: '1px solid #dddddd',
+                borderRadius: '4px',
+              }}
+              id="content"
+              placeholder="내용을 입력해주세요"
+            />
+          </InputTitleWrapper>
           <Button type="submit">확인</Button>
         </ModalForm>
       </ModalRight>

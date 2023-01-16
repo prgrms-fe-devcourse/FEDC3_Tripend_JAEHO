@@ -5,7 +5,7 @@ import AlarmPopupItem from '../AlarmPopupItem';
 import { AlarmList, AlarmNoItem, AlarmPopupContainer, Title } from './style';
 
 const AlarmPopup = ({ visible = false, onClose, target, alarms }) => {
-  const { element, handleClickAlarm } = useAlarm(target);
+  const { element, handleClickAlarm } = useAlarm(target, onClose);
   const ref = useClickAway(() => {
     onClose && onClose();
   });

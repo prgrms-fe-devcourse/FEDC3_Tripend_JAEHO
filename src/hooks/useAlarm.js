@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { selectedPostState } from '../recoil/postStates';
 
-const useAlarm = (target) => {
+const useAlarm = (target, onClose) => {
   const navigate = useNavigate();
   const setPostId = useSetRecoilState(selectedPostState);
   const element = useMemo(() => document.createElement('div'), []);

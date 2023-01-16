@@ -5,7 +5,11 @@ import { getMyPostDetail, updatePost } from '../../../apis/post';
 import {
   Button,
   ImageUploader,
-  Input, InputDayWrapper, InputGenderWrapper, InputPersonWrapper, InputTitleWrapper,
+  Input,
+  InputDayWrapper,
+  InputGenderWrapper,
+  InputPersonWrapper,
+  InputTitleWrapper,
   Label,
   ModalForm,
   ModalLeft,

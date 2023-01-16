@@ -57,8 +57,6 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
 
         setPosterTitle(loginUserObject.title);
         setPerson(loginUserObject.personnel);
-
-        console.log(loginUserObject.gender);
         setGender(loginUserObject.gender);
         setContent(loginUserObject.content);
       }
@@ -81,11 +79,26 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
 
     // const title = `${posterTitle} / ${day} / ${person} / ${gender}`;
 
+    const temp = JSON.parse(detail.data.title);
+
+    const title = {
+      country: temp.country,
+      date: `${dayStart}~${dayEnd}`,
+      personnel: person,
+      gender: gender,
+      title: posterTitle,
+      content: content,
+    };
+
+    // 바뀐값
+
+    // 이전값
+
     const formatData = new FormData();
 
     formatData.append(FORMATDATA.POST_ID, postId);
     formatData.append(FORMATDATA.IMAGE, imageValue);
-    formatData.append(FORMATDATA.TITLE, title);
+    formatData.append(FORMATDATA.TITLE, JSON.stringify(title));
     formatData.append(FORMATDATA.CHANNEL_ID, detail.data._id);
 
     const res = await updatePost(formatData);

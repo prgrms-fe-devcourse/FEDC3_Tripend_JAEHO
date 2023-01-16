@@ -1,72 +1,12 @@
 import Post from './Post';
 import Modal from '../Modal';
 import PostDetail from './PostDetail';
-import { useEffect, useState } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { getChannelPosts, getPostDetail } from '../../apis/post';
-import { channelState } from '../../recoil/channelState';
-import { postDetailModalState, selectedPostState } from '../../recoil/postStates';
-import { useParams } from 'react-router-dom';
 import Skeleton from '../common/Skeleton';
+import useMainSection from '../../hooks/useMainSection';
 import { PostsContainer, NotFoundResultContainer } from './style';
-import { getChannels } from '../../apis/post';
 
 const Posts = () => {
-  const useParamsId = useParams().id;
-
-  const setSelectedPostId = useSetRecoilState(selectedPostState);
-  const [postList, setPostList] = useRecoilState(channelState(useParamsId ?? 'all'));
-  const [visible, setVisible] = useRecoilState(postDetailModalState);
-
-  const [selectedChannelName, setSelectedChannelName] = useState('');
-
-  const sleep = (ms) => {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  };
-
-  //채널 이름 가져오기 위한 함수
-  const getChannelName = async (clickedId) => {
-    const { data } = await getChannels();
-    return data.filter((channels) => channels._id === clickedId)[0]?.name;
-  };
-
-  const setChannelName = async () => {
-    const data = await getChannelName(useParamsId);
-    setSelectedChannelName(data);
-  };
-  setChannelName();
-
-  const getPostData = async () => {
-    const { data } = await getChannelPosts(useParamsId);
-    await sleep(300);
-    setPostList({ id: useParamsId, posts: data });
-  };
-
-  const getAllPostData = async () => {
-    const { data } = await getPostDetail('');
-
-    data.sort(() => Math.random() - 0.5);
-    setPostList({ id: 'all', posts: data });
-  };
-
-  const onClickPost = (postId) => {
-    setVisible(true);
-    setSelectedPostId(postId);
-    history.pushState(null, 'modal', `/p/${postId}`);
-  };
-
-  const onCloseModal = () => {
-    setVisible(false);
-    history.back();
-  };
-
-  useEffect(() => {
-    if (useParamsId) {
-      getPostData();
-    } else {
-      getAllPostData();
-    }
-  }, [useParamsId]);
+  const { postList, visible, selectedChannelName, onClickPost, onCloseModal } = useMainSection();
 
   const renderWithData = () => {
     return postList.posts.length > 0 ? (
@@ -77,7 +17,7 @@ const Posts = () => {
               <Post
                 key={post._id}
                 id={post._id}
-                data={post.title}
+                titleObject={post.title}
                 image={post.image}
                 author={post.author}
                 likes={post.likes}

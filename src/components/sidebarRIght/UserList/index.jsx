@@ -1,19 +1,11 @@
-import { useEffect, useState } from 'react';
-import { getUsers, getClickedUserInfo } from '../../../apis/user';
+import { useEffect } from 'react';
+import useGetUserList from '../../../hooks/useGetUserList';
 import { extractName } from '../../../utils/validate/userList';
 import Avatar from '../../common/Avatar';
 import { UserInfo, UserListContainer, UserName } from './style';
+
 const UserList = () => {
-  const [userInfos, setUserInfos] = useState([]);
-
-  const getUserData = async () => {
-    const { data } = await getUsers();
-    setUserInfos(data);
-  };
-
-  const showUserDetail = async (currentUserId) => {
-    await getClickedUserInfo(currentUserId);
-  };
+  const { userInfos, getUserData, showUserDetail } = useGetUserList();
 
   useEffect(() => {
     getUserData();

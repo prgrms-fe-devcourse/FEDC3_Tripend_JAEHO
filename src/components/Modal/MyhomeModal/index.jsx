@@ -77,10 +77,10 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
   const handleSendFileImage = async (e) => {
     e.preventDefault();
 
-    const temp = JSON.parse(detail.data.title);
+    const jsonParseTitle = JSON.parse(detail.data.title);
 
     const title = {
-      country: temp.country,
+      country: jsonParseTitle.country,
       date: `${dayStart}~${dayEnd}`,
       personnel: person,
       gender: gender,

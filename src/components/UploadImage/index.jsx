@@ -24,7 +24,6 @@ const UploadAndDisplayImage = ({ postId }) => {
 
   const checkImage = (file) => {
     if (file.type === FILE.JPEG || file.type === FILE.SVG || file.type === FILE.PNG) {
-      console.log(file);
       setSelectedImage(file);
     } else {
       swal(ERROR_MESSAGE.UPLOAD_IMAGE);

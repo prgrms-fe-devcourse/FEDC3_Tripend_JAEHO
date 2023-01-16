@@ -33,9 +33,11 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
   const [detail, setPostDetail] = useRecoilState(userLoginDateState);
   const [visible, setVisible] = useRecoilState(myhomeModalState);
 
-  const [day, setDay] = useState('');
+  const [dayEnd, setEndDay] = useState('');
+  const [dayStart, setStartDay] = useState('');
   const [person, setPerson] = useState('');
 
+  const [content, setContent] = useState('');
   const [posterTitle, setPosterTitle] = useState('');
 
   const [profile, setProfile] = useState([]);
@@ -48,33 +50,21 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
       const getpostDetail = await getMyPostDetail(postId);
 
       if (getpostDetail.data.title) {
-        let str = getpostDetail.data.title.split('/');
+        const loginUserObject = JSON.parse(getpostDetail.data.title);
 
-        str = str.toString().replace(/(\s*)/g, '');
+        setEndDay(loginUserObject.date.split('~')[1]);
+        setStartDay(loginUserObject.date.split('~')[0]);
 
-        setPosterTitle(str.split(',')[0]);
-        setDay(str.split(',')[1]);
-        setPerson(str.split(',')[2]);
-        setGender(str.split(',')[3]);
+        setPosterTitle(loginUserObject.title);
+        setPerson(loginUserObject.personnel);
+        setGender(loginUserObject.gender);
+        setContent(loginUserObject.content);
       }
     };
 
     getPostModalDetail();
   }, []);
 
-  const handleDay = useCallback(
-    (e) => {
-      setDay(e.target.value);
-    },
-    [day]
-  );
-
-  const handlePerson = useCallback(
-    (e) => {
-      setPerson(e.target.value);
-    },
-    [person]
-  );
   const [gender, setGender] = useState('');
 
   const handleGender = useCallback(
@@ -84,17 +74,10 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
     [gender]
   );
 
-  const handlePosterTitle = useCallback(
-    (e) => {
-      setPosterTitle(e.target.value);
-    },
-    [posterTitle]
-  );
-
   const handleSendFileImage = async (e) => {
     e.preventDefault();
 
-    const title = `${posterTitle} / ${day} / ${person} / ${gender}`;
+    // const title = `${posterTitle} / ${day} / ${person} / ${gender}`;
 
     const formatData = new FormData();
 
@@ -135,6 +118,8 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
                 }}
                 type="date"
                 id="date"
+                value={dayStart.trim()}
+                onChange={(e) => setStartDay(e.target.value)}
               />
               부터
               <input
@@ -143,6 +128,8 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
                 }}
                 type="date"
                 id="date"
+                value={dayEnd.trim()}
+                onChange={(e) => setEndDay(e.target.value)}
               />
               까지
             </InputsAlign>
@@ -165,7 +152,7 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
                 value={person}
                 type="text"
                 placeholder="인원을 입력해주세요"
-                onChange={handlePerson}
+                onChange={(e) => setPerson(e.target.value)}
               />
             </InputPersonWrapper>
 
@@ -212,7 +199,7 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
               value={posterTitle}
               id="title"
               placeholder="제목을 입력해주세요"
-              onChange={handlePosterTitle}
+              onChange={(e) => setPosterTitle(e.target.value)}
             />
           </InputTitleWrapper>
 
@@ -230,6 +217,8 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
               }}
               id="content"
               placeholder="내용을 입력해주세요"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
             />
           </InputTitleWrapper>
           <Button type="submit">확인</Button>

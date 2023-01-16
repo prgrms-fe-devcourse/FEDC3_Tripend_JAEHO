@@ -23,7 +23,7 @@ const UserPosterItem = memo(function ({ id, title, image, handlePoster, handleDe
       <PostTitle>
         <p>{title.title}</p>
         <p style={{ marginRight: '50px' }}>
-          {days[0]}~{days[1]}
+          {days[0]}~ {days[1]}
         </p>
       </PostTitle>
       <ImageItemContainer>

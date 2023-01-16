@@ -2,7 +2,7 @@ import useClickAway from '../../../hooks/useClickAway';
 import ReactDOM from 'react-dom';
 import { useMemo, useEffect } from 'react';
 import AlarmPopupItem from '../AlarmPopupItem';
-import { AlarmPopupContainer, Title, AlarmList } from './style';
+import { AlarmPopupContainer, Title, AlarmList, AlarmNoItem } from './style';
 import { useSetRecoilState } from 'recoil';
 import { selectedPostState } from '../../../recoil/postStates';
 import { useNavigate } from 'react-router-dom';
@@ -35,14 +35,17 @@ const AlarmPopup = ({ visible = false, onClose, target, alarms }) => {
     <AlarmPopupContainer ref={ref} style={{ display: visible ? 'block' : 'none' }}>
       <Title>알람</Title>
       <AlarmList>
-        {alarms &&
+        {alarms.length ? (
           alarms.map((alarm) => (
             <AlarmPopupItem
               key={alarm._id}
               alarm={alarm}
               onClick={() => handleClickAlarm(alarm.post)}
             />
-          ))}
+          ))
+        ) : (
+          <AlarmNoItem>알람이 없습니다!</AlarmNoItem>
+        )}
       </AlarmList>
     </AlarmPopupContainer>,
     element

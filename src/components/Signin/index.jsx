@@ -33,7 +33,7 @@ const Login = () => {
         <LoginContainer>
           <FormLogin onSubmit={handleSubmit}>
             <h3>로그인</h3>
-            <FormLoginText>Login to access your Golobe account</FormLoginText>
+            <FormLoginText>Login to access your Tripend account</FormLoginText>
 
             <Fieldset>
               <legend>이메일</legend>

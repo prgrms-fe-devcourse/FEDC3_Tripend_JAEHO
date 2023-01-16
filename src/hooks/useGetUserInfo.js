@@ -7,29 +7,28 @@ const useGetUserInfo = () => {
   const [keyword, setKeyword] = useState('');
   const [result, setResult] = useState([]);
 
+  console.log('keyword', keyword);
+
   const getUserInfoData = async (encodedKeyword) => {
     const { data } = await getUserInfo(encodedKeyword);
     setResult(data);
   };
 
-  const handleDebounce = () => {
-    useDebounce(
-      () => {
-        if (keyword !== '') {
-          getUserInfoData(encodeKeyword(keyword));
-        } else setResult([]);
-      },
-      300,
-      [keyword]
-    );
-  };
+  useDebounce(
+    () => {
+      if (keyword !== '') {
+        getUserInfoData(encodeKeyword(keyword));
+      } else setResult([]);
+    },
+    300,
+    [keyword]
+  );
 
   return {
     keyword,
     getUserInfoData,
     setKeyword,
     result,
-    handleDebounce,
   };
 };
 export default useGetUserInfo;

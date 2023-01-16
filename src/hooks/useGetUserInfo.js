@@ -7,8 +7,6 @@ const useGetUserInfo = () => {
   const [keyword, setKeyword] = useState('');
   const [result, setResult] = useState([]);
 
-  console.log('keyword', keyword);
-
   const getUserInfoData = async (encodedKeyword) => {
     const { data } = await getUserInfo(encodedKeyword);
     setResult(data);

@@ -37,7 +37,7 @@ const Heart = ({ likes, author, postId }) => {
       }
 
       //알림 생성
-      await createAlarm('LIKE', data._id, author, data.post);
+      await createAlarm('LIKE', data._id, author._id, data.post);
 
       setCurrentLike(data);
     }

@@ -36,13 +36,13 @@ const Login = () => {
             <FormLoginText>Login to access your Golobe account</FormLoginText>
 
             <Fieldset>
-              <legend>로그인</legend>
+              <legend>이메일</legend>
               <Input type="text" onChange={handleEmail} />
             </Fieldset>
 
             <Fieldset>
               <legend>비밀번호</legend>
-              <Input type="text" onChange={handlePassword} />
+              <Input type="password" onChange={handlePassword} />
             </Fieldset>
 
             <FormButton type="submit" disabled={!email || !password}>

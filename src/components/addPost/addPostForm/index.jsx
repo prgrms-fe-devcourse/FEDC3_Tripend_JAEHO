@@ -1,25 +1,23 @@
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { isVisibleModalState } from '../../../recoil/addPostStates';
 import { imageToBinary } from '../../../utils/imageConverter';
 import { getStorage } from '../../../utils/storage';
-
-import { createPost } from '../../../apis/post';
-import { getChannels } from '../../../apis/post';
+import { createPost, getChannels } from '../../../apis/post';
 
 import UploadIcon from '../../../../static/images/upload.svg';
 import {
-  PostForm,
-  ImageUploader,
-  ImageFileInput,
-  ImageFileContent,
-  Title,
   Description,
-  UploadedImage,
   FormContainer,
-  InputWrapper,
+  ImageFileContent,
+  ImageFileInput,
+  ImageUploader,
   InputsAlign,
+  InputWrapper,
+  PostForm,
   SubmitButton,
+  Title,
+  UploadedImage,
 } from './style';
 
 const GenderData = {

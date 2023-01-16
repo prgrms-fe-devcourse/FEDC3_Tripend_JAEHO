@@ -36,8 +36,8 @@ const AlarmPopup = ({ visible = false, onClose, target, alarms }) => {
       <Title>알람</Title>
       <AlarmList>
         {alarms &&
-          alarms.map(({ _id, author, post }) => (
-            <AlarmPopupItem key={_id} author={author} onClick={() => handleClickAlarm(post)} />
+          alarms.map((alarm) => (
+            <AlarmPopupItem key={alarm._id} alarm={alarm} onClick={() => handleClickAlarm(post)} />
           ))}
       </AlarmList>
     </AlarmPopupContainer>,

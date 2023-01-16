@@ -27,6 +27,7 @@ const LoginPoster = () => {
   useEffect(() => {
     const getUserData = async () => {
       const getLoginUserData = await getUser();
+
       setLoginData(getLoginUserData.data);
     };
 
@@ -74,7 +75,7 @@ const LoginPoster = () => {
               <UserPosterItem
                 key={_id}
                 id={_id}
-                title={title}
+                title={JSON.parse(title)}
                 image={image}
                 handlePoster={handlePoster}
                 handleDeletePoster={handleDeletePoster}

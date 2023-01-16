@@ -4,10 +4,16 @@ import {
   PostItemContainer,
   PostTitle,
 } from '../../../pages/MyPosterPage/style';
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { PosterButton, PosterDeleteButton } from './style';
 
 const UserPosterItem = memo(function ({ id, title, image, handlePoster, handleDeletePoster }) {
+  const [days, setDays] = useState('');
+
+  useEffect(() => {
+    setDays(title.date.split('~'));
+  }, []);
+
   return (
     <PostItemContainer key={id}>
       <PostButton>
@@ -15,8 +21,10 @@ const UserPosterItem = memo(function ({ id, title, image, handlePoster, handleDe
         <PosterDeleteButton onClick={() => handleDeletePoster(id)}>삭제</PosterDeleteButton>
       </PostButton>
       <PostTitle>
-        <p>{title.split('/')[0]}</p>
-        <p style={{ marginRight: '50px' }}>{title.split('/')[1]}</p>
+        <p>{title.title}</p>
+        <p style={{ marginRight: '50px' }}>
+          {days[0]}~{days[1]}
+        </p>
       </PostTitle>
       <ImageItemContainer>
         <img

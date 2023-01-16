@@ -6,7 +6,7 @@ import { AlarmItem, AlarmImg, AlarmText } from './style';
 
 const AlarmPopupItem = ({ alarm, onClick }) => {
   const { author } = alarm;
-  const alarmCategory = alarm && alarm.comments ? ALARM.COMMENT : ALARM.ACCOMPANY;
+  const alarmCategory = alarm && alarm.comment ? ALARM.COMMENT : ALARM.ACCOMPANY;
   const filteredName = extractName.exec(author.fullName)[0];
   const alarmComment = `${filteredName}님이 회원님의 게시물에 ${alarmCategory} 남겼습니다`;
 

@@ -16,6 +16,7 @@ export const InputContainer = styled.form`
   }
   & > input {
     font-size: 14px;
+    width: calc(100% - 34px);
   }
 `;
 

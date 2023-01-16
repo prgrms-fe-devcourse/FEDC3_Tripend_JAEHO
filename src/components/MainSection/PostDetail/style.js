@@ -31,3 +31,17 @@ export const BottomContainer = styled.div`
   height: calc(100% - 280px);
   margin-top: 50px;
 `;
+
+export const Country = styled.div`
+  font-size: 14px;
+  color: #112211;
+  & > span {
+    position: relative;
+    top: -3px;
+  }
+`;
+
+export const Content = styled.div`
+  margin-top: 30px;
+  font-size: 15px;
+`;

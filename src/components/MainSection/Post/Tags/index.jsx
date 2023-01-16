@@ -1,22 +1,6 @@
 import { TagContainer, Tag } from './style';
 
-const Tags = ({ data, alignItem = 'center' }) => {
-  const isObject = data.includes('{');
-
-  let date;
-  let personnel;
-  let gender;
-
-  if (isObject) {
-    const TagData = JSON.parse(data);
-
-    date = TagData.date;
-    personnel = TagData.personnel;
-    gender = TagData.gender;
-  } else {
-    [date, personnel, gender] = data.split('/').slice(1);
-  }
-
+const Tags = ({ date, gender, personnel, alignItem = 'center' }) => {
   return (
     <TagContainer alignItem={alignItem}>
       <Tag>{date}</Tag>

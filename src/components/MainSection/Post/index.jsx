@@ -4,36 +4,26 @@ import {
   TravelName,
   BottomContainer,
   InfoContainerHeader,
-  LikeAndCommentContainer,
 } from './style';
 import Tags from './Tags';
 import AuthorInfo from './AuthorInfo';
 import LeftImage from './LeftImage';
-import Heart from '../Heart';
 import { memo } from 'react';
 import LikeAndComment from './LikeAndComment';
 
-const Post = ({ id, data, image, author, likes, commentLength, onClickPost }) => {
-  const isObject = data.includes('{');
-  let travel_name;
-
-  if (isObject) {
-    travel_name = JSON.parse(data).title;
-  } else {
-    travel_name = data.split('/')[0];
-  }
+const Post = ({ id, titleObject, image, author, likes, commentLength, onClickPost }) => {
+  const { title, date, gender, personnel } = JSON.parse(titleObject);
 
   return (
     <PostContainer onClick={() => onClickPost(id)}>
       <LeftImage src={image} width={'280px'} height={'180px'} style={{ borderRadius: '16px' }} />
       <InfoContainer>
         <InfoContainerHeader>
-          <TravelName>{travel_name}</TravelName>
-          {/*<Heart likes={likes} author={author} postId={id} styleProps={{ fontSize: '35px' }} />*/}
+          <TravelName>{title}</TravelName>
         </InfoContainerHeader>
-        <Tags data={data} />
+        <Tags date={date} gender={gender} personnel={personnel} />
         <BottomContainer>
-          <AuthorInfo image={author.image} fullName={author.fullName} />
+          <AuthorInfo image={author?.image} fullName={author?.fullName} />
           <LikeAndComment likeLength={likes.length} commentLength={commentLength} />
         </BottomContainer>
       </InfoContainer>

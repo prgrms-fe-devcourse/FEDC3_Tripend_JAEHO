@@ -1,36 +1,17 @@
-import { useState } from 'react';
-import { encodeKeyword } from '../../../utils/validate/userList';
-import { getUserInfo } from '../../../apis/user';
 import SearchIcon from '@mui/icons-material/Search';
-import useDebounce from '../../../hooks/useDebounce';
+import useGetUserInfo from '../../../hooks/useGetUserInfo';
 import Avatar from '../../common/Avatar';
 import {
-  UserListTitle,
-  UserSearchBarContainer,
-  UsersSearchBar,
   SearchResult,
   UserInfo,
+  UserListTitle,
   UserName,
+  UserSearchBarContainer,
+  UsersSearchBar,
 } from './style';
 
 const UserSearchBar = () => {
-  const [keyword, setKeyword] = useState('');
-  const [result, setResult] = useState([]);
-
-  const getUserInfoData = async (encodedKeyword) => {
-    const { data } = await getUserInfo(encodedKeyword);
-    setResult(data);
-  };
-
-  useDebounce(
-    () => {
-      if (keyword !== '') {
-        getUserInfoData(encodeKeyword(keyword));
-      } else setResult([]);
-    },
-    300,
-    [keyword]
-  );
+  const { keyword, setKeyword, result } = useGetUserInfo();
 
   return (
     <div>

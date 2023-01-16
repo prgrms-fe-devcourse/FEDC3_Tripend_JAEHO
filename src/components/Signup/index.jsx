@@ -1,66 +1,16 @@
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { signup } from '../../apis/auth';
-import { useNavigate } from 'react-router-dom';
-import { ERROR_MESSAGE_SIGNUP, USER_PLACEHOLDER } from '../../utils/constant/auth';
-import { isValidName, isValidAge, isValidId, checkZeroOfFront } from '../../utils/validate/signup';
+import useSignupForm from '../../hooks/useSignupForm';
+import { USER_PLACEHOLDER } from '../../utils/constant/auth';
 import {
+  FieldSet,
+  FormSigninText,
+  InputWrapper,
+  SignupButton,
   SignupContainer,
   SignupTitle,
-  FieldSet,
-  InputWrapper,
-  FormSigninText,
-  SignupButton,
 } from './style';
 
-const {
-  NEED_INPUT,
-  INCORRECT_NAME,
-  INCORRECT_AGE,
-  INCORRECT_EMAIL,
-  INCORRECT_PASSWORD,
-  DIFFERENT_PASSWORD,
-} = ERROR_MESSAGE_SIGNUP;
-
 const Signup = () => {
-  const navigate = useNavigate();
-
-  const formik = useFormik({
-    initialValues: {
-      userName: '',
-      userAge: '',
-      userGender: '',
-      userId: '',
-      userPassword: '',
-      userPasswordConfirm: '',
-    },
-    validationSchema: Yup.object({
-      userName: Yup.string()
-        .min(2, INCORRECT_NAME)
-        .matches(isValidName, INCORRECT_NAME)
-        .required(NEED_INPUT),
-      userAge: Yup.string().matches(isValidAge, INCORRECT_AGE).required(NEED_INPUT),
-      userGender: Yup.string().required(NEED_INPUT),
-      userId: Yup.string().matches(isValidId, INCORRECT_EMAIL).required(NEED_INPUT),
-      userPassword: Yup.string().min(6, INCORRECT_PASSWORD).required(NEED_INPUT),
-      userPasswordConfirm: Yup.string()
-        .oneOf([Yup.ref('userPassword'), null], DIFFERENT_PASSWORD)
-        .required(NEED_INPUT),
-    }),
-    onSubmit: async (values) => {
-      values.userAge = values.userAge.replace(checkZeroOfFront, '');
-      try {
-        const response = await signup(values);
-        if (response) {
-          navigate(`/signup`);
-        } else {
-          navigate(`/`);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    },
-  });
+  const { navigate, formik } = useSignupForm();
 
   return (
     <SignupContainer>

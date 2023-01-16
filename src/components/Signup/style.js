@@ -4,7 +4,7 @@ export const SignupContainer = styled.div`
   margin: 0 auto;
   width: 460px;
   position: relative;
-  top: 50px;
+  top: 200px;
 `;
 
 export const SignupTitle = styled.h1`
@@ -42,7 +42,7 @@ export const FormSigninText = styled.p`
   text-align: center;
   font-size: 0.8rem;
 
-  &:first-child {
+  &:first-of-type {
     margin-right: 10px;
   }
 `;

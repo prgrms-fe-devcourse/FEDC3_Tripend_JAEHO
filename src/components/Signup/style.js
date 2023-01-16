@@ -42,7 +42,7 @@ export const FormSigninText = styled.p`
   text-align: center;
   font-size: 0.8rem;
 
-  &:first-child {
+  &:first-of-type {
     margin-right: 10px;
   }
 `;

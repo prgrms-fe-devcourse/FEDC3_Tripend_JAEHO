@@ -12,7 +12,22 @@ import {
 import Tags from './Tags';
 
 const Post = ({ id, titleObject, image, author, likes, commentLength, onClickPost }) => {
-  const { title, date, gender, personnel } = JSON.parse(titleObject);
+  let title, date, gender, personnel;
+
+  if (titleObject.includes('/')) {
+    [title, date, gender, personnel] = titleObject.split('/');
+  } else if (titleObject.includes('{')) {
+    const obj = JSON.parse(titleObject);
+    title = obj.title;
+    date = obj.date;
+    gender = obj.gender;
+    personnel = obj.personnel;
+  } else {
+    title = '';
+    date = '';
+    gender = '';
+    personnel = '';
+  }
 
   return (
     <PostContainer onClick={() => onClickPost(id)}>

@@ -27,7 +27,7 @@ const Posts = () => {
   //채널 이름 가져오기 위한 함수
   const getChannelName = async (clickedId) => {
     const { data } = await getChannels();
-    return data.filter((channels) => channels._id === clickedId)[0].name;
+    return data.filter((channels) => channels._id === clickedId);
   };
 
   const setChannelName = async () => {
@@ -90,7 +90,7 @@ const Posts = () => {
       </>
     ) : (
       <NotFoundResultContainer>
-        <strong>{selectedChannelName}</strong>의 글 목록이 아직 존재하지 않습니다. <br />
+        <strong>{selectedChannelName[0].name}</strong>의 글 목록이 아직 존재하지 않습니다. <br />
         <br />
         동행을 구하고 싶다면 포스트를 생성해보세요 :)
       </NotFoundResultContainer>

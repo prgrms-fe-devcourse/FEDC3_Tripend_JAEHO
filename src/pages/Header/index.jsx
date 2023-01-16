@@ -20,7 +20,7 @@ import { TOKEN, USERIMAGE } from '../../utils/constant/auth';
 import PrivateHeader from './PrivateHeaderContainer';
 import SearchPost from '../../components/SearchPost';
 import AddPost from '../../components/addPost';
-import Icon from '../../components/common/Icon';
+import Icon from '../../components/common/Icons';
 
 const Header = () => {
   const isVisibleModal = useRecoilValue(isVisibleModalState);

@@ -77,8 +77,6 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
   const handleSendFileImage = async (e) => {
     e.preventDefault();
 
-    // const title = `${posterTitle} / ${day} / ${person} / ${gender}`;
-
     const temp = JSON.parse(detail.data.title);
 
     const title = {
@@ -89,10 +87,6 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
       title: posterTitle,
       content: content,
     };
-
-    // 바뀐값
-
-    // 이전값
 
     const formatData = new FormData();
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { getStorage } from '../../utils/storage';
 import { BEARER, TOKEN } from '../../utils/constant/auth';
+import { getStorage } from '../../utils/storage';
 
 const baseURL = `${process.env.REACT_APP_API_ENDPOINT}`;
 

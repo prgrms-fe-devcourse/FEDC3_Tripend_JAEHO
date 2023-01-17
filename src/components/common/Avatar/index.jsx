@@ -1,7 +1,7 @@
-import ImageComponent from '../Image';
 import styled from '@emotion/styled';
-import { useState, useEffect } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
+import { useEffect, useState } from 'react';
+import ImageComponent from '../Image';
 
 const ShapeToCssValue = {
   circle: '50%',

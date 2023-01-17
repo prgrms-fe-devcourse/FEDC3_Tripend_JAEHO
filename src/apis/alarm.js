@@ -1,5 +1,5 @@
-import { authRequest } from './core';
 import { URL } from '../utils/constant/alarm';
+import { authRequest } from './core';
 
 // 나의 알림 목록
 export const getMyAlarms = async () => {

@@ -1,18 +1,20 @@
 :root {
   --primary: #8dd3bb;
-  /* var(--primary)   */
-  --secondary: #112211;
-  /* var(--secondary)   */
-  --dark: #000000;
-  /* var(--dark)   */
-  --dark4: #2c353d;
-  /* var(--dark4)   */
-  --gray: #f7f9fb;
-  /* var(--gray)    */
+  /* var(--primary) */
+  --secondary: #f2fffa;
+  /* var(--secondary) */
+  --font-main-color: #112211;
+  /* var(--font-main-color) */
+  --background-color: #f7f9fb;
+  /* var(--background-color) */
+  --font-input-color: #8d8d8d;
+  /* var(--font-input-color) */
   --white: #fff;
-  /* var(--white)    */
+  /* var(--white) */
+  --font-title-size: 32px;
+  --font-input-size: 1rem;
+  --font-subtitle-size: 0.8rem;
 }
-
 @font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
@@ -42,4 +44,5 @@ input:focus {
   letter-spacing: 1px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--background-color);
 }

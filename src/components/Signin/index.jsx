@@ -1,19 +1,21 @@
-import { useForm } from '../../hooks/useForm';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { useForm } from '../../hooks/useForm';
+import '../../index.css';
+import { userLoginButtonShowState } from '../../recoil/authState';
 import {
-  LoginBlock,
-  LoginWrapper,
-  LoginContainer,
-  FormLogin,
-  FormLoginText,
   Fieldset,
-  Input,
   FormButton,
   FormFailedText,
+  FormLogin,
+  FormLoginText,
   FormSignupText,
+  Input,
+  LoginBlock,
+  LoginContainer,
+  LoginTitle,
+  LoginWrapper,
 } from './style';
-import { userLoginButtonShowState } from '../../recoil/authState';
 
 const Login = () => {
   const { email, password, handleEmail, handlePassword, isLoading, handleSubmit } = useForm();
@@ -32,7 +34,7 @@ const Login = () => {
       <LoginWrapper>
         <LoginContainer>
           <FormLogin onSubmit={handleSubmit}>
-            <h3>로그인</h3>
+            <LoginTitle>로그인</LoginTitle>
             <FormLoginText>Login to access your Tripend account</FormLoginText>
 
             <Fieldset>

@@ -4,6 +4,7 @@ import { isVisibleModalState } from '../recoil/addPostStates';
 import { imageToBinary } from '../utils/imageConverter';
 import { getStorage } from '../utils/storage';
 import { createPost } from '../apis/post';
+import swal from 'sweetalert';
 
 import { ERROR_MESSAGE_POSTMODAL } from '../utils/constant/post';
 
@@ -111,7 +112,10 @@ const usePostForm = () => {
 
     const formData = generateFormData(data);
 
-    await createPost(formData);
+    const result = await createPost(formData);
+    if (result.statusText === 'OK') {
+      swal('포스트가 생성되었습니다.');
+    }
 
     setIsLoading(false);
     setIsVisibleModal(false);

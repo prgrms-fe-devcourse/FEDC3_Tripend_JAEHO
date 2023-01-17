@@ -40,7 +40,7 @@ export const ImageFileInput = styled.input`
 export const ImageFileContent = styled.div`
   width: 100%;
   height: 100%;
-  max-height: 487px;
+  max-height: 488px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -38,6 +38,7 @@ export const Input = styled.input`
   border-radius: 2px;
   outline: none;
   font-size: var(--font-input-size);
+  background-color: var(--background-color);
 
   ::placeholder {
     color: var(--font-input-color);

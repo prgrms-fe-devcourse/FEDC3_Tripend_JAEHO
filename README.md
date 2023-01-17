@@ -17,10 +17,13 @@
 
 ### 3️⃣ 주요 기능
 
+- 로그인/회원가입/비밀번호 수정
 - 포스트 검색: 포스트 제목으로 포스트를 검색할 수 있다.
 - 포스트 작성: 동행자를 구하는 포스트를 작성할 수 있다.
+- 사용자 검색: 사용자 이름으로 사용자를 검색할 수 있다.
 - 댓글: 다른 유저의 포스트에 댓글을 작성할 수 있다.
 - 동행 신청: 다른 유저의 포스트를 보고 동행을 신청할 수 있다.
+- 마이페이지: 내가 작성한 포스트 확인 및 게시글 수정/삭제 할 수 있다.
 
 ### 4️⃣ 사용가 가치
 
@@ -118,31 +121,7 @@
 
 <br />
 
-# ⚙️ dependencies 설정
 
-- babel
-
-  - webpack의 babel-loader로 실행
-  - 새롭게 추가된 전역 객체들(Promise, Map, Set...)등 트랜스 파일링만으론 해결 어렵기 때문에 별도의
-    polyfill이 필요 -> babel-plugin-transform-runtime 사용
-
-- webpack
-
-  - common.js: 공통 설정
-    - plugins
-    - HtmlWebpackPlugin: html파일에 JS 번들을 자동으로 묶어주는 플러그인
-    - CopyWebpackPlugin: 디렉토리를 카피하여 dist에 들어갈 수 있도록 설정하는 플러그인, 현재의 경우
-      static에 있는 파일들 복사
-    - MiniCSSExtractPlugin: js안에서 호출되는 스타일 코드를 파일로 추출. Production모드에서만 사용
-    - CleanWebpackPlugin: 빌드되고 사용되지 않는 찌꺼기 파일들이나 캐시처럼 남아있는 파일들을 빌드전
-      에 삭제해주는 플러그인
-  - dev.js: development용 설정
-  - prod.js: production용 설정
-
-- prettier
-- postcss
-- emotion
-- recoil
 
 <br />
 

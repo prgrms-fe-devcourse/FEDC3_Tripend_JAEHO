@@ -22,6 +22,18 @@ const PostTitle = styled.div`
   width: 50%;
   bottom: 25%;
   justify-content: space-between;
+  font-size: 0.8rem;
+  p {
+    margin-left: 30px;
+  }
+
+  @media (max-width: 768px) {
+    p {
+      font-size: 0.5rem;
+      font-weight: 200;
+      width: 100%;
+    }
+  }
 `;
 
 const PostButton = styled.div`
@@ -80,7 +92,10 @@ const PostItemContainer = styled.div`
 
 const PosterContainer = styled.div`
   background: #f8f9fa;
-  height: 80vh;
+  min-width: 1200px;
+  min-height: 800px;
+  width: 100%;
+  height: 100%;
 `;
 
 export {

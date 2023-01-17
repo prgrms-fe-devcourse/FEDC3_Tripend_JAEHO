@@ -11,6 +11,7 @@ const PosterButton = styled.button`
   font-weight: 600;
   margin: 0 5px;
   cursor: pointer;
+  max-width: 100%;
 `;
 
 const PosterDeleteButton = styled.button`

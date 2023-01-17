@@ -11,13 +11,11 @@ const Side = styled.div`
   margin-bottom: 5px;
   color: #cccbc7;
   cursor: pointer;
-  position: fixed;
-  left: 10%;
-  top: 30%;
-  bottom: 0;
+  position: absolute;
+  left: 8%;
+  bottom: 35%;
   width: 200px;
   height: 20%;
-  z-index: 10;
   padding: 10px;
 `;
 

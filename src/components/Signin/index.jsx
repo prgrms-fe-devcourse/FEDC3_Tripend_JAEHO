@@ -1,4 +1,4 @@
-import { useForm } from '../../hooks/useForm';
+import { useSigninForm } from '../../hooks/useSigninForm';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -16,7 +16,7 @@ import {
 import { userLoginButtonShowState } from '../../recoil/authState';
 
 const Login = () => {
-  const { email, password, handleEmail, handlePassword, isLoading, handleSubmit } = useForm();
+  const { email, password, handleEmail, handlePassword, isLoading, handleSubmit } = useSigninForm();
 
   const navigate = useNavigate();
 

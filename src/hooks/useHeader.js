@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { getMyAlarms } from '../apis/alarm';
@@ -24,6 +24,17 @@ const useHeader = () => {
     setIsVisibleModal(true);
   };
 
+  const fetchAlarms = async () => {
+    const { data } = await getMyAlarms();
+    setAlarms(data);
+  };
+
+  useEffect(() => {
+    if (getToken) {
+      fetchAlarms();
+    }
+  }, [getToken]);
+
   const handleClickLogo = () => {
     getToken ? navigate('/main') : navigate('/');
   };
@@ -32,8 +43,6 @@ const useHeader = () => {
     if (!isAlarmOpen) {
       setAlarmBox(target.closest('section'));
       setIsAlarmOpen(true);
-      const response = await getMyAlarms();
-      setAlarms(response.data);
     }
   };
   const handleLogout = () => {

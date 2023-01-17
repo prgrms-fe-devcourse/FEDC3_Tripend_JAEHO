@@ -58,7 +58,6 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
                 name="dayStart"
                 value={userLoginData.dayStart.trim()}
                 onChange={handleUserLoginData}
-                // onChange={(e) => setStartDay(e.target.value)}
               />
               부터
               <input
@@ -70,7 +69,6 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
                 name="dayEnd"
                 value={userLoginData.dayEnd.trim()}
                 onChange={handleUserLoginData}
-                // onChange={(e) => setEndDay(e.target.value)}
               />
               까지
             </InputsAlign>
@@ -95,7 +93,6 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
                 type="text"
                 placeholder="인원을 입력해주세요"
                 onChange={handleUserLoginData}
-                // onChange={(e) => setPerson(e.target.value)}
               />
             </InputPersonWrapper>
 
@@ -149,7 +146,6 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
               id="title"
               placeholder="제목을 입력해주세요"
               onChange={handleUserLoginData}
-              // onChange={(e) => setPosterTitle(e.target.value)}
             />
           </InputTitleWrapper>
 
@@ -170,7 +166,6 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
               placeholder="내용을 입력해주세요"
               value={userLoginData.content}
               onChange={handleUserLoginData}
-              // onChange={(e) => setContent(e.target.value)}
             />
           </InputTitleWrapper>
           <Button type="submit">확인</Button>

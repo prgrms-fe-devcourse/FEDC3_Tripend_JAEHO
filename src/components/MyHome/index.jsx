@@ -1,9 +1,10 @@
 import { Fieldset, FormButton, FormLogin, LoginContainer, LoginWrapper } from '../Signin/style';
 import { FormSettingText, Input, PasswordBlock, PasswordText } from './style';
 import { useNewPassWordForm } from '../../hooks/useNewPassWordForm';
+import { USER as AUTH } from '../../utils/constant/auth';
 
 const UserSettingPassword = () => {
-  const [handleChange, handleSubmit, values] = useNewPassWordForm();
+  const [handleChange, handleSubmit, values, passwordError] = useNewPassWordForm();
 
   return (
     <>
@@ -35,10 +36,7 @@ const UserSettingPassword = () => {
               </Fieldset>
 
               {values.newPassword.length > 0 && values.password !== values.newPassword && (
-                <PasswordText>
-                  {/*{passwordConfirmError}*/}
-                  버튼
-                </PasswordText>
+                <PasswordText>{AUTH.PASSWORD_FAILED}</PasswordText>
               )}
               <FormButton
                 type="submit"

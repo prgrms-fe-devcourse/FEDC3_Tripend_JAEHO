@@ -1,27 +1,52 @@
 import styled from '@emotion/styled';
 
 export const SignupContainer = styled.div`
-  margin: 0 auto;
-  width: 460px;
-  position: relative;
-  top: 200px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
 `;
 
-export const SignupTitle = styled.h1`
-  font-size: 32px;
-  margin: 0;
-  margin-left: 10px;
-  margin-bottom: 20px;
+export const SignupWrapper = styled.div`
+  width: 400px;
+  height: 500px;
+  position: relative;
+  bottom: 100px;
+`;
+
+export const SignupTitle = styled.div`
+  font-size: var(--font-title-size);
+`;
+
+export const FormSignupText = styled.p`
+  font-size: var(--font-subtitle-size);
+  margin-right: 50px;
+  color: var(--font-input-color);
 `;
 
 export const FieldSet = styled.fieldset`
-  margin: 10px;
+  height: 2rem;
+  margin-bottom: 20px;
   border-radius: 4px;
-  border: 1px solid #dee2e6;
+  border: 1px solid;
+`;
 
-  input {
-    display: block;
-    width: 100%;
+export const Input = styled.input`
+  width: 100%;
+  border-radius: 2px;
+  outline: none;
+  font-size: var(--font-input-size);
+  background-color: var(--background-color);
+
+  ::placeholder {
+    color: var(--font-input-color);
+  }
+
+  &:focus {
+    color: #495057;
+    border-color: black;
   }
 `;
 
@@ -48,26 +73,21 @@ export const FormSigninText = styled.p`
 `;
 
 export const SignupButton = styled.button`
-  width: calc(100% - 20px);
-  height: 48px;
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: none;
+  width: 100%;
+  height: 3rem;
+  padding: 0.7rem;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
   outline: none;
-  font-size: 14px;
-  font-weight: 600;
-  margin-left: 10px;
+  font-size: 1.2rem;
+  margin-top: 1rem;
   text-align: center;
   background-color: #8dd3bb;
-  transition: all 100ms ease-in-out;
   cursor: pointer;
 
-  span {
-    display: inline-block;
-    margin-left: 20px;
-  }
-
-  &:hover {
-    background-color: #55d4a9;
+  &:focus {
+    color: #495057;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   }
 `;

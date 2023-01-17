@@ -1,4 +1,9 @@
 import styled from '@emotion/styled';
+import '../../index.css';
+
+const LoginTitle = styled.div`
+  font-size: var(--font-title-size);
+`;
 
 const LoginBlock = styled.div`
   width: 100%;
@@ -6,12 +11,7 @@ const LoginBlock = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background: #f8f9fa;
-`;
-
-const Fieldset = styled.fieldset`
-  height: 35px;
-  margin-bottom: 20px;
+  background-color: var(--background-color);
 `;
 
 const LoginWrapper = styled.div`
@@ -23,6 +23,13 @@ const LoginWrapper = styled.div`
   bottom: 50px;
 `;
 
+const Fieldset = styled.fieldset`
+  height: 2.5rem;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border: 1px solid;
+`;
+
 const LoginContainer = styled.div`
   margin-top: 1rem;
 `;
@@ -31,9 +38,9 @@ const Input = styled.input`
   width: 100%;
   border-radius: 2px;
   outline: none;
-  font-size: 1rem;
+  font-size: var(--font-input-size);
+  background-color: var(--background-color);
 
-  background-color: #f8f9fa;
   &:focus {
     color: #495057;
     border-color: black;
@@ -42,13 +49,13 @@ const Input = styled.input`
 
 const FormSignupText = styled.p`
   text-align: center;
-  font-size: 0.8rem;
+  font-size: var(--font-subtitle-size);
 `;
 
 const FormLoginText = styled.p`
-  font-size: 10px;
+  font-size: var(--font-subtitle-size);
   margin-right: 50px;
-  color: #9ca3af;
+  color: var(--font-input-color);
 `;
 
 const FormFailedText = styled.p`
@@ -65,7 +72,7 @@ const FormLogin = styled.form`
   div {
     display: flex;
     justify-content: flex-end;
-    width: 150%;
+    width: fit-content;
   }
 `;
 
@@ -80,6 +87,8 @@ const FormButton = styled.button`
   margin-top: 1rem;
   text-align: center;
   background-color: #8dd3bb;
+  cursor: pointer;
+
   &:focus {
     color: #495057;
     border-color: #80bdff;
@@ -88,6 +97,7 @@ const FormButton = styled.button`
 `;
 
 export {
+  LoginTitle,
   LoginBlock,
   LoginWrapper,
   LoginContainer,

@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import Logo from '../../../static/images/Logo.svg';
 import AddPost from '../../components/addPost';
 import AlarmPopup from '../../components/Alarm/AlarmPopup';
@@ -5,15 +6,11 @@ import Avatar from '../../components/common/Avatar';
 import Icon from '../../components/common/Icons';
 import SearchPost from '../../components/SearchPost';
 import useHeader from '../../hooks/useHeader';
-import {
-  AlarmContainer,
-  ButtonContainer,
-  HeaderContainer,
-  IconItem,
-  LogoContaniner,
-} from './style';
+import { AlarmContainer, ButtonContainer, HeaderContainer, IconItem, LogoContainer } from './style';
 
 const Header = () => {
+  const { pathname } = useLocation();
+
   const {
     isVisibleModal,
     handleOpenAddPostModal,
@@ -30,10 +27,10 @@ const Header = () => {
   } = useHeader();
 
   return (
-    <HeaderContainer>
-      <LogoContaniner onClick={handleClickLogo}>
+    <HeaderContainer isRoot={pathname === '/'}>
+      <LogoContainer onClick={handleClickLogo}>
         <Logo />
-      </LogoContaniner>
+      </LogoContainer>
 
       {getToken && (
         <>
@@ -51,7 +48,13 @@ const Header = () => {
               <Icon.LogoutIcon />
             </IconItem>
             <IconItem onClick={handleOpenMyPage}>
-              <Avatar shape="circle" size="30px" src={userImage} lazy={true} threshold={0.1} />
+              <Avatar
+                shape="circle"
+                size="30px"
+                src={userImage === 'undefined' ? null : userImage}
+                lazy={true}
+                threshold={0.1}
+              />
             </IconItem>
           </ButtonContainer>
           {isVisibleModal && <AddPost visible={isVisibleModal} />}

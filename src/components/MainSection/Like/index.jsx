@@ -1,5 +1,5 @@
 import useLike from '../../../hooks/useLike';
-import { AccompaniedButton, AccompanyButton, MyPost } from './style';
+import { AccompanyButton, MyPost } from './style';
 
 const Heart = ({ likes, author, postId }) => {
   const userId = localStorage.getItem('id');
@@ -10,9 +10,9 @@ const Heart = ({ likes, author, postId }) => {
   ) : (
     <div onClick={onClickLike}>
       {isLike ? (
-        <AccompaniedButton>동행 신청함</AccompaniedButton>
+        <AccompanyButton clicked={true}>동행 신청함</AccompanyButton>
       ) : (
-        <AccompanyButton>동행 신청하기</AccompanyButton>
+        <AccompanyButton clicked={false}>동행 신청하기</AccompanyButton>
       )}
     </div>
   );

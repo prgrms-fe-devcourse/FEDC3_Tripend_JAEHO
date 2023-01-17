@@ -19,6 +19,7 @@ const AvatarWrapper = styled.div`
   > img {
     transition: opacity 0.2s ease-out;
   }
+  color: #adadad;
 `;
 const Avatar = ({
   lazy,

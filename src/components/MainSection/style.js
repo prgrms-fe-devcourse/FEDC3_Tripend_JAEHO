@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const PostsContainer = styled.div`
-  width: calc(100% - 560px);
-  min-width: 800px;
+  width: calc(100% - 530px);
+  min-width: 705px;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {

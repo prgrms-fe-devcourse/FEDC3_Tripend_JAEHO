@@ -15,7 +15,6 @@
   --font-input-size: 1rem;
   --font-subtitle-size: 0.8rem;
 }
-
 @font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
@@ -51,4 +50,5 @@ input:focus {
   letter-spacing: 1px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--background-color);
 }

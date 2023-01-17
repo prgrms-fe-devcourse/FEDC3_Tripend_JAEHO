@@ -1,12 +1,12 @@
-import {
-  SearchWrapper,
-  SearchContainer,
-  SearchInput,
-  SearchResultList,
-  SearchResultItem,
-} from './style';
 import SearchIcon from '@mui/icons-material/Search';
 import useSearchPost from '../../hooks/useSearchPost';
+import {
+  SearchContainer,
+  SearchInput,
+  SearchResultItem,
+  SearchResultList,
+  SearchWrapper,
+} from './style';
 
 const SearchPost = () => {
   const { keyword, searchResult, handleClickItem, setKeyword } = useSearchPost();

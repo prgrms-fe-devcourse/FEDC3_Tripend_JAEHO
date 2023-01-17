@@ -4,26 +4,25 @@
 
  <br/>
 
-## 프로젝트 소개
+## 📜 프로젝트 소개
 
-### 선정 배경
+### 1️⃣ 선정 배경
 
-- 외국에 여행을 가다 보면 다른 예절과 문화로 인해 실수를 하게 되고 무지함에 대한 두려움을 가지게 된
-  다. 여행자와 같이 두려움을 극복하고자 커뮤니티를 만들게 되었음
-- 현재 활성화된 카페가 있지만 이 경우 나의 전체 일정을 올리고 원하는 날짜에 합류하는 식임
+- 외국에 여행을 가다 보면 다른 예절과 문화로 인해 실수를 하게 되고 무지함에 대한 두려움을 가진다.
+- 여행자와 같이 두려움을 극복할 수 있도록 여행 동행 커뮤니티를 기획하게 되었다.
 
-### 타겟 사용자
+### 2️⃣ 타겟 사용자
 
 여행을 좋아하고 다양한 문화를 좋아하는 여행가
 
-### 주요 기능
+### 3️⃣ 주요 기능
 
 - 포스트 검색: 포스트 제목으로 포스트를 검색할 수 있다.
-  - 포스트 작성: 동행자를 구하는 포스트를 작성할 수 있다.
-  - 댓글: 다른 유저의 포스트에 댓글을 작성할 수 있다.
-  - 동행 신청: 다른 유저의 포스트를 보고 동행을 신청할 수 있다.
+- 포스트 작성: 동행자를 구하는 포스트를 작성할 수 있다.
+- 댓글: 다른 유저의 포스트에 댓글을 작성할 수 있다.
+- 동행 신청: 다른 유저의 포스트를 보고 동행을 신청할 수 있다.
 
-### 사용가 가치
+### 4️⃣ 사용가 가치
 
 - 여행 커뮤니티에 교류를 통해 다양한 문화를 습득
 - 여러 사람들과 소통하는 재미
@@ -52,7 +51,7 @@
 </table>
 <br />
 
-# 🚀사용 기술
+# 🚀 사용 기술
 
 <table>
 <tr>
@@ -119,6 +118,32 @@
 
 <br />
 
+# ⚙️ dependencies 설정
+
+- babel
+
+  - webpack의 babel-loader로 실행
+  - 새롭게 추가된 전역 객체들(Promise, Map, Set...)등 트랜스 파일링만으론 해결 어렵기 때문에 별도의
+    polyfill이 필요 -> babel-plugin-transform-runtime 사용
+
+- webpack
+
+  - common.js: 공통 설정
+    - plugins
+    - HtmlWebpackPlugin: html파일에 JS 번들을 자동으로 묶어주는 플러그인
+    - CopyWebpackPlugin: 디렉토리를 카피하여 dist에 들어갈 수 있도록 설정하는 플러그인, 현재의 경우
+      static에 있는 파일들 복사
+    - MiniCSSExtractPlugin: js안에서 호출되는 스타일 코드를 파일로 추출. Production모드에서만 사용
+    - CleanWebpackPlugin: 빌드되고 사용되지 않는 찌꺼기 파일들이나 캐시처럼 남아있는 파일들을 빌드전
+      에 삭제해주는 플러그인
+  - dev.js: development용 설정
+  - prod.js: production용 설정
+
+- prettier
+- postcss
+- emotion
+- recoil
+
 # ✏️ 유저 스토리
 
 [유저 스토리](https://docs.google.com/spreadsheets/d/1zY3U4WDCTKJvDJVJdDvLEAlL3mkHr-E2lo4x9gvQbkA/edit?usp=drivesdk)
@@ -132,28 +157,3 @@
 <a href="https://www.figma.com/file/dKBHWSq5IfoN2MIgb6av9L?node-id=0:1"><img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8fef2d92-a376-49ef-85b2-e1ee0ca92f26/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230117%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230117T083105Z&X-Amz-Expires=86400&X-Amz-Signature=f4ae46eaccd34603281798d4154a8c95da245d1da98705aa76672fd366d6ba39&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject" width="100%"/></a>
 
 <br />
-
-## 설치 dependencies
-
-- babel
-  - webpack의 babel-loader로 실행
-  - 새롭게 추가된 전역 객체들(Promise, Map, Set...)등 트랜스 파일링만으론 해결 어렵기 때문에 별도의
-    polyfill이 필요 -> babel-plugin-transform-runtime 사용
-- webpack
-  - common.js: 공통 설정
-    - plugins
-    - HtmlWebpackPlugin: html파일에 JS 번들을 자동으로 묶어주는 플러그인
-    - CopyWebpackPlugin: 디렉토리를 카피하여 dist에 들어갈 수 있도록 설정하는 플러그인, 현재의 경우
-      static에 있는 파일들 복사
-    - MiniCSSExtractPlugin: js안에서 호출되는 스타일 코드를 파일로 추출. Production모드에서만 사용
-    - CleanWebpackPlugin: 빌드되고 사용되지 않는 찌꺼기 파일들이나 캐시처럼 남아있는 파일들을 빌드전
-      에 삭제해주는 플러그인
-  - dev.js: development용 설정
-  - prod.js: production용 설정
-- typescript
-- eslint
-- prettier
-- sass
-- postcss
-- emotion
-- recoil

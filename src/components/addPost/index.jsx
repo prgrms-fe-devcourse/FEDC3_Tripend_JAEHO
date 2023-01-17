@@ -1,11 +1,9 @@
+import CloseIcon from '@mui/icons-material/Close';
 import { useSetRecoilState } from 'recoil';
-
+import { isVisibleModalState } from '../../recoil/addPostStates';
 import Modal from '../Modal';
 import AddPostForm from './addPostForm';
-import { isVisibleModalState } from '../../recoil/addPostStates';
-
-import { ModalHeader, CloseButton, Title } from './style';
-import CloseIcon from '@mui/icons-material/Close';
+import { CloseButton, ModalHeader, Title } from './style';
 
 const AddPost = ({ visible }) => {
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);

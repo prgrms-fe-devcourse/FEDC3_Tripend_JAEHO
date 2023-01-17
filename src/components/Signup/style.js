@@ -6,6 +6,7 @@ export const SignupContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--background-color);
 `;
 
 export const SignupWrapper = styled.div`

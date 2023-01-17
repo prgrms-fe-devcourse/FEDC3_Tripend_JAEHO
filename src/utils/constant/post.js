@@ -16,3 +16,13 @@ export const POSTURL = {
   DELETE_LIKES: '/likes/delete',
   SEARCH_POST: '/search/all/',
 };
+
+export const ERROR_MESSAGE_POSTMODAL = {
+  country: '나라를 선택해주세요.',
+  startDate: '동행 시작 날짜를 선택해주세요.',
+  endDate: '동행 끝 날짜를 선택해주세요.',
+  personnel: '인원을 입력해주세요.',
+  gender: '원하는 성별을 선택해주세요.',
+  title: '제목을 입력해주세요.',
+  content: '내용을 입력해주세요.',
+};

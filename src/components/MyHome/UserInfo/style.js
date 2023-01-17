@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 const UserInfoContainer = styled.div`
   display: flex;
   align-items: center;
-
+  min-width: 1000px;
   width: 100%;
   background: #f8f9fa;
   img {

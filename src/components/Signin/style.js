@@ -16,11 +16,11 @@ const LoginBlock = styled.div`
 
 const LoginWrapper = styled.div`
   width: 400px;
-  height: 320px;
+  height: 10%;
   padding: 5rem;
   border-radius: 2px;
   position: relative;
-  bottom: 50px;
+  bottom: 30%;
 `;
 
 const Fieldset = styled.fieldset`

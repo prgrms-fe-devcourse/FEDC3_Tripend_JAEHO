@@ -16,6 +16,7 @@ const AvatarWrapper = styled.div`
   overflow: hidden;
   width: ${({ size }) => size};
   height: ${({ size }) => size};
+
   > img {
     transition: opacity 0.2s ease-out;
   }

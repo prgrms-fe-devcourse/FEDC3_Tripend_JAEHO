@@ -13,6 +13,9 @@ export const usePoster = () => {
   const [postDetail, setPostDetail] = useRecoilState(userLoginDateState);
 
   const [imageValue, setImageValue] = useRecoilState(uploadImageState);
+  ///////////////////////////////////////////////////////////////////////////
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handlePoster = async (id) => {
     const getpostDetail = await getMyPostDetail(id);
@@ -48,7 +51,8 @@ export const usePoster = () => {
     const getUserData = async () => {
       const getLoginUserData = await getUser();
 
-      setLoginData(getLoginUserData.data);
+      setPosts(getLoginUserData.data.posts);
+      setLoading(false);
     };
 
     getUserData();
@@ -61,6 +65,7 @@ export const usePoster = () => {
     postDetail,
     visible,
     imageValue,
-    getLoginData,
+    posts,
+    loading,
   };
 };

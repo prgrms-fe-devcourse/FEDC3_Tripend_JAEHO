@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userLoginState } from '../recoil/authState';
 
-export const useForm = () => {
+export const useSigninForm = () => {
   const naviaget = useNavigate();
   const [isLogin, setLogin] = useRecoilState(userLoginState);
   const [password, setPassword] = useState('');

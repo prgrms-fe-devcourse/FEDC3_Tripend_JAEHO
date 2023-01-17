@@ -1,7 +1,7 @@
 import UploadAndDisplayImage from '../../UploadImage';
 
-import { memo, useCallback, useEffect, useState } from 'react';
-import { getMyPostDetail, updatePost } from '../../../apis/post';
+import { memo } from 'react';
+
 import {
   Button,
   ImageUploader,
@@ -17,87 +17,15 @@ import {
   ModalTitle,
   ModalTitleWrapper,
 } from './style';
-import { ERROR_MESSAGE, FORMATDATA } from '../../../utils/myhome/constant';
-import { useRecoilState } from 'recoil';
-import {
-  myhomeModalState,
-  userListState,
-  userLoginDateState,
-} from '../../../recoil/uploadImageState';
-import styled from '@emotion/styled';
+
 import { InputsAlign } from '../../addPost/addPostForm/style';
+import { useMyhomModal } from '../../../hooks/useMyhomModal';
 
-const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
-  const [imageSrc, setImageSrc] = useState('');
-
-  const [detail, setPostDetail] = useRecoilState(userLoginDateState);
-  const [visible, setVisible] = useRecoilState(myhomeModalState);
-
-  const [dayEnd, setEndDay] = useState('');
-  const [dayStart, setStartDay] = useState('');
-  const [person, setPerson] = useState('');
-
-  const [content, setContent] = useState('');
-  const [posterTitle, setPosterTitle] = useState('');
-
-  const [profile, setProfile] = useState([]);
-
-  useEffect(() => {
-    if (detail.data) {
-      setProfile(detail.data.author.fullName.split('/'));
-    }
-    const getPostModalDetail = async () => {
-      const getpostDetail = await getMyPostDetail(postId);
-
-      if (getpostDetail.data.title) {
-        const loginUserObject = JSON.parse(getpostDetail.data.title);
-
-        setEndDay(loginUserObject.date.split('~')[1]);
-        setStartDay(loginUserObject.date.split('~')[0]);
-
-        setPosterTitle(loginUserObject.title);
-        setPerson(loginUserObject.personnel);
-        setGender(loginUserObject.gender);
-        setContent(loginUserObject.content);
-      }
-    };
-
-    getPostModalDetail();
-  }, []);
-
-  const [gender, setGender] = useState('');
-
-  const handleGender = useCallback(
-    (e) => {
-      setGender(e.target.value);
-    },
-    [gender]
+const MyhomeModal = memo(function ({ postId, imageValue }) {
+  const { userLoginData, handleUserLoginData, handleSendFileImage, profile } = useMyhomModal(
+    imageValue,
+    postId
   );
-
-  const handleSendFileImage = async (e) => {
-    e.preventDefault();
-
-    const jsonParseTitle = JSON.parse(detail.data.title);
-
-    const title = {
-      country: jsonParseTitle.country,
-      date: `${dayStart}~${dayEnd}`,
-      personnel: person,
-      gender: gender,
-      title: posterTitle,
-      content: content,
-    };
-
-    const formatData = new FormData();
-
-    formatData.append(FORMATDATA.POST_ID, postId);
-    formatData.append(FORMATDATA.IMAGE, imageValue);
-    formatData.append(FORMATDATA.TITLE, JSON.stringify(title));
-    formatData.append(FORMATDATA.CHANNEL_ID, detail.data._id);
-
-    const res = await updatePost(formatData);
-    setVisible(false);
-  };
 
   const selectList = ['여자만', '남자만', '남여 무관'];
 
@@ -127,8 +55,9 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
                 }}
                 type="date"
                 id="date"
-                value={dayStart.trim()}
-                onChange={(e) => setStartDay(e.target.value)}
+                name="dayStart"
+                value={userLoginData.dayStart.trim()}
+                onChange={handleUserLoginData}
               />
               부터
               <input
@@ -137,8 +66,9 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
                 }}
                 type="date"
                 id="date"
-                value={dayEnd.trim()}
-                onChange={(e) => setEndDay(e.target.value)}
+                name="dayEnd"
+                value={userLoginData.dayEnd.trim()}
+                onChange={handleUserLoginData}
               />
               까지
             </InputsAlign>
@@ -158,23 +88,25 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
                 인원
               </Label>
               <Input
-                value={person}
+                value={userLoginData.person}
+                name="person"
                 type="text"
                 placeholder="인원을 입력해주세요"
-                onChange={(e) => setPerson(e.target.value)}
+                onChange={handleUserLoginData}
               />
             </InputPersonWrapper>
 
             <InputGenderWrapper>
               <Label style={{ fontWeight: 'bold' }}>원하는 성별</Label>
               <select
-                value={gender}
+                name="gender"
+                value={userLoginData.gender}
                 style={{
                   borderRadius: '5px',
                   width: '100%',
                   height: '40px',
                 }}
-                onChange={handleGender}
+                onChange={handleUserLoginData}
               >
                 <option>=== 선택 ===</option>
 
@@ -190,7 +122,11 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
                         {'여자만'}
                       </option>
                     )) ||
-                    (item.trim() === '남여 무관' && <option key={index}>{'남여 무관'}</option>)
+                    (item.trim() === '남여 무관' && (
+                      <option value={item} key={index}>
+                        {'남여 무관'}
+                      </option>
+                    ))
                   );
                 })}
               </select>
@@ -205,10 +141,11 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
               style={{
                 height: '40px',
               }}
-              value={posterTitle}
+              value={userLoginData.posterTitle}
+              name="posterTitle"
               id="title"
               placeholder="제목을 입력해주세요"
-              onChange={(e) => setPosterTitle(e.target.value)}
+              onChange={handleUserLoginData}
             />
           </InputTitleWrapper>
 
@@ -225,9 +162,10 @@ const MyhomeModal = memo(function ({ posts, postId, imageValue }) {
                 borderRadius: '4px',
               }}
               id="content"
+              name="content"
               placeholder="내용을 입력해주세요"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+              value={userLoginData.content}
+              onChange={handleUserLoginData}
             />
           </InputTitleWrapper>
           <Button type="submit">확인</Button>

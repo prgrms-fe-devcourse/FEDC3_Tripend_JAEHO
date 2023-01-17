@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { UserInfoContainer, UserInfoWrapper } from './style';
-import { useUserInfo } from '../../../hooks/useUserInfo';
+import { useGetMyhomeUserInfo } from '../../../hooks/useGetMyhomeUserInfo';
 
 const UserInfo = () => {
-  const { profile, getUserData } = useUserInfo();
+  const { profile, getUserData } = useGetMyhomeUserInfo();
 
   useEffect(() => {
     getUserData();

@@ -1,68 +1,21 @@
-import { useEffect, useState } from 'react';
-import { getUser } from '../../../apis/auth';
-import { getMyPostDetail, removePost } from '../../../apis/post';
 import MyhomeModal from '../../Modal/MyhomeModal';
 import Modal from '../../Modal';
 import { PosterContainer, PosterTitle, PostWrapper } from '../../../pages/MyPosterPage/style';
 import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
 import UserPosterItem from '../UserPosteItem';
-import { ERROR_MESSAGE_AUTH, ERROR_MESSAGE_SIGNIN, USER } from '../../../utils/constant/auth';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import styled, { div } from '@emotion/styled';
-import {
-  myhomeModalState,
-  uploadImageState,
-  userLoginDateState,
-} from '../../../recoil/uploadImageState';
+
+import { usePoster } from '../../../hooks/usePoster';
 
 const LoginPoster = () => {
-  const [getLoginData, setLoginData] = useState({});
-  const [postId, setPostId] = useState('');
-  const [visible, setVisible] = useRecoilState(myhomeModalState);
-
-  const [postDetail, setPostDetail] = useRecoilState(userLoginDateState);
-
-  const [imageValue, setImageValue] = useRecoilState(uploadImageState);
-
-  useEffect(() => {
-    const getUserData = async () => {
-      const getLoginUserData = await getUser();
-
-      setLoginData(getLoginUserData.data);
-    };
-
-    getUserData();
-  }, []);
-
-  const handlePoster = async (id) => {
-    const getpostDetail = await getMyPostDetail(id);
-    setVisible(true);
-    setPostId(id);
-    setPostDetail(getpostDetail);
-  };
-
-  const handlerModalClose = () => {
-    setVisible(false);
-    setImageValue(null);
-  };
-
-  const handleDeletePoster = async (id) => {
-    swal({
-      title: USER.DELETE_POSTER,
-      text: USER.DELETE,
-      icon: ERROR_MESSAGE_SIGNIN.DELETE_POSTER_WARNING,
-      dangerMode: true,
-    }).then(async (willDelete) => {
-      if (willDelete) {
-        await removePost(id);
-
-        setLoginData({
-          ...getLoginData,
-          posts: getLoginData.posts.filter((post) => post._id !== id),
-        });
-      }
-    });
-  };
+  const {
+    handlePoster,
+    handleDeletePoster,
+    handlerModalClose,
+    postId,
+    visible,
+    imageValue,
+    getLoginData,
+  } = usePoster();
 
   return (
     <PosterContainer>

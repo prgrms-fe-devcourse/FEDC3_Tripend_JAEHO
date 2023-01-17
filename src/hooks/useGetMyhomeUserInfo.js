@@ -1,7 +1,7 @@
 import { getUser } from '../apis/auth';
 import { useState } from 'react';
 
-export const useUserInfo = () => {
+export const useGetMyhomeUserInfo = () => {
   const [profile, setProfile] = useState({
     name: '',
     image: '',

@@ -40,23 +40,34 @@ export const IconItem = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 10px;
-  background-color: var(--white);
 
   width: 35px;
   height: 35px;
   border-radius: 50%;
   cursor: pointer;
+  transition: all 0.1s ease-in;
 
   &:hover {
-    filter: brightness(90%);
-    transition: ease-in 0.3s;
+    background-color: rgba(0, 0, 0, 0.1);
   }
 
   &:active {
-    filter: brightness(70%);
+    background-color: rgba(0, 0, 0, 0.2);
   }
 `;
 
 export const AlarmContainer = styled.section`
   position: relative;
+`;
+
+export const AlarmBadge = styled.div`
+  position: absolute;
+  top: 9px;
+  right: 18px;
+  display: block;
+  background-color: #ff4741;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 2px solid #fff;
 `;

@@ -6,7 +6,14 @@ import Avatar from '../../components/common/Avatar';
 import Icon from '../../components/common/Icons';
 import SearchPost from '../../components/SearchPost';
 import useHeader from '../../hooks/useHeader';
-import { AlarmContainer, ButtonContainer, HeaderContainer, IconItem, LogoContainer } from './style';
+import {
+  AlarmBadge,
+  AlarmContainer,
+  ButtonContainer,
+  HeaderContainer,
+  IconItem,
+  LogoContainer,
+} from './style';
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -42,6 +49,7 @@ const Header = () => {
             <AlarmContainer>
               <IconItem onClick={handleOpenAlarm}>
                 <Icon.Alarm />
+                {alarms.length > 0 && <AlarmBadge />}
               </IconItem>
             </AlarmContainer>
             <IconItem onClick={handleLogout}>

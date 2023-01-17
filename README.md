@@ -144,6 +144,8 @@
 - emotion
 - recoil
 
+<br />
+
 # ✏️ 유저 스토리
 
 [유저 스토리](https://docs.google.com/spreadsheets/d/1zY3U4WDCTKJvDJVJdDvLEAlL3mkHr-E2lo4x9gvQbkA/edit?usp=drivesdk)

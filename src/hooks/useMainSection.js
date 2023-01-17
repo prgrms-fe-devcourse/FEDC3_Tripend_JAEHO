@@ -16,7 +16,7 @@ const useMainSection = () => {
 
   useEffect(() => {
     setChannelName();
-  });
+  }, []);
 
   useEffect(() => {
     if (useParamsId) {

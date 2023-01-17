@@ -44,7 +44,7 @@ const UserSettingPassword = () => {
                   !values.password || !values.newPassword || values.password !== values.newPassword
                 }
               >
-                버튼
+                비밀번호 변경
               </FormButton>
             </FormLogin>
           </LoginContainer>

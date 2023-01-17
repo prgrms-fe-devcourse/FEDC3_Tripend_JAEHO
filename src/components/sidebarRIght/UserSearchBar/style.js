@@ -14,9 +14,11 @@ export const UserSearchBarContainer = styled.div`
   padding-inline-start: 10px;
   border-radius: 5.5px;
   align-items: center;
+  background-color: var(--background-color);
 `;
+
 export const UsersSearchBar = styled.input`
-  background-color: var(--gray);
+  background-color: var(--background-color);
 `;
 
 export const SearchResult = styled.div`
@@ -44,4 +46,6 @@ export const UserName = styled.span`
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  font-size: 16px;
+  font-weight: bold;
 `;

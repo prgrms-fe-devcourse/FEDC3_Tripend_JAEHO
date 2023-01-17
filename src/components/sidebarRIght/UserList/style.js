@@ -29,4 +29,5 @@ export const UserName = styled.span`
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  font-size: 16px;
 `;

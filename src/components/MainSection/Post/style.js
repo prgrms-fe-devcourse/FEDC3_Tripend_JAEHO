@@ -7,8 +7,16 @@ export const PostContainer = styled.div`
   display: flex;
   align-items: center;
   border-radius: 16px;
-  background-color: var(--gray);
+  background-color: var(--background-color);
+  color: var(--font-main-color);
   cursor: pointer;
+
+  &:hover {
+    position: relative;
+    top: -3px;
+    box-shadow: 0px 4px 16px rgba(17, 34, 17, 0.15);
+    transition: box-shadow 0.2s ease-out;
+  }
 `;
 export const InfoContainer = styled.div`
   width: calc(100% - 310px);

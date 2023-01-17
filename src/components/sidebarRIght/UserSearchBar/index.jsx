@@ -23,6 +23,7 @@ const UserSearchBar = () => {
           onChange={(e) => setKeyword(e.target.value)}
           type="text"
           placeholder="유저를 검색하세요"
+          className="usersSearchBar"
         />
       </UserSearchBarContainer>
       <SearchResult>
@@ -30,7 +31,7 @@ const UserSearchBar = () => {
           <>
             {result.map((userInfo) => (
               <UserInfo key={userInfo._id}>
-                <Avatar src={userInfo.image} size="30px" lazy={true} threshold={0.5} />
+                <Avatar src={userInfo.image} size="24px" lazy={true} threshold={0.5} />
                 <UserName>{userInfo.fullName}</UserName>
               </UserInfo>
             ))}

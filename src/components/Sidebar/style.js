@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const SideBlcok = styled.div`
+const SideBlock = styled.div`
   background: #f8f9fa;
 `;
 
@@ -29,4 +29,4 @@ const Menu = styled.div`
   flex-direction: column;
 `;
 
-export { SideBlcok, Side, Menu };
+export { SideBlock, Side, Menu };

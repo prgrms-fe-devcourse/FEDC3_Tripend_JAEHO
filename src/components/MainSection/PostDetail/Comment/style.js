@@ -20,7 +20,6 @@ export const CommentInfo = styled.div`
   height: 80%;
   display: flex;
   flex-direction: column;
-  color: var(--secondary);
   justify-content: space-around;
 
   & > div:first-of-type {

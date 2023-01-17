@@ -6,40 +6,11 @@ import {
   SearchResultItem,
 } from './style';
 import SearchIcon from '@mui/icons-material/Search';
-import { useState } from 'react';
-import useDebounce from '../../hooks/useDebounce';
-import { encodeKeyword } from '../../utils/validate/userList';
-import { searchAll } from '../../apis/search';
-import { filterdPost } from '../../utils/validate/searchedPostLIst';
-import { useNavigate } from 'react-router-dom';
+import useSearchPost from '../../hooks/useSearchPost';
 
 const SearchPost = () => {
-  const navigate = useNavigate();
-  const [keyword, setKeyword] = useState('');
+  const { keyword, searchResult, handleClickItem, setKeyword } = useSearchPost();
 
-  const [searchResult, setSearchResult] = useState([]);
-
-  const getSearchResult = async (encodedKeyword) => {
-    const { data } = await searchAll(encodedKeyword);
-    setSearchResult(filterdPost(data));
-  };
-
-  const handleClickItem = (postId) => {
-    navigate(`/p/${postId}`);
-    setKeyword('');
-  };
-
-  useDebounce(
-    () => {
-      if (keyword.length > 0) {
-        getSearchResult(encodeKeyword(keyword));
-      } else {
-        setSearchResult([]);
-      }
-    },
-    300,
-    [keyword]
-  );
   return (
     <SearchWrapper>
       <SearchContainer>

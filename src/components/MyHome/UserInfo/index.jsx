@@ -17,7 +17,6 @@ const UserInfo = () => {
 
     setProfile({
       ...profile,
-
       name: loginUserName,
       image: data.image,
       email: data.email,

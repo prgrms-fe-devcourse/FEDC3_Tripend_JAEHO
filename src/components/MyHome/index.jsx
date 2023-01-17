@@ -3,41 +3,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { putPaswwordChange } from '../../apis/auth';
 import { ERROR_MESSAGE_SIGNIN, USER as AUTH, USER } from '../../utils/constant/auth';
 import { FormSettingText, Input, PasswordBlock, PasswordText } from './style';
+import { useForm2, useNewPassWordForm } from '../../hooks/useNewPassWordForm';
 
 const UserSettingPassword = () => {
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setConfirmPassword] = useState('');
-  const [passwordConfirmError, setPasswordConfirmError] = useState('');
-
-  const handlePassword = useCallback(
-    (e) => {
-      setPassword(e.target.value);
-    },
-    [password]
-  );
-
-  const handleNewPassword = useCallback(
-    (e) => {
-      setConfirmPassword(e.target.value);
-      if (password !== passwordConfirm) {
-        setPasswordConfirmError(AUTH.PASSWORD_FAILED);
-      }
-    },
-    [passwordConfirm]
-  );
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const res = await putPaswwordChange(password);
-
-    if (res.status === 200) {
-      swal(USER.CHANGE_PASSWORD_SUCCESS, '', ERROR_MESSAGE_SIGNIN.PASSWORD_SUCCESS);
-    }
-
-    setPassword('');
-    setConfirmPassword('');
-  };
+  const [handleChange, handleSubmit, values] = useNewPassWordForm();
 
   return (
     <>
@@ -50,20 +19,35 @@ const UserSettingPassword = () => {
               <Fieldset>
                 <legend>비밀번호</legend>
 
-                <Input value={password} type="password" onChange={handlePassword} />
+                <Input
+                  name="password"
+                  value={values.password}
+                  type="password"
+                  onChange={handleChange}
+                />
               </Fieldset>
 
               <Fieldset>
                 <legend>비밀번호 확인</legend>
-                <Input value={passwordConfirm} type="password" onChange={handleNewPassword} />
+                <Input
+                  name="newPassword"
+                  value={values.newPassword}
+                  type="password"
+                  onChange={handleChange}
+                />
               </Fieldset>
 
-              {passwordConfirm.length > 0 && password !== passwordConfirm && (
-                <PasswordText>{passwordConfirmError}</PasswordText>
+              {values.newPassword.length > 0 && values.password !== values.newPassword && (
+                <PasswordText>
+                  {/*{passwordConfirmError}*/}
+                  버튼
+                </PasswordText>
               )}
               <FormButton
                 type="submit"
-                disabled={!password || !passwordConfirm || password !== passwordConfirm}
+                disabled={
+                  !values.password || !values.newPassword || values.password !== values.newPassword
+                }
               >
                 버튼
               </FormButton>

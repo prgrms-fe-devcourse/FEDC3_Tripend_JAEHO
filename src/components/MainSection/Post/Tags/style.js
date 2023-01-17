@@ -7,7 +7,6 @@ export const TagContainer = styled.div`
 `;
 export const Tag = styled.span`
   background-color: var(--primary);
-  color: var(--dark);
   font-weight: bold;
   padding: 10px;
   margin: 0 5px;

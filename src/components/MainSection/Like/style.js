@@ -20,11 +20,6 @@ export const MyPost = styled.button`
 export const AccompanyButton = styled.button`
   ${HeartButtonStyleProps}
   background-color: var(--primary);
-  color: #112211;
-`;
-
-export const AccompaniedButton = styled.button`
-  ${HeartButtonStyleProps}
-  background-color: var(--primary);
-  color: var(--gray);
+  color: ${({ clicked }) => (clicked ? 'var(--background-color)' : 'var(--font-main-color)')};
+  transition: color 0.5s;
 `;

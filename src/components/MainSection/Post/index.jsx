@@ -28,7 +28,6 @@ const Post = ({ id, titleObject, image, author, likes, commentLength, onClickPos
     gender = '';
     personnel = '';
   }
-
   return (
     <PostContainer onClick={() => onClickPost(id)}>
       <LeftImage src={image} width={'280px'} height={'180px'} style={{ borderRadius: '16px' }} />

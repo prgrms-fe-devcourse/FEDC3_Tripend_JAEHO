@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const PostDetailContainer = styled.div`
   width: calc(100% - 40px);
   height: calc(100% - 40px);
+  color: var(--font-main-color);
   padding: 20px;
   display: flex;
 `;
@@ -22,7 +23,7 @@ export const RightContainerContent = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 30px;
+  font-size: var(--font-title-size);
   font-weight: bold;
 `;
 
@@ -34,10 +35,11 @@ export const BottomContainer = styled.div`
 
 export const Country = styled.div`
   font-size: 14px;
-  color: #112211;
+
   & > span {
     position: relative;
     top: -3px;
+    font-size: var(--font-subtitle-size);
   }
 `;
 

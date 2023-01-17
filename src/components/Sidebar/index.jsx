@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Menu, Side, SideBlcok } from './style';
+import { Menu, Side, SideBlock } from './style';
 
 const UserSidebar = () => {
   const menus = [
@@ -8,7 +8,7 @@ const UserSidebar = () => {
   ];
 
   return (
-    <SideBlcok>
+    <SideBlock>
       <Side>
         <Menu>
           {menus.map(({ path, name }, index) => {
@@ -33,7 +33,7 @@ const UserSidebar = () => {
           })}
         </Menu>
       </Side>
-    </SideBlcok>
+    </SideBlock>
   );
 };
 

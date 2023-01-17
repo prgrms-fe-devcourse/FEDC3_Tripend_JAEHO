@@ -8,15 +8,17 @@ export const SearchContainer = styled.div`
   align-items: center;
   width: 500px;
   height: 30px;
-  border: 1px solid #dee2e6;
+  background-color: var(--background-color);
   border-radius: 8px;
   padding: 5px;
 `;
 
 export const SearchInput = styled.input`
   width: 100%;
+  padding-left: 10px;
   font-size: 16px;
   line-height: 10px;
+  background-color: var(--background-color);
 `;
 
 export const SearchResultList = styled.ul`

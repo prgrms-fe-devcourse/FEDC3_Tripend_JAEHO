@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { UserInfoContainer, UserInfoWrapper } from './style';
 import { useGetMyhomeUserInfo } from '../../../hooks/useGetMyhomeUserInfo';
 

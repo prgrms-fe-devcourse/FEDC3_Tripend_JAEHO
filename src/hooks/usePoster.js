@@ -39,9 +39,9 @@ export const usePoster = () => {
       if (willDelete) {
         await removePost(id);
 
-        setLoginData({
-          ...getLoginData,
-          posts: getLoginData.posts.filter((post) => post._id !== id),
+        setPosts({
+          ...posts,
+          posts: posts.filter((post) => post._id !== id),
         });
       }
     });

@@ -59,7 +59,7 @@ const LoginPoster = () => {
               <ModalTitle>게시글 수정</ModalTitle>
               <ModalTitleButton onClick={handlerModalClose}>x</ModalTitleButton>
             </ModalTitleWrapper>
-            <MyhomeModal posts={getLoginData.posts} postId={postId} imageValue={imageValue} />
+            <MyhomeModal posts={currentPosts} postId={postId} imageValue={imageValue} />
           </Modal>
         )}
       </PostWrapper>

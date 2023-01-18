@@ -16,11 +16,16 @@ export const InputContainer = styled.form`
   }
   & > input {
     font-size: 14px;
-    width: calc(100% - 34px);
+    padding: 5px;
+    width: calc(100% - 50px);
+  }
+
+  & > input:focus {
+    background-color: rgba(0, 0, 0, 0.05);
   }
 `;
 
 export const CommentContainer = styled.div`
-  height: calc(100% - 50px);
-  overflow-y: scroll;
+  max-height: calc(100% - 80px);
+  overflow-y: auto;
 `;

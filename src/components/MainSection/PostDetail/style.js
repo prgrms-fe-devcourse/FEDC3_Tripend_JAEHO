@@ -28,9 +28,9 @@ export const Title = styled.div`
 `;
 
 export const BottomContainer = styled.div`
-  width: calc(100% - 28px);
+  width: 100%;
   height: calc(100% - 280px);
-  margin-top: 50px;
+  margin-top: 40px;
 `;
 
 export const Country = styled.div`

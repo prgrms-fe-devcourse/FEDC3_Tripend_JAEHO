@@ -10,13 +10,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/~~~"
+    "url": "git+https://github.com/prgrms-fe-devcourse/FEDC3_Tripend_JAEHO"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/~~~"
+    "url": "https://github.com/prgrms-fe-devcourse/FEDC3_Tripend_JAEHO"
   },
   "homepage": "",
   "dependencies": {

@@ -15,12 +15,9 @@ const useMainSection = () => {
   const [selectedChannelName, setSelectedChannelName] = useState('');
 
   useEffect(() => {
-    setChannelName();
-  }, []);
-
-  useEffect(() => {
     if (useParamsId) {
       getPostData();
+      setChannelName(useParamsId);
     } else {
       getAllPostData();
     }

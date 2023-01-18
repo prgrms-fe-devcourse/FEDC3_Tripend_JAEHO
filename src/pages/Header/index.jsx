@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import Logo from '../../../static/images/Logo.svg';
 import AddPost from '../../components/addPost';
-import AlarmPopup from '../../components/Alarm/AlarmPopup';
+import AlarmPopup from '../../components/alarm/AlarmPopup';
 import Avatar from '../../components/common/Avatar';
 import Icon from '../../components/common/Icons';
 import SearchPost from '../../components/SearchPost';

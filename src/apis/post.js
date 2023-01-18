@@ -30,6 +30,15 @@ export const createPost = async (data) => {
   }
 };
 
+export const getAllPost = async () => {
+  try {
+    const data = await baseRequest.get(POSTURL.ALL_POST);
+    return data;
+  } catch (error) {
+    throw new Error(ERROR_MESSAGE_POST.ERROR_POSTDETAIL);
+  }
+};
+
 // postDetail 받아오기
 export const getPostDetail = async (postId) => {
   try {

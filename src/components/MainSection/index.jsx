@@ -12,21 +12,20 @@ const Posts = () => {
     return postList.posts.length > 0 ? (
       <>
         <div className="postContainer">
-          {Array.isArray(postList.posts) &&
-            postList.posts.map((post) => {
-              return (
-                <Post
-                  key={post._id}
-                  id={post._id}
-                  titleObject={post.title}
-                  image={post.image}
-                  author={post.author}
-                  likes={post.likes}
-                  commentLength={post.comments.length}
-                  onClickPost={onClickPost}
-                />
-              );
-            })}
+          {postList.posts.map((post) => {
+            return (
+              <Post
+                key={post._id}
+                id={post._id}
+                titleObject={post.title}
+                image={post.image}
+                author={post.author}
+                likes={post.likes}
+                commentLength={post.comments.length}
+                onClickPost={onClickPost}
+              />
+            );
+          })}
         </div>
       </>
     ) : (

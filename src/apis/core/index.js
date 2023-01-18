@@ -2,7 +2,6 @@ import axios from 'axios';
 import { BEARER, TOKEN } from '../../utils/constant/auth';
 import { getStorage } from '../../utils/storage';
 
-console.log(process.env.NODE_ENV);
 const baseURL =
   process.env.NODE_ENV === 'development' ? process.env.REACT_APP_API_ENDPOINT : '/api';
 

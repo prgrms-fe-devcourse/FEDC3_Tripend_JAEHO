@@ -41,7 +41,7 @@ const useMainSection = () => {
 
   const getAllPostData = async () => {
     const { data } = await getPostDetail('');
-    data.sort(() => Math.random() - 0.5);
+    Array.isArray(data) && data.sort(() => Math.random() - 0.5);
     setPostList({ id: 'all', posts: data });
   };
 

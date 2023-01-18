@@ -2,7 +2,8 @@ import axios from 'axios';
 import { BEARER, TOKEN } from '../../utils/constant/auth';
 import { getStorage } from '../../utils/storage';
 
-const baseURL = `${process.env.REACT_APP_API_ENDPOINT}`;
+const baseURL =
+  process.env.NODE_ENV === 'development' ? process.env.REACT_APP_API_ENDPOINT : '/api';
 
 // 인스턴스 생성
 const baseRequest = axios.create({

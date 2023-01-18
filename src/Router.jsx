@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AccountPage from './pages/AccountPage';
+import AccountPage from './pages/accountPage';
 import Header from './pages/Header';
 import SigninPage from './pages/SigninPage';
-import SignupPage from './pages/SignupPage';
+import SignupPage from './pages/signupPage';
 
 import HomePage from './pages/HomePage';
 import MyPosterPage from './pages/MyPosterPage';
@@ -11,7 +11,7 @@ import MySettingPage from './pages/MySettingPage';
 import MissingPage from './pages/NotFound';
 
 import AuthUserRoute from './components/RequireAuth';
-import PostDetailPage from './pages/postDetailPage/index';
+import PostDetailPage from './pages/PostDetailPage';
 
 const AppRouter = () => {
   return (

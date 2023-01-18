@@ -30,6 +30,7 @@ export const createPost = async (data) => {
   }
 };
 
+// 전체 데이터 불러오기
 export const getAllPost = async () => {
   try {
     const data = await baseRequest.get(POSTURL.ALL_POST);

@@ -1,11 +1,7 @@
-import { useEffect, useState } from 'react';
-import { getChannels } from '../../apis/post';
-import SortedChannels from './SortedChannels';
-import Skeleton from '../common/Skeleton';
-import { useSetRecoilState } from 'recoil';
-import { selectedChannelState } from '../../recoil/channelState';
-import { ChannelListContainer } from './style';
 import useChannel from '../../hooks/useChannel';
+import Skeleton from '../common/Skeleton';
+import SortedChannels from './SortedChannels';
+import { ChannelListContainer } from './style';
 
 const ChannelList = () => {
   const [channels, onClickChannel] = useChannel();

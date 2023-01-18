@@ -23,7 +23,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, './public/index.html'),
-      favicon: './static/images/logo.png',
+      favicon: './static/images/favicon.ico',
     }),
     new CopyWebpackPlugin({
       patterns: [{ from: 'static' }],

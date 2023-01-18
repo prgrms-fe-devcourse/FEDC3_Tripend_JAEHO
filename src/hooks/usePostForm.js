@@ -38,11 +38,31 @@ const usePostForm = () => {
       maxWidthOrHeight: 1920,
       useWebWorker: true,
     };
+
     try {
       return await imageCompression(fileSrc, options);
     } catch (error) {
       console.log(error);
     }
+  }, []);
+
+  const validate = useCallback((values) => {
+    const errors = [];
+
+    Object.entries(values).forEach(([key, value]) => {
+      if (!value) {
+        errors.push(ERROR_MESSAGE_POSTMODAL[key]);
+      }
+    });
+
+    return errors;
+  }, []);
+
+  const generateFormData = useCallback((data) => {
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => formData.append(key, data[key]));
+
+    return formData;
   }, []);
 
   const handleValueChange = (e) => {
@@ -69,25 +89,6 @@ const usePostForm = () => {
   const handleCountryChange = (e) => {
     const { country } = e.target.options[e.target.selectedIndex].dataset;
     setValues((prevValues) => ({ ...prevValues, country, channelId: e.target.value }));
-  };
-
-  const validate = (values) => {
-    const errors = [];
-
-    Object.entries(values).forEach(([key, value]) => {
-      if (!value) {
-        errors.push(ERROR_MESSAGE_POSTMODAL[key]);
-      }
-    });
-
-    return errors;
-  };
-
-  const generateFormData = (data) => {
-    const formData = new FormData();
-    Object.keys(data).forEach((key) => formData.append(key, data[key]));
-
-    return formData;
   };
 
   const handleSubmit = async (e) => {

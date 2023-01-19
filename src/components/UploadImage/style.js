@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const ImageContainar = styled.div`
+const ImageContainer = styled.div`
   width: 100%;
   height: 59%;
 
@@ -36,7 +36,7 @@ const TitleWrapper = styled.div`
 `;
 
 export {
-  ImageContainar,
+  ImageContainer,
   UploadImageWrapper,
   UploadDescription,
   TitleWrapper,

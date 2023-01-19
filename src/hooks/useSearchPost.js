@@ -8,7 +8,6 @@ import useDebounce from './useDebounce';
 const useSearchPost = () => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState('');
-
   const [searchResult, setSearchResult] = useState([]);
 
   const getSearchResult = async (encodedKeyword, keyword) => {

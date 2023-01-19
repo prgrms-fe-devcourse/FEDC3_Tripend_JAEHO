@@ -5,6 +5,11 @@ export const selectedChannelState = atom({
   default: '',
 });
 
+export const selectedChannelNameState = atom({
+  key: 'selectedChannelNameState',
+  default: '',
+});
+
 export const channelState = atomFamily({
   key: 'channelState',
   default: (id) => {

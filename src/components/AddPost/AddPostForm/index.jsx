@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getChannels } from '../../../apis/post';
+import uuid from 'react-uuid';
 
 import {
   Description,
@@ -26,6 +27,8 @@ const AddPostForm = () => {
   const [northEurope, setNorthEurope] = useState([]);
 
   const {
+    handleDefaultValue,
+    selectedChannelId,
     imageSrc,
     values,
     isLoading,
@@ -82,7 +85,8 @@ const AddPostForm = () => {
           <select
             id="country"
             name="country"
-            value={values.channelId}
+            key={uuid()}
+            defaultValue={selectedChannelId}
             onChange={handleCountryChange}
           >
             <option value={null}>=== 선택 ===</option>
@@ -109,7 +113,7 @@ const AddPostForm = () => {
             </optgroup>
             <optgroup label="북유럽">
               {northEurope.map(({ name, _id }) => (
-                <option key={_id} value={_id} data-country={name}>
+                <option key={_id} value={_id} data-country={name} onChange={handleCountryChange}>
                   {name}
                 </option>
               ))}

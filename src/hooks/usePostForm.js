@@ -1,6 +1,6 @@
 import imageCompression from 'browser-image-compression';
-import { useCallback, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useCallback, useEffect, useState } from 'react';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import swal from 'sweetalert';
 import { createPost } from '../apis/post';
 import { isVisibleModalState } from '../recoil/addPostStates';
@@ -8,6 +8,7 @@ import { ERROR_MESSAGE_POST_MODAL } from '../utils/constants/post';
 import { imageToBinary } from '../utils/imageConverter';
 import { getStorage } from '../utils/storage';
 import { useNavigate } from 'react-router-dom';
+import { selectedChannelNameState, selectedChannelState } from '../recoil/channelState';
 
 const initialValues = {
   country: '',
@@ -29,10 +30,21 @@ const GenderData = {
 const usePostForm = () => {
   const navigate = useNavigate();
   const [imageSrc, setImageSrc] = useState('');
-  const [values, setValues] = useState(initialValues);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState([]);
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
+  const selectedChannelId = useRecoilValue(selectedChannelState);
+  const selectedChannelName = useRecoilValue(selectedChannelNameState);
+  const [values, setValues] = useState({
+    country: selectedChannelName,
+    channelId: selectedChannelId,
+    personnel: 1,
+    gender: '',
+    startDate: '',
+    endDate: '',
+    title: '',
+    content: '',
+  });
 
   const compressImage = useCallback(async (fileSrc) => {
     const options = {
@@ -76,6 +88,7 @@ const usePostForm = () => {
     }
 
     Object.entries(values).forEach(([key, value]) => {
+      console.log(key, value);
       if (!value) {
         const errorType = key.toUpperCase();
         errors.push(ERROR_MESSAGE_POST_MODAL[errorType]);
@@ -113,8 +126,13 @@ const usePostForm = () => {
     };
   };
 
+  const handleDefaultValue = (e) => {
+    return e ? e.target.value : selectedChannelId;
+  };
+
   const handleCountryChange = (e) => {
     const { country } = e.target.options[e.target.selectedIndex].dataset;
+    console.log(e.target.value, country, values.country);
     setValues((prevValues) => ({ ...prevValues, country, channelId: e.target.value }));
   };
 
@@ -171,6 +189,8 @@ const usePostForm = () => {
   };
 
   return {
+    handleDefaultValue,
+    selectedChannelId,
     imageSrc,
     values,
     isLoading,

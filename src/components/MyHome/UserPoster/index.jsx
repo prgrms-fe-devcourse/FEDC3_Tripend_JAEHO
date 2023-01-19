@@ -54,7 +54,7 @@ const LoginPoster = () => {
           })}
 
         {visible && (
-          <Modal visible={visible} onClose={handlerModalClose} width="1000px" height="600px">
+          <Modal visible={visible} onClose={handlerModalClose} width="1000px" height="620px">
             <ModalTitleWrapper>
               <ModalTitle>게시글 수정</ModalTitle>
               <ModalTitleButton onClick={handlerModalClose}>x</ModalTitleButton>

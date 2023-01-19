@@ -1,14 +1,14 @@
 import ChannelList from '../../components/ChannelList';
-import SideBarRight from '../../components/sidebarRIght';
 import MainSection from '../../components/MainSection';
 import { MainPageContainer } from './style';
+import UserSidebar from '../../components/UserSidebar';
 
 const MainPage = () => {
   return (
     <MainPageContainer>
       <ChannelList />
       <MainSection />
-      <SideBarRight />
+      <UserSidebar />
     </MainPageContainer>
   );
 };

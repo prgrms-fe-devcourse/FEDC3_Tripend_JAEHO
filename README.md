@@ -105,7 +105,7 @@
 </tr>
 <tr>
  <td align="center">배포</td>
- <td><img src="https://img.shields.io/badge/Vercel Action-000000?style=for-the-badge&logo=Vercel&logoColor=white"/>&nbsp </td>
+ <td><img src="https://img.shields.io/badge/github action-000000?style=for-the-badge&logo=GithubAction&logoColor=white"/>&nbsp <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white"/>&nbsp</td>
 </tr>
 <tr>
  <td align="center">협업툴</td>
@@ -134,7 +134,5 @@
 # 🎨 디자인 시안
 
 [디자인 시안](https://www.figma.com/file/dKBHWSq5IfoN2MIgb6av9L?node-id=0:1)
-
-<a href="https://www.figma.com/file/dKBHWSq5IfoN2MIgb6av9L?node-id=0:1"><img src="https://user-images.githubusercontent.com/76807107/213393566-9e452537-a2d0-4da3-937e-9db137e0753e.png"/></a>
 
 <br />

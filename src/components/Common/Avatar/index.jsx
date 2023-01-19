@@ -27,7 +27,7 @@ const Avatar = ({
   threshold,
   src,
   size = '70px',
-  shape = 'circle', // round, sqare 등이 있음
+  shape = 'circle',
   placeholder,
   alt,
   mode = 'dover',

@@ -19,19 +19,13 @@ const LoginPoster = () => {
     posts,
   } = usePoster();
 
-  // 현재 페이지
   const [currentPage, setCurrentPage] = useState(1);
-  // 페이지당 포스트 개수
   const [postPerPage, setPostPerPage] = useState(3);
 
-  // 1*3  3 포스트
   const indexOfLastPost = currentPage * postPerPage;
-  // 3-3 = 0번포스트
   const indexOfFirstPost = indexOfLastPost - postPerPage;
-  // 0~2번까지 포스트
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-  // 클릭이벤트 페이지 바꾸기
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (

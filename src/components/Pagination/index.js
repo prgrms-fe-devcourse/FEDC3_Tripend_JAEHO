@@ -1,7 +1,6 @@
 import { PageContainer, PageLi, PageUl } from './style';
 
 const Pagination = ({ totalPosts, postPerPage, paginate }) => {
-  // 현재 페이지
   let pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {

@@ -21,7 +21,6 @@ export const useMyHomeModal = (imageValue, postId) => {
 
   const [profile, setProfile] = useState([]);
 
-  const [personError, setPersonError] = useState('');
   const [dateError, setDateError] = useState('');
 
   const handleUserLoginData = (e) => {
@@ -39,8 +38,6 @@ export const useMyHomeModal = (imageValue, postId) => {
     if (startDate > endDate) {
       setDateError('기간을 정확히 맞춰주세요 ㅠㅠ');
       throw new Error('에러');
-    } else {
-      setPersonError('');
     }
   };
 

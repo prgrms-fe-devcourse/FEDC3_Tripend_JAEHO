@@ -20,7 +20,11 @@ import usePostForm from '../../../hooks/usePostForm';
 import ErrorText from './ErrorText';
 
 const AddPostForm = () => {
-  const [countries, setCountries] = useState([]);
+  const [eastEurope, setEastEurope] = useState([]);
+  const [westEurope, setWestEurope] = useState([]);
+  const [southEurope, setSouthEurope] = useState([]);
+  const [northEurope, setNorthEurope] = useState([]);
+
   const {
     imageSrc,
     values,
@@ -32,7 +36,6 @@ const AddPostForm = () => {
     handleSubmit,
   } = usePostForm();
 
-  // ChannelList 컴포넌트 내부 getChannelData 함수와 중복 => 분리
   const getChannelData = async () => {
     const { data } = await getChannels();
 
@@ -41,13 +44,10 @@ const AddPostForm = () => {
     const southEurope = data.filter(({ description }) => description === '남유럽');
     const northEurope = data.filter(({ description }) => description === '북유럽');
 
-    setCountries([
-      { _id: '0', name: '=== 선택 ===' },
-      ...eastEurope,
-      ...westEurope,
-      ...southEurope,
-      ...northEurope,
-    ]);
+    setEastEurope(eastEurope);
+    setWestEurope(westEurope);
+    setSouthEurope(southEurope);
+    setNorthEurope(northEurope);
   };
 
   useEffect(() => {
@@ -85,11 +85,35 @@ const AddPostForm = () => {
             value={values.channelId}
             onChange={handleCountryChange}
           >
-            {countries.map(({ name, _id }) => (
-              <option key={_id} value={_id} data-country={name}>
-                {name}
-              </option>
-            ))}
+            <option value={null}>=== 선택 ===</option>
+            <optgroup label="동유럽">
+              {eastEurope.map(({ name, _id }) => (
+                <option key={_id} value={_id} data-country={name}>
+                  {name}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="서유럽">
+              {westEurope.map(({ name, _id }) => (
+                <option key={_id} value={_id} data-country={name}>
+                  {name}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="남유럽">
+              {southEurope.map(({ name, _id }) => (
+                <option key={_id} value={_id} data-country={name}>
+                  {name}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="북유럽">
+              {northEurope.map(({ name, _id }) => (
+                <option key={_id} value={_id} data-country={name}>
+                  {name}
+                </option>
+              ))}
+            </optgroup>
           </select>
         </InputWrapper>
         <InputsAlign>

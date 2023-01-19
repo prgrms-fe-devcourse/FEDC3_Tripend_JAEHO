@@ -46,21 +46,37 @@ const usePostForm = () => {
     }
   }, []);
 
+  const getCurrentDate = () => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1;
+    const date = currentDate.getDate();
+
+    return `${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`;
+  };
+
   const validate = useCallback((values) => {
     const errors = [];
 
     const { startDate, endDate, personnel } = values;
+    const currentDate = getCurrentDate();
+
+    if (startDate < currentDate) {
+      errors.push(ERROR_MESSAGE_POST_MODAL.DATE);
+    }
+
     if (startDate > endDate) {
-      errors.push(ERROR_MESSAGE_POSTMODAL.DATE);
+      errors.push(ERROR_MESSAGE_POST_MODAL.DATE);
     }
 
     if (personnel > 50) {
-      errors.push(ERROR_MESSAGE_POSTMODAL.NOT_VALID_PERSONNEL);
+      errors.push(ERROR_MESSAGE_POST_MODAL.NOT_VALID_PERSONNEL);
     }
 
     Object.entries(values).forEach(([key, value]) => {
       if (!value) {
-        errors.push(ERROR_MESSAGE_POST_MODAL[key]);
+        const errorType = key.toUpperCase();
+        errors.push(ERROR_MESSAGE_POST_MODAL[errorType]);
       }
     });
 

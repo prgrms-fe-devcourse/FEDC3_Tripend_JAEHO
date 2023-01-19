@@ -19,10 +19,10 @@ import {
 } from './style';
 
 import { InputsAlign } from '../../addPost/addPostForm/style';
-import { useMyhomModal } from '../../../hooks/useMyhomModal';
+import { useMyHomeModal } from '../../../hooks/useMyHomeModal';
 
 const MyhomeModal = memo(function ({ postId, imageValue }) {
-  const { userLoginData, handleUserLoginData, handleSendFileImage, profile } = useMyhomModal(
+  const { userLoginData, handleUserLoginData, handleSendFileImage, profile } = useMyHomeModal(
     imageValue,
     postId
   );

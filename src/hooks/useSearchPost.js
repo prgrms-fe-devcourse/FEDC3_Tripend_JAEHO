@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { searchAll } from '../apis/search';
-import { filterdPost } from '../utils/validate/searchedPostLIst';
+import { filteredPost } from '../utils/validate/searchedPostLIst';
 import { encodeKeyword } from '../utils/validate/userList';
 import useDebounce from './useDebounce';
 
@@ -13,7 +13,7 @@ const useSearchPost = () => {
 
   const getSearchResult = async (encodedKeyword, keyword) => {
     const { data } = await searchAll(encodedKeyword);
-    setSearchResult(filterdPost(data, keyword));
+    setSearchResult(filteredPost(data, keyword));
   };
 
   const handleClickItem = (postId) => {

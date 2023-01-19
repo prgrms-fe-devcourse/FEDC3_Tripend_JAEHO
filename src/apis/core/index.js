@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BEARER, TOKEN } from '../../utils/constant/auth';
+import { BEARER, TOKEN } from '../../utils/constants/auth';
 import { getStorage } from '../../utils/storage';
 
 const baseURL =

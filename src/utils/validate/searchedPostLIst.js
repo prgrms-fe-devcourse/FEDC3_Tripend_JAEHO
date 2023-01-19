@@ -1,4 +1,4 @@
-export const filterdPost = (list, keyword) => {
+export const filteredPost = (list, keyword) => {
   return list
     .filter((item) => item.title)
     .map((item) => {

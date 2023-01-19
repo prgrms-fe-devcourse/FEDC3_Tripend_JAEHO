@@ -1,10 +1,10 @@
 import { authRequest, baseRequest, postDataRequest } from './core';
-import { URL } from '../utils/constant/auth';
-import { POSTURL, ERROR_MESSAGE_POST } from '../utils/constant/post';
+import { URL } from '../utils/constants/auth';
+import { POST_URL, ERROR_MESSAGE_POST } from '../utils/constants/post';
 
 export const getChannels = async () => {
   try {
-    const data = await baseRequest.get(POSTURL.CHANNELS);
+    const data = await baseRequest.get(POST_URL.CHANNELS);
 
     return data;
   } catch (error) {
@@ -14,7 +14,7 @@ export const getChannels = async () => {
 
 export const getChannelPosts = async (channelId) => {
   try {
-    const data = await baseRequest.get(POSTURL.POSTS_IN_CHANNEL + channelId);
+    const data = await baseRequest.get(POST_URL.POSTS_IN_CHANNEL + channelId);
     return data;
   } catch (error) {
     throw new Error(ERROR_MESSAGE_POST.ERROR_POSTS);
@@ -24,7 +24,7 @@ export const getChannelPosts = async (channelId) => {
 // post 생성하기
 export const createPost = async (data) => {
   try {
-    return await postDataRequest.post(POSTURL.CREATE_POST, data);
+    return await postDataRequest.post(POST_URL.CREATE_POST, data);
   } catch (error) {
     throw new Error(ERROR_MESSAGE_POST.ERROR_CREATE_POST);
   }
@@ -32,20 +32,20 @@ export const createPost = async (data) => {
 
 export const getAllPosts = async () => {
   try {
-    const data = await baseRequest.get(POSTURL.ALL_POST);
+    const data = await baseRequest.get(POST_URL.ALL_POST);
     return data;
   } catch (error) {
-    throw new Error(ERROR_MESSAGE_POST.ERROR_POSTDETAIL);
+    throw new Error(ERROR_MESSAGE_POST.ERROR_POST_DETAIL);
   }
 };
 
 // postDetail 받아오기
 export const getPostDetail = async (postId) => {
   try {
-    const data = await baseRequest.get(POSTURL.POST_DETAIL + postId);
+    const data = await baseRequest.get(POST_URL.POST_DETAIL + postId);
     return data;
   } catch (error) {
-    throw new Error(ERROR_MESSAGE_POST.ERROR_POSTDETAIL);
+    throw new Error(ERROR_MESSAGE_POST.ERROR_POST_DETAIL);
   }
 };
 

@@ -11,10 +11,10 @@ import imageCompression from 'browser-image-compression';
 const initialValues = {
   country: '',
   channelId: '',
-  startDate: '',
-  endDate: '',
   personnel: 1,
   gender: '',
+  startDate: '',
+  endDate: '',
   title: '',
   content: '',
 };
@@ -49,9 +49,19 @@ const usePostForm = () => {
   const validate = useCallback((values) => {
     const errors = [];
 
+    const { startDate, endDate, personnel } = values;
+    if (startDate > endDate) {
+      errors.push(ERROR_MESSAGE_POSTMODAL.DATE);
+    }
+
+    if (personnel > 50) {
+      errors.push(ERROR_MESSAGE_POSTMODAL.NOT_VALID_PERSONNEL);
+    }
+
     Object.entries(values).forEach(([key, value]) => {
       if (!value) {
-        errors.push(ERROR_MESSAGE_POSTMODAL[key]);
+        const errorType = key.toUpperCase();
+        errors.push(ERROR_MESSAGE_POSTMODAL[errorType]);
       }
     });
 
@@ -111,8 +121,8 @@ const usePostForm = () => {
 
     const userData = {
       country: values.country,
-      date: `${values.startDate} ~ ${values.endDate}`,
       personnel: values.personnel,
+      date: `${values.startDate} ~ ${values.endDate}`,
       gender: GenderData[values.gender],
       title: values.title,
       content: values.content,

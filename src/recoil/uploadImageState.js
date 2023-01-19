@@ -20,7 +20,7 @@ export const userListState = atom({
   default: [],
 });
 
-export const myhomeModalState = atom({
-  key: 'myhomeModal',
+export const myHomeModalState = atom({
+  key: 'myHomeModal',
   default: false,
 });

@@ -5,7 +5,7 @@ export const FILE = {
   SVG: 'image/svg+xml',
 };
 
-export const FORMATDATA = {
+export const FORM_DATA = {
   POST_ID: 'postId',
   IMAGE: 'image',
   TITLE: 'title',

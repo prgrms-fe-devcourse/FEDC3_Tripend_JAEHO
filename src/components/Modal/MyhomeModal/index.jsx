@@ -18,11 +18,11 @@ import {
   ModalTitleWrapper,
 } from './style';
 
-import { useMyhomModal } from '../../../hooks/useMyhomModal';
-import { InputsAlign } from '../../AddPost/AddPostForm/style';
+import { InputsAlign } from '../../addPost/addPostForm/style';
+import { useMyHomeModal } from '../../../hooks/useMyHomeModal';
 
-const MyhomeModal = memo(function ({ postId, imageValue }) {
-  const { userLoginData, handleUserLoginData, handleSendFileImage, profile } = useMyhomModal(
+const MyHomeModal = memo(function ({ postId, imageValue }) {
+  const { userLoginData, handleUserLoginData, handleSendFileImage, profile } = useMyHomeModal(
     imageValue,
     postId
   );
@@ -175,4 +175,4 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
   );
 });
 
-export default MyhomeModal;
+export default MyHomeModal;

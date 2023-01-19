@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { myHomeModalState, uploadImageState, userLoginDateState } from '../recoil/uploadImageState';
+import { getUser } from '../apis/auth';
 import { getMyPostDetail, removePost } from '../apis/post';
 import { myHomeModalState, uploadImageState, userLoginDateState } from '../recoil/uploadImageState';
 import { ERROR_MESSAGE_SIGNIN, USER } from '../utils/constants/auth';
@@ -13,10 +15,10 @@ export const usePoster = () => {
   const [loading, setLoading] = useState(false);
 
   const handlePoster = async (id) => {
-    const getpostDetail = await getMyPostDetail(id);
+    const getPostDetail = await getMyPostDetail(id);
     setVisible(true);
     setPostId(id);
-    setPostDetail(getpostDetail);
+    setPostDetail(getPostDetail);
   };
 
   const handlerModalClose = () => {

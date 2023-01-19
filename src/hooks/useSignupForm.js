@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { signup } from '../apis/auth';
-import { ERROR_MESSAGE_SIGNUP } from '../utils/constant/auth';
+import { ERROR_MESSAGE_SIGNUP } from '../utils/constants/auth';
 import { checkZeroOfFront, isValidAge, isValidId, isValidName } from '../utils/validate/signup';
 const {
   NEED_INPUT,

@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import imageCompression from 'browser-image-compression';
+import { useCallback, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import swal from 'sweetalert';
 import { createPost } from '../apis/post';
@@ -6,7 +7,6 @@ import { isVisibleModalState } from '../recoil/addPostStates';
 import { ERROR_MESSAGE_POST_MODAL } from '../utils/constants/post';
 import { imageToBinary } from '../utils/imageConverter';
 import { getStorage } from '../utils/storage';
-import imageCompression from 'browser-image-compression';
 
 const initialValues = {
   country: '',
@@ -29,7 +29,7 @@ const usePostForm = () => {
   const [imageSrc, setImageSrc] = useState('');
   const [values, setValues] = useState(initialValues);
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessgae] = useState([]);
+  const [errorMessage, setErrorMessage] = useState([]);
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
 
   const compressImage = useCallback(async (fileSrc) => {
@@ -113,7 +113,7 @@ const usePostForm = () => {
     const hasError = newErrors.length;
 
     if (hasError) {
-      setErrorMessgae([...newErrors]);
+      setErrorMessage([...newErrors]);
       setIsLoading(false);
       return;
     }

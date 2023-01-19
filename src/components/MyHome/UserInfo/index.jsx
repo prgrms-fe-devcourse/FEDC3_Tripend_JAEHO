@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
-import { useGetMyhomeUserInfo } from '../../../hooks/useGetMyhomeUserInfo';
+import { useGetMyHomeUserInfo } from '../../../hooks/useGetMyHomeUserInfo';
 import Avatar from '../../Common/Avatar';
 import { UserInfoContainer, UserInfoWrapper } from './style';
 
 const UserInfo = () => {
-  const { profile, getUserData } = useGetMyhomeUserInfo();
+  const { profile, getUserData } = useGetMyHomeUserInfo();
   useEffect(() => {
     getUserData();
   }, []);

@@ -1,12 +1,12 @@
 import { useCallback, useState } from 'react';
-import { postUserLogin } from '../apis/auth';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
+import { postUserLogin } from '../apis/auth';
 import { userLoginState } from '../recoil/authState';
 
 export const useSigninForm = () => {
-  const naviaget = useNavigate();
-  const [isLogin, setLogin] = useRecoilState(userLoginState);
+  const navigate = useNavigate();
+  const setLogin = useSetRecoilState(userLoginState);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
@@ -33,7 +33,7 @@ export const useSigninForm = () => {
 
       if (res.status === 200) {
         setLogin(true);
-        naviaget('/main');
+        navigate('/main');
       }
     } catch (e) {
       setLoading(true);

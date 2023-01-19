@@ -7,7 +7,7 @@ import {
   URL,
   USER as AUTH,
   USER,
-  USERIMAGE,
+  USER_IMAGE,
 } from '../utils/constant/auth';
 import { getStorage, setStorage } from '../utils/storage';
 import { authRequest, baseRequest } from './core';
@@ -30,7 +30,7 @@ export const postUserLogin = async (email, password) => {
 
   setStorage(TOKEN, token);
   setStorage(ID, _id);
-  setStorage(USERIMAGE, image);
+  setStorage(USER_IMAGE, image);
 
   return response;
 };
@@ -48,12 +48,12 @@ export const getUser = async () => {
 };
 
 // 비밀번호 변경
-export const putPaswwordChange = async (password) => {
+export const putPasswordChange = async (password) => {
   if (!getStorage(TOKEN)) {
     throw new Error(ERROR_MESSAGE_SIGNIN.EDIT_USER);
   }
   try {
-    return await authRequest.put(URL.PASSWORD_UPADTE, {
+    return await authRequest.put(URL.PASSWORD_UPDATE, {
       password,
     });
   } catch (e) {

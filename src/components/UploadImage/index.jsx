@@ -21,7 +21,7 @@ const UploadAndDisplayImage = ({ postId }) => {
               style={{
                 borderRadius: '5px',
                 width: '463px',
-                height: '590px',
+                height: '510px',
                 objectFit: 'cover',
               }}
               src={URL.createObjectURL(selectedImage)}

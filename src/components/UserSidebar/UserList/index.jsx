@@ -18,7 +18,14 @@ const UserList = () => {
         <UserListContainer id="userInfoList">
           {userInfos.map(({ _id, image, fullName, isOnline }) => (
             <UserInfo key={_id} onClick={() => showUserDetail(_id)}>
-              <Avatar shape="circle" size="24px" src={image} lazy={true} threshold={0.1} />
+              <Avatar
+                alt="title"
+                shape="circle"
+                size="24px"
+                src={image}
+                lazy={true}
+                threshold={0.1}
+              />
               <UserName>{extractName.exec(fullName)[0]}</UserName>
               <Badge
                 top={'22px'}

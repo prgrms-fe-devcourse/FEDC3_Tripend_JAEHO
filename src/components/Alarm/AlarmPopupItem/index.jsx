@@ -14,14 +14,7 @@ const AlarmPopupItem = ({ alarm, onClick }) => {
     author && (
       <AlarmItem onClick={onClick}>
         <AlarmImg>
-          <Avatar
-            alt="title"
-            shape="circle"
-            size={25}
-            src={author.image}
-            lazy={true}
-            threshold={0.1}
-          />
+          <Avatar shape="circle" size={25} src={author.image} lazy={true} threshold={0.1} />
         </AlarmImg>
         <AlarmText>{alarmComment}</AlarmText>
       </AlarmItem>

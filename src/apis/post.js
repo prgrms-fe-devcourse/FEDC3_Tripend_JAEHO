@@ -68,7 +68,7 @@ export const updatePost = async (post) => {
   const res = await authRequest.put(URL.MYPAGE_UPDATE, post);
 
   if (res.status === 200) {
-    // window.location.reload();
+    window.location.reload();
   }
   return res;
 };

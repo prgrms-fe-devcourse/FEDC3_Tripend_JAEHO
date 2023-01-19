@@ -31,7 +31,7 @@ const UserSearchBar = () => {
           <>
             {result.map((userInfo) => (
               <UserInfo key={userInfo._id}>
-                <Avatar alt="title" src={userInfo.image} size="24px" lazy={true} threshold={0.5} />
+                <Avatar src={userInfo.image} size="24px" lazy={true} threshold={0.5} />
                 <UserName>{userInfo.fullName}</UserName>
               </UserInfo>
             ))}

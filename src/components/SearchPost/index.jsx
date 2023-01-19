@@ -6,6 +6,8 @@ import {
   SearchResultItem,
   SearchResultList,
   SearchWrapper,
+  Title,
+  Description,
 } from './style';
 
 const SearchPost = () => {
@@ -25,7 +27,8 @@ const SearchPost = () => {
         <SearchResultList>
           {searchResult.map((item) => (
             <SearchResultItem key={item._id} onClick={() => handleClickItem(item._id)}>
-              {item.title}
+              <Title>{item.title}</Title>
+              <Description>{item.country}</Description>
             </SearchResultItem>
           ))}
         </SearchResultList>

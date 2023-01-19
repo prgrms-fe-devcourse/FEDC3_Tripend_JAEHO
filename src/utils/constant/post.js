@@ -6,6 +6,7 @@ export const ERROR_MESSAGE_POST = {
   ERROR_CREATE_POST: '포스트 생성 실패',
   ERROR_POSTDETAIL: '포스트 상세 불러오기 실패',
 };
+
 export const POSTURL = {
   CHANNELS: '/channels',
   POSTS_IN_CHANNEL: '/posts/channel/',
@@ -19,11 +20,13 @@ export const POSTURL = {
 };
 
 export const ERROR_MESSAGE_POSTMODAL = {
-  country: '나라를 선택해주세요.',
-  startDate: '동행 시작 날짜를 선택해주세요.',
-  endDate: '동행 끝 날짜를 선택해주세요.',
-  personnel: '인원을 입력해주세요.',
-  gender: '원하는 성별을 선택해주세요.',
-  title: '제목을 입력해주세요.',
-  content: '내용을 입력해주세요.',
+  COUNTRY: '나라를 선택해주세요.',
+  STARTDATE: '동행 시작 날짜를 선택해주세요.',
+  ENDDATE: '동행 끝 날짜를 선택해주세요.',
+  PERSONNEL: '인원을 입력해주세요.',
+  GENDER: '원하는 성별을 선택해주세요.',
+  TITLE: '제목을 입력해주세요.',
+  CONTENT: '내용을 입력해주세요.',
+  DATE: '기간을 올바르게 선택해주세요.',
+  NOT_VALID_PERSONNEL: '50인 이상 동행할 수 없습니다.',
 };

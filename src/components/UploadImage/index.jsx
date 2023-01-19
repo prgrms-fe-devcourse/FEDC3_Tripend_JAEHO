@@ -4,10 +4,10 @@ import { useRecoilState } from 'recoil';
 import UploadIcon from '../../../static/images/upload.svg';
 import { getMyPostDetail } from '../../apis/post';
 import { formatDataState, uploadImageState } from '../../recoil/uploadImageState';
-import { ERROR_MESSAGE, FILE } from '../../utils/myhome/constant';
+import { ERROR_MESSAGE, FILE } from '../../utils/constants/myHome';
 import { ImageFileInput } from '../AddPost/AddPostForm/style';
 import {
-  ImageContainar,
+  ImageContainer,
   ImageUploaderContainer,
   TitleWrapper,
   UploadDescription,
@@ -33,10 +33,10 @@ const UploadAndDisplayImage = ({ postId }) => {
 
   useEffect(() => {
     const getPostModalDetail = async () => {
-      const getpostDetail = await getMyPostDetail(postId);
+      const getPostDetail = await getMyPostDetail(postId);
 
-      if (getpostDetail.data) {
-        setImage(getpostDetail.data.image);
+      if (getPostDetail.data) {
+        setImage(getPostDetail.data.image);
       }
     };
     getPostModalDetail();
@@ -52,7 +52,7 @@ const UploadAndDisplayImage = ({ postId }) => {
 
   return (
     <ImageUploaderContainer>
-      <ImageContainar>
+      <ImageContainer>
         {selectedImage ? (
           <div>
             <img
@@ -83,7 +83,7 @@ const UploadAndDisplayImage = ({ postId }) => {
             </div>
           </UploadImageWrapper>
         )}
-      </ImageContainar>
+      </ImageContainer>
 
       <ImageFileInput type="file" onChange={handleImageChange} />
     </ImageUploaderContainer>

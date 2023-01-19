@@ -25,7 +25,7 @@ export const URL = {
   LOGIN: '/login',
   SIGN_UP: '/signup',
   AUTH_USER: '/auth-user',
-  PASSWORD_UPADTE: '/settings/update-password',
+  PASSWORD_UPDATE: '/settings/update-password',
   MYPAGE_DELETE: '/posts/delete',
   MYPAGE_UPDATE: '/posts/update',
 };
@@ -33,7 +33,7 @@ export const URL = {
 export const BEARER = 'bearer ';
 export const TOKEN = 'Token';
 export const ID = 'id';
-export const USERIMAGE = 'userImage';
+export const USER_IMAGE = 'userImage';
 
 export const ERROR_MESSAGE_SIGNUP = {
   NEED_INPUT: '* 입력이 필요합니다.',

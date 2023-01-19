@@ -1,27 +1,23 @@
-import { useRecoilState } from 'recoil';
-import { myhomeModalState, uploadImageState, userLoginDateState } from '../recoil/uploadImageState';
-import { getMyPostDetail, removePost } from '../apis/post';
-import { ERROR_MESSAGE_SIGNIN, USER } from '../utils/constant/auth';
-import { getUser } from '../apis/auth';
 import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { myHomeModalState, uploadImageState, userLoginDateState } from '../recoil/uploadImageState';
+import { getUser } from '../apis/auth';
+import { getMyPostDetail, removePost } from '../apis/post';
+import { ERROR_MESSAGE_SIGNIN, USER } from '../utils/constants/auth';
 
 export const usePoster = () => {
-  const [getLoginData, setLoginData] = useState({});
   const [postId, setPostId] = useState('');
-  const [visible, setVisible] = useRecoilState(myhomeModalState);
-
+  const [visible, setVisible] = useRecoilState(myHomeModalState);
   const [postDetail, setPostDetail] = useRecoilState(userLoginDateState);
-
   const [imageValue, setImageValue] = useRecoilState(uploadImageState);
-  ///////////////////////////////////////////////////////////////////////////
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handlePoster = async (id) => {
-    const getpostDetail = await getMyPostDetail(id);
+    const getPostDetail = await getMyPostDetail(id);
     setVisible(true);
     setPostId(id);
-    setPostDetail(getpostDetail);
+    setPostDetail(getPostDetail);
   };
 
   const handlerModalClose = () => {

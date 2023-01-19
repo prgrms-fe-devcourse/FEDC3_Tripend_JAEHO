@@ -15,7 +15,7 @@
 *_BASE_*.txt
 *_LOCAL_*.txt
 *_REMOTE_*.txt
-
+/dist
 ### macOS ###
 # General
 .DS_Store

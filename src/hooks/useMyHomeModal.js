@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { getMyPostDetail, updatePost } from '../apis/post';
-import { useRecoilState } from 'recoil';
-import { myhomeModalState, userLoginDateState } from '../recoil/uploadImageState';
-import { FORMATDATA } from '../utils/myhome/constant';
+import { myHomeModalState, userLoginDateState } from '../recoil/uploadImageState';
+import { FORM_DATA } from '../utils/constants/myHome';
 
-export const useMyhomModal = (imageValue, postId) => {
-  const [detail, setPostDetail] = useRecoilState(userLoginDateState);
-  const [visible, setVisible] = useRecoilState(myhomeModalState);
+export const useMyHomeModal = (imageValue, postId) => {
+  const detail = useRecoilValue(userLoginDateState);
+  const setVisible = useSetRecoilState(myHomeModalState);
 
   const [userLoginData, setUserLoginData] = useState({
     dayEnd: '',
@@ -31,10 +31,10 @@ export const useMyhomModal = (imageValue, postId) => {
       setProfile(detail.data.author.fullName.split('/'));
     }
     const getPostModalDetail = async () => {
-      const getpostDetail = await getMyPostDetail(postId);
+      const getPostDetail = await getMyPostDetail(postId);
 
-      if (getpostDetail.data.title) {
-        const loginUserObject = JSON.parse(getpostDetail.data.title);
+      if (getPostDetail.data.title) {
+        const loginUserObject = JSON.parse(getPostDetail.data.title);
 
         setUserLoginData({
           ...userLoginData,
@@ -67,10 +67,10 @@ export const useMyhomModal = (imageValue, postId) => {
 
     const formatData = new FormData();
 
-    formatData.append(FORMATDATA.POST_ID, postId);
-    formatData.append(FORMATDATA.IMAGE, imageValue);
-    formatData.append(FORMATDATA.TITLE, JSON.stringify(title));
-    formatData.append(FORMATDATA.CHANNEL_ID, detail.data._id);
+    formatData.append(FORM_DATA.POST_ID, postId);
+    formatData.append(FORM_DATA.IMAGE, imageValue);
+    formatData.append(FORM_DATA.TITLE, JSON.stringify(title));
+    formatData.append(FORM_DATA.CHANNEL_ID, detail.data._id);
 
     const res = await updatePost(formatData);
     setVisible(false);

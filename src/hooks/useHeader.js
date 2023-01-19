@@ -5,14 +5,14 @@ import { getMyAlarms } from '../apis/alarm';
 import { isVisibleModalState } from '../recoil/addPostStates';
 import { userLoginState } from '../recoil/authState';
 import { toggleStateFamily } from '../recoil/toggleStates';
-import { TOKEN, USERIMAGE } from '../utils/constant/auth';
+import { TOKEN, USER_IMAGE } from '../utils/constants/auth';
 import { getStorage, setStorage } from '../utils/storage';
 
 const useHeader = () => {
   const navigate = useNavigate();
 
   const getToken = getStorage(TOKEN);
-  const userImage = getStorage(USERIMAGE);
+  const userImage = getStorage(USER_IMAGE);
 
   const [alarmBox, setAlarmBox] = useState();
   const [alarms, setAlarms] = useState([]);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ALARM } from '../../../utils/constant/alarm';
+import { ALARM } from '../../../utils/constants/alarm';
 import { extractName } from '../../../utils/validate/userList';
 import Avatar from '../../Common/Avatar';
 import { AlarmImg, AlarmItem, AlarmText } from './style';

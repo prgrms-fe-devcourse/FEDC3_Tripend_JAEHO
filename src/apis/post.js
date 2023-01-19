@@ -1,10 +1,10 @@
-import { URL } from '../utils/constant/auth';
-import { ERROR_MESSAGE_POST, POSTURL } from '../utils/constant/post';
+import { URL } from '../utils/constants/auth';
+import { ERROR_MESSAGE_POST, POST_URL } from '../utils/constants/post';
 import { authRequest, baseRequest, postDataRequest } from './core';
 
 export const getChannels = async () => {
   try {
-    const data = await baseRequest.get(POSTURL.CHANNELS);
+    const data = await baseRequest.get(POST_URL.CHANNELS);
 
     return data;
   } catch (error) {
@@ -14,7 +14,7 @@ export const getChannels = async () => {
 
 export const getChannelPosts = async (channelId) => {
   try {
-    const data = await baseRequest.get(POSTURL.POSTS_IN_CHANNEL + channelId);
+    const data = await baseRequest.get(POST_URL.POSTS_IN_CHANNEL + channelId);
     return data;
   } catch (error) {
     throw new Error(ERROR_MESSAGE_POST.ERROR_POSTS);
@@ -24,7 +24,7 @@ export const getChannelPosts = async (channelId) => {
 // post 생성하기
 export const createPost = async (data) => {
   try {
-    return await postDataRequest.post(POSTURL.CREATE_POST, data);
+    return await postDataRequest.post(POST_URL.CREATE_POST, data);
   } catch (error) {
     throw new Error(ERROR_MESSAGE_POST.ERROR_CREATE_POST);
   }
@@ -32,20 +32,20 @@ export const createPost = async (data) => {
 
 export const getAllPosts = async () => {
   try {
-    const data = await baseRequest.get(POSTURL.ALL_POST);
+    const data = await baseRequest.get(POST_URL.ALL_POST);
     return data;
   } catch (error) {
-    throw new Error(ERROR_MESSAGE_POST.ERROR_POSTDETAIL);
+    throw new Error(ERROR_MESSAGE_POST.ERROR_POST_DETAIL);
   }
 };
 
 // postDetail 받아오기
 export const getPostDetail = async (postId) => {
   try {
-    const data = await baseRequest.get(POSTURL.POST_DETAIL + postId);
+    const data = await baseRequest.get(POST_URL.POST_DETAIL + postId);
     return data;
   } catch (error) {
-    throw new Error(ERROR_MESSAGE_POST.ERROR_POSTDETAIL);
+    throw new Error(ERROR_MESSAGE_POST.ERROR_POST_DETAIL);
   }
 };
 
@@ -65,7 +65,7 @@ export const removePost = async (postId) => {
 
 // 마이페이지 포스트 불러오기 (모달용)
 export const getMyPostDetail = async (postId) => {
-  return await baseRequest.get(POSTURL.POST_DETAIL + postId);
+  return await baseRequest.get(POST_URL.POST_DETAIL + postId);
 };
 
 // 마이페이지 게시글 수정

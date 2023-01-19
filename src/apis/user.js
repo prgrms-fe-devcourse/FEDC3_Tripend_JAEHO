@@ -1,4 +1,4 @@
-import { USER_URL } from '../utils/constant/user';
+import { USER_URL } from '../utils/constants/user';
 import { baseRequest } from './core';
 // 전체 유저 정보 가져오기
 export const getUsers = async () => {

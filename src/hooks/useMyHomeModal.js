@@ -106,8 +106,6 @@ export const useMyHomeModal = (imageValue, postId) => {
     e.preventDefault();
     checkDate(userLoginData.dayEnd, userLoginData.dayStart);
 
-    const jsonParseTitle = JSON.parse(detail.data.title);
-
     const title = {
       country: myChannel,
       date: `${userLoginData.dayStart}~${userLoginData.dayEnd}`,
@@ -122,7 +120,6 @@ export const useMyHomeModal = (imageValue, postId) => {
     formatData.append(FORM_DATA.POST_ID, postId);
     formatData.append(FORM_DATA.IMAGE, imageValue);
     formatData.append(FORM_DATA.TITLE, JSON.stringify(title));
-    // formatData.append(FORM_DATA.CHANNEL_ID, detail.data._id);
     formatData.append(FORM_DATA.CHANNEL_ID, myId);
     const res = await updatePost(formatData);
     setVisible(false);

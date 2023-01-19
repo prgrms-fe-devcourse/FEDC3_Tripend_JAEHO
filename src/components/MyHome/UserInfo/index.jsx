@@ -12,7 +12,14 @@ const UserInfo = () => {
   return (
     <UserInfoContainer>
       <UserInfoWrapper>
-        <Avatar shape="circle" size="100px" src={profile.image} lazy={true} threshold={0.1} />
+        <Avatar
+          alt="title"
+          shape="circle"
+          size="100px"
+          src={profile.image}
+          lazy={true}
+          threshold={0.1}
+        />
 
         <UserInfoProfileWrapper>
           <h3>{profile.name}</h3>

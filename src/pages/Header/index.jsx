@@ -53,6 +53,7 @@ const Header = () => {
             </IconItem>
             <IconItem onClick={handleOpenMyPage}>
               <Avatar
+                alt="title"
                 shape="circle"
                 size="30px"
                 src={userImage === 'undefined' ? null : userImage}

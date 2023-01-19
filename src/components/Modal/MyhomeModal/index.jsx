@@ -1,6 +1,6 @@
 import UploadAndDisplayImage from '../../UploadImage';
 
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import {
   Button,
@@ -27,6 +27,7 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
 
   const selectList = ['여자만', '남자만', '남여 무관'];
 
+  console.log(userLoginData);
   return (
     <>
       <ModalLeft>

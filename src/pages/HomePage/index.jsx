@@ -1,7 +1,7 @@
 import ChannelList from '../../components/ChannelList';
 import MainSection from '../../components/MainSection';
-import { MainPageContainer } from './style';
 import UserSidebar from '../../components/UserSidebar';
+import { MainPageContainer } from './style';
 
 const MainPage = () => {
   return (

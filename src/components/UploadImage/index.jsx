@@ -8,7 +8,7 @@ import {
   UploadImageWrapper,
   ImageUploaderContainer,
 } from './style';
-import { ImageFileInput } from '../addPost/addPostForm/style';
+import { ImageFileInput } from '../AddPost/AddPostForm/style';
 import { ERROR_MESSAGE, FILE } from '../../utils/myhome/constant';
 import { formatDataState, uploadImageState } from '../../recoil/uploadImageState';
 import { getMyPostDetail } from '../../apis/post';

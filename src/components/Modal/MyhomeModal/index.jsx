@@ -18,7 +18,7 @@ import {
   ModalTitleWrapper,
 } from './style';
 
-import { InputsAlign } from '../../addPost/addPostForm/style';
+import { InputsAlign } from '../../AddPost/AddPostForm/style';
 import { useMyhomModal } from '../../../hooks/useMyhomModal';
 
 const MyhomeModal = memo(function ({ postId, imageValue }) {

@@ -1,6 +1,6 @@
 import SearchIcon from '@mui/icons-material/Search';
 import useGetUserInfo from '../../../hooks/useGetUserInfo';
-import Avatar from '../../common/Avatar';
+import Avatar from '../../c/Avatar';
 import {
   SearchResult,
   UserInfo,

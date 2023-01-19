@@ -7,6 +7,7 @@ import { isVisibleModalState } from '../recoil/addPostStates';
 import { ERROR_MESSAGE_POST_MODAL } from '../utils/constants/post';
 import { imageToBinary } from '../utils/imageConverter';
 import { getStorage } from '../utils/storage';
+import { useNavigate } from 'react-router-dom';
 
 const initialValues = {
   country: '',
@@ -26,6 +27,7 @@ const GenderData = {
 };
 
 const usePostForm = () => {
+  const navigate = useNavigate();
   const [imageSrc, setImageSrc] = useState('');
   const [values, setValues] = useState(initialValues);
   const [isLoading, setIsLoading] = useState(false);
@@ -164,6 +166,8 @@ const usePostForm = () => {
     swal('게시글이 생성되었습니다!');
 
     setIsVisibleModal(false);
+
+    navigate(`/main/${values.channelId}`);
   };
 
   return {

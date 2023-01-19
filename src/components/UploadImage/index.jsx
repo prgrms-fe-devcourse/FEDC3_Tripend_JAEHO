@@ -1,18 +1,18 @@
+import styled from '@emotion/styled';
+import { useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { useCallback, useEffect, useRef, useState } from 'react';
 import UploadIcon from '../../../static/images/upload.svg';
+import { getMyPostDetail } from '../../apis/post';
+import { formatDataState, uploadImageState } from '../../recoil/uploadImageState';
+import { ERROR_MESSAGE, FILE } from '../../utils/myhome/constant';
+import { ImageFileInput } from '../AddPost/AddPostForm/style';
 import {
   ImageContainar,
+  ImageUploaderContainer,
   TitleWrapper,
   UploadDescription,
   UploadImageWrapper,
-  ImageUploaderContainer,
 } from './style';
-import { ImageFileInput } from '../AddPost/AddPostForm/style';
-import { ERROR_MESSAGE, FILE } from '../../utils/myhome/constant';
-import { formatDataState, uploadImageState } from '../../recoil/uploadImageState';
-import { getMyPostDetail } from '../../apis/post';
-import styled from '@emotion/styled';
 
 const UploadAndDisplayImage = ({ postId }) => {
   const [selectedImage, setSelectedImage] = useRecoilState(uploadImageState);

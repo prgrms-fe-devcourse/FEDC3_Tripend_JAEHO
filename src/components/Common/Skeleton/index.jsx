@@ -1,8 +1,8 @@
 import Box from './Box';
-import Circle from './Circle';
-import Paragraph from './Paragraph';
 import Card from './Card';
+import Circle from './Circle';
 import Detail from './Detail';
+import Paragraph from './Paragraph';
 
 const Skeleton = {
   Box,

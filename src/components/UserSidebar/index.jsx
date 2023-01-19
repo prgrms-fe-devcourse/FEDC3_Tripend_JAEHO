@@ -1,6 +1,6 @@
+import { UserSidebarContainer } from './style';
 import UserList from './UserList';
 import UserSearchBar from './UserSearchBar';
-import { UserSidebarContainer } from './style';
 
 const UserSidebar = () => {
   return (

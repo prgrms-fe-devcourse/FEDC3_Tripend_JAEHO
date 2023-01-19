@@ -1,5 +1,5 @@
-import UserInfo from '../../components/MyHome/UserInfo/';
 import UserSettingPassword from '../../components/MyHome';
+import UserInfo from '../../components/MyHome/UserInfo/';
 import UserSidebar from '../../components/Sidebar';
 
 const MySettingPage = () => {

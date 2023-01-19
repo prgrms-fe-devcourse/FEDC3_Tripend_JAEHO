@@ -1,7 +1,7 @@
-import { useMemo, useEffect } from 'react';
-import { BackgroundDim, ModalContainer } from './style';
-import useClickAway from '../../hooks/useClickAway';
+import { useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
+import useClickAway from '../../hooks/useClickAway';
+import { BackgroundDim, ModalContainer } from './style';
 
 const Modal = ({ children, width = 500, height, visible = false, onClose, ...props }) => {
   const ref = useClickAway(() => {

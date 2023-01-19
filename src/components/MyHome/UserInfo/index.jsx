@@ -1,14 +1,11 @@
-import { useEffect } from 'react';
-import { UserInfoContainer, UserInfoWrapper } from './style';
-import { useGetMyhomeUserInfo } from '../../../hooks/useGetMyhomeUserInfo';
-import { getStorage } from '../../../utils/storage';
-import { USERIMAGE } from '../../../utils/constant/auth';
-import Avatar from '../../common/Avatar';
 import styled from '@emotion/styled';
+import { useEffect } from 'react';
+import { useGetMyhomeUserInfo } from '../../../hooks/useGetMyhomeUserInfo';
+import Avatar from '../../Common/Avatar';
+import { UserInfoContainer, UserInfoWrapper } from './style';
 
 const UserInfo = () => {
   const { profile, getUserData } = useGetMyhomeUserInfo();
-  const userImage = getStorage(USERIMAGE);
   useEffect(() => {
     getUserData();
   }, []);

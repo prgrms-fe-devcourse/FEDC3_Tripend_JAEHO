@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AccountPage from './pages/accountPage';
+import AccountPage from './pages/AccountPage';
 import Header from './pages/Header';
 import SigninPage from './pages/SigninPage';
-import SignupPage from './pages/signupPage';
+import SignupPage from './pages/SignupPage';
 
 import HomePage from './pages/HomePage';
 import MyPosterPage from './pages/MyPosterPage';

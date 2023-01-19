@@ -3,13 +3,13 @@ import { USER_PLACEHOLDER } from '../../utils/constant/auth';
 import {
   FieldSet,
   FormSigninText,
-  SignupWrapper,
+  FormSignupText,
+  Input,
   InputWrapper,
   SignupButton,
   SignupContainer,
   SignupTitle,
-  Input,
-  FormSignupText,
+  SignupWrapper,
 } from './style';
 
 const Signup = () => {

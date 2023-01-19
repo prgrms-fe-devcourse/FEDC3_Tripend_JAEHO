@@ -1,10 +1,10 @@
+import { memo, useEffect, useState } from 'react';
 import {
   ImageItemContainer,
   PostButton,
   PostItemContainer,
   PostTitle,
 } from '../../../pages/MyPosterPage/style';
-import { memo, useEffect, useState } from 'react';
 import { PosterButton, PosterDeleteButton } from './style';
 
 const UserPosterItem = memo(function ({ id, title, image, handlePoster, handleDeletePoster }) {

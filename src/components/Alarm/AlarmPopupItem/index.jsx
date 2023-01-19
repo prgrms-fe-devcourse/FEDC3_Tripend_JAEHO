@@ -1,7 +1,7 @@
 import React from 'react';
 import { ALARM } from '../../../utils/constant/alarm';
 import { extractName } from '../../../utils/validate/userList';
-import Avatar from '../../common/Avatar';
+import Avatar from '../../Common/Avatar';
 import { AlarmImg, AlarmItem, AlarmText } from './style';
 
 const AlarmPopupItem = ({ alarm, onClick }) => {

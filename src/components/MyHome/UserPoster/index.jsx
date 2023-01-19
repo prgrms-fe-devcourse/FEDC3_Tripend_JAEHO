@@ -1,11 +1,11 @@
-import MyhomeModal from '../../Modal/MyhomeModal';
-import Modal from '../../Modal';
 import { PosterContainer, PosterTitle, PostWrapper } from '../../../pages/MyPosterPage/style';
-import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
+import Modal from '../../Modal';
+import MyhomeModal from '../../Modal/MyhomeModal';
 import UserPosterItem from '../UserPosteItem';
+import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
 
-import { usePoster } from '../../../hooks/usePoster';
 import { useState } from 'react';
+import { usePoster } from '../../../hooks/usePoster';
 import Pagination from '../../Pagination';
 
 const LoginPoster = () => {

@@ -1,5 +1,5 @@
-import Box from './Box';
 import styled from '@emotion/styled';
+import Box from './Box';
 
 const Detail = ({ line = 3, ...props }) => {
   return (

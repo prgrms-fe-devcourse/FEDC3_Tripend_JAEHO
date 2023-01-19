@@ -1,8 +1,7 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Channel, ChannelUl, DescriptionTitle, SortedChannelContainer } from './style';
-import { useParams } from 'react-router-dom';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { Channel, ChannelUl, DescriptionTitle, SortedChannelContainer } from './style';
 
 const arrowStyle = { position: 'relative', top: '-2px', transition: 'transform 0.2s ease-out' };
 const rotate = { transform: 'rotate(180deg)' };

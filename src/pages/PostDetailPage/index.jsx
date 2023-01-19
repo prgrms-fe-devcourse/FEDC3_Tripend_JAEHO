@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import PostDetail from '../../components/MainSection/PostDetail';
-import { PostDetailPageContainer, PostDetailPageWrapper } from './style';
 import { useSetRecoilState } from 'recoil';
+import PostDetail from '../../components/MainSection/PostDetail';
 import { postDetailModalState, selectedPostState } from '../../recoil/postStates';
+import { PostDetailPageContainer, PostDetailPageWrapper } from './style';
 
 const PostDetailPage = () => {
   const postId = useParams().postId;

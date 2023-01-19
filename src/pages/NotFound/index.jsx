@@ -1,5 +1,5 @@
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
-import { MissingPageContainer, MainPageLink, MissingMessage } from './style.js';
+import { MissingMessage, MissingPageContainer } from './style.js';
 
 const MissingPage = () => {
   return (

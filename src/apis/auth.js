@@ -1,6 +1,4 @@
-import { authRequest, baseRequest } from './core';
 import swal from 'sweetalert';
-import { getStorage, setStorage } from '../utils/storage';
 import {
   ERROR_MESSAGE_SIGNIN,
   ERROR_MESSAGE_SIGNUP,
@@ -11,6 +9,8 @@ import {
   USER,
   USERIMAGE,
 } from '../utils/constant/auth';
+import { getStorage, setStorage } from '../utils/storage';
+import { authRequest, baseRequest } from './core';
 
 const { DUPLICATE_EMAIL } = ERROR_MESSAGE_SIGNUP;
 

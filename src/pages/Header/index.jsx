@@ -1,10 +1,10 @@
 import { useLocation } from 'react-router-dom';
 import Logo from '../../../static/images/Logo.svg';
-import AddPost from '../../components/addPost';
-import AlarmPopup from '../../components/alarm/AlarmPopup';
-import Avatar from '../../components/common/Avatar';
-import Icon from '../../components/common/Icons';
-import Badge from '../../components/common/Icons/Badge';
+import AddPost from '../../components/AddPost';
+import AlarmPopup from '../../components/Alarm/AlarmPopup';
+import Avatar from '../../components/Common/Avatar';
+import Icon from '../../components/Common/Icons';
+import Badge from '../../components/Common/Icons/Badge';
 import SearchPost from '../../components/SearchPost';
 import useHeader from '../../hooks/useHeader';
 import { AlarmContainer, ButtonContainer, HeaderContainer, IconItem, LogoContainer } from './style';

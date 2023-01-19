@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import useGetUserList from '../../../hooks/useGetUserList';
 import { extractName } from '../../../utils/validate/userList';
-import Avatar from '../../common/Avatar';
-import Badge from '../../common/Icons/Badge';
+import Avatar from '../../Common/Avatar';
+import Badge from '../../Common/Icons/Badge';
 import { UserInfo, UserListContainer, UserName } from './style';
 
 const UserList = () => {

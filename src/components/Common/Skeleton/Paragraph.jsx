@@ -1,4 +1,4 @@
-import Box from "./Box";
+import Box from './Box';
 
 const Paragraph = ({ line = 3, ...props }) => {
   return (

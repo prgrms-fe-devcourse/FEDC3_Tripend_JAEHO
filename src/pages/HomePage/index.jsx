@@ -1,6 +1,6 @@
 import ChannelList from '../../components/ChannelList';
-import SideBarRight from '../../components/sidebarRIght';
 import MainSection from '../../components/MainSection';
+import UserSidebar from '../../components/UserSidebar';
 import { MainPageContainer } from './style';
 
 const MainPage = () => {
@@ -8,7 +8,7 @@ const MainPage = () => {
     <MainPageContainer>
       <ChannelList />
       <MainSection />
-      <SideBarRight />
+      <UserSidebar />
     </MainPageContainer>
   );
 };

@@ -1,4 +1,4 @@
-import Avatar from '../../../common/Avatar';
+import Avatar from '../../../Common/Avatar';
 import { AuthorInfoContainer, AuthorInfoTextContainer } from './style';
 
 const AuthorInfo = ({ image, fullName }) => {

@@ -30,5 +30,8 @@ const UserInfoWrapper = styled.div`
   margin-top: 50px;
   border-radius: 50%;
 `;
+const UserInfoProfileWrapper = styled.div`
+  margin-left: 20px;
+`;
 
-export { UserInfoContainer, UserInfoWrapper };
+export { UserInfoContainer, UserInfoWrapper, UserInfoProfileWrapper };

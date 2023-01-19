@@ -1,4 +1,4 @@
-import { URL } from '../utils/constant/alarm';
+import { URL } from '../utils/constants/alarm';
 import { authRequest } from './core';
 
 // 나의 알림 목록

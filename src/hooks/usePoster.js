@@ -3,7 +3,6 @@ import { useRecoilState } from 'recoil';
 import { myHomeModalState, uploadImageState, userLoginDateState } from '../recoil/uploadImageState';
 import { getUser } from '../apis/auth';
 import { getMyPostDetail, removePost } from '../apis/post';
-import { myHomeModalState, uploadImageState, userLoginDateState } from '../recoil/uploadImageState';
 import { ERROR_MESSAGE_SIGNIN, USER } from '../utils/constants/auth';
 
 export const usePoster = () => {

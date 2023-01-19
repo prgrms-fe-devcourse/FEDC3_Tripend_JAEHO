@@ -8,7 +8,7 @@ import {
   USER as AUTH,
   USER,
   USER_IMAGE,
-} from '../utils/constant/auth';
+} from '../utils/constants/auth';
 import { getStorage, setStorage } from '../utils/storage';
 import { authRequest, baseRequest } from './core';
 

@@ -5,7 +5,7 @@ import UploadIcon from '../../../static/images/upload.svg';
 import { getMyPostDetail } from '../../apis/post';
 import { formatDataState, uploadImageState } from '../../recoil/uploadImageState';
 import { ERROR_MESSAGE, FILE } from '../../utils/constants/myHome';
-import { ImageFileInput } from '../addPost/addPostForm/style';
+import { ImageFileInput } from '../AddPost/AddPostForm/style';
 import {
   ImageContainer,
   ImageUploaderContainer,

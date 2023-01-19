@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { EVENT } from '../utils/constant/hooks';
+import { EVENT } from '../utils/constants/hooks';
 
 const useClickAway = (handler) => {
   const ref = useRef(null);

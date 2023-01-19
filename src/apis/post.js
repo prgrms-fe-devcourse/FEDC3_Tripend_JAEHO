@@ -1,5 +1,5 @@
-import { URL } from '../utils/constant/auth';
-import { ERROR_MESSAGE_POST, POST_URL } from '../utils/constant/post';
+import { URL } from '../utils/constants/auth';
+import { ERROR_MESSAGE_POST, POST_URL } from '../utils/constants/post';
 import { authRequest, baseRequest, postDataRequest } from './core';
 
 export const getChannels = async () => {

@@ -21,9 +21,9 @@ const ImageUploader = styled.div`
 
 const Input = styled.input`
   border: 1px solid grey;
-  width: 60%;
+  width: 50%;
   display: inline-block;
-  height: 40px;
+  height: 90%;
   border-radius: 5px;
 `;
 
@@ -77,7 +77,6 @@ const ModalTitle = styled.h3``;
 const InputDayWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 14px;
   font-size: 14px;
   width: 100%;
 
@@ -88,11 +87,15 @@ const InputDayWrapper = styled.div`
   }
 
   input {
-    height: 50%;
+    height: 30px;
     width: 100%;
     background-color: #fff;
     border: 1px solid #dddddd;
     border-radius: 4px;
+  }
+  p {
+    display: flex;
+    flex-wrap: wrap;
   }
 `;
 
@@ -105,7 +108,14 @@ const InputTitleWrapper = styled.div`
 
   input {
     height: 100%;
-    width: 100%;
+    width: 98.7%;
+    background-color: #fff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+  }
+  textarea {
+    width: 98.7%;
+    height: 60px;
     background-color: #fff;
     border: 1px solid #dddddd;
     border-radius: 4px;
@@ -115,9 +125,10 @@ const InputTitleWrapper = styled.div`
 const InputPersonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 14px;
   font-size: 14px;
   width: 45%;
+
+  margin-right: 40px;
 
   label {
     font-size: 14px;
@@ -126,7 +137,7 @@ const InputPersonWrapper = styled.div`
   }
 
   input {
-    height: 50%;
+    height: 35px;
     width: 100%;
     background-color: #fff;
     border: 1px solid #dddddd;
@@ -137,7 +148,6 @@ const InputPersonWrapper = styled.div`
 const InputGenderWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 14px;
   font-size: 14px;
   width: 50%;
 

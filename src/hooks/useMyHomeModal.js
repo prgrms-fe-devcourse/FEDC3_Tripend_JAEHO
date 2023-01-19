@@ -8,6 +8,8 @@ export const useMyHomeModal = (imageValue, postId) => {
   const detail = useRecoilValue(userLoginDateState);
   const setVisible = useSetRecoilState(myHomeModalState);
 
+  const [prevDate, setPrevDate] = useState('');
+
   const [userLoginData, setUserLoginData] = useState({
     dayEnd: '',
     dayStart: '',
@@ -16,7 +18,11 @@ export const useMyHomeModal = (imageValue, postId) => {
     content: '',
     posterTitle: '',
   });
+
   const [profile, setProfile] = useState([]);
+
+  const [personError, setPersonError] = useState('');
+  const [dateError, setDateError] = useState('');
 
   const handleUserLoginData = (e) => {
     const { name, value } = e.target;
@@ -24,6 +30,18 @@ export const useMyHomeModal = (imageValue, postId) => {
       ...userLoginData,
       [name]: value,
     });
+  };
+
+  const checkDate = (end, start) => {
+    const endDate = parseInt(end.split('-').join('').trim());
+    const startDate = parseInt(start.split('-').join('').trim());
+
+    if (startDate > endDate) {
+      setDateError('기간을 정확히 맞춰주세요 ㅠㅠ');
+      throw new Error('에러');
+    } else {
+      setPersonError('');
+    }
   };
 
   useEffect(() => {
@@ -53,6 +71,7 @@ export const useMyHomeModal = (imageValue, postId) => {
 
   const handleSendFileImage = async (e) => {
     e.preventDefault();
+    checkDate(userLoginData.dayEnd, userLoginData.dayStart);
 
     const jsonParseTitle = JSON.parse(detail.data.title);
 
@@ -81,5 +100,6 @@ export const useMyHomeModal = (imageValue, postId) => {
     handleUserLoginData,
     handleSendFileImage,
     profile,
+    dateError,
   };
 };

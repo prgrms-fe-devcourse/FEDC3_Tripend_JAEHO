@@ -7,17 +7,17 @@ const ModalTitleWrapper = styled.div`
 `;
 
 const ModalTitleButton = styled.button`
-  background-color: white;
-  font-size: 28px;
-  font-weight: bold;
-  margin-left: 10px;
-  cursor: pointer;
-  position: relative;
-  left: 43%;
-  width: 30px;
-  bottom: 30%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  color: inherit;
   border: none;
-  color: darkgray;
+  padding: 0;
+  font: inherit;
+  font-size: 25px;
+  cursor: pointer;
+  outline: inherit;
 `;
 const ModalTitle = styled.h3``;
 

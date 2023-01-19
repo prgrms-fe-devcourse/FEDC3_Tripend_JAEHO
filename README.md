@@ -1,6 +1,6 @@
 # 👫 Tripend(트라이픈) 여행 친구 만들기 커뮤니티
 
-여행 친구 만들기 커뮤니티
+![배너](https://user-images.githubusercontent.com/76807107/213392089-f7e50f19-3bf7-47fd-ac45-d924128739d1.jpg)
 
  <br/>
 
@@ -16,11 +16,13 @@
 여행을 좋아하고 다양한 문화를 좋아하는 여행가
 
 ### 3️⃣ 기능 리스트
+
 - 로그인/회원가입/비밀번호 수정
 - 게시글 검색: 게시글 제목으로 게시글을 검색할 수 있다.
 - 게시글 작성: 동행자를 구하는 게시글을 작성할 수 있다.
 - 사용자 검색: 사용자 이름으로 사용자를 검색할 수 있다.
 - 댓글: 다른 유저의 게시글에 댓글을 작성할 수 있다.
+- 댓글 알람 : 내가 작성한 게시글에 다른 유저가 댓글을 단 경우 알람으로 확인할 수 있다.
 - 동행 신청: 다른 유저의 게시글을 보고 동행을 신청할 수 있다.
 - 동행 신청 알람: 다른 유저가 동행 신청을 하면 알람으로 확인 할 수 있다.
 - 마이페이지: 내가 작성한 게시글 확인 및 게시글 수정/삭제 할 수 있다.
@@ -35,7 +37,7 @@
 
 ## 👨‍👨‍👦‍👦 팀원 소개
 
-<table>
+<table align='center'>
 <tr>
 
 <td align="center"><a href="https://github.com/ksh-jsx"><img src="https://avatars.githubusercontent.com/u/28949190?v=4" width="100px" /></a></td>
@@ -103,7 +105,7 @@
 </tr>
 <tr>
  <td align="center">배포</td>
- <td><img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white"/>&nbsp </td>
+ <td><img src="https://img.shields.io/badge/github action-000000?style=for-the-badge&logo=GithubAction&logoColor=white"/>&nbsp <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white"/>&nbsp</td>
 </tr>
 <tr>
  <td align="center">협업툴</td>
@@ -121,8 +123,6 @@
 
 <br />
 
-
-
 <br />
 
 # ✏️ 유저 스토리
@@ -134,7 +134,5 @@
 # 🎨 디자인 시안
 
 [디자인 시안](https://www.figma.com/file/dKBHWSq5IfoN2MIgb6av9L?node-id=0:1)
-
-<a href="https://www.figma.com/file/dKBHWSq5IfoN2MIgb6av9L?node-id=0:1"><img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8fef2d92-a376-49ef-85b2-e1ee0ca92f26/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230117%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230117T083105Z&X-Amz-Expires=86400&X-Amz-Signature=f4ae46eaccd34603281798d4154a8c95da245d1da98705aa76672fd366d6ba39&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject" width="100%"/></a>
 
 <br />

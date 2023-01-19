@@ -21,7 +21,6 @@ export const getChannelPosts = async (channelId) => {
   }
 };
 
-// post 생성하기
 export const createPost = async (data) => {
   try {
     return await postDataRequest.post(POST_URL.CREATE_POST, data);
@@ -39,7 +38,6 @@ export const getAllPosts = async () => {
   }
 };
 
-// postDetail 받아오기
 export const getPostDetail = async (postId) => {
   try {
     const data = await baseRequest.get(POST_URL.POST_DETAIL + postId);
@@ -49,7 +47,6 @@ export const getPostDetail = async (postId) => {
   }
 };
 
-// 마이페이지 (게시글 삭제)
 export const removePost = async (postId) => {
   const data = await authRequest.delete(URL.MYPAGE_DELETE, {
     data: {
@@ -63,12 +60,10 @@ export const removePost = async (postId) => {
   }
 };
 
-// 마이페이지 포스트 불러오기 (모달용)
 export const getMyPostDetail = async (postId) => {
   return await baseRequest.get(POST_URL.POST_DETAIL + postId);
 };
 
-// 마이페이지 게시글 수정
 export const updatePost = async (post) => {
   const res = await authRequest.put(URL.MYPAGE_UPDATE, post);
 

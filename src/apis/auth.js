@@ -14,7 +14,6 @@ import { authRequest, baseRequest } from './core';
 
 const { DUPLICATE_EMAIL } = ERROR_MESSAGE_SIGNUP;
 
-// 로그인
 export const postUserLogin = async (email, password) => {
   const response = await baseRequest
     .post(URL.LOGIN, {
@@ -35,7 +34,6 @@ export const postUserLogin = async (email, password) => {
   return response;
 };
 
-// 로그인 유저 정보 가져오기 (인증된 유저)
 export const getUser = async () => {
   if (!getStorage(TOKEN)) {
     throw new Error(ERROR_MESSAGE_SIGNIN.EDIT_USER);
@@ -47,7 +45,6 @@ export const getUser = async () => {
   }
 };
 
-// 비밀번호 변경
 export const putPasswordChange = async (password) => {
   if (!getStorage(TOKEN)) {
     throw new Error(ERROR_MESSAGE_SIGNIN.EDIT_USER);

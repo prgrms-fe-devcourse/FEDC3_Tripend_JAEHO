@@ -5,7 +5,6 @@ import { selectedChannelState } from '../recoil/channelState';
 
 const useChannel = () => {
   const [channels, setChannels] = useState();
-
   const setSelectedChannel = useSetRecoilState(selectedChannelState);
 
   const getChannelData = async () => {

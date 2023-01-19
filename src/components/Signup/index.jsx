@@ -1,5 +1,5 @@
 import useSignupForm from '../../hooks/useSignupForm';
-import { USER_PLACEHOLDER } from '../../utils/constant/auth';
+import { USER_PLACEHOLDER } from '../../utils/constants/auth';
 import {
   FieldSet,
   FormSigninText,

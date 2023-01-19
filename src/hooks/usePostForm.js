@@ -4,7 +4,7 @@ import { useSetRecoilState } from 'recoil';
 import swal from 'sweetalert';
 import { createPost } from '../apis/post';
 import { isVisibleModalState } from '../recoil/addPostStates';
-import { ERROR_MESSAGE_POSTMODAL } from '../utils/constant/post';
+import { ERROR_MESSAGE_POST_MODAL } from '../utils/constants/post';
 import { imageToBinary } from '../utils/imageConverter';
 import { getStorage } from '../utils/storage';
 
@@ -51,7 +51,7 @@ const usePostForm = () => {
 
     Object.entries(values).forEach(([key, value]) => {
       if (!value) {
-        errors.push(ERROR_MESSAGE_POSTMODAL[key]);
+        errors.push(ERROR_MESSAGE_POST_MODAL[key]);
       }
     });
 

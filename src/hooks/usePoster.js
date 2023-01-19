@@ -3,17 +3,13 @@ import { useRecoilState } from 'recoil';
 import { getUser } from '../apis/auth';
 import { getMyPostDetail, removePost } from '../apis/post';
 import { myHomeModalState, uploadImageState, userLoginDateState } from '../recoil/uploadImageState';
-import { ERROR_MESSAGE_SIGNIN, USER } from '../utils/constant/auth';
+import { ERROR_MESSAGE_SIGNIN, USER } from '../utils/constants/auth';
 
 export const usePoster = () => {
-  const [getLoginData, setLoginData] = useState({});
   const [postId, setPostId] = useState('');
   const [visible, setVisible] = useRecoilState(myHomeModalState);
-
   const [postDetail, setPostDetail] = useRecoilState(userLoginDateState);
-
   const [imageValue, setImageValue] = useRecoilState(uploadImageState);
-  ///////////////////////////////////////////////////////////////////////////
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
 

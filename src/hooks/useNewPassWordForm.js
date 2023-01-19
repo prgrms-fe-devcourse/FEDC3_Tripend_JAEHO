@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { putPasswordChange } from '../apis/auth';
-import { ERROR_MESSAGE_SIGNIN, USER } from '../utils/constant/auth';
+import { ERROR_MESSAGE_SIGNIN, USER } from '../utils/constants/auth';
 
 export const useNewPassWordForm = () => {
   const [values, setValues] = useState({

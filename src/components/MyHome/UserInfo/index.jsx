@@ -1,8 +1,7 @@
-import styled from '@emotion/styled';
 import { useEffect } from 'react';
 import { useGetMyHomeUserInfo } from '../../../hooks/useGetMyHomeUserInfo';
 import Avatar from '../../Common/Avatar';
-import { UserInfoContainer, UserInfoWrapper } from './style';
+import { UserInfoContainer, UserInfoProfileWrapper, UserInfoWrapper } from './style';
 
 const UserInfo = () => {
   const { profile, getUserData } = useGetMyHomeUserInfo();
@@ -24,7 +23,3 @@ const UserInfo = () => {
   );
 };
 export default UserInfo;
-
-const UserInfoProfileWrapper = styled.div`
-  margin-left: 20px;
-`;

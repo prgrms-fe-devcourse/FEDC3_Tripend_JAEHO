@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { getMyPostDetail, updatePost } from '../apis/post';
-import { myHomeModalState, userLoginDateState } from '../recoil/uploadImageState';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { getChannels, getMyPostDetail, updatePost } from '../apis/post';
+import {
+  myChannelIdState,
+  myChannelState,
+  myHomeModalState,
+  userLoginDateState,
+} from '../recoil/uploadImageState';
 import { FORM_DATA } from '../utils/constants/myHome';
 
 export const useMyHomeModal = (imageValue, postId) => {
@@ -9,7 +14,6 @@ export const useMyHomeModal = (imageValue, postId) => {
   const setVisible = useSetRecoilState(myHomeModalState);
 
   const [prevDate, setPrevDate] = useState('');
-
   const [userLoginData, setUserLoginData] = useState({
     dayEnd: '',
     dayStart: '',
@@ -17,6 +21,18 @@ export const useMyHomeModal = (imageValue, postId) => {
     gender: '',
     content: '',
     posterTitle: '',
+    country: '',
+    channel: '',
+  });
+  //////////////////////////////////////////////////////
+  const [myChannel, setMyChannel] = useRecoilState(myChannelState);
+  const [myId, setMyId] = useRecoilState(myChannelIdState);
+
+  const [europe, setEurope] = useState({
+    eastEurope: [],
+    westEurope: [],
+    southEurope: [],
+    northEurope: [],
   });
 
   const [profile, setProfile] = useState([]);
@@ -29,6 +45,9 @@ export const useMyHomeModal = (imageValue, postId) => {
       ...userLoginData,
       [name]: value,
     });
+
+    setMyChannel(e.target.options[e.target.selectedIndex].dataset.country);
+    setMyId(e.target.options[e.target.selectedIndex].value);
   };
 
   const checkDate = (end, start) => {
@@ -53,16 +72,33 @@ export const useMyHomeModal = (imageValue, postId) => {
 
         setUserLoginData({
           ...userLoginData,
+          country: loginUserObject.country,
           dayEnd: loginUserObject.date.split(`~`)[1],
           dayStart: loginUserObject.date.split('~')[0],
           person: loginUserObject.personnel,
           gender: loginUserObject.gender,
           posterTitle: loginUserObject.title,
           content: loginUserObject.content,
+          channel: getPostDetail.data.channel._id,
         });
       }
     };
 
+    const getChannel = async () => {
+      const { data } = await getChannels();
+      const eastEurope = data.filter(({ description }) => description === '동유럽');
+      const westEurope = data.filter(({ description }) => description === '서유럽');
+      const southEurope = data.filter(({ description }) => description === '남유럽');
+      const northEurope = data.filter(({ description }) => description === '북유럽');
+
+      setEurope({
+        eastEurope,
+        westEurope,
+        southEurope,
+        northEurope,
+      });
+    };
+    getChannel();
     getPostModalDetail();
   }, []);
 
@@ -73,7 +109,7 @@ export const useMyHomeModal = (imageValue, postId) => {
     const jsonParseTitle = JSON.parse(detail.data.title);
 
     const title = {
-      country: jsonParseTitle.country,
+      country: myChannel,
       date: `${userLoginData.dayStart}~${userLoginData.dayEnd}`,
       personnel: userLoginData.person,
       gender: userLoginData.gender,
@@ -86,8 +122,8 @@ export const useMyHomeModal = (imageValue, postId) => {
     formatData.append(FORM_DATA.POST_ID, postId);
     formatData.append(FORM_DATA.IMAGE, imageValue);
     formatData.append(FORM_DATA.TITLE, JSON.stringify(title));
-    formatData.append(FORM_DATA.CHANNEL_ID, detail.data._id);
-
+    // formatData.append(FORM_DATA.CHANNEL_ID, detail.data._id);
+    formatData.append(FORM_DATA.CHANNEL_ID, myId);
     const res = await updatePost(formatData);
     setVisible(false);
   };
@@ -98,5 +134,6 @@ export const useMyHomeModal = (imageValue, postId) => {
     handleSendFileImage,
     profile,
     dateError,
+    europe,
   };
 };

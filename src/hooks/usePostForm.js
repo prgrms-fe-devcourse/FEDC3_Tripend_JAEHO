@@ -115,6 +115,9 @@ const usePostForm = () => {
 
   const handleCountryChange = (e) => {
     const { country } = e.target.options[e.target.selectedIndex].dataset;
+
+    console.log(country);
+    console.log(e.target.value);
     setValues((prevValues) => ({ ...prevValues, country, channelId: e.target.value }));
   };
 
@@ -145,6 +148,7 @@ const usePostForm = () => {
       content: values.content,
     };
 
+    console.log(userData);
     const binaryImage = imageSrc ? imageToBinary(imageSrc) : null;
 
     const data = {

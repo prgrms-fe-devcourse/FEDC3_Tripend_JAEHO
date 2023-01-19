@@ -54,6 +54,8 @@ const AddPostForm = () => {
     getChannelData();
   }, []);
 
+  console.log(values.channelId);
+
   return (
     <PostForm onSubmit={handleSubmit}>
       <ImageUploader>

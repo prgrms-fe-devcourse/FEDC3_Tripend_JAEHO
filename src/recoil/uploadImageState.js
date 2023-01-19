@@ -24,3 +24,13 @@ export const myHomeModalState = atom({
   key: 'myHomeModal',
   default: false,
 });
+
+export const myChannelState = atom({
+  key: 'myChannel',
+  default: '',
+});
+
+export const myChannelIdState = atom({
+  key: 'myChannelId',
+  default: '',
+});

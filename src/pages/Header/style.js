@@ -59,15 +59,3 @@ export const IconItem = styled.div`
 export const AlarmContainer = styled.section`
   position: relative;
 `;
-
-export const AlarmBadge = styled.div`
-  position: absolute;
-  top: 9px;
-  right: 18px;
-  display: block;
-  background-color: #ff4741;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-`;

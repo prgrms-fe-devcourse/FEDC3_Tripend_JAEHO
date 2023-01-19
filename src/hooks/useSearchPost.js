@@ -11,9 +11,9 @@ const useSearchPost = () => {
 
   const [searchResult, setSearchResult] = useState([]);
 
-  const getSearchResult = async (encodedKeyword) => {
+  const getSearchResult = async (encodedKeyword, keyword) => {
     const { data } = await searchAll(encodedKeyword);
-    setSearchResult(filterdPost(data));
+    setSearchResult(filterdPost(data, keyword));
   };
 
   const handleClickItem = (postId) => {
@@ -24,7 +24,7 @@ const useSearchPost = () => {
   useDebounce(
     () => {
       if (keyword.length > 0) {
-        getSearchResult(encodeKeyword(keyword));
+        getSearchResult(encodeKeyword(keyword), keyword);
       } else {
         setSearchResult([]);
       }

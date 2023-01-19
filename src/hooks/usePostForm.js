@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useSetRecoilState } from 'recoil';
 import swal from 'sweetalert';
 import { createPost } from '../apis/post';
 import { isVisibleModalState } from '../recoil/addPostStates';
+import { ERROR_MESSAGE_POSTMODAL } from '../utils/constant/post';
 import { imageToBinary } from '../utils/imageConverter';
 import { getStorage } from '../utils/storage';
-
-import { ERROR_MESSAGE_POSTMODAL } from '../utils/constant/post';
+import imageCompression from 'browser-image-compression';
 
 const initialValues = {
   country: '',
@@ -32,17 +32,52 @@ const usePostForm = () => {
   const [errorMessage, setErrorMessgae] = useState([]);
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
 
+  const compressImage = useCallback(async (fileSrc) => {
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    };
+
+    try {
+      return await imageCompression(fileSrc, options);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const validate = useCallback((values) => {
+    const errors = [];
+
+    Object.entries(values).forEach(([key, value]) => {
+      if (!value) {
+        errors.push(ERROR_MESSAGE_POSTMODAL[key]);
+      }
+    });
+
+    return errors;
+  }, []);
+
+  const generateFormData = useCallback((data) => {
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => formData.append(key, data[key]));
+
+    return formData;
+  }, []);
+
   const handleValueChange = (e) => {
     const { name, value } = e.target;
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
-  const handleImageFileChange = (e) => {
+  const handleImageFileChange = async (e) => {
     let imageFile = e.target.files[0];
 
     if (!imageFile) {
       return;
     }
+
+    imageFile = await compressImage(imageFile);
 
     const reader = new FileReader();
     reader.readAsDataURL(imageFile);
@@ -54,25 +89,6 @@ const usePostForm = () => {
   const handleCountryChange = (e) => {
     const { country } = e.target.options[e.target.selectedIndex].dataset;
     setValues((prevValues) => ({ ...prevValues, country, channelId: e.target.value }));
-  };
-
-  const validate = (values) => {
-    const errors = [];
-
-    Object.entries(values).forEach(([key, value]) => {
-      if (!value) {
-        errors.push(ERROR_MESSAGE_POSTMODAL[key]);
-      }
-    });
-
-    return errors;
-  };
-
-  const generateFormData = (data) => {
-    const formData = new FormData();
-    Object.keys(data).forEach((key) => formData.append(key, data[key]));
-
-    return formData;
   };
 
   const handleSubmit = async (e) => {
@@ -112,12 +128,16 @@ const usePostForm = () => {
 
     const formData = generateFormData(data);
 
-    const result = await createPost(formData);
-    if (result.statusText === 'OK') {
-      swal('포스트가 생성되었습니다.');
+    const response = await createPost(formData);
+    if (response.status !== 200) {
+      swal('게시글이 정상적으로 생성되지 않았습니다!');
+      setIsLoading(false);
+
+      return;
     }
 
-    setIsLoading(false);
+    swal('게시글이 생성되었습니다!');
+
     setIsVisibleModal(false);
   };
 

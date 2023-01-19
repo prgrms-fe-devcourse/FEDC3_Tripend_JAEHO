@@ -35,6 +35,7 @@
     "autoprefixer": "^10.4.8",
     "axios": "^1.2.2",
     "babel-loader": "^8.2.5",
+    "browser-image-compression": "^2.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "D": "^1.0.0",

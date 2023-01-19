@@ -4,16 +4,10 @@ import AddPost from '../../components/addPost';
 import AlarmPopup from '../../components/alarm/AlarmPopup';
 import Avatar from '../../components/common/Avatar';
 import Icon from '../../components/common/Icons';
+import Badge from '../../components/common/Icons/Badge';
 import SearchPost from '../../components/SearchPost';
 import useHeader from '../../hooks/useHeader';
-import {
-  AlarmBadge,
-  AlarmContainer,
-  ButtonContainer,
-  HeaderContainer,
-  IconItem,
-  LogoContainer,
-} from './style';
+import { AlarmContainer, ButtonContainer, HeaderContainer, IconItem, LogoContainer } from './style';
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -49,7 +43,9 @@ const Header = () => {
             <AlarmContainer>
               <IconItem onClick={handleOpenAlarm}>
                 <Icon.Alarm />
-                {alarms.length > 0 && <AlarmBadge />}
+                {alarms.length > 0 && (
+                  <Badge top={'9px'} right={'18px'} size={'5px'} color={'#ff4741'} />
+                )}
               </IconItem>
             </AlarmContainer>
             <IconItem onClick={handleLogout}>

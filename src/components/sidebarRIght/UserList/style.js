@@ -14,6 +14,7 @@ export const UserListContainer = styled.ul`
 `;
 
 export const UserInfo = styled.li`
+  position: relative;
   display: flex;
   align-items: center;
   height: 32px;

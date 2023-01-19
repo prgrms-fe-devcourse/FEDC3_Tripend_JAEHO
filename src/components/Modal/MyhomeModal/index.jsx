@@ -18,14 +18,12 @@ import {
   ModalTitleWrapper,
 } from './style';
 
-import { InputsAlign } from '../../AddPost/AddPostForm/style';
 import { useMyHomeModal } from '../../../hooks/useMyHomeModal';
+import { InputsAlign } from '../../AddPost/AddPostForm/style';
 
-const MyHomeModal = memo(function ({ postId, imageValue }) {
-  const { userLoginData, handleUserLoginData, handleSendFileImage, profile } = useMyHomeModal(
-    imageValue,
-    postId
-  );
+const MyhomeModal = memo(function ({ postId, imageValue }) {
+  const { userLoginData, handleUserLoginData, handleSendFileImage, profile, dateError } =
+    useMyHomeModal(imageValue, postId);
 
   const selectList = ['여자만', '남자만', '남여 무관'];
 
@@ -50,16 +48,13 @@ const MyHomeModal = memo(function ({ postId, imageValue }) {
             <label htmlFor="date">기간</label>
             <InputsAlign>
               <input
-                style={{
-                  height: '30px',
-                }}
                 type="date"
                 id="date"
                 name="dayStart"
                 value={userLoginData.dayStart.trim()}
                 onChange={handleUserLoginData}
               />
-              부터
+              ~
               <input
                 style={{
                   height: '30px',
@@ -70,8 +65,8 @@ const MyHomeModal = memo(function ({ postId, imageValue }) {
                 value={userLoginData.dayEnd.trim()}
                 onChange={handleUserLoginData}
               />
-              까지
             </InputsAlign>
+            <p>{dateError}</p>
           </InputDayWrapper>
 
           <div
@@ -154,13 +149,6 @@ const MyHomeModal = memo(function ({ postId, imageValue }) {
               내용
             </Label>
             <textarea
-              style={{
-                height: '60px',
-                width: '100%',
-                backgroundColor: '#fff',
-                border: '1px solid #dddddd',
-                borderRadius: '4px',
-              }}
               id="content"
               name="content"
               placeholder="내용을 입력해주세요"
@@ -175,4 +163,4 @@ const MyHomeModal = memo(function ({ postId, imageValue }) {
   );
 });
 
-export default MyHomeModal;
+export default MyhomeModal;

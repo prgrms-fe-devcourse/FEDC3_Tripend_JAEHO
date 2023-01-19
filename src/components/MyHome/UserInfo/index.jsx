@@ -3,7 +3,7 @@ import { UserInfoContainer, UserInfoWrapper } from './style';
 import { useGetMyhomeUserInfo } from '../../../hooks/useGetMyhomeUserInfo';
 import { getStorage } from '../../../utils/storage';
 import { USERIMAGE } from '../../../utils/constant/auth';
-import Avatar from '../../common/Avatar';
+import Avatar from '../../Common/Avatar';
 import styled from '@emotion/styled';
 
 const UserInfo = () => {

@@ -1,5 +1,5 @@
 import useChannel from '../../hooks/useChannel';
-import Skeleton from '../common/Skeleton';
+import Skeleton from '../Common/Skeleton';
 import SortedChannels from './SortedChannels';
 import { ChannelListContainer } from './style';
 

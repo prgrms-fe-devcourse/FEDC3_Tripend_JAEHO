@@ -1,5 +1,5 @@
 import useMainSection from '../../hooks/useMainSection';
-import Skeleton from '../common/Skeleton';
+import Skeleton from '../Common/Skeleton';
 import Modal from '../Modal';
 import Post from './Post';
 import PostDetail from './PostDetail';

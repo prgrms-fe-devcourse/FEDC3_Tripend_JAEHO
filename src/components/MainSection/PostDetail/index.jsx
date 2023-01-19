@@ -1,5 +1,5 @@
 import usePostDetail from '../../../hooks/usePostDetail';
-import Skeleton from '../../common/Skeleton';
+import Skeleton from '../../Common/Skeleton';
 import Heart from '../Like';
 import AuthorInfo from '../Post/AuthorInfo';
 import LeftImage from '../Post/LeftImage';

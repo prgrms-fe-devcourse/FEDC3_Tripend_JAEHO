@@ -1,6 +1,6 @@
 import UploadAndDisplayImage from '../../UploadImage';
 
-import { memo, useEffect, useState } from 'react';
+import { memo } from 'react';
 
 import {
   Button,
@@ -19,15 +19,14 @@ import {
 } from './style';
 
 import { useMyHomeModal } from '../../../hooks/useMyHomeModal';
-import { InputsAlign, InputWrapper } from '../../AddPost/AddPostForm/style';
+import { InputsAlign } from '../../AddPost/AddPostForm/style';
 
 const MyhomeModal = memo(function ({ postId, imageValue }) {
-  const { userLoginData, handleUserLoginData, handleSendFileImage, profile, dateError, europe } =
-    useMyHomeModal(imageValue, postId);
+  const { userLoginData, handleUserLoginData, handleSendFileImage, profile, dateError } =
+      useMyHomeModal(imageValue, postId);
 
   const selectList = ['여자만', '남자만', '남여 무관'];
 
-  console.log(userLoginData);
   return (
     <>
       <ModalLeft>
@@ -45,60 +44,6 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
         </ModalTitleWrapper>
 
         <ModalForm onSubmit={handleSendFileImage}>
-          <InputWrapper>
-            <label htmlFor="country">나라</label>
-            <select
-              id="country"
-              name="channel"
-              value={userLoginData.channel}
-              onChange={handleUserLoginData}
-            >
-              <option>=== 선택 ===</option>
-              <optgroup label="동유럽">
-                {europe.eastEurope &&
-                  europe.eastEurope.map(({ name, _id }) => {
-                    return (
-                      <option value={_id} key={_id} data-country={name}>
-                        {name}
-                      </option>
-                    );
-                  })}
-              </optgroup>
-
-              <optgroup label="서유럽">
-                {europe.eastEurope &&
-                  europe.westEurope.map(({ name, _id }) => {
-                    return (
-                      <option value={_id} key={_id} data-country={name}>
-                        {name}
-                      </option>
-                    );
-                  })}
-              </optgroup>
-
-              <optgroup label="남유럽">
-                {europe.southEurope &&
-                  europe.southEurope.map(({ name, _id }) => {
-                    return (
-                      <option value={_id} key={_id} data-country={name}>
-                        {name}
-                      </option>
-                    );
-                  })}
-              </optgroup>
-
-              <optgroup label="북유럽">
-                {europe.northEurope &&
-                  europe.northEurope.map(({ name, _id }) => {
-                    return (
-                      <option value={_id} key={_id} data-country={name}>
-                        {name}
-                      </option>
-                    );
-                  })}
-              </optgroup>
-            </select>
-          </InputWrapper>
           <InputDayWrapper>
             <label htmlFor="date">기간</label>
             <InputsAlign>
@@ -123,6 +68,7 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
             </InputsAlign>
             <p>{dateError}</p>
           </InputDayWrapper>
+
           <div
             style={{
               display: 'flex',
@@ -181,6 +127,7 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
               </select>
             </InputGenderWrapper>
           </div>
+
           <InputTitleWrapper>
             <Label htmlFor="title" style={{ fontWeight: 'bold' }}>
               제목
@@ -196,6 +143,7 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
               onChange={handleUserLoginData}
             />
           </InputTitleWrapper>
+
           <InputTitleWrapper>
             <Label htmlFor="content" style={{ fontWeight: 'bold' }}>
               내용

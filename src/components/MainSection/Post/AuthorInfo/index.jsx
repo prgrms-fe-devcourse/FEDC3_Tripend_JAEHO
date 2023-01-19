@@ -8,7 +8,7 @@ const AuthorInfo = ({ image, fullName }) => {
   const [name, author_age, author_gender] = fullName.split('/');
   return (
     <AuthorInfoContainer>
-      <Avatar alt="title" shape="circle" size="40px" src={image} lazy={true} threshold={0.1} />
+      <Avatar shape="circle" size="40px" src={image} lazy={true} threshold={0.1} />
       <AuthorInfoTextContainer>
         <div>{name}</div>
         <div>

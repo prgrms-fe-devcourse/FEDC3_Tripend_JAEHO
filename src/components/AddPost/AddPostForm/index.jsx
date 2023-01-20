@@ -110,7 +110,7 @@ const AddPostForm = () => {
             </optgroup>
             <optgroup label="북유럽">
               {northEurope.map(({ name, _id }) => (
-                <option key={_id} value={_id} data-country={name} onChange={handleCountryChange}>
+                <option key={_id} value={_id} data-country={name}>
                   {name}
                 </option>
               ))}

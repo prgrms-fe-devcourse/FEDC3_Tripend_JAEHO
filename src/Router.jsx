@@ -17,8 +17,8 @@ const AppRouter = () => {
     <Router>
       <Header />
       <Routes>
-        <Route exact path="/" element={<SigninPage />} />
-        <Route exact path="/signup" element={<SignupPage />} />
+        <Route path="/" element={<SigninPage />} />
+        <Route path="/signup" element={<SignupPage />} />
 
         <Route
           path="/main/*"

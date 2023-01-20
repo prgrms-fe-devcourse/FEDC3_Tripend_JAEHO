@@ -20,7 +20,6 @@ export const useMyHomeModal = (imageValue, postId) => {
   });
 
   const [channel, setChannel] = useState('');
-  //////////////////////////////////////////////////////
   const [myChannel, setMyChannel] = useState('');
   const [myId, setMyId] = useState('');
 
@@ -62,7 +61,6 @@ export const useMyHomeModal = (imageValue, postId) => {
     if (detail.data) {
       setProfile(detail.data.author.fullName.split('/'));
     }
-    // 데이터 가져오는 함수
     const getPostModalDetail = async () => {
       const getPostDetail = await getMyPostDetail(postId);
 
@@ -85,7 +83,6 @@ export const useMyHomeModal = (imageValue, postId) => {
       }
     };
 
-    // 나라 선택해서 데이터 보내는 함수
     const getChannel = async () => {
       const { data } = await getChannels();
       const eastEurope = data.filter(({ description }) => description === '동유럽');

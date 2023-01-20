@@ -1,13 +1,14 @@
 import imageCompression from 'browser-image-compression';
 import { useCallback, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import swal from 'sweetalert';
 import { createPost } from '../apis/post';
 import { isVisibleModalState } from '../recoil/addPostStates';
+import { selectedChannelNameState, selectedChannelState } from '../recoil/channelState';
 import { ERROR_MESSAGE_POST_MODAL } from '../utils/constants/post';
 import { imageToBinary } from '../utils/imageConverter';
 import { getStorage } from '../utils/storage';
-import { useNavigate } from 'react-router-dom';
 
 const initialValues = {
   country: '',
@@ -29,10 +30,16 @@ const GenderData = {
 const usePostForm = () => {
   const navigate = useNavigate();
   const [imageSrc, setImageSrc] = useState('');
-  const [values, setValues] = useState(initialValues);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState([]);
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
+  const selectedChannelId = useRecoilValue(selectedChannelState);
+  const selectedChannelName = useRecoilValue(selectedChannelNameState);
+  const [values, setValues] = useState({
+    ...initialValues,
+    country: selectedChannelName,
+    channelId: selectedChannelId,
+  });
 
   const compressImage = useCallback(async (fileSrc) => {
     const options = {
@@ -171,6 +178,7 @@ const usePostForm = () => {
   };
 
   return {
+    selectedChannelId,
     imageSrc,
     values,
     isLoading,

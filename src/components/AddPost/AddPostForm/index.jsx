@@ -26,6 +26,7 @@ const AddPostForm = () => {
   const [northEurope, setNorthEurope] = useState([]);
 
   const {
+    selectedChannelId,
     imageSrc,
     values,
     isLoading,
@@ -82,7 +83,7 @@ const AddPostForm = () => {
           <select
             id="country"
             name="country"
-            value={values.channelId}
+            value={values.channelId ? values.channelId : selectedChannelId}
             onChange={handleCountryChange}
           >
             <option value={null}>=== 선택 ===</option>

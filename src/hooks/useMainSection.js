@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { getAllPosts, getChannelPosts, getChannels } from '../apis/post';
-import { channelState } from '../recoil/channelState';
+import {
+  channelState,
+  selectedChannelNameState,
+  selectedChannelState,
+} from '../recoil/channelState';
 import { postDetailModalState, selectedPostState } from '../recoil/postStates';
 import { sleep } from '../utils/sleep';
 
@@ -12,7 +16,8 @@ const useMainSection = () => {
   const setSelectedPostId = useSetRecoilState(selectedPostState);
   const [postList, setPostList] = useRecoilState(channelState(useParamsId ?? 'all'));
   const [visible, setVisible] = useRecoilState(postDetailModalState);
-  const [selectedChannelName, setSelectedChannelName] = useState('');
+  const [selectedChannelName, setSelectedChannelName] = useRecoilState(selectedChannelNameState);
+  const setSelectedChannelId = useSetRecoilState(selectedChannelState);
 
   useEffect(() => {
     if (useParamsId) {
@@ -28,9 +33,10 @@ const useMainSection = () => {
     return data.filter((channels) => channels._id === clickedId)[0]?.name;
   };
 
-  const setChannelName = async () => {
+  const setChannelName = async (useParamsId) => {
     const data = await getChannelName(useParamsId);
     setSelectedChannelName(data);
+    setSelectedChannelId(useParamsId);
   };
 
   const getPostData = async () => {
@@ -43,6 +49,8 @@ const useMainSection = () => {
     const { data } = await getAllPosts();
     data.sort(() => Math.random() - 0.5);
     setPostList({ id: 'all', posts: data });
+    setSelectedChannelName('');
+    setSelectedChannelId('');
   };
 
   const onClickPost = (postId) => {

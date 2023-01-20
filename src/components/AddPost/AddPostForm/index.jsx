@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { getChannels } from '../../../apis/post';
-import uuid from 'react-uuid';
 
 import {
   Description,
@@ -27,7 +26,6 @@ const AddPostForm = () => {
   const [northEurope, setNorthEurope] = useState([]);
 
   const {
-    handleDefaultValue,
     selectedChannelId,
     imageSrc,
     values,
@@ -85,8 +83,7 @@ const AddPostForm = () => {
           <select
             id="country"
             name="country"
-            key={uuid()}
-            defaultValue={selectedChannelId}
+            value={values.channelId ? values.channelId : selectedChannelId}
             onChange={handleCountryChange}
           >
             <option value={null}>=== 선택 ===</option>

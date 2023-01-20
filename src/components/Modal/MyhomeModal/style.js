@@ -6,7 +6,7 @@ const ImageUploader = styled.div`
   align-items: center;
   position: relative;
   width: 460px;
-  height: 495px;
+  height: 570px;
   border-radius: 10px;
   border: 2px dashed #addbbd;
   margin-right: 40px;

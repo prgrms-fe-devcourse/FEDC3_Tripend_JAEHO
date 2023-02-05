@@ -9,14 +9,10 @@ export const useGetMyHomeUserInfo = () => {
   });
 
   const getUserData = async () => {
-    const getLoginUserData = await getUser();
-
-    const { data } = getLoginUserData;
-    const loginUserName = data.fullName.split('/')[0];
+    const { data } = await getUser();
 
     setProfile({
-      ...profile,
-      name: loginUserName,
+      name: data.fullName.split('/')[0],
       image: data.image,
       email: data.email,
     });

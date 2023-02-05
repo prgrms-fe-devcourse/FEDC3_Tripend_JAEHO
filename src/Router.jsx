@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AccountPage from './pages/AccountPage';
 import Header from './pages/Header';
 import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
@@ -15,15 +14,12 @@ import PostDetailPage from './pages/PostDetailPage';
 
 const AppRouter = () => {
   return (
-    //fdsa
     <Router>
       <Header />
       <Routes>
-        {/* public routes /*/}
         <Route exact path="/" element={<SigninPage />} />
         <Route exact path="/signup" element={<SignupPage />} />
 
-        {/* login routes */}
         <Route
           path="/main/*"
           element={
@@ -44,27 +40,7 @@ const AppRouter = () => {
 
         <Route
           exact
-          path="/account"
-          element={
-            <AuthUserRoute>
-              <AccountPage />
-            </AuthUserRoute>
-          }
-        />
-
-        <Route
-          exact
           path="/myhome"
-          element={
-            <AuthUserRoute>
-              <MyPosterPage />
-            </AuthUserRoute>
-          }
-        />
-
-        <Route
-          exact
-          path="/setting"
           element={
             <AuthUserRoute>
               <MySettingPage />

@@ -10,7 +10,6 @@ const PasswordBlock = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background: #f8f9fa;
 `;
 
 const Input = styled.input`
@@ -18,7 +17,6 @@ const Input = styled.input`
   border-radius: 2px;
   outline: none;
   font-size: 1rem;
-  background: #f8f9fa;
 
   &:focus {
     color: #495057;

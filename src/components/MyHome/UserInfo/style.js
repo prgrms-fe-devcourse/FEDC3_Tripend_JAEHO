@@ -5,7 +5,6 @@ const UserInfoContainer = styled.div`
   align-items: center;
   min-width: 1000px;
   width: 100%;
-  background: #f8f9fa;
   img {
     margin-right: 20px;
   }

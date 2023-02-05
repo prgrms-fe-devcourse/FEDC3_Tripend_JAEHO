@@ -5,6 +5,7 @@ import { UserInfoContainer, UserInfoProfileWrapper, UserInfoWrapper } from './st
 
 const UserInfo = () => {
   const { profile, getUserData } = useGetMyHomeUserInfo();
+
   useEffect(() => {
     getUserData();
   }, []);

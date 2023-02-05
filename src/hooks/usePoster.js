@@ -50,9 +50,9 @@ export const usePoster = () => {
       setPosts(getLoginUserData.data.posts);
       setLoading(false);
     };
-
     getUserData();
   }, []);
+
   return {
     handlePoster,
     handlerModalClose,

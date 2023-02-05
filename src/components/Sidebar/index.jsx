@@ -1,4 +1,4 @@
-import { Menu, MenuItem, Side, SideBlock } from './style';
+import { Menu, MenuItem, SideBlock } from './style';
 
 const UserSidebar = ({ onclickMenu }) => {
   const menu = [
@@ -6,21 +6,15 @@ const UserSidebar = ({ onclickMenu }) => {
     { name: '내 정보 수정', id: 'myInfo' },
   ];
 
-  const handleMenu = (id) => {
-    setTargetId(id);
-  };
-
   return (
     <SideBlock>
-      <Side>
-        <Menu>
-          {menu.map(({ name, id }) => (
-            <MenuItem key={id} onClick={() => onclickMenu(id)}>
-              {name}
-            </MenuItem>
-          ))}
-        </Menu>
-      </Side>
+      <Menu>
+        {menu.map(({ name, id }) => (
+          <MenuItem key={id} onClick={() => onclickMenu(id)}>
+            {name}
+          </MenuItem>
+        ))}
+      </Menu>
     </SideBlock>
   );
 };

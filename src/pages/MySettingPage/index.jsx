@@ -5,7 +5,7 @@ import LoginPoster from '../../components/MyHome/UserPoster';
 import UserSidebar from '../../components/Sidebar';
 
 const MySettingPage = () => {
-  const [targetId, setTargetId] = useState('');
+  const [targetId, setTargetId] = useState('myPostList');
 
   return (
     <>

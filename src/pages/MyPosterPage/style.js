@@ -70,7 +70,6 @@ const PosterTitle = styled.div`
   align-items: center;
   position: relative;
   left: 25%;
-  background: #f8f9fa;
 `;
 
 const PostWrapper = styled.div`
@@ -78,8 +77,6 @@ const PostWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 30px;
-  background: #f8f9fa;
 `;
 
 const PostItemContainer = styled.div`
@@ -91,11 +88,12 @@ const PostItemContainer = styled.div`
 `;
 
 const PosterContainer = styled.div`
-  background: #f8f9fa;
   min-width: 1200px;
-  min-height: 800px;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export {

@@ -8,8 +8,6 @@ export const useNewPassWordForm = () => {
     newPassword: '',
   });
 
-  const [passwordError, setPasswordError] = useState('');
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({
@@ -33,5 +31,5 @@ export const useNewPassWordForm = () => {
     });
   };
 
-  return [handleChange, handleSubmit, values, passwordError];
+  return [handleChange, handleSubmit, values];
 };

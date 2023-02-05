@@ -4,8 +4,7 @@ import { Fieldset, FormButton, FormLogin, LoginContainer, LoginWrapper } from '.
 import { FormSettingText, Input, PasswordBlock, PasswordText } from './style';
 
 const UserSettingPassword = () => {
-  const [handleChange, handleSubmit, values, passwordError] = useNewPassWordForm();
-
+  const [handleChange, handleSubmit, values] = useNewPassWordForm();
   return (
     <>
       <PasswordBlock>

@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AccountPage from './pages/AccountPage';
 import Header from './pages/Header';
 import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
@@ -42,16 +41,6 @@ const AppRouter = () => {
         <Route
           exact
           path="/myhome"
-          element={
-            <AuthUserRoute>
-              <MyPosterPage />
-            </AuthUserRoute>
-          }
-        />
-
-        <Route
-          exact
-          path="/setting"
           element={
             <AuthUserRoute>
               <MySettingPage />

@@ -19,12 +19,19 @@ const Side = styled.div`
   padding: 10px;
 `;
 
-const Menu = styled.div`
+const Menu = styled.ul`
   background: #f8f9fa;
   width: 200px;
   display: flex;
-  border-radius: 50px;
   flex-direction: column;
+  padding: 0;
 `;
 
-export { SideBlock, Side, Menu };
+const MenuItem = styled.li`
+  list-style: none;
+  margin: 1rem;
+  font-size: 1rem;
+}
+`;
+
+export { SideBlock, Side, Menu, MenuItem };

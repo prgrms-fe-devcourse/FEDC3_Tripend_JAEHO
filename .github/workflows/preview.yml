@@ -2,7 +2,7 @@ name: Tripend
 
 on:
   pull_request:
-    branches: main
+    branches: develop
 
 jobs:
   deploy:

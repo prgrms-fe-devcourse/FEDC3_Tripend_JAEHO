@@ -4,7 +4,7 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 on:
-  push:
+  pull_request:
     branches: main
 
 jobs:
@@ -21,10 +21,6 @@ jobs:
               {
                 "source": "/api/:url*",
                 "destination": "${{ secrets.API_BASE_URL }}/:url*"
-              },
-              {
-                "source": "/(.*)",
-                "destination": "/"
               }
             ]
           }

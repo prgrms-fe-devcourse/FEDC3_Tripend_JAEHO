@@ -3,11 +3,11 @@ name: Tripend
 on:
   pull_request:
     branches: develop
-    push:
+  push:
     branches: [dev, deploy/*]
 
 jobs:
-  deploy:
+  preview:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

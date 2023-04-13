@@ -1,10 +1,24 @@
-import { useEffect } from 'react';
-import { useGetMyHomeUserInfo } from '../../../hooks/useGetMyHomeUserInfo';
+import { useEffect, useState } from 'react';
+import { getUser } from '../../../apis/auth';
 import Avatar from '../../Common/Avatar';
 import { UserInfoContainer, UserInfoProfileWrapper, UserInfoWrapper } from './style';
 
 const UserInfo = () => {
-  const { profile, getUserData } = useGetMyHomeUserInfo();
+  const [profile, setProfile] = useState({
+    name: '',
+    image: '',
+    email: '',
+  });
+
+  const getUserData = async () => {
+    const { data } = await getUser();
+
+    setProfile({
+      name: data.fullName.split('/')[0],
+      image: data.image,
+      email: data.email,
+    });
+  };
 
   useEffect(() => {
     getUserData();

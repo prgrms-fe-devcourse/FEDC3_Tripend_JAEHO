@@ -1,6 +1,6 @@
 import { Menu, MenuItem, SideBlock } from './style';
 
-const UserSidebar = ({ onclickMenu }) => {
+const UserPageSidebar = ({ onclickMenu }) => {
   const menu = [
     { name: '작성한 글', id: 'myPostList' },
     { name: '내 정보 수정', id: 'myInfo' },
@@ -19,4 +19,4 @@ const UserSidebar = ({ onclickMenu }) => {
   );
 };
 
-export default UserSidebar;
+export default UserPageSidebar;

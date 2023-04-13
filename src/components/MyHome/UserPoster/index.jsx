@@ -14,6 +14,8 @@ import {
 } from '../../../recoil/uploadImageState';
 import Pagination from '../../Pagination';
 
+import { getMyPostDetail } from '../../../apis/post';
+
 const LoginPoster = () => {
   const [postId, setPostId] = useState('');
   const [visible, setVisible] = useRecoilState(myHomeModalState);

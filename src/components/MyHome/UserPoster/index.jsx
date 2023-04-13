@@ -6,7 +6,7 @@ import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
 
 import { useState } from 'react';
 import { usePoster } from '../../../hooks/usePoster';
-import Pagination from '../../Pagination';
+import Pagination from '../../User/userPost/Pagination';
 
 const LoginPoster = () => {
   const {

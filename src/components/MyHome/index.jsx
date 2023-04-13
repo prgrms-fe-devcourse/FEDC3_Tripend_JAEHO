@@ -1,10 +1,38 @@
-import { useNewPassWordForm } from '../../hooks/useNewPassWordForm';
-import { USER as AUTH } from '../../utils/constants/auth';
+import { USER, ERROR_MESSAGE_SIGNIN } from '../../utils/constants/auth';
 import { Fieldset, FormButton, FormLogin, LoginContainer, LoginWrapper } from '../Signin/style';
 import { FormSettingText, Input, PasswordBlock, PasswordText } from './style';
 
+import { putPasswordChange } from '../../apis/auth';
+import { useState } from 'react';
+
 const UserSettingPassword = () => {
-  const [handleChange, handleSubmit, values] = useNewPassWordForm();
+  const [values, setValues] = useState({
+    password: '',
+    newPassword: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await putPasswordChange(values.password);
+
+    if (res.status === 200) {
+      swal(USER.CHANGE_PASSWORD_SUCCESS, '', ERROR_MESSAGE_SIGNIN.PASSWORD_SUCCESS);
+    }
+
+    setValues({
+      password: '',
+      newPassword: '',
+    });
+  };
   return (
     <>
       <PasswordBlock>
@@ -35,7 +63,7 @@ const UserSettingPassword = () => {
               </Fieldset>
 
               {values.newPassword.length > 0 && values.password !== values.newPassword && (
-                <PasswordText>{AUTH.PASSWORD_FAILED}</PasswordText>
+                <PasswordText>{USER.PASSWORD_FAILED}</PasswordText>
               )}
               <FormButton
                 type="submit"

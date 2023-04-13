@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import '../../index.css';
 
 const LoginTitle = styled.div`
   font-size: var(--font-title-size);

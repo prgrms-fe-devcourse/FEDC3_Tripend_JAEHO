@@ -1,6 +1,9 @@
 import SearchIcon from '@mui/icons-material/Search';
-import useGetUserInfo from '../../../hooks/useGetUserInfo';
-import Avatar from '../../Common/Avatar';
+import { useState } from 'react';
+import { getUserInfo } from '../../../../apis/user';
+import useDebounce from '../../../../hooks/useDebounce';
+import { encodeKeyword } from '../../../../utils/validate/userList';
+import Avatar from '../../../Common/Avatar';
 import {
   SearchResult,
   UserInfo,
@@ -11,7 +14,23 @@ import {
 } from './style';
 
 const UserSearchBar = () => {
-  const { keyword, setKeyword, result } = useGetUserInfo();
+  const [keyword, setKeyword] = useState('');
+  const [result, setResult] = useState([]);
+
+  const getUserInfoData = async (encodedKeyword) => {
+    const { data } = await getUserInfo(encodedKeyword);
+    setResult(data);
+  };
+
+  useDebounce(
+    () => {
+      if (keyword !== '') {
+        getUserInfoData(encodeKeyword(keyword));
+      } else setResult([]);
+    },
+    300,
+    [keyword]
+  );
 
   return (
     <div>

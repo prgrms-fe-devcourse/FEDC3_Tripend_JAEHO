@@ -1,12 +1,21 @@
-import { useEffect } from 'react';
-import useGetUserList from '../../../hooks/useGetUserList';
-import { extractName } from '../../../utils/validate/userList';
-import Avatar from '../../Common/Avatar';
-import Badge from '../../Common/Icons/Badge';
+import { useEffect, useState } from 'react';
+import { getClickedUserInfo, getUsers } from '../../../../apis/user';
+import { extractName } from '../../../../utils/validate/userList';
+import Avatar from '../../../Common/Avatar';
+import Badge from '../../../Common/Icons/Badge';
 import { UserInfo, UserListContainer, UserName } from './style';
 
 const UserList = () => {
-  const { userInfos, getUserData, showUserDetail } = useGetUserList();
+  const [userInfos, setUserInfos] = useState([]);
+
+  const getUserData = async () => {
+    const { data } = await getUsers();
+    setUserInfos(data);
+  };
+
+  const showUserDetail = async (currentUserId) => {
+    await getClickedUserInfo(currentUserId);
+  };
 
   useEffect(() => {
     getUserData();

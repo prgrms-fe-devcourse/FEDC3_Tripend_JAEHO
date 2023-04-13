@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { useSigninForm } from '../../hooks/useSigninForm';
-import '../../index.css';
-import { userLoginButtonShowState } from '../../recoil/authState';
+import { useCallback, useState } from 'react';
+
+import { userLoginButtonShowState, userLoginState } from '../../../recoil/authState';
+import { postUserLogin } from '../../../apis/auth';
 import {
   Fieldset,
   FormButton,
@@ -17,12 +18,43 @@ import {
   LoginWrapper,
 } from './style';
 
-const Login = () => {
-  const { email, password, handleEmail, handlePassword, isLoading, handleSubmit } = useSigninForm();
-
+const Signin = () => {
   const navigate = useNavigate();
+  const setLogin = useSetRecoilState(userLoginState);
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
+  const [isLoading, setLoading] = useState(false);
   const setLoginButton = useSetRecoilState(userLoginButtonShowState);
+
+  const handleEmail = useCallback(
+    (e) => {
+      setEmail(e.target.value);
+    },
+    [email]
+  );
+
+  const handlePassword = useCallback(
+    (e) => {
+      setPassword(e.target.value);
+    },
+    [password]
+  );
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await postUserLogin(email, password);
+
+      if (res.status === 200) {
+        setLogin(true);
+        navigate('/main');
+      }
+    } catch (e) {
+      setLoading(true);
+      throw new Error('로그인 실패');
+    }
+  };
 
   const handleClickSignUp = () => {
     navigate('/signup');
@@ -67,4 +99,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signin;

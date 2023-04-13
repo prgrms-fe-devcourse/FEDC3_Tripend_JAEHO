@@ -1,10 +1,38 @@
-import useChannel from '../../hooks/useChannel';
+import { useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { selectedChannelState } from '../../recoil/channelState';
 import Skeleton from '../Common/Skeleton';
 import SortedChannels from './SortedChannels';
+import { getChannels } from '../../apis/post';
 import { ChannelListContainer } from './style';
 
 const ChannelList = () => {
-  const [channels, onClickChannel] = useChannel();
+  const [channels, setChannels] = useState();
+  const setSelectedChannel = useSetRecoilState(selectedChannelState);
+
+  useEffect(() => {
+    getChannelData();
+  }, []);
+
+  const getChannelData = async () => {
+    const { data } = await getChannels();
+
+    const eastEurope = data.filter(({ description }) => description === '동유럽');
+    const westEurope = data.filter(({ description }) => description === '서유럽');
+    const southEurope = data.filter(({ description }) => description === '남유럽');
+    const northEurope = data.filter(({ description }) => description === '북유럽');
+
+    setChannels({
+      eastEurope,
+      westEurope,
+      southEurope,
+      northEurope,
+    });
+  };
+
+  const onClickChannel = (id) => {
+    setSelectedChannel(id);
+  };
 
   return (
     <ChannelListContainer>

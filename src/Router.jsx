@@ -1,10 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Header from './pages/Header';
 import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
 
 import HomePage from './pages/HomePage';
-import MyPosterPage from './pages/MyPosterPage';
 import MySettingPage from './pages/MySettingPage';
 
 import MissingPage from './pages/NotFound';

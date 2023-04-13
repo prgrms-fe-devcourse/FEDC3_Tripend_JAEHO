@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import UserSettingPassword from '../../components/MyHome';
-import UserInfo from '../../components/MyHome/UserInfo/';
+import UserInfo from '../../components/MyHome/UserInfo';
 import LoginPoster from '../../components/MyHome/UserPoster';
 import UserSidebar from '../../components/Sidebar';
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Login from '../../components/Signin/';
 import { getStorage } from '../../utils/storage';
+import Signin from '../../components/Auth/Signin';
 
 const SigninPage = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const SigninPage = () => {
 
   return (
     <>
-      <Login />
+      <Signin />
     </>
   );
 };

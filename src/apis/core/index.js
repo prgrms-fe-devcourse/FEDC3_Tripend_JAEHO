@@ -2,8 +2,7 @@ import axios from 'axios';
 import { BEARER, TOKEN } from '../../utils/constants/auth';
 import { getStorage } from '../../utils/storage';
 
-const baseURL =
-  process.env.NODE_ENV === 'development' ? process.env.REACT_APP_API_ENDPOINT : '/api';
+const baseURL = process.env.NODE_ENV === 'development' ? import.meta.env.VITE_API_ENDPOINT : '/api';
 
 const baseRequest = axios.create({
   baseURL,

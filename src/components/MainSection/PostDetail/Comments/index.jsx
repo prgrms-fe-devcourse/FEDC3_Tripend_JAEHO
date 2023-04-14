@@ -4,6 +4,7 @@ import { postStateFamily } from '../../../../recoil/postStates';
 import usePostDetail from '../../../../hooks/usePostDetail';
 import Comment from '../Comment';
 import { CommentContainer, CommentCount, InputContainer } from './style';
+import emojiIcon from '/assets/smile_emoji.png';
 
 const Comments = ({ postId, comments }) => {
   const { getPostData } = usePostDetail(postId);
@@ -35,7 +36,7 @@ const Comments = ({ postId, comments }) => {
     <>
       <CommentCount>댓글 {comments.length}</CommentCount>
       <InputContainer onSubmit={onSubmit}>
-        <img src={require('../../../../../static/images/smile_emoji.png')} />
+        <img src={emojiIcon} alt="emoji-icon" />
         <input placeholder="댓글달기..." value={comment} onChange={onChange} />
       </InputContainer>
       <CommentContainer>

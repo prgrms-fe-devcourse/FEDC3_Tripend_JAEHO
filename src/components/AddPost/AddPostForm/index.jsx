@@ -15,7 +15,7 @@ import {
   UploadedImage,
 } from './style';
 
-import UploadIcon from '../../../../static/images/upload.svg';
+import uploadIcon from '/assets/upload.svg';
 import usePostForm from '../../../hooks/usePostForm';
 import ErrorText from './ErrorText';
 
@@ -70,7 +70,7 @@ const AddPostForm = () => {
             </UploadedImage>
           ) : (
             <>
-              <UploadIcon />
+              <img src={uploadIcon} alt="upload-icon" />
               <Title>사진 업로드</Title>
               <Description>png, jpeg, jpg 포맷 파일만 업로드할 수 있습니다.</Description>
             </>

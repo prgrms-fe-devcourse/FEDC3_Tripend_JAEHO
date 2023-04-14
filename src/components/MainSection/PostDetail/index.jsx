@@ -14,6 +14,7 @@ import {
   RightContainerContent,
   Title,
 } from './style';
+import locationIcon from '/assets/Location.png';
 
 const PostDetail = () => {
   const { post } = usePostDetail();
@@ -34,7 +35,7 @@ const PostDetail = () => {
         >
           <AuthorInfo image={post.author.image} fullName={post.author.fullName} />
           <Country>
-            <img src={require('../../../../static/images/Location.png')} />
+            <img src={locationIcon} alt="location-icon" />
             <span>{post.country}</span>
           </Country>
         </RightContainerContent>

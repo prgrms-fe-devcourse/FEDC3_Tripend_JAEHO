@@ -1,6 +1,9 @@
+import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import UploadIcon from '../../../static/images/upload.svg';
+import { uploadImageState } from '../../recoil/uploadImageState';
 import { ImageFileInput } from '../AddPost/AddPostForm/style';
+import { ERROR_MESSAGE, FILE } from '../../utils/constants/myHome';
+import uploadIcon from '/assets/upload.svg';
 import {
   ImageContainer,
   ImageUploaderContainer,
@@ -8,10 +11,6 @@ import {
   UploadDescription,
   UploadImageWrapper,
 } from './style';
-
-import { useCallback } from 'react';
-import { uploadImageState } from '../../recoil/uploadImageState';
-import { ERROR_MESSAGE, FILE } from '../../utils/constants/myHome';
 
 const UploadAndDisplayImage = () => {
   const [selectedImage, setSelectedImage] = useRecoilState(uploadImageState);
@@ -52,7 +51,7 @@ const UploadAndDisplayImage = () => {
         ) : (
           <UploadImageWrapper>
             <TitleWrapper>
-              <UploadIcon />
+              <img src={uploadIcon} ali="upload-icon" />
               <p>사진 업로드</p>
             </TitleWrapper>
             <div

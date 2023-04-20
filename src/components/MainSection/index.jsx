@@ -46,7 +46,6 @@ const Posts = () => {
 
   const getPostData = async () => {
     const { data } = await getChannelPosts(useParamsId);
-    await sleep(300);
     setPostList({ id: useParamsId, posts: data });
   };
 

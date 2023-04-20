@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom';
-import Logo from '../../../static/images/Logo.svg';
 import AddPost from '../../components/AddPost';
 import AlarmPopup from '../../components/Common/Alarm/AlarmPopup';
 import Avatar from '../../components/Common/Avatar';
@@ -8,6 +7,7 @@ import Badge from '../../components/Common/Icons/Badge';
 import SearchPost from '../../components/Post/PostSearch';
 import useHeader from '../../hooks/useHeader';
 import { AlarmContainer, ButtonContainer, HeaderContainer, IconItem, LogoContainer } from './style';
+import logoIcon from '/assets/Logo.svg';
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -30,7 +30,7 @@ const Header = () => {
   return (
     <HeaderContainer isRoot={pathname === '/'}>
       <LogoContainer onClick={handleClickLogo}>
-        <Logo />
+        <img src={logoIcon} alt="logo-icon" />
       </LogoContainer>
 
       {getToken && (

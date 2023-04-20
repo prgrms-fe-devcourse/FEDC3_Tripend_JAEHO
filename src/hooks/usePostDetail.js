@@ -15,7 +15,7 @@ const usePostDetail = () => {
 
   const getPostData = async () => {
     const { data } = await getPostDetail(postId);
-    const { title } = data;
+    let { title } = data;
 
     if (title.includes('{')) {
       const newObject = JSON.parse(title);

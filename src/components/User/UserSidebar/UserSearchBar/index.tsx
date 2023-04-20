@@ -15,7 +15,7 @@ import {
 import { UserInfos } from '../type';
 
 const UserSearchBar = () => {
-  const [keyword, setKeyword] = useState<string>('');
+  const [keyword, setKeyword] = useState('');
   const [result, setResult] = useState<UserInfos[]>([]);
 
   const getUserInfoData = async (encodedKeyword: string) => {

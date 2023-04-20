@@ -1,21 +1,21 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { selectedPostState } from '../../recoil/postStates';
+import { selectedPostState } from '@/recoil/postStates';
 import {
   selectedChannelState,
   selectedChannelNameState,
   channelState,
-} from '../../recoil/channelState';
-import { postDetailModalState } from '../../recoil/postStates';
-import Skeleton from '../Common/Skeleton';
-import Modal from '../Modal';
-import Post from './Post';
-import PostDetail from './PostDetail';
-import { getAllPosts, getChannelPosts, getChannels } from '../../apis/post';
+} from '@/recoil/channelState';
+import { postDetailModalState } from '@/recoil/postStates';
+import Skeleton from '@/components/Common/Skeleton';
+import Modal from '@/components/Common/Modal';
+import Post from '@/components/Post/PostCard';
+import PostDetail from '@/components/Post/PostDetail';
+import { getAllPosts, getChannelPosts, getChannels } from '@/apis/post';
 import { NotFoundResultContainer, PostsContainer } from './style';
 
-const Posts = () => {
+const PostList = () => {
   const useParamsId = useParams().id;
 
   const setSelectedPostId = useSetRecoilState(selectedPostState);
@@ -111,4 +111,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default PostList;

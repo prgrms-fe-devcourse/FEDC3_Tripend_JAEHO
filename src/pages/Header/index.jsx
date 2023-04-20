@@ -1,10 +1,10 @@
 import { useLocation } from 'react-router-dom';
-import AddPost from '../../components/AddPost';
-import AlarmPopup from '../../components/Common/Alarm/AlarmPopup';
-import Avatar from '../../components/Common/Avatar';
-import Icon from '../../components/Common/Icons';
-import Badge from '../../components/Common/Icons/Badge';
-import SearchPost from '../../components/Post/PostSearch';
+import AddPost from '@/components/Post/PostCreate';
+import AlarmPopup from '@/components/Common/Alarm/AlarmPopup';
+import Avatar from '@/components/Common/Avatar';
+import Icon from '@/components/Common/Icons';
+import Badge from '@/components/Common/Icons/Badge';
+import PostCreate from '@/components/Post/PostCreate';
 import useHeader from '../../hooks/useHeader';
 import { AlarmContainer, ButtonContainer, HeaderContainer, IconItem, LogoContainer } from './style';
 import logoIcon from '/assets/Logo.svg';
@@ -35,7 +35,7 @@ const Header = () => {
 
       {getToken && (
         <>
-          <SearchPost />
+          <PostCreate />
           <ButtonContainer>
             <IconItem onClick={handleOpenAddPostModal}>
               <Icon.AddPostIcon />
@@ -61,7 +61,7 @@ const Header = () => {
               />
             </IconItem>
           </ButtonContainer>
-          {isVisibleModal && <AddPost visible={isVisibleModal} />}
+          {isVisibleModal && <PostCreate visible={isVisibleModal} />}
           <AlarmPopup
             visible={isAlarmOpen}
             onClose={handleCloseAlarm}

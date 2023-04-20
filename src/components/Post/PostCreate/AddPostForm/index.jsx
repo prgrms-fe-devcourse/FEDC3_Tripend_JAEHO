@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getChannels } from '../../../apis/post';
+import { getChannels } from '@/apis/post';
 
 import {
   Description,
@@ -16,7 +16,7 @@ import {
 } from './style';
 
 import uploadIcon from '/assets/upload.svg';
-import usePostForm from '../../../hooks/usePostForm';
+import usePostForm from '@/hooks/usePostForm';
 import ErrorText from './ErrorText';
 
 const AddPostForm = () => {

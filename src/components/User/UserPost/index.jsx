@@ -1,22 +1,18 @@
-import { PosterContainer, PosterTitle, PostWrapper } from '../../../pages/MyPosterPage/style';
-import Modal from '../../Modal';
-import MyhomeModal from '../../Modal/MyhomeModal';
-import UserPosterItem from '../UserPosteItem';
+import Modal from '@/components/Common/Modal';
+import MyhomeModal from '@/components/Common/Modal/MyhomeModal';
+import { PosterContainer, PosterTitle, PostWrapper } from '@/pages/MyPosterPage/style';
 import { ModalTitle, ModalTitleButton, ModalTitleWrapper } from './style';
+import UserPosterItem from './UserPosteItem';
 
+import { getUser } from '@/apis/auth';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { getUser } from '../../../apis/auth';
-import {
-  myHomeModalState,
-  uploadImageState,
-  userLoginDateState,
-} from '../../../recoil/uploadImageState';
-import Pagination from '../../Pagination';
+import { myHomeModalState, uploadImageState, userLoginDateState } from '@/recoil/uploadImageState';
+import Pagination from './Pagination';
 
-import { getMyPostDetail } from '../../../apis/post';
+import { getMyPostDetail } from '@/apis/post';
 
-const LoginPoster = () => {
+const UserPost = () => {
   const [postId, setPostId] = useState('');
   const [visible, setVisible] = useRecoilState(myHomeModalState);
   const [postDetail, setPostDetail] = useRecoilState(userLoginDateState);
@@ -112,4 +108,4 @@ const LoginPoster = () => {
     </PosterContainer>
   );
 };
-export default LoginPoster;
+export default UserPost;

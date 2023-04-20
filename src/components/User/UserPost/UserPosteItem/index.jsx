@@ -4,7 +4,7 @@ import {
   PostButton,
   PostItemContainer,
   PostTitle,
-} from '../../../pages/MyPosterPage/style';
+} from '@/pages/MyPosterPage/style';
 import { PosterButton, PosterDeleteButton } from './style';
 
 const UserPosterItem = memo(function ({ id, title, image, handlePoster, handleDeletePoster }) {

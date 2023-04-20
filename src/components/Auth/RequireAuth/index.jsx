@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import { TOKEN } from '../../utils/constants/auth';
-import { getStorage } from '../../utils/storage';
+import { TOKEN } from '@/utils/constants/auth';
+import { getStorage } from '@/utils/storage';
 
 export const AuthUserRoute = ({ children }) => {
   let location = useLocation();

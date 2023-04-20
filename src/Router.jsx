@@ -8,7 +8,7 @@ import MySettingPage from './pages/MySettingPage';
 
 import MissingPage from './pages/NotFound';
 
-import AuthUserRoute from './components/RequireAuth';
+import AuthUserRoute from './components/Auth/RequireAuth';
 import PostDetailPage from './pages/PostDetailPage';
 
 const AppRouter = () => {

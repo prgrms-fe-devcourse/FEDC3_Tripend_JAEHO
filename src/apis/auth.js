@@ -8,8 +8,8 @@ import {
   USER as AUTH,
   USER,
   USER_IMAGE,
-} from '../utils/constants/auth';
-import { getStorage, setStorage } from '../utils/storage';
+} from '@/utils/constants/auth';
+import { getStorage, setStorage } from '@/utils/storage';
 import { authRequest, baseRequest } from './core';
 
 const { DUPLICATE_EMAIL } = ERROR_MESSAGE_SIGNUP;

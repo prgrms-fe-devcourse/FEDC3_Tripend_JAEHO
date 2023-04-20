@@ -6,9 +6,24 @@ import {
   PostTitle,
 } from '@/pages/MyPosterPage/style';
 import { PosterButton, PosterDeleteButton } from './style';
+import { Title } from './type';
 
-const UserPosterItem = memo(function ({ id, title, image, handlePoster, handleDeletePoster }) {
-  const [days, setDays] = useState('');
+interface UserPosterItemProps {
+  id: number;
+  title: Title;
+  image: string;
+  handlePoster(id: number): void;
+  handleDeletePoster(id: number): void;
+}
+
+const UserPosterItem = memo(function ({
+  id,
+  title,
+  image,
+  handlePoster,
+  handleDeletePoster,
+}: UserPosterItemProps) {
+  const [days, setDays] = useState<string[]>([]);
 
   useEffect(() => {
     setDays(title.date.split('~'));

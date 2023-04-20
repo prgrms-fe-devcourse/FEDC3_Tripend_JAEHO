@@ -25,7 +25,6 @@ const MenuItem = styled.li`
   list-style: none;
   margin: 1rem;
   font-size: 1rem;
-}
 `;
 
 export { SideBlock, Menu, MenuItem };

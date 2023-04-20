@@ -1,4 +1,4 @@
-import { USER, ERROR_MESSAGE_SIGNIN } from '@/utils/constants/auth';
+import { putPasswordChange } from '@/apis/auth';
 import {
   Fieldset,
   FormButton,
@@ -6,26 +6,32 @@ import {
   LoginContainer,
   LoginWrapper,
 } from '@/components/Auth/Signin/style';
+import { ERROR_MESSAGE_SIGNIN, USER } from '@/utils/constants/auth';
+import { useState } from 'react';
+import swal from 'sweetalert';
 import { FormSettingText, Input, PasswordBlock, PasswordText } from './style';
 
-import { putPasswordChange } from '@/apis/auth';
-import { useState } from 'react';
+interface Values {
+  password: string;
+  newPassword: string;
+}
 
 const UserSettingPassword = () => {
-  const [values, setValues] = useState({
+  const [values, setValues] = useState<Values>({
     password: '',
     newPassword: '',
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setValues({
       ...values,
       [name]: value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const res = await putPasswordChange(values.password);

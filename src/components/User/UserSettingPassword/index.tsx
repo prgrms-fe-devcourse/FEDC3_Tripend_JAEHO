@@ -11,6 +11,8 @@ import { useState } from 'react';
 import swal from 'sweetalert';
 import { FormSettingText, Input, PasswordBlock, PasswordText } from './style';
 
+import { ChangeEvent, FormEvent } from 'react';
+
 interface Values {
   password: string;
   newPassword: string;
@@ -22,7 +24,7 @@ const UserSettingPassword = () => {
     newPassword: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setValues({
@@ -31,7 +33,7 @@ const UserSettingPassword = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const res = await putPasswordChange(values.password);

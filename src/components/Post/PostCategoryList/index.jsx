@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { selectedChannelState } from '../../recoil/channelState';
-import Skeleton from '../Common/Skeleton';
+import { selectedChannelState } from '@/recoil/channelState';
+import Skeleton from '@/components/Common/Skeleton';
 import SortedChannels from './SortedChannels';
-import { getChannels } from '../../apis/post';
+import { getChannels } from '@/apis/post';
 import { ChannelListContainer } from './style';
 
 const ChannelList = () => {

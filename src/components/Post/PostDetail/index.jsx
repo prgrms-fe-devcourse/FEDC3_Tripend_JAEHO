@@ -1,9 +1,9 @@
+import Heart from '@/components/Post/Like';
+import AuthorInfo from '@/components/Post/PostCard/AuthorInfo';
+import LeftImage from '@/components/Post/PostCard/LeftImage';
+import Tags from '@/components/Post/PostCard/Tags';
 import usePostDetail from '../../../hooks/usePostDetail';
 import Skeleton from '../../Common/Skeleton';
-import Heart from '../Like';
-import AuthorInfo from '../Post/AuthorInfo';
-import LeftImage from '../Post/LeftImage';
-import Tags from '../Post/Tags';
 import Comments from './Comments';
 import {
   BottomContainer,

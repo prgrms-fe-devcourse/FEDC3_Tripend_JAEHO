@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import { signup } from '../../../apis/auth';
+import { signup } from '@/apis/auth';
 import { useFormik } from 'formik';
-import { checkZeroOfFront, isValidAge, isValidId, isValidName } from '../../../utils/validate/signup';
-import { ERROR_MESSAGE_SIGNUP } from '../../../utils/constants/auth';
-import { USER_PLACEHOLDER } from '../../../utils/constants/auth';
+import { checkZeroOfFront, isValidAge, isValidId, isValidName } from '@/utils/validate/signup';
+import { ERROR_MESSAGE_SIGNUP } from '@/utils/constants/auth';
+import { USER_PLACEHOLDER } from '@/utils/constants/auth';
 import {
   FieldSet,
   FormSigninText,

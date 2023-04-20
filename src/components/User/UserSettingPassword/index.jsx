@@ -1,14 +1,14 @@
-import { USER, ERROR_MESSAGE_SIGNIN } from '../../utils/constants/auth';
+import { USER, ERROR_MESSAGE_SIGNIN } from '@/utils/constants/auth';
 import {
   Fieldset,
   FormButton,
   FormLogin,
   LoginContainer,
   LoginWrapper,
-} from '../Auth/Signin/style';
+} from '@/components/Auth/Signin/style';
 import { FormSettingText, Input, PasswordBlock, PasswordText } from './style';
 
-import { putPasswordChange } from '../../apis/auth';
+import { putPasswordChange } from '@/apis/auth';
 import { useState } from 'react';
 
 const UserSettingPassword = () => {

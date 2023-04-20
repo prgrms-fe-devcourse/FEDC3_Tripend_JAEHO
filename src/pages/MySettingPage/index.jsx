@@ -1,8 +1,8 @@
+import UserInfo from '@/components/User/UserInfo';
+import UserPageSidebar from '@/components/User/UserPageSidebar';
+import UserPost from '@/components/User/UserPost';
 import { useState } from 'react';
-import UserSettingPassword from '../../components/MyHome';
-import UserInfo from '../../components/MyHome/UserInfo';
-import LoginPoster from '../../components/MyHome/UserPoster';
-import UserPageSidebar from '../../components/UserPageSidebar';
+import UserSettingPassword from '../../components/User/UserSettingPassword';
 
 const MySettingPage = () => {
   const [targetId, setTargetId] = useState('myPostList');
@@ -10,7 +10,7 @@ const MySettingPage = () => {
   return (
     <>
       <UserInfo />
-      {targetId === 'myPostList' ? <LoginPoster /> : <UserSettingPassword />}
+      {targetId === 'myPostList' ? <UserPost /> : <UserSettingPassword />}
       <UserPageSidebar onclickMenu={setTargetId} />
     </>
   );

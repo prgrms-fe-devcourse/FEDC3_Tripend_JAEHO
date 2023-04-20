@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import PostDetail from '../../components/MainSection/PostDetail';
+import PostDetail from '@/components/Post/PostDetail';
 import { postDetailModalState, selectedPostState } from '../../recoil/postStates';
 import { PostDetailPageContainer, PostDetailPageWrapper } from './style';
 

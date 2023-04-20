@@ -1,7 +1,7 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { useSetRecoilState } from 'recoil';
-import { isVisibleModalState } from '../../recoil/addPostStates';
-import Modal from '../Modal';
+import { isVisibleModalState } from '@/recoil/addPostStates';
+import Modal from '@/components/Common/Modal';
 import AddPostForm from './AddPostForm';
 import { CloseButton, ModalHeader, Title } from './style';
 

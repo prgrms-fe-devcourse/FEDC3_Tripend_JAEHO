@@ -1,4 +1,4 @@
-import UploadAndDisplayImage from '../../UploadImage';
+import UploadAndDisplayImage from '@/components/Post/PostCreate/UploadImage';
 
 import { memo, useEffect, useState } from 'react';
 
@@ -18,8 +18,8 @@ import {
   ModalTitleWrapper,
 } from './style';
 
-import { useMyHomeModal } from '../../../hooks/useMyHomeModal';
-import { InputsAlign, InputWrapper } from '../../AddPost/AddPostForm/style';
+import { useMyHomeModal } from '@/hooks/useMyHomeModal';
+import { InputsAlign, InputWrapper } from '@/components/Post/PostCreate/AddPostForm/style';
 
 const MyhomeModal = memo(function ({ postId, imageValue }) {
   const {

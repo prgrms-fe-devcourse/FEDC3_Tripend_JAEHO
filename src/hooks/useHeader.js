@@ -5,7 +5,7 @@ import { getMyAlarms } from '../apis/alarm';
 import { isVisibleModalState } from '../recoil/addPostStates';
 import { userLoginState } from '../recoil/authState';
 import { toggleStateFamily } from '../recoil/toggleStates';
-import { TOKEN, USER_IMAGE } from '../utils/constants/auth';
+import { TOKEN, USER_IMAGE } from '@/utils/constants/auth';
 import { getStorage, setStorage } from '../utils/storage';
 
 const useHeader = () => {

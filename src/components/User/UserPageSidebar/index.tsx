@@ -1,6 +1,10 @@
 import { Menu, MenuItem, SideBlock } from './style';
 
-const UserPageSidebar = ({ onclickMenu }) => {
+interface UserPageSidebarProps {
+  onclickMenu(id: string): void;
+}
+
+const UserPageSidebar = ({ onclickMenu }: UserPageSidebarProps) => {
   const menu = [
     { name: '작성한 글', id: 'myPostList' },
     { name: '내 정보 수정', id: 'myInfo' },

@@ -1,9 +1,9 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
-import { getUserInfo } from '../../../../apis/user';
-import useDebounce from '../../../../hooks/useDebounce';
-import { encodeKeyword } from '../../../../utils/validate/userList';
-import Avatar from '../../../Common/Avatar';
+import { getUserInfo } from '@/apis/user';
+import useDebounce from '@/hooks/useDebounce';
+import { encodeKeyword } from '@/utils/validate/userList';
+import Avatar from '@/components/Common/Avatar';
 import {
   SearchResult,
   UserInfo,
@@ -12,12 +12,13 @@ import {
   UserSearchBarContainer,
   UsersSearchBar,
 } from './style';
+import { UserInfos } from '../type';
 
 const UserSearchBar = () => {
   const [keyword, setKeyword] = useState('');
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState<UserInfos[]>([]);
 
-  const getUserInfoData = async (encodedKeyword) => {
+  const getUserInfoData = async (encodedKeyword: string) => {
     const { data } = await getUserInfo(encodedKeyword);
     setResult(data);
   };
@@ -38,7 +39,7 @@ const UserSearchBar = () => {
       <UserSearchBarContainer style={{ color: '#86879C' }}>
         <SearchIcon />
         <UsersSearchBar
-          vlaue={keyword}
+          value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           type="text"
           placeholder="유저를 검색하세요"

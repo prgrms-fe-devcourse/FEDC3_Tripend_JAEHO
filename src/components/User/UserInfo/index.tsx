@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
-import { getUser } from '../../../apis/auth';
-import Avatar from '../../Common/Avatar';
+import { getUser } from '@/apis/auth';
+import Avatar from '@/components/Common/Avatar';
 import { UserInfoContainer, UserInfoProfileWrapper, UserInfoWrapper } from './style';
 
+interface Profile {
+  name: string;
+  image: string;
+  email: string;
+}
+
 const UserInfo = () => {
-  const [profile, setProfile] = useState({
+  const [profile, setProfile] = useState<Profile>({
     name: '',
     image: '',
     email: '',

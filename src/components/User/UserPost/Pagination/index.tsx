@@ -1,6 +1,12 @@
 import { PageContainer, PageLi, PageUl } from './style';
 
-const Pagination = ({ totalPosts, postPerPage, paginate }) => {
+interface PaginationProps {
+  totalPosts: number;
+  postPerPage: number;
+  paginate(number: number): void;
+}
+
+const Pagination = ({ totalPosts, postPerPage, paginate }: PaginationProps) => {
   let pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {

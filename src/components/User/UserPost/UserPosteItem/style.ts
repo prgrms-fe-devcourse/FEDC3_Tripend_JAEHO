@@ -1,5 +1,13 @@
 import styled from '@emotion/styled';
 
+const PostItemContainer = styled.div`
+  position: relative;
+  margin: 20px 10px;
+  width: calc(100% - 20px);
+  border-radius: 16px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
 const PosterButton = styled.button`
   width: 70px;
   height: 40px;
@@ -30,4 +38,4 @@ const PosterDeleteButton = styled.button`
   }
 `;
 
-export { PosterButton, PosterDeleteButton };
+export { PostItemContainer, PosterButton, PosterDeleteButton };

@@ -1,11 +1,11 @@
 import { getChannels, getMyPostDetail, updatePost } from '@/apis/post';
-import { myHomeModalState, userLoginDateState } from '@/recoil/uploadImageState';
+import { myHomeModalState, updateTargetDataState } from '@/recoil/uploadImageState';
 import { FORM_DATA } from '@/utils/constants/user';
 import { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 export const useMyHomeModal = (imageValue: string, postId: string) => {
-  const detail = useRecoilValue(userLoginDateState);
+  const detail = useRecoilValue(updateTargetDataState);
   const setVisible = useSetRecoilState(myHomeModalState);
 
   const [userLoginData, setUserLoginData] = useState({

@@ -1,12 +1,7 @@
 import { memo, useEffect, useState } from 'react';
-import {
-  ImageItemContainer,
-  PostButton,
-  PostItemContainer,
-  PostTitle,
-} from '@/pages/MyPosterPage/style';
-import { PosterButton, PosterDeleteButton } from './style';
-import { Title } from './type';
+import { ImageItemContainer, PostButton, PostTitle } from '@/pages/MyHomePage/style';
+import { PostItemContainer, PosterButton, PosterDeleteButton } from './style';
+import { Title } from '@/types/post/post.interfaces';
 
 interface UserPosterItemProps {
   id: number;

@@ -10,7 +10,7 @@ interface ImageProps {
   height?: number | string;
   alt?: string;
   mode?: CSSProperties['objectFit'];
-  props: HTMLAttributes<HTMLImageElement>;
+  props?: HTMLAttributes<HTMLImageElement>;
   style: CSSProperties;
 }
 

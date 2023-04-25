@@ -1,4 +1,4 @@
-import { USER_URL } from '../utils/constants/user';
+import { USER_URL } from '@/utils/constants/user';
 import { baseRequest } from './core';
 
 export const getUsers = async () => {
@@ -10,7 +10,7 @@ export const getUsers = async () => {
   }
 };
 
-export const getUserInfo = async (keyword) => {
+export const getUserInfo = async (keyword: string) => {
   try {
     const data = await baseRequest.get(USER_URL.GET_SEARCHED_USER + keyword);
     return data;
@@ -19,7 +19,7 @@ export const getUserInfo = async (keyword) => {
   }
 };
 
-export const getClickedUserInfo = async (userId) => {
+export const getClickedUserInfo = async (userId: string) => {
   try {
     const data = await baseRequest.get(USER_URL.GET_CLICKED_USER + userId);
     return data;

@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { uploadImageState } from '@/recoil/uploadImageState';
 import { ImageFileInput } from '../AddPostForm/style';
-import { ERROR_MESSAGE, FILE } from '@/utils/constants/myHome';
+import { ERROR_MESSAGE, FILE } from '@/utils/constants/user';
 import uploadIcon from '/assets/upload.svg';
 import {
   ImageContainer,

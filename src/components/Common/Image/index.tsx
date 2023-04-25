@@ -1,9 +1,23 @@
-import { useEffect, useRef, useState } from 'react';
+import { CSSProperties, HTMLAttributes, useEffect, useRef, useState } from 'react';
 
-let observer = null;
+interface ImageProps {
+  lazy: boolean;
+  threshold?: number | number[];
+  placeholder: string;
+  src: string;
+  block: boolean;
+  width?: number | string;
+  height?: number | string;
+  alt?: string;
+  mode?: CSSProperties['objectFit'];
+  props: HTMLAttributes<HTMLImageElement>;
+  style: CSSProperties;
+}
+
+let observer: IntersectionObserver | null = null;
 const LOAD_IMG_EVENT_TYPE = 'loadImage';
 
-const onIntersection = (entries, io) => {
+const onIntersection: IntersectionObserverCallback = (entries, io) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       io.unobserve(entry.target);
@@ -23,9 +37,9 @@ const Image = ({
   alt,
   mode,
   ...props
-}) => {
+}: ImageProps) => {
   const [loaded, setLoaded] = useState(false);
-  const imgRef = useRef(null);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   const imageStyle = {
     display: block ? 'block' : undefined,

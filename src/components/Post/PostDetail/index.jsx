@@ -18,8 +18,8 @@ import locationIcon from '/assets/Location.png';
 
 const PostDetail = () => {
   const userId = localStorage.getItem('id');
-  const likeId = post?.likes.find(({ user }) => user === userId)?._id;
   const { post } = usePostDetail();
+  const likeId = post?.likes.find(({ user }) => user === userId)?._id;
 
   return post ? (
     <PostDetailContainer>

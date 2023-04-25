@@ -1,5 +1,5 @@
 import { authRequest } from './core';
-import { POST_URL } from '../utils/constants/post';
+import { POST_URL } from '@/utils/constants/post';
 
 export const createLike = async (postId: string) => {
   try {

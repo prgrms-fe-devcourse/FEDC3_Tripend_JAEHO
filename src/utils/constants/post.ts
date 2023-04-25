@@ -6,6 +6,7 @@ export const ERROR_MESSAGE_POST = {
   ERROR_CREATE_POST: '포스트 생성 실패',
   ERROR_POST_DETAIL: '포스트 상세 불러오기 실패',
 };
+
 export const POST_URL = {
   CHANNELS: '/channels',
   POSTS_IN_CHANNEL: '/posts/channel/',

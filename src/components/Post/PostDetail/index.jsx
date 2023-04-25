@@ -1,4 +1,4 @@
-import Heart from '@/components/Post/Like';
+import Like from '@/components/Post/Like';
 import AuthorInfo from '@/components/Post/PostCard/AuthorInfo';
 import LeftImage from '@/components/Post/PostCard/LeftImage';
 import Tags from '@/components/Post/PostCard/Tags';
@@ -17,6 +17,8 @@ import {
 import locationIcon from '/assets/Location.png';
 
 const PostDetail = () => {
+  const userId = localStorage.getItem('id');
+  const likeId = post?.likes.find(({ user }) => user === userId)?._id;
   const { post } = usePostDetail();
 
   return post ? (
@@ -47,7 +49,7 @@ const PostDetail = () => {
             alignItem="flex-end"
           />
           <RightContainerContent flexDirection="row">
-            <Heart likes={post.likes} author={post.author} postId={post._id} />
+            <Like likeId={likeId} author={post.author._id} postId={post._id} />
           </RightContainerContent>
         </RightContainerContent>
         <Content>{post.content}</Content>

@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import Box from './Box';
+import { SkeletonProps } from './type';
 
-const Card = ({ line = 3, ...props }) => {
+const Card = ({ line = 3, ...props }: SkeletonProps) => {
   return (
     <CardContainer {...props}>
       {Array.from(Array(line), (_, index) =>

@@ -10,7 +10,25 @@ export const postDetailModalState = atom({
   default: false,
 });
 
-export const postStateFamily = atomFamily({
+interface Like {
+  createdAt: string;
+  post: string;
+  updatedAt: string;
+  user: string;
+  __v: number;
+  _id: string;
+}
+
+interface Post {
+  likes: Like[];
+}
+
+interface postStateFamilyType {
+  key: string;
+  post: Post | null;
+}
+
+export const postStateFamily = atomFamily<postStateFamilyType, string>({
   key: 'postDetailState',
   default: (id) => {
     return {

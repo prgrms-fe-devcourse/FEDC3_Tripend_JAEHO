@@ -1,6 +1,13 @@
 import styled from '@emotion/styled';
+import { CSSProperties } from 'react';
 
-const Badge = styled.div`
+interface BadgeProps {
+  top: CSSProperties['top'];
+  right: CSSProperties['right'];
+  color: CSSProperties['color'];
+  size: CSSProperties['width' | 'height'];
+}
+const Badge = styled.div<BadgeProps>`
   position: absolute;
   top: ${({ top }) => top};
   right: ${({ right }) => right};

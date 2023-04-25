@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import Box from './Box';
+import { SkeletonProps } from './type';
 
-const Detail = ({ line = 3, ...props }) => {
+const Detail = ({ line = 3, ...props }: SkeletonProps) => {
   return (
     <DetailContainer {...props}>
       <Box width="50%" height="100%" style={{ margin: '5px 0' }} />

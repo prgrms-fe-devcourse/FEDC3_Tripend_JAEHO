@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { useCallback, useState } from 'react';
-
-import { userLoginButtonShowState, userLoginState } from '../../../recoil/authState';
-import { postUserLogin } from '../../../apis/auth';
+import { useCallback, useState, FormEvent, ChangeEvent } from 'react';
+import { userLoginButtonShowState, userLoginState } from '@/recoil/authState';
+import { postUserLogin } from '@/apis/auth';
 import {
   Fieldset,
   FormButton,
@@ -28,25 +27,25 @@ const Signin = () => {
   const setLoginButton = useSetRecoilState(userLoginButtonShowState);
 
   const handleEmail = useCallback(
-    (e) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       setEmail(e.target.value);
     },
     [email]
   );
 
   const handlePassword = useCallback(
-    (e) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       setPassword(e.target.value);
     },
     [password]
   );
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const res = await postUserLogin(email, password);
 
-      if (res.status === 200) {
+      if (res?.status === 200) {
         setLogin(true);
         navigate('/main');
       }

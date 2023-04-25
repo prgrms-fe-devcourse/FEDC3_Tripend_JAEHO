@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import { checkZeroOfFront, isValidAge, isValidId, isValidName } from '@/utils/validate/signup';
 import { ERROR_MESSAGE_SIGNUP } from '@/utils/constants/auth';
 import { USER_PLACEHOLDER } from '@/utils/constants/auth';
+import { SignupFormValues } from '@/types/auth/auth.interfaces';
 import {
   FieldSet,
   FormSigninText,
@@ -28,7 +29,7 @@ const {
 
 const Signup = () => {
   const navigate = useNavigate();
-  const formik = useFormik({
+  const formik = useFormik<SignupFormValues>({
     initialValues: {
       userName: '',
       userAge: '',
@@ -47,7 +48,7 @@ const Signup = () => {
       userId: Yup.string().matches(isValidId, INCORRECT_EMAIL).required(NEED_INPUT),
       userPassword: Yup.string().min(6, INCORRECT_PASSWORD).required(NEED_INPUT),
       userPasswordConfirm: Yup.string()
-        .oneOf([Yup.ref('userPassword'), null], DIFFERENT_PASSWORD)
+        .oneOf([Yup.ref('userPassword'), undefined], DIFFERENT_PASSWORD)
         .required(NEED_INPUT),
     }),
     onSubmit: async (values) => {

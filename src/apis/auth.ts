@@ -9,12 +9,13 @@ import {
   USER,
   USER_IMAGE,
 } from '@/utils/constants/auth';
+import { SignupFormValues } from '@/types/auth/auth.interfaces';
 import { getStorage, setStorage } from '@/utils/storage';
 import { authRequest, baseRequest } from './core';
 
 const { DUPLICATE_EMAIL } = ERROR_MESSAGE_SIGNUP;
 
-export const postUserLogin = async (email, password) => {
+export const postUserLogin = async (email: string, password: string) => {
   const response = await baseRequest
     .post(URL.LOGIN, {
       email,
@@ -24,8 +25,8 @@ export const postUserLogin = async (email, password) => {
       swal(AUTH.LOGIN_FAILED, USER.ID_PASSWORD, ERROR_MESSAGE_SIGNIN.LOGIN_ERROR);
     });
 
-  const { token } = response.data;
-  const { _id, image } = response.data.user;
+  const { token } = response?.data;
+  const { _id, image } = response?.data.user;
 
   setStorage(TOKEN, token);
   setStorage(ID, _id);
@@ -45,7 +46,7 @@ export const getUser = async () => {
   }
 };
 
-export const putPasswordChange = async (password) => {
+export const putPasswordChange = async (password: string) => {
   if (!getStorage(TOKEN)) {
     throw new Error(ERROR_MESSAGE_SIGNIN.EDIT_USER);
   }
@@ -58,7 +59,7 @@ export const putPasswordChange = async (password) => {
   }
 };
 
-export const signup = async (values) => {
+export const signup = async (values: SignupFormValues) => {
   const { userName, userAge, userGender, userId, userPassword } = values;
   const fullName = `${userName}/${userAge}/${userGender}`;
   try {

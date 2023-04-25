@@ -1,25 +1,24 @@
 import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { postStateFamily } from '../../../recoil/postStates';
-import { createAlarm } from '../../../apis/alarm';
-import { createLike, deleteLike } from '../../../apis/like';
+import { postStateFamily } from '@/recoil/postStates';
+import { createAlarm } from '@/apis/alarm';
+import { createLike, deleteLike } from '@/apis/like';
 import { AccompanyButton, MyPost } from './style';
 
-const Heart = ({ likes, author, postId }) => {
+interface LikeProps {
+  likeId: string;
+  authorId: string;
+  postId: string;
+}
+
+const Like = ({ likeId, authorId, postId }: LikeProps) => {
   const userId = localStorage.getItem('id');
-  const [isLike, setIsLike] = useState(false);
-  const [currentLike, setCurrentLike] = useState(likes.find(({ user }) => user === userId));
+  const [isLike, setIsLike] = useState(likeId ? true : false);
   const [{ post }, setPost] = useRecoilState(postStateFamily(postId));
 
-  useEffect(() => {
-    setIsLike(currentLike ? true : false);
-  }, [currentLike]);
-
-  const onClickLike = async (e) => {
-    e.stopPropagation();
-
+  const onClickLike = async () => {
     if (isLike) {
-      const data = await deleteLike(currentLike._id);
+      const data = await deleteLike(likeId);
       setIsLike(false);
 
       if (post) {
@@ -38,13 +37,11 @@ const Heart = ({ likes, author, postId }) => {
         setPost({ key: postId, post: { ...post, likes: newPostLike } });
       }
 
-      await createAlarm('LIKE', data._id, author._id, data.post);
-
-      setCurrentLike(data);
+      await createAlarm('LIKE', data._id, authorId, data.post);
     }
   };
 
-  return userId === author._id ? (
+  return userId === authorId ? (
     <MyPost>내가 작성한 글입니다</MyPost>
   ) : (
     <div onClick={onClickLike}>
@@ -57,4 +54,4 @@ const Heart = ({ likes, author, postId }) => {
   );
 };
 
-export default Heart;
+export default Like;

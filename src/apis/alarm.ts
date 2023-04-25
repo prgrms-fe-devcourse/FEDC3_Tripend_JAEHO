@@ -1,5 +1,5 @@
-import { URL } from '../utils/constants/alarm';
 import { authRequest } from './core';
+import { URL } from '@/utils/constants/alarm';
 
 export const getMyAlarms = async () => {
   try {
@@ -9,7 +9,12 @@ export const getMyAlarms = async () => {
   }
 };
 
-export const createAlarm = async (notificationType, notificationTypeId, userId, postId) => {
+export const createAlarm = async (
+  notificationType: string,
+  notificationTypeId: string,
+  userId: string,
+  postId: string
+) => {
   try {
     return await authRequest.post(URL.CREATE_ALARM, {
       notificationType,

@@ -1,6 +1,6 @@
 import UploadAndDisplayImage from '@/components/Post/PostCreate/UploadImage';
 
-import { memo, useEffect, useState } from 'react';
+import { memo } from 'react';
 
 import {
   Button,
@@ -18,10 +18,15 @@ import {
   ModalTitleWrapper,
 } from './style';
 
-import { useMyHomeModal } from '@/hooks/useMyHomeModal';
 import { InputsAlign, InputWrapper } from '@/components/Post/PostCreate/AddPostForm/style';
+import { useMyHomeModal } from '@/hooks/useMyHomeModal';
 
-const MyhomeModal = memo(function ({ postId, imageValue }) {
+interface myhomeModalProps {
+  postId: string;
+  imageValue: string;
+}
+
+const MyhomeModal = memo(({ postId, imageValue }: myhomeModalProps) => {
   const {
     userLoginData,
     handleUserLoginData,
@@ -56,7 +61,7 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
           <InputWrapper>
             <label htmlFor="country">나라</label>
             <select id="country" name="channel" value={myId} onChange={handlerCounter}>
-              <option value={null}>=== 선택 ===</option>
+              <option>=== 선택 ===</option>
               <optgroup label="동유럽">
                 {europe.eastEurope &&
                   europe.eastEurope.map(({ name, _id }) => {
@@ -160,7 +165,7 @@ const MyhomeModal = memo(function ({ postId, imageValue }) {
                 }}
                 onChange={handleUserLoginData}
               >
-                <option value={null}>=== 선택 ===</option>
+                <option>=== 선택 ===</option>
 
                 {selectList.map((item, index) => {
                   return (

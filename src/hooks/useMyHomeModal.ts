@@ -20,7 +20,7 @@ export const useMyHomeModal = (imageValue: string, postId: string) => {
   });
 
   const [myChannel, setMyChannel] = useState('');
-  const [myId, setMyId] = useState<string>('');
+  const [myId, setMyId] = useState('');
 
   const [europe, setEurope] = useState({
     eastEurope: [],

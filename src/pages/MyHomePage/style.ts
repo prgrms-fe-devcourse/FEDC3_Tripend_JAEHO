@@ -1,5 +1,16 @@
 import styled from '@emotion/styled';
 
+const MyPosterContainer = styled.div`
+  padding: 0 100px;
+  width: calc(100% - 200px);
+  display: flex;
+  flex-direction: column;
+`;
+
+const Article = styled.div`
+  display: flex;
+`;
+
 const ModalRight = styled.div`
   width: 50%;
   height: 400px;
@@ -60,50 +71,12 @@ const ImageItemContainer = styled.div`
   }
 `;
 
-const PosterTitle = styled.div`
-  width: 74.9%;
-  height: 100px;
-  font-size: 25px;
-  font-weight: bold;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  position: relative;
-  left: 25%;
-`;
-
-const PostWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-`;
-
-const PostItemContainer = styled.div`
-  position: relative;
-  margin: 20px 10px;
-  width: 50%;
-  border-radius: 16px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-
-const PosterContainer = styled.div`
-  min-width: 1200px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
 export {
+  MyPosterContainer,
+  Article,
   ModalRight,
   ModalLeft,
   PostTitle,
   PostButton,
   ImageItemContainer,
-  PosterTitle,
-  PostWrapper,
-  PostItemContainer,
-  PosterContainer,
 };

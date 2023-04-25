@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 const UserInfoContainer = styled.div`
   display: flex;
   align-items: center;
-  min-width: 1000px;
   width: 100%;
+  height: 150px;
   img {
     margin-right: 20px;
   }
@@ -25,8 +25,6 @@ const UserInfoWrapper = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  margin-left: 100px;
-  margin-top: 50px;
   border-radius: 50%;
 `;
 const UserInfoProfileWrapper = styled.div`

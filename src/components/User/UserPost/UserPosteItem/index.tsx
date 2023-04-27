@@ -1,19 +1,21 @@
 import { memo, useEffect, useState } from 'react';
+
+import { Title } from '@/types/post/post.interfaces';
 import {
   ImageItemContainer,
   PostButton,
   PostItemContainer,
   PostTitle,
-} from '@/pages/MyPosterPage/style';
-import { PosterButton, PosterDeleteButton } from './style';
-import { Title } from './type';
+  PosterButton,
+  PosterDeleteButton,
+} from './style';
 
 interface UserPosterItemProps {
-  id: number;
+  id: string;
   title: Title;
   image: string;
-  handlePoster(id: number): void;
-  handleDeletePoster(id: number): void;
+  handlePoster(id: string): void;
+  handleDeletePoster(id: string): void;
 }
 
 const UserPosterItem = memo(function ({

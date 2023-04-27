@@ -4,6 +4,7 @@ import { baseRequest } from './core';
 export const getUsers = async () => {
   try {
     const data = await baseRequest.get(USER_URL.GET_ALL_USER);
+
     return data;
   } catch (error) {
     console.error(error);

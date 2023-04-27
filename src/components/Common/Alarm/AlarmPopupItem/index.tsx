@@ -1,10 +1,14 @@
-import React from 'react';
-import { ALARM } from '../../../../utils/constants/alarm';
-import { extractName } from '../../../../utils/validate/userList';
-import Avatar from '../../../Common/Avatar';
+import { ALARM } from '@/utils/constants/alarm';
+import { extractName } from '@/utils/validate/userList';
+import Avatar from '@/components/Common/Avatar';
 import { AlarmImg, AlarmItem, AlarmText } from './style';
 
-const AlarmPopupItem = ({ alarm, onClick }) => {
+interface AlarmPopupItem {
+  alarm: string[];
+  onClick: void;
+}
+
+const AlarmPopupItem = ({ alarm, onClick }: AlarmPopupItem) => {
   const { author } = alarm;
   const alarmCategory = alarm && alarm.comment ? ALARM.COMMENT : ALARM.ACCOMPANY;
   const filteredName = extractName.exec(author.fullName)[0];

@@ -1,13 +1,20 @@
+import useClickAway from '@/hooks/useClickAway';
+import { selectedPostState } from '@/recoil/postStates';
 import { useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import useClickAway from '../../../../hooks/useClickAway';
-import { selectedPostState } from '../../../../recoil/postStates';
 import AlarmPopupItem from '../AlarmPopupItem';
 import { AlarmList, AlarmNoItem, AlarmPopupContainer, Title } from './style';
 
-const AlarmPopup = ({ visible = false, onClose, target, alarms }) => {
+interface AlarmPopup {
+  visible: boolean;
+  onClose: () => void;
+  target: HTMLElement;
+  alarms: object[];
+}
+
+const AlarmPopup = ({ visible = false, onClose, target, alarms }: AlarmPopup) => {
   const navigate = useNavigate();
   const setPostId = useSetRecoilState(selectedPostState);
   const element = useMemo(() => document.createElement('div'), []);
@@ -21,7 +28,7 @@ const AlarmPopup = ({ visible = false, onClose, target, alarms }) => {
     }
   });
 
-  const handleClickAlarm = (postId) => {
+  const handleClickAlarm = (postId: string) => {
     setPostId(postId);
     navigate(`/p/${postId}`);
     onClose();

@@ -5,6 +5,7 @@ export const AuthorInfoContainer = styled.div`
   width: 60%;
   min-width: 150px;
 `;
+
 export const AuthorInfoTextContainer = styled.div`
   padding-left: 10px;
   display: flex;

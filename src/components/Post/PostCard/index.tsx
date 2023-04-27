@@ -2,6 +2,8 @@ import { memo } from 'react';
 import AuthorInfo from './AuthorInfo';
 import LeftImage from './LeftImage';
 import LikeAndComment from './LikeAndComment';
+import Tags from './Tags';
+import { Author, Like } from '@/types/post/post.interfaces';
 import {
   BottomContainer,
   InfoContainer,
@@ -9,9 +11,18 @@ import {
   PostContainer,
   TravelName,
 } from './style';
-import Tags from './Tags';
 
-const Post = ({ id, titleObject, image, author, likes, commentLength, onClickPost }) => {
+interface PostProps {
+  id: string;
+  titleObject: string;
+  image: string;
+  author: Author;
+  likes: Like[];
+  commentLength: number;
+  onClickPost: (postId: string) => void;
+}
+
+const Post = ({ id, titleObject, image, author, likes, commentLength, onClickPost }: PostProps) => {
   let title, date, gender, personnel;
 
   if (titleObject.includes('/')) {
@@ -28,9 +39,10 @@ const Post = ({ id, titleObject, image, author, likes, commentLength, onClickPos
     gender = '';
     personnel = '';
   }
+
   return (
     <PostContainer onClick={() => onClickPost(id)}>
-      <LeftImage src={image} width={'280px'} height={'180px'} style={{ borderRadius: '16px' }} />
+      <LeftImage src={image} width="280px" height="180px" />
       <InfoContainer>
         <InfoContainerHeader>
           <TravelName>{title}</TravelName>

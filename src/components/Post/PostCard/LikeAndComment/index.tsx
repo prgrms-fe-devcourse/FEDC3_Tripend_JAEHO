@@ -1,6 +1,11 @@
 import { LikeAndCommentContainer } from './style';
 
-const LikeAndComment = ({ likeLength, commentLength }) => {
+interface LikeAndCommentProps {
+  likeLength: number;
+  commentLength: number;
+}
+
+const LikeAndComment = ({ likeLength, commentLength }: LikeAndCommentProps) => {
   return (
     <LikeAndCommentContainer>
       <div>동행 신청 {likeLength} </div>

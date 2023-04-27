@@ -22,7 +22,7 @@ import {
   PostsWrapper,
   UserPostContainer,
 } from './style';
-import { PostData } from '@/types/post/post.interfaces';
+import { PostData, Title } from '@/types/post/post.interfaces';
 
 const UserPost = () => {
   const { isLoading } = useQuery(['musicDetail'], getUser, {
@@ -112,12 +112,7 @@ const UserPost = () => {
         )}
       </PostsWrapper>
 
-      <Pagination
-        posts={posts}
-        totalPosts={posts.length}
-        postPerPage={postPerPage}
-        paginate={changePage}
-      />
+      <Pagination totalPosts={posts.length} postPerPage={postPerPage} paginate={changePage} />
     </UserPostContainer>
   );
 };

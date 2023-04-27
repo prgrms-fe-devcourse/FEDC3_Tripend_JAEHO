@@ -6,14 +6,13 @@ export interface PostData {
   image: string;
   imagePublicId: string;
   likes: string[];
-  title: Title;
+  title: string;
   updatedAt: string;
   __v: number;
   _id: string;
 }
 
 export interface Title {
-  //아마 공용일듯 나중에 밖으로 빼는 걸로
   content: string;
   country: string;
   date: string;

@@ -1,4 +1,4 @@
-import { Menu, MenuItem, SideBlock } from './style';
+import { Menu, MenuItem } from './style';
 
 interface UserPageSidebarProps {
   onclickMenu(id: string): void;
@@ -11,15 +11,13 @@ const UserPageSidebar = ({ onclickMenu }: UserPageSidebarProps) => {
   ];
 
   return (
-    <SideBlock>
-      <Menu>
-        {menu.map(({ name, id }) => (
-          <MenuItem key={id} onClick={() => onclickMenu(id)}>
-            {name}
-          </MenuItem>
-        ))}
-      </Menu>
-    </SideBlock>
+    <Menu>
+      {menu.map(({ name, id }) => (
+        <MenuItem key={id} onClick={() => onclickMenu(id)}>
+          {name}
+        </MenuItem>
+      ))}
+    </Menu>
   );
 };
 

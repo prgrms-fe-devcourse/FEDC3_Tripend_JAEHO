@@ -10,12 +10,13 @@ const UserPostContainer = styled.div`
 
 const HeaderTitle = styled.h1`
   width: 74.9%;
-  font-size: 25px;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 32px;
 `;
 
 const PostsWrapper = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 
 const ModalTitleWrapper = styled.div`

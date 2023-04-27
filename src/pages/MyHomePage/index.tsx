@@ -1,8 +1,9 @@
 import UserInfo from '@/components/User/UserInfo';
 import UserPageSidebar from '@/components/User/UserPageSidebar';
 import UserPost from '@/components/User/UserPost';
+import UserSettingPassword from '@/components/User/UserSettingPassword';
 import { useState } from 'react';
-import { MyPosterContainer, Article } from './style';
+import { Article, MyPosterContainer } from './style';
 
 const MyPosterPage = () => {
   const [targetId, setTargetId] = useState('myPostList');
@@ -12,7 +13,7 @@ const MyPosterPage = () => {
       <UserInfo />
       <Article>
         <UserPageSidebar onclickMenu={setTargetId} />
-        <UserPost />
+        {targetId === 'myPostList' ? <UserPost /> : <UserSettingPassword />}
       </Article>
     </MyPosterContainer>
   );

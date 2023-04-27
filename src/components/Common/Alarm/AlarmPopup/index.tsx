@@ -4,6 +4,7 @@ import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import AlarmPopupItem from '../AlarmPopupItem';
+import ReactDOM from 'react-dom';
 import { AlarmList, AlarmNoItem, AlarmPopupContainer, Title } from './style';
 import { Alarm } from '../types';
 interface AlarmPopupProps {
@@ -38,27 +39,24 @@ const AlarmPopup = ({ visible = false, onClose, target, alarms }: AlarmPopupProp
     onClose && onClose();
   });
 
-  return (
-    <>
-      ReactDOM.createPortal(
-      <AlarmPopupContainer ref={ref} style={{ display: visible ? 'block' : 'none' }}>
-        <Title>알람</Title>
-        <AlarmList>
-          {alarms.length ? (
-            alarms.map((alarm) => (
-              <AlarmPopupItem
-                key={alarm._id}
-                alarm={alarm}
-                onClick={() => handleClickAlarm(alarm.post)}
-              />
-            ))
-          ) : (
-            <AlarmNoItem>알람이 없습니다!</AlarmNoItem>
-          )}
-        </AlarmList>
-      </AlarmPopupContainer>
-      , element );
-    </>
+  return ReactDOM.createPortal(
+    <AlarmPopupContainer ref={ref} style={{ display: visible ? 'block' : 'none' }}>
+      <Title>알람</Title>
+      <AlarmList>
+        {alarms.length ? (
+          alarms.map((alarm) => (
+            <AlarmPopupItem
+              key={alarm._id}
+              alarm={alarm}
+              onClick={() => handleClickAlarm(alarm.post)}
+            />
+          ))
+        ) : (
+          <AlarmNoItem>알람이 없습니다!</AlarmNoItem>
+        )}
+      </AlarmList>
+    </AlarmPopupContainer>,
+    element
   );
 };
 

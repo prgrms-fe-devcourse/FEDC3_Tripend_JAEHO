@@ -6,17 +6,17 @@ import { useSetRecoilState } from 'recoil';
 import AlarmPopupItem from '../AlarmPopupItem';
 import { AlarmList, AlarmNoItem, AlarmPopupContainer, Title } from './style';
 
-interface AlarmPopup extends Alarms {
-  visible: boolean;
-  onClose: () => void;
-  target: HTMLElement;
-  alarms: Alarms[];
-}
-
-interface Alarms {
+interface Alarm {
   _id: string;
   post: string;
   alarm: object;
+}
+
+interface AlarmPopupProps {
+  visible: boolean;
+  target: HTMLElement;
+  alarms: Alarm[];
+  onClose: () => void;
 }
 
 const AlarmPopup = ({ visible = false, onClose, target, alarms }: AlarmPopup) => {

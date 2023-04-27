@@ -1,20 +1,20 @@
-import styled from '@emotion/styled';
-import PersonIcon from '@mui/icons-material/Person';
 import { CSSProperties, HTMLAttributes, useEffect, useState } from 'react';
+import PersonIcon from '@mui/icons-material/Person';
 import ImageComponent from '../Image';
+import styled from '@emotion/styled';
 
 interface AvatarWrapperProps {
   shape: 'circle' | 'round' | 'square';
-  size: CSSProperties['width' | 'height'];
+  size?: CSSProperties['width' | 'height'];
 }
 
 interface AvatarProps extends AvatarWrapperProps {
   lazy: boolean;
   threshold?: number | number[];
   src: string;
-  placeholder: string;
+  placeholder?: string;
   alt: string;
-  mode: CSSProperties['objectFit'];
+  mode?: CSSProperties['objectFit'];
   props?: HTMLAttributes<HTMLDivElement>;
 }
 
@@ -23,6 +23,7 @@ const ShapeToCssValue = {
   round: '4px',
   square: '0px',
 };
+
 const AvatarWrapper = styled.div<AvatarWrapperProps>`
   display: inline-block;
   border: 1px solid #dadada;
@@ -37,13 +38,14 @@ const AvatarWrapper = styled.div<AvatarWrapperProps>`
   }
   color: #adadad;
 `;
+
 const Avatar = ({
   lazy,
   threshold,
   src,
   size = '70px',
   shape = 'circle',
-  placeholder,
+  placeholder = 'https://ionicframework.com/docs/img/demos/avatar.svg',
   alt,
   mode = 'cover',
   ...props

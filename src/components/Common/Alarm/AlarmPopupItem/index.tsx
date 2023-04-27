@@ -3,25 +3,13 @@ import { ALARM } from '@/utils/constants/alarm';
 import { extractName } from '@/utils/validate/userList';
 import { MouseEventHandler } from 'react';
 import { AlarmImg, AlarmItem, AlarmText } from './style';
-
-interface AlarmPopupItem extends Alarm {
+import { Alarm } from '../types';
+interface AlarmPopupItemProps extends Alarm {
   alarm: Alarm;
   onClick: MouseEventHandler<HTMLElement>;
 }
 
-interface Alarm extends Author {
-  _id?: string;
-  post?: string;
-  author?: Author | undefined;
-  comment?: string;
-}
-
-interface Author {
-  fullName?: string;
-  image?: string;
-}
-
-const AlarmPopupItem = ({ alarm, onClick }: AlarmPopupItem) => {
+const AlarmPopupItem = ({ alarm, onClick }: AlarmPopupItemProps) => {
   const { author } = alarm;
   const alarmCategory = alarm && alarm.comment ? ALARM.COMMENT : ALARM.ACCOMPANY;
 

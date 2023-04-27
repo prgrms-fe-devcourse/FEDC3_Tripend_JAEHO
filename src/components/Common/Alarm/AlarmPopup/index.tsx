@@ -5,13 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import AlarmPopupItem from '../AlarmPopupItem';
 import { AlarmList, AlarmNoItem, AlarmPopupContainer, Title } from './style';
-
-interface Alarm {
-  _id: string;
-  post: string;
-  alarm: object;
-}
-
+import { Alarm } from '../types';
 interface AlarmPopupProps {
   visible: boolean;
   target: HTMLElement;
@@ -19,7 +13,7 @@ interface AlarmPopupProps {
   onClose: () => void;
 }
 
-const AlarmPopup = ({ visible = false, onClose, target, alarms }: AlarmPopup) => {
+const AlarmPopup = ({ visible = false, onClose, target, alarms }: AlarmPopupProps) => {
   const navigate = useNavigate();
   const setPostId = useSetRecoilState(selectedPostState);
   const element = useMemo(() => document.createElement('div'), []);
@@ -33,7 +27,8 @@ const AlarmPopup = ({ visible = false, onClose, target, alarms }: AlarmPopup) =>
     }
   });
 
-  const handleClickAlarm = (postId: string): void => {
+  const handleClickAlarm = (postId: string | undefined) => {
+    if (!postId) return;
     setPostId(postId);
     navigate(`/p/${postId}`);
     onClose();

@@ -4,7 +4,8 @@ import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
 
 import HomePage from './pages/HomePage';
-import MySettingPage from './pages/MySettingPage';
+//import MySettingPage from './pages/MySettingPage';
+import MyHomePage from '@/pages/MyHomePage';
 
 import MissingPage from './pages/NotFound';
 
@@ -42,7 +43,7 @@ const AppRouter = () => {
           path="/myhome"
           element={
             <AuthUserRoute>
-              <MySettingPage />
+              <MyHomePage />
             </AuthUserRoute>
           }
         />

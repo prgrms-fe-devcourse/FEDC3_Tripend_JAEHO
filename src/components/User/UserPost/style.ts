@@ -1,5 +1,24 @@
 import styled from '@emotion/styled';
 
+const UserPostContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const HeaderTitle = styled.h1`
+  width: 74.9%;
+  font-weight: 700;
+  font-size: 32px;
+`;
+
+const PostsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const ModalTitleWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -21,4 +40,11 @@ const ModalTitleButton = styled.button`
 `;
 const ModalTitle = styled.h3``;
 
-export { ModalTitleWrapper, ModalTitleButton, ModalTitle };
+export {
+  UserPostContainer,
+  HeaderTitle,
+  PostsWrapper,
+  ModalTitleWrapper,
+  ModalTitleButton,
+  ModalTitle,
+};

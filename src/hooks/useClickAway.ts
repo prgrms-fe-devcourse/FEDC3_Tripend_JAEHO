@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { EVENT } from '../utils/constants/hooks';
 
-const useClickAway = (handler) => {
-  const ref = useRef(null);
-  const savedHandler = useRef(handler);
+const useClickAway = (handler: () => void) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const savedHandler = useRef<() => void>(handler);
 
   useEffect(() => {
     savedHandler.current = handler;
@@ -13,8 +13,10 @@ const useClickAway = (handler) => {
     const element = ref.current;
     if (!element) return;
 
-    const handleEvent = (e) => {
-      !ref.current.contains(e.target) && savedHandler.current(e);
+    const handleEvent = (e: MouseEvent | TouchEvent) => {
+      if (ref.current !== null) {
+        ref.current.contains(e.target as Node) && savedHandler.current();
+      }
     };
 
     for (const eventName of EVENT) {

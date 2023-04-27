@@ -1,19 +1,5 @@
 import { CSSProperties, HTMLAttributes, useEffect, useRef, useState } from 'react';
 
-interface ImageProps {
-  lazy: boolean;
-  threshold?: number | number[];
-  placeholder: string;
-  src: string;
-  block: boolean;
-  width?: number | string;
-  height?: number | string;
-  alt?: string;
-  mode?: CSSProperties['objectFit'];
-  props?: HTMLAttributes<HTMLImageElement>;
-  style: CSSProperties;
-}
-
 let observer: IntersectionObserver | null = null;
 const LOAD_IMG_EVENT_TYPE = 'loadImage';
 
@@ -25,6 +11,20 @@ const onIntersection: IntersectionObserverCallback = (entries, io) => {
     }
   });
 };
+
+interface ImageProps {
+  lazy: boolean;
+  threshold?: number | number[];
+  placeholder: string;
+  src: string;
+  block: boolean;
+  width?: number | string;
+  height?: number | string;
+  alt?: string;
+  mode?: CSSProperties['objectFit'];
+  props?: HTMLAttributes<HTMLImageElement>;
+  style?: CSSProperties;
+}
 
 const Image = ({
   lazy,

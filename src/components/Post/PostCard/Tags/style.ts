@@ -1,10 +1,16 @@
+import { CSSProperties } from 'react';
 import styled from '@emotion/styled';
 
-export const TagContainer = styled.div`
+interface TagContainerProps {
+  alignItem: CSSProperties['alignItems'];
+}
+
+export const TagContainer = styled.div<TagContainerProps>`
   height: 50px;
   display: flex;
   align-items: ${({ alignItem }) => (alignItem ? alignItem : 'center')};
 `;
+
 export const Tag = styled.span`
   background-color: var(--primary);
   font-weight: bold;

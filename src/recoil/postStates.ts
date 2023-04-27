@@ -1,4 +1,5 @@
 import { atomFamily, atom } from 'recoil';
+import { Post } from '@/types/post/post.interfaces';
 
 export const selectedPostState = atom({
   key: 'selectedPostState',
@@ -9,19 +10,6 @@ export const postDetailModalState = atom({
   key: 'postDetailModalState',
   default: false,
 });
-
-interface Like {
-  createdAt: string;
-  post: string;
-  updatedAt: string;
-  user: string;
-  __v: number;
-  _id: string;
-}
-
-interface Post {
-  likes: Like[];
-}
 
 interface postStateFamilyType {
   key: string;

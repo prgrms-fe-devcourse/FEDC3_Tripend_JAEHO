@@ -23,7 +23,7 @@ const PostDetail = () => {
 
   return post ? (
     <PostDetailContainer>
-      <LeftImage src={post.image} width={'50%'} height={'100%'} style={{ borderRadius: '16px' }} />
+      <LeftImage src={post.image} width="50%" height="100%" />
       <RightContainer>
         <RightContainerContent alignItem="flex-start" style={{ paddingBottom: '60px' }}>
           <Title>{post.title}</Title>

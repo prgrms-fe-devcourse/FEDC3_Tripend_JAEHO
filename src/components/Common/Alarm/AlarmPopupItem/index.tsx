@@ -43,8 +43,8 @@ const AlarmPopupItem = ({ alarm, onClick }: AlarmPopupItem) => {
           src={author.image}
           lazy={true}
           threshold={0.1}
-          placeholder={''}
-          alt={''}
+          placeholder=""
+          alt=""
           mode={undefined}
         />
       </AlarmImg>

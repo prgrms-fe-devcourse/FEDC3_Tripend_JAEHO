@@ -1,17 +1,22 @@
 import useClickAway from '@/hooks/useClickAway';
 import { selectedPostState } from '@/recoil/postStates';
 import { useEffect, useMemo } from 'react';
-import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import AlarmPopupItem from '../AlarmPopupItem';
 import { AlarmList, AlarmNoItem, AlarmPopupContainer, Title } from './style';
 
-interface AlarmPopup {
+interface AlarmPopup extends Alarms {
   visible: boolean;
   onClose: () => void;
   target: HTMLElement;
-  alarms: object[];
+  alarms: Alarms[];
+}
+
+interface Alarms {
+  _id: string;
+  post: string;
+  alarm: object;
 }
 
 const AlarmPopup = ({ visible = false, onClose, target, alarms }: AlarmPopup) => {
@@ -28,7 +33,7 @@ const AlarmPopup = ({ visible = false, onClose, target, alarms }: AlarmPopup) =>
     }
   });
 
-  const handleClickAlarm = (postId: string) => {
+  const handleClickAlarm = (postId: string): void => {
     setPostId(postId);
     navigate(`/p/${postId}`);
     onClose();
@@ -38,24 +43,27 @@ const AlarmPopup = ({ visible = false, onClose, target, alarms }: AlarmPopup) =>
     onClose && onClose();
   });
 
-  return ReactDOM.createPortal(
-    <AlarmPopupContainer ref={ref} style={{ display: visible ? 'block' : 'none' }}>
-      <Title>알람</Title>
-      <AlarmList>
-        {alarms.length ? (
-          alarms.map((alarm) => (
-            <AlarmPopupItem
-              key={alarm._id}
-              alarm={alarm}
-              onClick={() => handleClickAlarm(alarm.post)}
-            />
-          ))
-        ) : (
-          <AlarmNoItem>알람이 없습니다!</AlarmNoItem>
-        )}
-      </AlarmList>
-    </AlarmPopupContainer>,
-    element
+  return (
+    <>
+      ReactDOM.createPortal(
+      <AlarmPopupContainer ref={ref} style={{ display: visible ? 'block' : 'none' }}>
+        <Title>알람</Title>
+        <AlarmList>
+          {alarms.length ? (
+            alarms.map((alarm) => (
+              <AlarmPopupItem
+                key={alarm._id}
+                alarm={alarm}
+                onClick={() => handleClickAlarm(alarm.post)}
+              />
+            ))
+          ) : (
+            <AlarmNoItem>알람이 없습니다!</AlarmNoItem>
+          )}
+        </AlarmList>
+      </AlarmPopupContainer>
+      , element );
+    </>
   );
 };
 

@@ -1,8 +1,8 @@
 import Avatar from '@/components/Common/Avatar';
 import { ALARM } from '@/utils/constants/alarm';
 import { extractName } from '@/utils/validate/userList';
-import { AlarmImg, AlarmItem, AlarmText } from './style';
 import { MouseEventHandler } from 'react';
+import { AlarmImg, AlarmItem, AlarmText } from './style';
 
 interface AlarmPopupItem extends Alarm {
   alarm: Alarm;
@@ -10,13 +10,15 @@ interface AlarmPopupItem extends Alarm {
 }
 
 interface Alarm extends Author {
-  author: Author;
-  comment: string;
+  _id?: string;
+  post?: string;
+  author?: Author | undefined;
+  comment?: string;
 }
 
 interface Author {
-  fullName: string;
-  image: string;
+  fullName?: string;
+  image?: string;
 }
 
 const AlarmPopupItem = ({ alarm, onClick }: AlarmPopupItem) => {
@@ -26,28 +28,30 @@ const AlarmPopupItem = ({ alarm, onClick }: AlarmPopupItem) => {
   let result;
   let alarmComment;
 
-  while ((result = extractName?.exec(author.fullName)) !== null) {
-    alarmComment = `${result[0]}님이 회원님의 게시물에 ${alarmCategory} 남겼습니다`;
+  if (author && author.fullName) {
+    while ((result = extractName?.exec(author.fullName)) !== null) {
+      alarmComment = `${result[0]}님이 회원님의 게시물에 ${alarmCategory} 남겼습니다`;
+    }
   }
 
-  return (
-    author && (
-      <AlarmItem onClick={onClick}>
-        <AlarmImg>
-          <Avatar
-            shape="circle"
-            size={25}
-            src={author.image}
-            lazy={true}
-            threshold={0.1}
-            placeholder={''}
-            alt={''}
-            mode={undefined}
-          />
-        </AlarmImg>
-        <AlarmText>{alarmComment}</AlarmText>
-      </AlarmItem>
-    )
+  return author ? (
+    <AlarmItem onClick={onClick}>
+      <AlarmImg>
+        <Avatar
+          shape="circle"
+          size={25}
+          src={author.image}
+          lazy={true}
+          threshold={0.1}
+          placeholder={''}
+          alt={''}
+          mode={undefined}
+        />
+      </AlarmImg>
+      <AlarmText>{alarmComment}</AlarmText>
+    </AlarmItem>
+  ) : (
+    <></>
   );
 };
 

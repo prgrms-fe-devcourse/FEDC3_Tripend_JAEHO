@@ -112,7 +112,12 @@ const UserPost = () => {
         )}
       </PostsWrapper>
 
-      <Pagination totalPosts={posts.length} postPerPage={postPerPage} paginate={changePage} />
+      <Pagination
+        totalPosts={posts.length}
+        postPerPage={postPerPage}
+        currentPage={currentPage}
+        paginate={changePage}
+      />
     </UserPostContainer>
   );
 };

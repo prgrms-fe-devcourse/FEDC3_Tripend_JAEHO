@@ -12,7 +12,7 @@ const MyPosterPage = () => {
     <MyPosterContainer>
       <UserInfo />
       <Article>
-        <UserPageSidebar onclickMenu={setTargetId} />
+        <UserPageSidebar targetId={targetId} onclickMenu={setTargetId} />
         {targetId === 'myPostList' ? <UserPost /> : <UserSettingPassword />}
       </Article>
     </MyPosterContainer>

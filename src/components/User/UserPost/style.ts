@@ -17,6 +17,7 @@ const HeaderTitle = styled.h1`
 const PostsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 18px;
 `;
 
 const ModalTitleWrapper = styled.div`

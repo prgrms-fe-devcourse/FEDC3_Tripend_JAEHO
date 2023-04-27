@@ -5,31 +5,25 @@ const PageContainer = styled.nav`
   justify-content: center;
   align-items: center;
   margin-right: 100px;
-
-  li {
-    list-style: none;
-    border-radius: 5px;
-    margin: 0 5px;
-    cursor: pointer;
-    &:hover {
-      background-color: #55d4a9;
-    }
-  }
 `;
 
-const PageUl = styled.ul``;
+const PageUl = styled.ul`
+  list-style: none;
+`;
 
-const PageLi = styled.li`
+const PageLi = styled.li<{ isCurrentPage: number }>`
   display: inline-block;
-  background: #dee2e6;
+  background: ${({ isCurrentPage }) => (isCurrentPage ? '#dee2e6' : '#ebebeb')};
+  color: #495057;
   overflow: hidden;
+  border-radius: 5px;
   margin: 5px;
-
-  a {
-    display: block;
-    padding: 5px 10px;
-    color: #495057;
-    text-decoration: none;
+  padding: 5px 10px;
+  font-weight: ${({ isCurrentPage }) => (isCurrentPage ? 'bold' : 'normal')};
+  color: ${({ isCurrentPage }) => (isCurrentPage ? 'var(--font-main-color)' : '#8D91A0')};
+  cursor: pointer;
+  &:hover {
+    background-color: #dee2e6;
   }
 `;
 

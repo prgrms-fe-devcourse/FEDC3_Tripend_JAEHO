@@ -1,10 +1,11 @@
-import { Menu, MenuItem } from './style';
+import { Text, Menu, MenuItem } from './style';
 
 interface UserPageSidebarProps {
+  targetId: string;
   onclickMenu(id: string): void;
 }
 
-const UserPageSidebar = ({ onclickMenu }: UserPageSidebarProps) => {
+const UserPageSidebar = ({ targetId, onclickMenu }: UserPageSidebarProps) => {
   const menu = [
     { name: '작성한 글', id: 'myPostList' },
     { name: '내 정보 수정', id: 'myInfo' },
@@ -14,7 +15,7 @@ const UserPageSidebar = ({ onclickMenu }: UserPageSidebarProps) => {
     <Menu>
       {menu.map(({ name, id }) => (
         <MenuItem key={id} onClick={() => onclickMenu(id)}>
-          {name}
+          <Text isClicked={targetId === id}>{name}</Text>
         </MenuItem>
       ))}
     </Menu>

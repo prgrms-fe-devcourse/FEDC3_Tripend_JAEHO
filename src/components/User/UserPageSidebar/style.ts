@@ -14,19 +14,30 @@ const Menu = styled.ul`
 
 const MenuItem = styled.li`
   list-style: none;
-  margin: 0 20px;
-  padding: 16px 0;
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
   cursor: pointer;
-  border-bottom: 1px solid #d7e2ee;
-  /* &:hover {
-    background-color: var(--background-color);
-  } */
-  &:last-of-type {
-    border-bottom: 0;
+
+  &:not(:last-of-type)::after {
+    content: '';
+    display: block;
+    width: calc(100% - 40px);
+    height: 1px;
+    margin: 8px 20px;
+    border-bottom: 1px solid #d7e2ee;
   }
 `;
 
-export { Menu, MenuItem };
+const Text = styled.div<{ isClicked: boolean }>`
+  margin: 0 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: ${({ isClicked }) => (isClicked ? 'var(--font-main-color)' : '#8D91A0')};
+  background-color: ${({ isClicked }) => (isClicked ? '#EBEBEB' : 'var(--white)')};
+  &:hover {
+    background-color: ${({ isClicked }) => (isClicked ? '#EBEBEB' : 'var(--background-color)')};
+  }
+`;
+
+export { Text, Menu, MenuItem };

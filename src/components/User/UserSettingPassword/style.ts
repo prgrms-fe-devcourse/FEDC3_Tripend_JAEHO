@@ -7,7 +7,7 @@ const FormSettingText = styled.h3`
 const PasswordBlock = styled.div`
   width: 100%;
   display: flex;
-  height: 100vh;
+
   justify-content: center;
   align-items: center;
 `;

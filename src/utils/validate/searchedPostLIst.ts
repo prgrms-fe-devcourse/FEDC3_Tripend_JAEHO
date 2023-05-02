@@ -1,4 +1,5 @@
-export const filteredPost = (list, keyword) => {
+export const filteredPost = (list: any, keyword: string) => {
+  //todo: list에 post/postSearch에서 쓰는 type 가져오기
   return list
     .filter((item) => item.title)
     .map((item) => {

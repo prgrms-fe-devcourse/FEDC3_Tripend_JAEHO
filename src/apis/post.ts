@@ -12,7 +12,7 @@ export const getChannels = async () => {
   }
 };
 
-export const getChannelPosts = async (channelId) => {
+export const getChannelPosts = async (channelId: string) => {
   try {
     const data = await baseRequest.get(POST_URL.POSTS_IN_CHANNEL + channelId);
     return data;
@@ -21,7 +21,8 @@ export const getChannelPosts = async (channelId) => {
   }
 };
 
-export const createPost = async (data) => {
+export const createPost = async (data: any) => {
+  //usePostForm의 type으로 넣기
   try {
     return await postDataRequest.post(POST_URL.CREATE_POST, data);
   } catch (error) {
@@ -38,7 +39,7 @@ export const getAllPosts = async () => {
   }
 };
 
-export const getPostDetail = async (postId) => {
+export const getPostDetail = async (postId: string) => {
   try {
     const data = await baseRequest.get(POST_URL.POST_DETAIL + postId);
     return data;
@@ -47,7 +48,7 @@ export const getPostDetail = async (postId) => {
   }
 };
 
-export const removePost = async (postId) => {
+export const removePost = async (postId: string) => {
   const data = await authRequest.delete(URL.MYPAGE_DELETE, {
     data: {
       id: postId,
@@ -60,11 +61,11 @@ export const removePost = async (postId) => {
   }
 };
 
-export const getMyPostDetail = async (postId) => {
+export const getMyPostDetail = async (postId: string) => {
   return await baseRequest.get(POST_URL.POST_DETAIL + postId);
 };
 
-export const updatePost = async (post) => {
+export const updatePost = async (post: FormData) => {
   const res = await authRequest.put(URL.MYPAGE_UPDATE, post);
 
   if (res.status === 200) {

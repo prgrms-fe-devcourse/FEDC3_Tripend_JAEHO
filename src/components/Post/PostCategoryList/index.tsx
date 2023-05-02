@@ -5,9 +5,10 @@ import Skeleton from '@/components/Common/Skeleton';
 import SortedChannels from './SortedChannels';
 import { getChannels } from '@/apis/post';
 import { ChannelListContainer } from './style';
+import type { Channel, Channels } from '@/types/channel/channel.interface';
 
 const ChannelList = () => {
-  const [channels, setChannels] = useState();
+  const [channels, setChannels] = useState<Channels>();
   const setSelectedChannel = useSetRecoilState(selectedChannelState);
 
   useEffect(() => {
@@ -15,12 +16,18 @@ const ChannelList = () => {
   }, []);
 
   const getChannelData = async () => {
-    const { data } = await getChannels();
+    const { data }: { data: Channel[] } = await getChannels();
 
     const eastEurope = data.filter(({ description }) => description === '동유럽');
-    const westEurope = data.filter(({ description }) => description === '서유럽');
-    const southEurope = data.filter(({ description }) => description === '남유럽');
-    const northEurope = data.filter(({ description }) => description === '북유럽');
+    const westEurope = data.filter(
+      ({ description }: { description: string }) => description === '서유럽'
+    );
+    const southEurope = data.filter(
+      ({ description }: { description: string }) => description === '남유럽'
+    );
+    const northEurope = data.filter(
+      ({ description }: { description: string }) => description === '북유럽'
+    );
 
     setChannels({
       eastEurope,
@@ -30,7 +37,7 @@ const ChannelList = () => {
     });
   };
 
-  const onClickChannel = (id) => {
+  const onClickChannel = (id: string) => {
     setSelectedChannel(id);
   };
 
@@ -40,7 +47,7 @@ const ChannelList = () => {
         <>
           <SortedChannels
             title="동유럽"
-            channels={channels.eastEurope}
+            channels={channels?.eastEurope}
             onClickChannel={onClickChannel}
           />
           <SortedChannels

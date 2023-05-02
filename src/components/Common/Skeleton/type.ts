@@ -1,6 +1,7 @@
-import { HTMLAttributes } from 'react';
+import { CSSProperties, HTMLAttributes } from 'react';
 
 export interface SkeletonProps {
   line: number;
-  props: HTMLAttributes<HTMLDivElement>;
+  props?: HTMLAttributes<HTMLDivElement>;
+  style?: CSSProperties;
 }

@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 const PostItemContainer = styled.div`
   position: relative;
-  margin: 20px 10px;
   width: calc(100% - 20px);
   border-radius: 16px;
   box-shadow: 0px 4px 16px rgba(17, 34, 17, 0.05);

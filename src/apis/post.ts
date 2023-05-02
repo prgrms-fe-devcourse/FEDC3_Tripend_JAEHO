@@ -1,6 +1,6 @@
-import { authRequest, baseRequest, postDataRequest } from './core';
 import { URL } from '@/utils/constants/auth';
 import { ERROR_MESSAGE_POST, POST_URL } from '@/utils/constants/post';
+import { authRequest, baseRequest, postDataRequest } from './core';
 
 export const getChannels = async () => {
   try {
@@ -21,7 +21,8 @@ export const getChannelPosts = async (channelId: string) => {
   }
 };
 
-export const createPost = async (data) => {
+export const createPost = async (data: any) => {
+  //usePostForm의 type으로 넣기
   try {
     return await postDataRequest.post(POST_URL.CREATE_POST, data);
   } catch (error) {
@@ -64,7 +65,7 @@ export const getMyPostDetail = async (postId: string) => {
   return await baseRequest.get(POST_URL.POST_DETAIL + postId);
 };
 
-export const updatePost = async (post) => {
+export const updatePost = async (post: FormData) => {
   const res = await authRequest.put(URL.MYPAGE_UPDATE, post);
 
   if (res.status === 200) {

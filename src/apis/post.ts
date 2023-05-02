@@ -1,6 +1,6 @@
+import { authRequest, baseRequest, postDataRequest } from './core';
 import { URL } from '@/utils/constants/auth';
 import { ERROR_MESSAGE_POST, POST_URL } from '@/utils/constants/post';
-import { authRequest, baseRequest, postDataRequest } from './core';
 
 export const getChannels = async () => {
   try {
@@ -12,7 +12,7 @@ export const getChannels = async () => {
   }
 };
 
-export const getChannelPosts = async (channelId) => {
+export const getChannelPosts = async (channelId: string) => {
   try {
     const data = await baseRequest.get(POST_URL.POSTS_IN_CHANNEL + channelId);
     return data;
@@ -38,7 +38,7 @@ export const getAllPosts = async () => {
   }
 };
 
-export const getPostDetail = async (postId) => {
+export const getPostDetail = async (postId: string) => {
   try {
     const data = await baseRequest.get(POST_URL.POST_DETAIL + postId);
     return data;
@@ -47,7 +47,7 @@ export const getPostDetail = async (postId) => {
   }
 };
 
-export const removePost = async (postId) => {
+export const removePost = async (postId: string) => {
   const data = await authRequest.delete(URL.MYPAGE_DELETE, {
     data: {
       id: postId,
@@ -60,7 +60,7 @@ export const removePost = async (postId) => {
   }
 };
 
-export const getMyPostDetail = async (postId) => {
+export const getMyPostDetail = async (postId: string) => {
   return await baseRequest.get(POST_URL.POST_DETAIL + postId);
 };
 

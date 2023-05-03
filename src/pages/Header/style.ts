@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const HeaderContainer = styled.div`
+export const HeaderContainer = styled.div<{ isRoot: boolean }>`
   width: 100%;
   min-width: 1200px;
   position: sticky;

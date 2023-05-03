@@ -11,9 +11,9 @@ interface AvatarWrapperProps {
 interface AvatarProps extends AvatarWrapperProps {
   lazy: boolean;
   threshold?: number | number[];
-  src: string;
+  src?: string | null;
   placeholder?: string;
-  alt: string;
+  alt?: string;
   mode?: CSSProperties['objectFit'];
   props?: HTMLAttributes<HTMLDivElement>;
 }
@@ -54,7 +54,7 @@ const Avatar = ({
 
   useEffect(() => {
     const image = new Image();
-    if (src !== undefined) {
+    if (src !== undefined && src !== null) {
       image.src = src;
       image.onload = () => setLoaded(true);
     }

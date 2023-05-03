@@ -9,7 +9,7 @@ import { AlarmList, AlarmNoItem, AlarmPopupContainer, Title } from './style';
 import { Alarm } from '../types';
 interface AlarmPopupProps {
   visible: boolean;
-  target: HTMLElement;
+  target?: HTMLElement;
   alarms: Alarm[];
   onClose: () => void;
 }

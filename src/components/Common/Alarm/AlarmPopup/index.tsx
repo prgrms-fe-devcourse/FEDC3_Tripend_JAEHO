@@ -1,12 +1,12 @@
 import useClickAway from '@/hooks/useClickAway';
 import { selectedPostState } from '@/recoil/postStates';
 import { useEffect, useMemo } from 'react';
+import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import AlarmPopupItem from '../AlarmPopupItem';
-import ReactDOM from 'react-dom';
-import { AlarmList, AlarmNoItem, AlarmPopupContainer, Title } from './style';
 import { Alarm } from '../types';
+import { AlarmList, AlarmNoItem, AlarmPopupContainer, Title } from './style';
 interface AlarmPopupProps {
   visible: boolean;
   target?: HTMLElement;

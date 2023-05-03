@@ -1,19 +1,19 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { getMyAlarms } from '@/apis/alarm';
 import AlarmPopup from '@/components/Common/Alarm/AlarmPopup';
 import Avatar from '@/components/Common/Avatar';
 import Icon from '@/components/Common/Icons';
 import Badge from '@/components/Common/Icons/Badge';
 import PostCreate from '@/components/Post/PostCreate';
-import { AlarmContainer, ButtonContainer, HeaderContainer, IconItem, LogoContainer } from './style';
-import logoIcon from '/assets/Logo.svg';
-import { TOKEN, USER_IMAGE } from '@/utils/constants/auth';
 import { isVisibleModalState } from '@/recoil/addPostStates';
-import { getStorage, setStorage } from '@/utils/storage';
-import { MouseEvent, useEffect, useState } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
 import { userLoginState } from '@/recoil/authState';
 import { toggleStateFamily } from '@/recoil/toggleStates';
-import { getMyAlarms } from '@/apis/alarm';
+import { TOKEN, USER_IMAGE } from '@/utils/constants/auth';
+import { getStorage, setStorage } from '@/utils/storage';
+import { MouseEvent, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { AlarmContainer, ButtonContainer, HeaderContainer, IconItem, LogoContainer } from './style';
+import logoIcon from '/assets/Logo.svg';
 
 const Header = () => {
   const { pathname } = useLocation();

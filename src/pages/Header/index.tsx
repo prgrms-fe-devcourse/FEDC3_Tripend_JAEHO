@@ -9,7 +9,7 @@ import logoIcon from '/assets/Logo.svg';
 import { TOKEN, USER_IMAGE } from '@/utils/constants/auth';
 import { isVisibleModalState } from '@/recoil/addPostStates';
 import { getStorage, setStorage } from '@/utils/storage';
-import { MouseEvent, MouseEventHandler, useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { userLoginState } from '@/recoil/authState';
 import { toggleStateFamily } from '@/recoil/toggleStates';

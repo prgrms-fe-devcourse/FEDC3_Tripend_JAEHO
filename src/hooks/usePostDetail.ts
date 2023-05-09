@@ -6,7 +6,7 @@ import { postStateFamily, selectedPostState } from '../recoil/postStates';
 const usePostDetail = () => {
   const postId = useRecoilValue(selectedPostState);
   const [{ post }, setPostDetail] = useRecoilState(postStateFamily(postId));
-
+  console.log(post);
   useEffect(() => {
     if (postId) {
       getPostData();

@@ -1,27 +1,35 @@
-import { useState } from 'react';
+import { createAlarm } from '@/apis/alarm';
+import { createComment } from '@/apis/comment';
+import usePostDetail from '@/hooks/usePostDetail';
+import { postStateFamily } from '@/recoil/postStates';
+import { Comment } from '@/types/post/post.interfaces';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { postStateFamily } from '../../../../recoil/postStates';
-import usePostDetail from '../../../../hooks/usePostDetail';
-import Comment from '../Comment';
+import CommentCompo from '../Comment';
 import { CommentContainer, CommentCount, InputContainer } from './style';
 import emojiIcon from '/assets/smile_emoji.png';
 
-const Comments = ({ postId, comments }) => {
+interface CommentsProps {
+  postId: string;
+  comments: Comment[];
+}
+
+const Comments = ({ postId, comments }: CommentsProps) => {
   const { getPostData } = usePostDetail(postId);
   const [comment, setComment] = useState('');
   const postDetail = useRecoilValue(postStateFamily(postId));
 
-  const onChange = (e) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (comment.length > 1) {
       const result = await createComment(postId, comment);
 
-      if (result.status === 200) {
+      if (result && result.status === 200 && postDetail.post) {
         setComment('');
 
         const { _id, post } = result.data;
@@ -41,7 +49,7 @@ const Comments = ({ postId, comments }) => {
       </InputContainer>
       <CommentContainer>
         {comments.map(({ _id, comment, author }) => (
-          <Comment key={_id} comment={comment} author={author} />
+          <CommentCompo key={_id} comment={comment} author={author} />
         ))}
       </CommentContainer>
     </>

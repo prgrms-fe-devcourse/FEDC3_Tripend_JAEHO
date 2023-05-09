@@ -15,7 +15,11 @@ export const RightContainer = styled.div`
   flex-direction: column;
 `;
 
-export const RightContainerContent = styled.div`
+export const RightContainerContent = styled.div<{
+  flexDirection?: string;
+  justifyContent?: string;
+  alignItem?: string;
+}>`
   display: flex;
   flex-direction: ${({ flexDirection }) => (flexDirection ? flexDirection : 'column')};
   justify-content: ${({ justifyContent }) => (justifyContent ? justifyContent : 'start')};

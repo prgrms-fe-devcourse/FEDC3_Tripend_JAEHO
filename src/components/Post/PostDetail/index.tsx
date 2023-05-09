@@ -1,9 +1,9 @@
+import Skeleton from '@/components/Common/Skeleton';
 import Like from '@/components/Post/Like';
 import AuthorInfo from '@/components/Post/PostCard/AuthorInfo';
 import LeftImage from '@/components/Post/PostCard/LeftImage';
 import Tags from '@/components/Post/PostCard/Tags';
-import usePostDetail from '../../../hooks/usePostDetail';
-import Skeleton from '../../Common/Skeleton';
+import usePostDetail from '@/hooks/usePostDetail';
 import Comments from './Comments';
 import {
   BottomContainer,
@@ -19,7 +19,7 @@ import locationIcon from '/assets/Location.png';
 const PostDetail = () => {
   const userId = localStorage.getItem('id');
   const { post } = usePostDetail();
-  const likeId = post?.likes.find(({ user }) => user === userId)?._id;
+  const likeId = post?.likes.find(({ user }: { user: string }) => user === userId)?._id;
 
   return post ? (
     <PostDetailContainer>
@@ -49,11 +49,11 @@ const PostDetail = () => {
             alignItem="flex-end"
           />
           <RightContainerContent flexDirection="row">
-            <Like likeId={likeId} author={post.author._id} postId={post._id} />
+            {likeId && <Like likeId={likeId} authorId={post.author._id} postId={post._id} />}
           </RightContainerContent>
         </RightContainerContent>
         <Content>{post.content}</Content>
-        <BottomContainer alignItem="flex-start">
+        <BottomContainer>
           <Comments postId={post._id} comments={post.comments} />
         </BottomContainer>
       </RightContainer>

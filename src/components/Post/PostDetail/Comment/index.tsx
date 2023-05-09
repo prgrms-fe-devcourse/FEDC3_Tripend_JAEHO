@@ -2,8 +2,14 @@ import PersonIcon from '@mui/icons-material/Person';
 import { memo } from 'react';
 import Image from '../../../Common/Image';
 import { AvatarWrapper, CommentContainer, CommentInfo } from './style';
+import { Author } from '@/types/post/post.interfaces';
 
-const Comment = ({ comment, author }) => {
+interface CommentProps {
+  comment: string;
+  author: Author;
+}
+
+const Comment = ({ comment, author }: CommentProps) => {
   return (
     <CommentContainer>
       <AvatarWrapper>
@@ -15,6 +21,8 @@ const Comment = ({ comment, author }) => {
             style={{ borderRadius: '50%' }}
             lazy={true}
             threshold={0.5}
+            placeholder="https://via.placeholder.com/280x180"
+            block={true}
           />
         ) : (
           <PersonIcon

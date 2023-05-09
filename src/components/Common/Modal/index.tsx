@@ -5,7 +5,7 @@ import { BackgroundDim, ModalContainer } from './style';
 
 const Modal = ({ children, width = 500, height, visible = false, onClose, ...props }) => {
   const ref = useClickAway(() => {
-    if (!visible) {
+    if (visible) {
       onClose && onClose();
     }
   });

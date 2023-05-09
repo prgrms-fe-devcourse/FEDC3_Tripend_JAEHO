@@ -5,7 +5,7 @@ import { BackgroundDim, ModalContainer } from './style';
 
 const Modal = ({ children, width = 500, height, visible = false, onClose, ...props }) => {
   const ref = useClickAway(() => {
-    if (visible) {
+    if (!visible) {
       onClose && onClose();
     }
   });
@@ -19,6 +19,7 @@ const Modal = ({ children, width = 500, height, visible = false, onClose, ...pro
   );
 
   const element = useMemo(() => document.createElement('div', []));
+
   useEffect(() => {
     document.body.appendChild(element);
     return () => {

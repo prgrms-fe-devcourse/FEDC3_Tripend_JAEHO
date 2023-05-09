@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { uploadImageState } from '@/recoil/uploadImageState';
 import { ImageFileInput } from '../AddPostForm/style';
@@ -13,19 +13,19 @@ import {
 } from './style';
 
 const UploadAndDisplayImage = () => {
-  const [selectedImage, setSelectedImage] = useRecoilState(uploadImageState);
+  const [selectedImage, setSelectedImage] = useRecoilState<File | null>(uploadImageState);
 
-  const checkImage = (file) => {
+  const checkImage = (file: File) => {
     if (file.type === FILE.JPEG || file.type === FILE.SVG || file.type === FILE.PNG) {
       setSelectedImage(file);
     } else {
-      swal(ERROR_MESSAGE.UPLOAD_IMAGE);
-      return;
+      console.log(ERROR_MESSAGE.UPLOAD_IMAGE);
     }
   };
 
   const handleImageChange = useCallback(
-    (e) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (!e.target.files) return;
       const file = e.target.files[0];
       checkImage(file);
     },
@@ -51,7 +51,7 @@ const UploadAndDisplayImage = () => {
         ) : (
           <UploadImageWrapper>
             <TitleWrapper>
-              <img src={uploadIcon} ali="upload-icon" />
+              <img src={uploadIcon} alt="upload-icon" />
               <p>사진 업로드</p>
             </TitleWrapper>
             <div

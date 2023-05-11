@@ -32,7 +32,7 @@ const Modal = ({
     }),
     [width, height]
   );
-
+  
   const element = useMemo(() => document.createElement('div'), []);
 
   useEffect(() => {

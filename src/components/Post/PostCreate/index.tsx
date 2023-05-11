@@ -5,7 +5,11 @@ import Modal from '@/components/Common/Modal';
 import AddPostForm from './AddPostForm';
 import { CloseButton, ModalHeader, Title } from './style';
 
-const AddPost = ({ visible }) => {
+interface AddPostProps {
+  visible: boolean;
+}
+
+const AddPost = ({ visible }: AddPostProps) => {
   const setIsVisibleModal = useSetRecoilState(isVisibleModalState);
 
   const handleCloseAddPostModal = () => {

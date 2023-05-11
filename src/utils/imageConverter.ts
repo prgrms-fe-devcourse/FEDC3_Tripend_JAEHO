@@ -1,4 +1,6 @@
-export const imageToBinary = (imgSrc: string) => {
+export const imageToBinary = (imgSrc: string | ArrayBuffer) => {
+  if (typeof imgSrc !== 'string') return;
+
   const byteString = atob(imgSrc.split(',')[1]);
 
   const ab = new ArrayBuffer(byteString.length);

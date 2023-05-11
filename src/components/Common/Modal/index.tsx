@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom';
 import { BackgroundDim, ModalContainer } from './style';
 
 interface ModalProps {
-  children: React.ReactElement;
-  width: number;
+  children: React.ReactNode;
+  width?: number;
   height: number;
-  visible: boolean;
+  visible?: boolean;
   onClose: () => void;
 }
 

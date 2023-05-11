@@ -1,10 +1,10 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { searchAll } from '../../../apis/search';
-import useDebounce from '../../../hooks/useDebounce';
-import { filteredPost } from '../../../utils/validate/searchedPostLIst';
-import { encodeKeyword } from '../../../utils/validate/userList';
+import { searchAll } from '@/apis/search';
+import useDebounce from '@/hooks/useDebounce';
+import { filteredPost } from '@/utils/validate/searchedPostLIst';
+import { encodeKeyword } from '@/utils/validate/userList';
 import {
   Description,
   SearchContainer,
@@ -15,17 +15,23 @@ import {
   Title,
 } from './style';
 
+interface SearchResult {
+  _id: string;
+  title: string;
+  country: string;
+}
+
 const SearchPost = () => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState('');
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState<SearchResult[]>([]);
 
-  const getSearchResult = async (encodedKeyword, keyword) => {
-    const { data } = await searchAll(encodedKeyword);
+  const getSearchResult = async (encodedKeyword: string, keyword: string) => {
+    const data = await searchAll(encodedKeyword);
     setSearchResult(filteredPost(data, keyword));
   };
 
-  const handleClickItem = (postId) => {
+  const handleClickItem = (postId: string) => {
     navigate(`/p/${postId}`);
     setKeyword('');
   };

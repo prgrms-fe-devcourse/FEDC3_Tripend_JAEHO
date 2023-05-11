@@ -10,13 +10,15 @@ import {
 import { postDetailModalState } from '@/recoil/postStates';
 import Skeleton from '@/components/Common/Skeleton';
 import Modal from '@/components/Common/Modal';
-import Post from '@/components/Post/PostCard';
+import PostCard from '@/components/Post/PostCard';
 import PostDetail from '@/components/Post/PostDetail';
 import { getAllPosts, getChannelPosts, getChannels } from '@/apis/post';
 import { NotFoundResultContainer, PostsContainer } from './style';
+import { Channel } from '@/types/channel/channel.interface';
+import { Post } from '@/types/post/post.interfaces';
 
 const PostList = () => {
-  const useParamsId = useParams().id;
+  const useParamsId = useParams().id!;
 
   const setSelectedPostId = useSetRecoilState(selectedPostState);
   const [postList, setPostList] = useRecoilState(channelState(useParamsId ?? 'all'));
@@ -33,12 +35,12 @@ const PostList = () => {
     }
   }, [useParamsId]);
 
-  const getChannelName = async (clickedId) => {
+  const getChannelName = async (clickedId: string) => {
     const { data } = await getChannels();
-    return data.filter((channels) => channels._id === clickedId)[0]?.name;
+    return data.filter((channels: Channel) => channels._id === clickedId)[0]?.name;
   };
 
-  const setChannelName = async (useParamsId) => {
+  const setChannelName = async (useParamsId: string) => {
     const data = await getChannelName(useParamsId);
     setSelectedChannelName(data);
     setSelectedChannelId(useParamsId);
@@ -52,12 +54,13 @@ const PostList = () => {
   const getAllPostData = async () => {
     const { data } = await getAllPosts();
     data.sort(() => Math.random() - 0.5);
+
     setPostList({ id: 'all', posts: data });
     setSelectedChannelName('');
     setSelectedChannelId('');
   };
 
-  const onClickPost = (postId) => {
+  const onClickPost = (postId: string) => {
     setVisible(true);
     setSelectedPostId(postId);
     history.pushState(null, 'modal', `/p/${postId}`);
@@ -72,9 +75,9 @@ const PostList = () => {
     return postList.posts.length > 0 ? (
       <>
         <div className="postContainer">
-          {postList.posts.map((post) => {
+          {postList.posts.map((post: Post) => {
             return (
-              <Post
+              <PostCard
                 key={post._id}
                 id={post._id}
                 titleObject={post.title}
@@ -104,7 +107,7 @@ const PostList = () => {
         : Array.from(Array(4), (_, i) => (
             <Skeleton.Card line={4} style={{ margin: '20px' }} key={i} />
           ))}
-      <Modal visible={visible} onClose={onCloseModal} width="1100px" height="600px">
+      <Modal visible={visible} onClose={onCloseModal} width={1100} height={600}>
         <PostDetail />
       </Modal>
     </PostsContainer>

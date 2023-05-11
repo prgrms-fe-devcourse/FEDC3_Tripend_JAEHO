@@ -12,10 +12,10 @@ export const selectedChannelNameState = atom({
 
 export const channelState = atomFamily({
   key: 'channelState',
-  default: (id) => {
+  default: (id: string) => {
     return {
-      key: id,
-      posts: null,
+      id,
+      posts: [],
     };
   },
 });

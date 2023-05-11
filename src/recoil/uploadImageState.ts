@@ -1,11 +1,11 @@
-import { atom } from 'recoil';
+import { RecoilState, atom } from 'recoil';
 
 export const updateTargetDataState = atom({
   key: 'userLoginDate',
   default: {},
 });
 
-export const uploadImageState = atom({
+export const uploadImageState: RecoilState<null> = atom({
   key: 'image',
   default: null,
 });

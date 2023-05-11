@@ -32,7 +32,6 @@ const MyhomeModal = memo(({ postId, imageValue }: myhomeModalProps) => {
     handleUserLoginData,
     handleSendFileImage,
     handlerCounter,
-    myChannel,
     profile,
     dateError,
     europe,
@@ -45,7 +44,7 @@ const MyhomeModal = memo(({ postId, imageValue }: myhomeModalProps) => {
     <>
       <ModalLeft>
         <ImageUploader>
-          <UploadAndDisplayImage postId={postId} />
+          <UploadAndDisplayImage />
         </ImageUploader>
       </ModalLeft>
 

@@ -5,7 +5,6 @@ export const updateTargetDataState = atom({
   default: {},
 });
 
-
 export const uploadImageState = atom<File | null>({
   key: 'image',
   default: null,

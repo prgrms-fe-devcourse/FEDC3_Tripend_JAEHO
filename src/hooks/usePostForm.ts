@@ -2,12 +2,12 @@ import imageCompression from 'browser-image-compression';
 import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { createPost } from '../apis/post';
-import { isVisibleModalState } from '../recoil/addPostStates';
-import { selectedChannelNameState, selectedChannelState } from '../recoil/channelState';
-import { ERROR_MESSAGE_POST_MODAL } from '../utils/constants/post';
-import { imageToBinary } from '../utils/imageConverter';
-import { getStorage } from '../utils/storage';
+import { createPost } from '@/apis/post';
+import { isVisibleModalState } from '@/recoil/addPostStates';
+import { selectedChannelNameState, selectedChannelState } from '@/recoil/channelState';
+import { ERROR_MESSAGE_POST_MODAL } from '@/utils/constants/post';
+import { imageToBinary } from '@/utils/imageConverter';
+import { getStorage } from '@/utils/storage';
 
 interface formInputs {
   country: string;

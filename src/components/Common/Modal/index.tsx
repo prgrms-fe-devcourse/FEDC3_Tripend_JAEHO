@@ -1,12 +1,27 @@
-import { useEffect, useMemo } from 'react';
-import ReactDOM from 'react-dom';
 import useClickAway from '@/hooks/useClickAway';
+import React, { useEffect, useMemo } from 'react';
+import ReactDOM from 'react-dom';
 import { BackgroundDim, ModalContainer } from './style';
 
-const Modal = ({ children, width = 500, height, visible = false, onClose, ...props }) => {
+interface ModalProps {
+  children: React.ReactElement;
+  width: number;
+  height: number;
+  visible: boolean;
+  onClose: () => void;
+}
+
+const Modal = ({
+  children,
+  width = 500,
+  height,
+  visible = false,
+  onClose,
+  ...props
+}: ModalProps) => {
   const ref = useClickAway(() => {
     if (visible) {
-      onClose && onClose();
+      onClose();
     }
   });
 
@@ -18,7 +33,8 @@ const Modal = ({ children, width = 500, height, visible = false, onClose, ...pro
     [width, height]
   );
 
-  const element = useMemo(() => document.createElement('div', []));
+  const element = useMemo(() => document.createElement('div'), []);
+
   useEffect(() => {
     document.body.appendChild(element);
     return () => {
@@ -28,7 +44,7 @@ const Modal = ({ children, width = 500, height, visible = false, onClose, ...pro
 
   return ReactDOM.createPortal(
     <BackgroundDim style={{ display: visible ? 'block' : 'none' }}>
-      <ModalContainer ref={ref} {...props} style={{ ...props.style, ...containerStyle }}>
+      <ModalContainer ref={ref} {...props} style={{ ...containerStyle }}>
         {children}
       </ModalContainer>
     </BackgroundDim>,

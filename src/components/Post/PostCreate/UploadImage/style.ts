@@ -9,6 +9,7 @@ const ImageContainer = styled.div`
   align-items: center;
   margin-top: 80px;
 `;
+
 const ImageUploaderContainer = styled.div`
   width: 100%;
 `;

@@ -19,6 +19,7 @@ const Modal = ({ children, width = 500, height, visible = false, onClose, ...pro
   );
 
   const element = useMemo(() => document.createElement('div', []));
+
   useEffect(() => {
     document.body.appendChild(element);
     return () => {

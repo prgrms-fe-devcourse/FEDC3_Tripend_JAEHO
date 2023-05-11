@@ -1,7 +1,11 @@
 import { memo } from 'react';
 import { ErrorMessage } from './style';
 
-const ErrorText = ({ message }) => {
+interface ErrorTextProps {
+  message: string;
+}
+
+const ErrorText = ({ message }: ErrorTextProps) => {
   return <>{message && <ErrorMessage>{message}</ErrorMessage>}</>;
 };
 

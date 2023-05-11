@@ -18,12 +18,13 @@ import {
 import uploadIcon from '/assets/upload.svg';
 import usePostForm from '@/hooks/usePostForm';
 import ErrorText from './ErrorText';
+import { Channel } from '@/types/channel/channel.interface';
 
 const AddPostForm = () => {
-  const [eastEurope, setEastEurope] = useState([]);
-  const [westEurope, setWestEurope] = useState([]);
-  const [southEurope, setSouthEurope] = useState([]);
-  const [northEurope, setNorthEurope] = useState([]);
+  const [eastEurope, setEastEurope] = useState<Channel[]>([]);
+  const [westEurope, setWestEurope] = useState<Channel[]>([]);
+  const [southEurope, setSouthEurope] = useState<Channel[]>([]);
+  const [northEurope, setNorthEurope] = useState<Channel[]>([]);
 
   const {
     selectedChannelId,
@@ -38,7 +39,7 @@ const AddPostForm = () => {
   } = usePostForm();
 
   const getChannelData = async () => {
-    const { data } = await getChannels();
+    const { data }: { data: Channel[] } = await getChannels();
 
     const eastEurope = data.filter(({ description }) => description === '동유럽');
     const westEurope = data.filter(({ description }) => description === '서유럽');
@@ -66,7 +67,7 @@ const AddPostForm = () => {
         <ImageFileContent>
           {imageSrc ? (
             <UploadedImage>
-              <img src={imageSrc} alt="userImage" />
+              <img src={imageSrc as string} alt="userImage" />
             </UploadedImage>
           ) : (
             <>
@@ -86,7 +87,7 @@ const AddPostForm = () => {
             value={values.channelId ? values.channelId : selectedChannelId}
             onChange={handleCountryChange}
           >
-            <option value={null}>=== 선택 ===</option>
+            <option value={''}>=== 선택 ===</option>
             <optgroup label="동유럽">
               {eastEurope.map(({ name, _id }) => (
                 <option key={_id} value={_id} data-country={name}>
@@ -132,7 +133,7 @@ const AddPostForm = () => {
           <InputWrapper>
             <label htmlFor="gender">원하는 성별</label>
             <select id="gender" name="gender" value={values.gender} onChange={handleValueChange}>
-              <option value={null}>=== 선택 ===</option>
+              <option value={''}>=== 선택 ===</option>
               <option value="male">남자만</option>
               <option value="female">여자만</option>
               <option value="both">남여 무관</option>

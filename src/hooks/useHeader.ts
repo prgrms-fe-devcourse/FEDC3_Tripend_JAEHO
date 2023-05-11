@@ -7,6 +7,7 @@ import { userLoginState } from '../recoil/authState';
 import { toggleStateFamily } from '../recoil/toggleStates';
 import { TOKEN, USER_IMAGE } from '@/utils/constants/auth';
 import { getStorage, setStorage } from '../utils/storage';
+import { AxiosResponse } from 'axios';
 
 const useHeader = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const useHeader = () => {
   const getToken = getStorage(TOKEN);
   const userImage = getStorage(USER_IMAGE);
 
-  const [alarmBox, setAlarmBox] = useState();
+  const [alarmBox, setAlarmBox] = useState<Element>();
   const [alarms, setAlarms] = useState([]);
   const setIsLogin = useSetRecoilState(userLoginState);
   const [isAlarmOpen, setIsAlarmOpen] = useRecoilState(toggleStateFamily('alarm'));
@@ -25,7 +26,8 @@ const useHeader = () => {
   };
 
   const fetchAlarms = async () => {
-    const { data } = await getMyAlarms();
+    const response = (await getMyAlarms()) as AxiosResponse;
+    const { data } = response;
     setAlarms(data);
   };
 
@@ -39,12 +41,15 @@ const useHeader = () => {
     getToken ? navigate('/main') : navigate('/');
   };
 
-  const handleOpenAlarm = async ({ target }) => {
-    if (!isAlarmOpen) {
-      setAlarmBox(target.closest('section'));
+  const handleOpenAlarm = async ({ target }: { target: Element }) => {
+    const element = target.closest('section');
+
+    if (!isAlarmOpen && element) {
+      setAlarmBox(element);
       setIsAlarmOpen(true);
     }
   };
+
   const handleLogout = () => {
     setStorage(TOKEN, '');
     setIsLogin(false);

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { getMyAlarms } from '../apis/alarm';
-import { isVisibleModalState } from '../recoil/addPostStates';
-import { userLoginState } from '../recoil/authState';
-import { toggleStateFamily } from '../recoil/toggleStates';
+import { getMyAlarms } from '@/apis/alarm';
+import { isVisibleModalState } from '@/recoil/addPostStates';
+import { userLoginState } from '@/recoil/authState';
+import { toggleStateFamily } from '@/recoil/toggleStates';
 import { TOKEN, USER_IMAGE } from '@/utils/constants/auth';
-import { getStorage, setStorage } from '../utils/storage';
+import { getStorage, setStorage } from '@/utils/storage';
 import { AxiosResponse } from 'axios';
 
 const useHeader = () => {

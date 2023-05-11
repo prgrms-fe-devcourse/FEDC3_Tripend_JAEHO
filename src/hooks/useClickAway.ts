@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { EVENT } from '../utils/constants/hooks';
+import { EVENT } from '@/utils/constants/hooks';
 
 const useClickAway = (handler: () => void) => {
   const ref = useRef<HTMLDivElement>(null);

@@ -1,31 +1,71 @@
-import { useLocation } from 'react-router-dom';
-import AddPost from '@/components/Post/PostCreate';
+import { getMyAlarms } from '@/apis/alarm';
 import AlarmPopup from '@/components/Common/Alarm/AlarmPopup';
 import Avatar from '@/components/Common/Avatar';
 import Icon from '@/components/Common/Icons';
 import Badge from '@/components/Common/Icons/Badge';
 import PostCreate from '@/components/Post/PostCreate';
-import useHeader from '../../hooks/useHeader';
+import { isVisibleModalState } from '@/recoil/addPostStates';
+import { userLoginState } from '@/recoil/authState';
+import { toggleStateFamily } from '@/recoil/toggleStates';
+import { TOKEN, USER_IMAGE } from '@/utils/constants/auth';
+import { getStorage, setStorage } from '@/utils/storage';
+import { MouseEvent, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { AlarmContainer, ButtonContainer, HeaderContainer, IconItem, LogoContainer } from './style';
 import logoIcon from '/assets/Logo.svg';
 
 const Header = () => {
   const { pathname } = useLocation();
 
-  const {
-    isVisibleModal,
-    handleOpenAddPostModal,
-    handleCloseAlarm,
-    handleOpenAlarm,
-    handleLogout,
-    handleClickLogo,
-    handleOpenMyPage,
-    alarms,
-    alarmBox,
-    userImage,
-    getToken,
-    isAlarmOpen,
-  } = useHeader();
+  const navigate = useNavigate();
+
+  const getToken = getStorage(TOKEN);
+  const userImage = getStorage(USER_IMAGE);
+  const [alarmBox, setAlarmBox] = useState<HTMLElement>();
+  const [alarms, setAlarms] = useState([]);
+  const setIsLogin = useSetRecoilState(userLoginState);
+  const [isAlarmOpen, setIsAlarmOpen] = useRecoilState<boolean>(toggleStateFamily('alarm'));
+
+  const [isVisibleModal, setIsVisibleModal] = useRecoilState(isVisibleModalState);
+  const handleOpenAddPostModal = () => {
+    setIsVisibleModal(true);
+  };
+
+  const fetchAlarms = async () => {
+    const { data } = await getMyAlarms();
+    setAlarms(data);
+  };
+
+  useEffect(() => {
+    if (getToken) {
+      fetchAlarms();
+    }
+  }, [getToken]);
+
+  const handleClickLogo = () => {
+    getToken ? navigate('/main') : navigate('/');
+  };
+
+  const handleOpenAlarm = async ({ target }: MouseEvent) => {
+    if (!isAlarmOpen && target instanceof HTMLElement) {
+      setAlarmBox(target.closest('section') as HTMLElement);
+      setIsAlarmOpen(true);
+    }
+  };
+  const handleLogout = () => {
+    setStorage(TOKEN, '');
+    setIsLogin(false);
+    navigate('/');
+  };
+
+  const handleCloseAlarm = () => {
+    setIsAlarmOpen(false);
+  };
+
+  const handleOpenMyPage = () => {
+    navigate('/myhome');
+  };
 
   return (
     <HeaderContainer isRoot={pathname === '/'}>

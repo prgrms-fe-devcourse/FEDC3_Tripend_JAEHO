@@ -15,7 +15,7 @@ interface CommentsProps {
 }
 
 const Comments = ({ postId, comments }: CommentsProps) => {
-  const { getPostData } = usePostDetail(postId);
+  const { getPostData } = usePostDetail();
   const [comment, setComment] = useState('');
   const postDetail = useRecoilValue(postStateFamily(postId));
 

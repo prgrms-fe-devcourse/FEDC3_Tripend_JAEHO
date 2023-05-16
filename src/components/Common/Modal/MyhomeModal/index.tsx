@@ -23,7 +23,7 @@ import { useMyHomeModal } from '@/hooks/useMyHomeModal';
 
 interface myhomeModalProps {
   postId: string;
-  imageValue: string;
+  imageValue: File | null;
 }
 
 const MyhomeModal = memo(({ postId, imageValue }: myhomeModalProps) => {

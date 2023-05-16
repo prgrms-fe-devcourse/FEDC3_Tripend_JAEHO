@@ -7,6 +7,7 @@ import {
   updateTargetDataState,
   uploadImageState,
 } from '@/recoil/uploadImageState';
+import { PostData } from '@/types/post/post.interfaces';
 import { ERROR_MESSAGE_SIGNIN, USER } from '@/utils/constants/auth';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
@@ -22,7 +23,6 @@ import {
   PostsWrapper,
   UserPostContainer,
 } from './style';
-import { PostData, Title } from '@/types/post/post.interfaces';
 
 const UserPost = () => {
   const { isLoading } = useQuery(['musicDetail'], getUser, {
@@ -102,12 +102,12 @@ const UserPost = () => {
         )}
 
         {modalVisible && (
-          <Modal visible={modalVisible} onClose={handlerModalClose} width="1000px" height="650px">
+          <Modal visible={modalVisible} onClose={handlerModalClose} width={1000} height={650}>
             <ModalTitleWrapper>
               <ModalTitle>게시글 수정</ModalTitle>
               <ModalTitleButton onClick={handlerModalClose}>x</ModalTitleButton>
             </ModalTitleWrapper>
-            <MyhomeModal posts={currentPosts} postId={postId} imageValue={imageValue} />
+            <MyhomeModal postId={postId} imageValue={imageValue} />
           </Modal>
         )}
       </PostsWrapper>

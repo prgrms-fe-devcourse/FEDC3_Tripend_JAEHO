@@ -20,7 +20,7 @@ const PostDetail = () => {
   const userId = localStorage.getItem('id');
   const { post } = usePostDetail();
   const likeId = post?.likes.find(({ user }: { user: string }) => user === userId)?._id;
-
+  console.log(post?.likes, userId);
   return post ? (
     <PostDetailContainer>
       <LeftImage src={post.image} width="50%" height="100%" />

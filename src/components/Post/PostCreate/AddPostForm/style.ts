@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const PostForm = styled.form`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 53px);
 `;
 
 export const ImageUploader = styled.div`

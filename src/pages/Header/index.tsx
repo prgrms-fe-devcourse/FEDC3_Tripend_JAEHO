@@ -14,6 +14,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { AlarmContainer, ButtonContainer, HeaderContainer, IconItem, LogoContainer } from './style';
 import logoIcon from '/assets/Logo.svg';
+import SearchPost from '@/components/Post/PostSearch';
+import { AxiosResponse } from 'axios';
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -33,7 +35,9 @@ const Header = () => {
   };
 
   const fetchAlarms = async () => {
-    const { data } = await getMyAlarms();
+    const response = (await getMyAlarms()) as AxiosResponse;
+    const { data } = response;
+
     setAlarms(data);
   };
 
@@ -48,9 +52,11 @@ const Header = () => {
   };
 
   const handleOpenAlarm = async ({ target }: MouseEvent) => {
-    if (!isAlarmOpen && target instanceof HTMLElement) {
-      setAlarmBox(target.closest('section') as HTMLElement);
+    if (!isAlarmOpen) {
+      if (target instanceof HTMLElement) setAlarmBox(target.closest('section') as HTMLElement);
       setIsAlarmOpen(true);
+    } else {
+      setIsAlarmOpen(false);
     }
   };
   const handleLogout = () => {
@@ -75,7 +81,7 @@ const Header = () => {
 
       {getToken && (
         <>
-          <PostCreate />
+          <SearchPost />
           <ButtonContainer>
             <IconItem onClick={handleOpenAddPostModal}>
               <Icon.AddPostIcon />

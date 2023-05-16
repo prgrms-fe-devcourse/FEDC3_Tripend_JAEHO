@@ -3,7 +3,8 @@ import { URL } from '@/utils/constants/alarm';
 
 export const getMyAlarms = async () => {
   try {
-    return await authRequest.get(URL.GET_ALARM);
+    const { data } = await authRequest.get(URL.GET_ALARM);
+    return data;
   } catch (error) {
     console.error(error);
   }

@@ -20,7 +20,7 @@ const PostDetail = () => {
   const userId = localStorage.getItem('id');
   const { post } = usePostDetail();
   const likeId = post?.likes.find(({ user }: { user: string }) => user === userId)?._id;
-  console.log(post?.likes, userId);
+
   return post ? (
     <PostDetailContainer>
       <LeftImage src={post.image} width="50%" height="100%" />
@@ -49,7 +49,7 @@ const PostDetail = () => {
             alignItem="flex-end"
           />
           <RightContainerContent flexDirection="row">
-            {likeId && <Like likeId={likeId} authorId={post.author._id} postId={post._id} />}
+            <Like likeId={likeId} authorId={post.author._id} postId={post._id} />
           </RightContainerContent>
         </RightContainerContent>
         <Content>{post.content}</Content>

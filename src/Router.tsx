@@ -1,16 +1,15 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Header from './pages/Header';
-import SigninPage from './pages/SigninPage';
-import SignupPage from './pages/SignupPage';
+import Header from '@/pages/Header';
+import SigninPage from '@/pages/SigninPage';
+import SignupPage from '@/pages/SignupPage';
 
-import HomePage from './pages/HomePage';
-//import MySettingPage from './pages/MySettingPage';
+import HomePage from '@/pages/HomePage';
 import MyHomePage from '@/pages/MyHomePage';
 
-import MissingPage from './pages/NotFound';
+import MissingPage from '@/pages/NotFound';
 
-import AuthUserRoute from './components/Auth/RequireAuth';
-import PostDetailPage from './pages/PostDetailPage';
+import AuthUserRoute from '@/components/Auth/RequireAuth';
+import PostDetailPage from '@/pages/PostDetailPage';
 
 const AppRouter = () => {
   return (
@@ -39,7 +38,6 @@ const AppRouter = () => {
         </Route>
 
         <Route
-          exact
           path="/myhome"
           element={
             <AuthUserRoute>
@@ -49,7 +47,6 @@ const AppRouter = () => {
         />
 
         <Route
-          exact
           path="/p/:postId"
           element={
             <AuthUserRoute>

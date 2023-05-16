@@ -49,7 +49,7 @@ const PostDetail = () => {
             alignItem="flex-end"
           />
           <RightContainerContent flexDirection="row">
-            {likeId && <Like likeId={likeId} authorId={post.author._id} postId={post._id} />}
+            <Like likeId={likeId} authorId={post.author._id} postId={post._id} />
           </RightContainerContent>
         </RightContainerContent>
         <Content>{post.content}</Content>

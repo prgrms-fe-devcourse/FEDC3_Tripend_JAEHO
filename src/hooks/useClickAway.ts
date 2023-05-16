@@ -14,9 +14,7 @@ const useClickAway = (handler: () => void) => {
     if (!element) return;
 
     const handleEvent = (e: MouseEvent | TouchEvent) => {
-      if (ref.current !== null) {
-        ref.current.contains(e.target as Node) && savedHandler.current();
-      }
+      !ref.current?.contains(e.target as Node) && savedHandler.current();
     };
 
     for (const eventName of EVENT) {

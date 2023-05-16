@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { postStateFamily } from '@/recoil/postStates';
 import { createAlarm } from '@/apis/alarm';
 import { createLike, deleteLike } from '@/apis/like';
+import { postStateFamily } from '@/recoil/postStates';
+import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { AccompanyButton, MyPost } from './style';
 
 interface LikeProps {
-  likeId: string;
+  likeId: string | undefined;
   authorId: string;
   postId: string;
 }
@@ -17,7 +17,7 @@ const Like = ({ likeId, authorId, postId }: LikeProps) => {
   const [{ post }, setPost] = useRecoilState(postStateFamily(postId));
 
   const onClickLike = async () => {
-    if (isLike) {
+    if (isLike && likeId) {
       const data = await deleteLike(likeId);
       setIsLike(false);
 

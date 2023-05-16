@@ -29,7 +29,7 @@ export const useMyHomeModal = (imageValue: File | null, postId: string) => {
     northEurope: [],
   });
 
-  const [profile, setProfile] = useState([]);
+  const [profile, setProfile] = useState<string[]>([]);
 
   const [dateError, setDateError] = useState('');
 
@@ -61,7 +61,7 @@ export const useMyHomeModal = (imageValue: File | null, postId: string) => {
       setProfile(detail.data.author.fullName.split('/'));
     }
 
-    const getPostModalDetail = async () => {
+    const getPostModalDetail = async (): Promise<void> => {
       const getPostDetail = await getMyPostDetail(postId);
 
       if (getPostDetail.data.title) {

@@ -11,7 +11,7 @@ const PageUl = styled.ul`
   list-style: none;
 `;
 
-const PageLi = styled.li<{ isCurrentPage: number }>`
+const PageLi = styled.li<{ isCurrentPage: boolean }>`
   display: inline-block;
   background: ${({ isCurrentPage }) => (isCurrentPage ? '#dee2e6' : '#ebebeb')};
   color: #495057;

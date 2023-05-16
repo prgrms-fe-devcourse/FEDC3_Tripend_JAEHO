@@ -38,7 +38,6 @@ const AppRouter = () => {
         </Route>
 
         <Route
-          exact
           path="/myhome"
           element={
             <AuthUserRoute>
@@ -48,7 +47,6 @@ const AppRouter = () => {
         />
 
         <Route
-          exact
           path="/p/:postId"
           element={
             <AuthUserRoute>

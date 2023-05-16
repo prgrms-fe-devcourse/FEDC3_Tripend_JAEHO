@@ -14,10 +14,10 @@ const AlarmPopupItem = ({ alarm, onClick }: AlarmPopupItemProps) => {
   const alarmCategory = alarm && alarm.comment ? ALARM.COMMENT : ALARM.ACCOMPANY;
 
   let result;
-  let alarmComment;
+  let alarmComment = 'zz';
 
   if (author && author.fullName) {
-    while ((result = extractName?.exec(author.fullName)) !== null) {
+    if ((result = extractName?.exec(author.fullName)) !== null) {
       alarmComment = `${result[0]}님이 회원님의 게시물에 ${alarmCategory} 남겼습니다`;
     }
   }

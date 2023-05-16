@@ -10,7 +10,7 @@ import { AlarmList, AlarmNoItem, AlarmPopupContainer, Title } from './style';
 interface AlarmPopupProps {
   visible: boolean;
   target?: HTMLElement;
-  alarms: Alarm[];
+  alarms: Alarm[] | undefined;
   onClose: () => void;
 }
 
@@ -43,7 +43,7 @@ const AlarmPopup = ({ visible = false, onClose, target, alarms }: AlarmPopupProp
     <AlarmPopupContainer ref={ref} style={{ display: visible ? 'block' : 'none' }}>
       <Title>알람</Title>
       <AlarmList>
-        {alarms.length ? (
+        {alarms?.length ? (
           alarms.map((alarm) => (
             <AlarmPopupItem
               key={alarm._id}

@@ -1,38 +1,32 @@
-import swal from 'sweetalert';
+import { SignupFormValues, LoginProps } from '@/types/auth/auth.interfaces';
 import {
+  USER as AUTH,
   ERROR_MESSAGE_SIGNIN,
   ERROR_MESSAGE_SIGNUP,
-  ID,
   TOKEN,
   URL,
-  USER as AUTH,
   USER,
-  USER_IMAGE,
 } from '@/utils/constants/auth';
-import { SignupFormValues } from '@/types/auth/auth.interfaces';
-import { getStorage, setStorage } from '@/utils/storage';
+import { getStorage } from '@/utils/storage';
+import swal from 'sweetalert';
 import { authRequest, baseRequest } from './core';
 
 const { DUPLICATE_EMAIL } = ERROR_MESSAGE_SIGNUP;
 
-export const postUserLogin = async (email: string, password: string) => {
-  const response = await baseRequest
-    .post(URL.LOGIN, {
+export const postUserLogin = async (values: LoginProps) => {
+  const { email, password } = values;
+
+  try {
+    const response = await baseRequest.post(URL.LOGIN, {
       email,
       password,
-    })
-    .catch(() => {
-      swal(AUTH.LOGIN_FAILED, USER.ID_PASSWORD, ERROR_MESSAGE_SIGNIN.LOGIN_ERROR);
     });
-
-  const { token } = response?.data;
-  const { _id, image } = response?.data.user;
-
-  setStorage(TOKEN, token);
-  setStorage(ID, _id);
-  setStorage(USER_IMAGE, image);
-
-  return response;
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    swal(AUTH.LOGIN_FAILED, USER.ID_PASSWORD, ERROR_MESSAGE_SIGNIN.LOGIN_ERROR);
+  }
 };
 
 export const getUser = async () => {

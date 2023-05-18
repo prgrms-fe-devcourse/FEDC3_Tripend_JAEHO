@@ -104,6 +104,7 @@ export const getMyPostDetail = async (postId: string) => {
 };
 
 export const updatePost = async (post: FormData) => {
+  console.log();
   const res = await authRequest.put(URL.MYPAGE_UPDATE, post);
 
   if (res.status === 200) {

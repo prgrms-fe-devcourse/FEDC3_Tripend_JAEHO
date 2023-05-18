@@ -35,7 +35,7 @@ const MyhomeModal = memo(({ postId }: myhomeModalProps) => {
   const { isLoading } = useQuery(['userPostDetailData'], () => getMyPostDetail(postId), {
     enabled: !!postId,
     onSuccess: (data) => {
-      setSelectedImage(data.image);
+      //setSelectedImage(data.image);
       setProfile(data.author.fullName.split('/'));
 
       if (data.title) {
@@ -120,10 +120,13 @@ const MyhomeModal = memo(({ postId }: myhomeModalProps) => {
     const formatData = new FormData();
 
     formatData.append(FORM_DATA.POST_ID, postId);
-    formatData.append(FORM_DATA.IMAGE, JSON.stringify(selectedImage));
+    formatData.append(
+      FORM_DATA.IMAGE,
+      JSON.stringify(selectedImage ? selectedImage : userLoginData.image)
+    );
     formatData.append(FORM_DATA.TITLE, JSON.stringify(title));
     formatData.append(FORM_DATA.CHANNEL_ID, myId);
-    console.log(formatData);
+    console.log(selectedImage ? selectedImage : userLoginData.image);
     //await updatePost(formatData);
 
     //setVisible(false);

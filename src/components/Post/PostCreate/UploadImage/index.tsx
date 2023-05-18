@@ -39,7 +39,6 @@ const UploadAndDisplayImage = () => {
       <ImageContainer>
         {selectedImage ? (
           <div>
-            {}
             <img
               style={{
                 borderRadius: '5px',
@@ -47,11 +46,7 @@ const UploadAndDisplayImage = () => {
                 height: '590px',
                 objectFit: 'cover',
               }}
-              src={
-                typeof selectedImage === 'object'
-                  ? URL.createObjectURL(selectedImage)
-                  : selectedImage
-              }
+              src={URL.createObjectURL(selectedImage)}
               alt="사진"
             />
           </div>

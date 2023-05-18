@@ -29,9 +29,10 @@ import { useQuery } from 'react-query';
 
 interface myhomeModalProps {
   postId: string;
+  imageValue: string;
 }
 
-const MyhomeModal = memo(({ postId }: myhomeModalProps) => {
+const MyhomeModal = memo(({ postId, imageValue }: myhomeModalProps) => {
   const { isLoading } = useQuery(['userPostDetailData'], () => getMyPostDetail(postId), {
     enabled: !!postId,
     onSuccess: (data) => {
@@ -120,16 +121,13 @@ const MyhomeModal = memo(({ postId }: myhomeModalProps) => {
     const formatData = new FormData();
 
     formatData.append(FORM_DATA.POST_ID, postId);
-    formatData.append(
-      FORM_DATA.IMAGE,
-      JSON.stringify(selectedImage ? selectedImage : userLoginData.image)
-    );
+    formatData.append(FORM_DATA.IMAGE, JSON.stringify(imageValue));
     formatData.append(FORM_DATA.TITLE, JSON.stringify(title));
     formatData.append(FORM_DATA.CHANNEL_ID, myId);
     console.log(selectedImage ? selectedImage : userLoginData.image);
-    //await updatePost(formatData);
+    await updatePost(formatData);
 
-    //setVisible(false);
+    setVisible(false);
   };
 
   const selectList = ['여자만', '남자만', '남여 무관'];

@@ -35,6 +35,7 @@ const UserPost = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postId, setPostId] = useState('');
   const [modalVisible, setModalVisible] = useRecoilState(myHomeModalState);
+  const [imageValue, setImageValue] = useRecoilState(uploadImageState);
 
   const handlePoster = async (id: string) => {
     setModalVisible(true);
@@ -43,6 +44,7 @@ const UserPost = () => {
 
   const handlerModalClose = () => {
     setModalVisible(false);
+    setImageValue(null);
   };
 
   const handleDeletePoster = async (id: string) => {
@@ -99,7 +101,7 @@ const UserPost = () => {
               <ModalTitle>게시글 수정</ModalTitle>
               <ModalTitleButton onClick={handlerModalClose}>x</ModalTitleButton>
             </ModalTitleWrapper>
-            <MyhomeModal postId={postId} />
+            <MyhomeModal postId={postId} imageValue={imageValue} />
           </Modal>
         )}
       </PostsWrapper>

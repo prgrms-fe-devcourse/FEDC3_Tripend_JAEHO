@@ -22,12 +22,12 @@ const AddPost = ({ visible }: AddPostProps) => {
       height={600}
       visible={visible}
       onClose={handleCloseAddPostModal}
-      style={{
-        padding: '28px',
-        borderRadius: '10px',
+      styles={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
+        padding: '28px',
+        borderRadius: '10px',
       }}
     >
       <ModalHeader>

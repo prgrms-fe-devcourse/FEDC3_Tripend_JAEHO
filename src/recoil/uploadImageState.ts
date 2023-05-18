@@ -1,8 +1,14 @@
-import { RecoilState, atom } from 'recoil';
+import { atom } from 'recoil';
 
 export const updateTargetDataState = atom({
-  key: 'userLoginDate',
-  default: {},
+  key: 'userLoginData',
+  default: {
+    data: {
+      author: {
+        fullName: '',
+      },
+    },
+  },
 });
 
 export const uploadImageState = atom<File | null>({

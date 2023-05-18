@@ -4,7 +4,7 @@ import { FORM_DATA } from '@/utils/constants/user';
 import { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
-export const useMyHomeModal = (imageValue: string, postId: string) => {
+export const useMyHomeModal = (imageValue: File | null, postId: string) => {
   const detail = useRecoilValue(updateTargetDataState);
   const setVisible = useSetRecoilState(myHomeModalState);
 
@@ -29,7 +29,7 @@ export const useMyHomeModal = (imageValue: string, postId: string) => {
     northEurope: [],
   });
 
-  const [profile, setProfile] = useState([]);
+  const [profile, setProfile] = useState<string[]>([]);
 
   const [dateError, setDateError] = useState('');
 
@@ -60,7 +60,8 @@ export const useMyHomeModal = (imageValue: string, postId: string) => {
     if (detail?.data) {
       setProfile(detail.data.author.fullName.split('/'));
     }
-    const getPostModalDetail = async () => {
+
+    const getPostModalDetail = async (): Promise<void> => {
       const getPostDetail = await getMyPostDetail(postId);
 
       if (getPostDetail.data.title) {
@@ -116,7 +117,7 @@ export const useMyHomeModal = (imageValue: string, postId: string) => {
     const formatData = new FormData();
 
     formatData.append(FORM_DATA.POST_ID, postId);
-    formatData.append(FORM_DATA.IMAGE, imageValue);
+    formatData.append(FORM_DATA.IMAGE, JSON.stringify(imageValue));
     formatData.append(FORM_DATA.TITLE, JSON.stringify(title));
     formatData.append(FORM_DATA.CHANNEL_ID, myId);
     const res = await updatePost(formatData);

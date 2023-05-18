@@ -1,4 +1,3 @@
-
 import { ImageFileInput } from '@/components/Post/PostCreate/AddPostForm/style';
 import { uploadImageState } from '@/recoil/uploadImageState';
 import { ERROR_MESSAGE, FILE } from '@/utils/constants/user';
@@ -40,6 +39,7 @@ const UploadAndDisplayImage = () => {
       <ImageContainer>
         {selectedImage ? (
           <div>
+            {}
             <img
               style={{
                 borderRadius: '5px',
@@ -47,7 +47,11 @@ const UploadAndDisplayImage = () => {
                 height: '590px',
                 objectFit: 'cover',
               }}
-              src={URL.createObjectURL(selectedImage)}
+              src={
+                typeof selectedImage === 'object'
+                  ? URL.createObjectURL(selectedImage)
+                  : selectedImage
+              }
               alt="사진"
             />
           </div>

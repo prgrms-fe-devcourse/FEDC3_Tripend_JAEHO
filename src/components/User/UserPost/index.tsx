@@ -25,7 +25,7 @@ import {
 } from './style';
 
 const UserPost = () => {
-  const { isLoading } = useQuery(['userData'], getUser, {
+  const { isLoading } = useQuery(['userPostsData'], getUser, {
     onSuccess: (data) => {
       setPosts(data?.posts);
     },
@@ -34,23 +34,15 @@ const UserPost = () => {
   const [posts, setPosts] = useState<PostData[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postId, setPostId] = useState('');
-
-  const setPostDetail = useSetRecoilState(updateTargetDataState);
-  const [imageValue, setImageValue] = useRecoilState(uploadImageState);
-
   const [modalVisible, setModalVisible] = useRecoilState(myHomeModalState);
 
   const handlePoster = async (id: string) => {
-    const getPostDetail = await getMyPostDetail(id);
-
     setModalVisible(true);
     setPostId(id);
-    setPostDetail(getPostDetail);
   };
 
   const handlerModalClose = () => {
     setModalVisible(false);
-    setImageValue(null);
   };
 
   const handleDeletePoster = async (id: string) => {
@@ -107,7 +99,7 @@ const UserPost = () => {
               <ModalTitle>게시글 수정</ModalTitle>
               <ModalTitleButton onClick={handlerModalClose}>x</ModalTitleButton>
             </ModalTitleWrapper>
-            <MyhomeModal postId={postId} imageValue={imageValue} />
+            <MyhomeModal postId={postId} />
           </Modal>
         )}
       </PostsWrapper>

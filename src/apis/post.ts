@@ -1,14 +1,51 @@
 import { URL } from '@/utils/constants/auth';
 import { ERROR_MESSAGE_POST, POST_URL } from '@/utils/constants/post';
 import { authRequest, baseRequest, postDataRequest } from './core';
+import { Channel } from '@/types/channel/channel.interface';
+
+export const getChannel = async () => {
+  try {
+    const data = await baseRequest.get(POST_URL.CHANNELS);
+
+    if (data.status !== 200) {
+      throw new Error(ERROR_MESSAGE_POST.ERROR_CHANNELS);
+    }
+
+    return data.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const getChannels = async () => {
   try {
     const data = await baseRequest.get(POST_URL.CHANNELS);
 
-    return data;
+    if (data.status !== 200) {
+      throw new Error(ERROR_MESSAGE_POST.ERROR_CHANNELS);
+    }
+
+    const channels: Channel[] = data.data;
+
+    const eastEurope = channels.filter(({ description }) => description === '동유럽');
+    const westEurope = channels.filter(
+      ({ description }: { description: string }) => description === '서유럽'
+    );
+    const southEurope = channels.filter(
+      ({ description }: { description: string }) => description === '남유럽'
+    );
+    const northEurope = channels.filter(
+      ({ description }: { description: string }) => description === '북유럽'
+    );
+
+    return {
+      eastEurope,
+      westEurope,
+      southEurope,
+      northEurope,
+    };
   } catch (error) {
-    throw new Error(ERROR_MESSAGE_POST.ERROR_CHANNELS);
+    console.error(error);
   }
 };
 
@@ -62,7 +99,8 @@ export const removePost = async (postId: string) => {
 };
 
 export const getMyPostDetail = async (postId: string) => {
-  return await baseRequest.get(POST_URL.POST_DETAIL + postId);
+  const { data } = await baseRequest.get(POST_URL.POST_DETAIL + postId);
+  return data;
 };
 
 export const updatePost = async (post: FormData) => {

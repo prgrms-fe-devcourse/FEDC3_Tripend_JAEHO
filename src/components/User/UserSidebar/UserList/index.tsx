@@ -1,36 +1,30 @@
-import { useEffect, useState } from 'react';
-import { getClickedUserInfo, getUsers } from '@/apis/user';
-import { extractName } from '@/utils/validate/userList';
+import { getUsers } from '@/apis/user';
 import Avatar from '@/components/Common/Avatar';
 import Badge from '@/components/Common/Icons/Badge';
-import { UserInfo, UserListContainer, UserName } from './style';
+import { extractName } from '@/utils/validate/userList';
+import { useQuery } from 'react-query';
 import { UserInfos } from '../type';
+import { UserInfo, UserListContainer, UserName } from './style';
 
 const UserList = () => {
-  const [userInfos, setUserInfos] = useState<UserInfos[]>([]);
+  const { data: userInfos, isLoading } = useQuery<UserInfos[]>(['usersData'], getUsers);
 
-  const getUserData = async () => {
-    const { data } = await getUsers();
-    setUserInfos(data);
+  if (isLoading) return <>로딩중...</>;
+
+  const isValidExtractName = (fullName: string) => {
+    const result = extractName.exec(fullName);
+
+    return result !== null ? result[0] : '';
   };
-
-  const showUserDetail = async (currentUserId: string) => {
-    //이 함수 존재의 의미가 없어보임. 유저 상세 정보 모달 띄워주는 식으로 기능 추가하면 될듯
-    await getClickedUserInfo(currentUserId);
-  };
-
-  useEffect(() => {
-    getUserData();
-  }, []);
 
   return (
     <div>
       {userInfos ? (
         <UserListContainer id="userInfoList">
           {userInfos.map(({ _id, image, fullName, isOnline }) => (
-            <UserInfo key={_id} onClick={() => showUserDetail(_id)}>
+            <UserInfo key={_id}>
               <Avatar shape="circle" size="24px" src={image} lazy={true} threshold={0.1} />
-              <UserName>{extractName.exec(fullName)[0]}</UserName>
+              <UserName>{isValidExtractName(fullName)}</UserName>
               <Badge
                 top={'22px'}
                 right={'192px'}

@@ -1,5 +1,6 @@
 import { getMyAlarms } from '@/apis/alarm';
 import AlarmPopup from '@/components/Common/Alarm/AlarmPopup';
+import { Alarm } from '@/components/Common/Alarm/types';
 import Avatar from '@/components/Common/Avatar';
 import Icon from '@/components/Common/Icons';
 import Badge from '@/components/Common/Icons/Badge';
@@ -7,16 +8,14 @@ import PostCreate from '@/components/Post/PostCreate';
 import SearchPost from '@/components/Post/PostSearch';
 import { isVisibleModalState } from '@/recoil/addPostStates';
 import { userLoginState } from '@/recoil/authState';
-import { toggleStateFamily } from '@/recoil/toggleStates';
 import { TOKEN, USER_IMAGE } from '@/utils/constants/auth';
 import { getStorage, setStorage } from '@/utils/storage';
-import { MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, useState } from 'react';
+import { useQuery } from 'react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { AlarmContainer, ButtonContainer, HeaderContainer, IconItem, LogoContainer } from './style';
 import logoIcon from '/assets/Logo.svg';
-import { useQuery } from 'react-query';
-import { Alarm } from '@/components/Common/Alarm/types';
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -27,7 +26,7 @@ const Header = () => {
   const userImage = getStorage(USER_IMAGE);
   const [alarmBox, setAlarmBox] = useState<HTMLElement>();
 
-  const { data: alarms } = useQuery<Alarm[]>(['musicDetail'], getMyAlarms, {
+  const { data: alarms } = useQuery<Alarm[]>(['alarms'], getMyAlarms, {
     enabled: !!getToken,
   });
 

@@ -25,8 +25,8 @@ import {
 } from './style';
 
 const UserPost = () => {
-  const { isLoading } = useQuery(['musicDetail'], getUser, {
-    onSuccess: ({ data }) => {
+  const { isLoading } = useQuery(['userData'], getUser, {
+    onSuccess: (data) => {
       setPosts(data?.posts);
     },
   });

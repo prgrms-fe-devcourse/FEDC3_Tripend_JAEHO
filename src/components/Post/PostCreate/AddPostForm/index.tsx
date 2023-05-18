@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Suspense } from 'react';
 import { getChannels } from '@/apis/post';
 
 import {
@@ -18,14 +18,9 @@ import {
 import uploadIcon from '/assets/upload.svg';
 import usePostForm from '@/hooks/usePostForm';
 import ErrorText from './ErrorText';
-import { Channel } from '@/types/channel/channel.interface';
+import { useQuery } from 'react-query';
 
 const AddPostForm = () => {
-  const [eastEurope, setEastEurope] = useState<Channel[]>([]);
-  const [westEurope, setWestEurope] = useState<Channel[]>([]);
-  const [southEurope, setSouthEurope] = useState<Channel[]>([]);
-  const [northEurope, setNorthEurope] = useState<Channel[]>([]);
-
   const {
     selectedChannelId,
     imageSrc,
@@ -38,23 +33,9 @@ const AddPostForm = () => {
     handleSubmit,
   } = usePostForm();
 
-  const getChannelData = async () => {
-    const { data }: { data: Channel[] } = await getChannels();
-
-    const eastEurope = data.filter(({ description }) => description === '동유럽');
-    const westEurope = data.filter(({ description }) => description === '서유럽');
-    const southEurope = data.filter(({ description }) => description === '남유럽');
-    const northEurope = data.filter(({ description }) => description === '북유럽');
-
-    setEastEurope(eastEurope);
-    setWestEurope(westEurope);
-    setSouthEurope(southEurope);
-    setNorthEurope(northEurope);
-  };
-
-  useEffect(() => {
-    getChannelData();
-  }, []);
+  const { data: channels } = useQuery(['channelList'], getChannels, {
+    suspense: true,
+  });
 
   return (
     <PostForm onSubmit={handleSubmit}>
@@ -81,42 +62,44 @@ const AddPostForm = () => {
       <FormContainer>
         <InputWrapper>
           <label htmlFor="country">나라</label>
-          <select
-            id="country"
-            name="country"
-            value={values.channelId ? values.channelId : selectedChannelId}
-            onChange={handleCountryChange}
-          >
-            <option value={''}>=== 선택 ===</option>
-            <optgroup label="동유럽">
-              {eastEurope.map(({ name, _id }) => (
-                <option key={_id} value={_id} data-country={name}>
-                  {name}
-                </option>
-              ))}
-            </optgroup>
-            <optgroup label="서유럽">
-              {westEurope.map(({ name, _id }) => (
-                <option key={_id} value={_id} data-country={name}>
-                  {name}
-                </option>
-              ))}
-            </optgroup>
-            <optgroup label="남유럽">
-              {southEurope.map(({ name, _id }) => (
-                <option key={_id} value={_id} data-country={name}>
-                  {name}
-                </option>
-              ))}
-            </optgroup>
-            <optgroup label="북유럽">
-              {northEurope.map(({ name, _id }) => (
-                <option key={_id} value={_id} data-country={name}>
-                  {name}
-                </option>
-              ))}
-            </optgroup>
-          </select>
+          <Suspense fallback={<div>로딩 중</div>}>
+            <select
+              id="country"
+              name="country"
+              value={values.channelId ? values.channelId : selectedChannelId}
+              onChange={handleCountryChange}
+            >
+              <option value={''}>=== 선택 ===</option>
+              <optgroup label="동유럽">
+                {channels?.eastEurope.map(({ name, _id }) => (
+                  <option key={_id} value={_id} data-country={name}>
+                    {name}
+                  </option>
+                ))}
+              </optgroup>
+              <optgroup label="서유럽">
+                {channels?.westEurope.map(({ name, _id }) => (
+                  <option key={_id} value={_id} data-country={name}>
+                    {name}
+                  </option>
+                ))}
+              </optgroup>
+              <optgroup label="남유럽">
+                {channels?.southEurope.map(({ name, _id }) => (
+                  <option key={_id} value={_id} data-country={name}>
+                    {name}
+                  </option>
+                ))}
+              </optgroup>
+              <optgroup label="북유럽">
+                {channels?.northEurope.map(({ name, _id }) => (
+                  <option key={_id} value={_id} data-country={name}>
+                    {name}
+                  </option>
+                ))}
+              </optgroup>
+            </select>
+          </Suspense>
         </InputWrapper>
         <InputsAlign>
           <InputWrapper>

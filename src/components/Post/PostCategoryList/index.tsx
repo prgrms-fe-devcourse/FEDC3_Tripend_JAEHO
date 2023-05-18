@@ -1,53 +1,37 @@
-import { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { selectedChannelState } from '@/recoil/channelState';
 import Skeleton from '@/components/Common/Skeleton';
 import SortedChannels from './SortedChannels';
 import { getChannels } from '@/apis/post';
 import { ChannelListContainer } from './style';
-import type { Channel, Channels } from '@/types/channel/channel.interface';
+import { useQuery } from 'react-query';
 
 const ChannelList = () => {
-  const [channels, setChannels] = useState<Channels>();
   const setSelectedChannel = useSetRecoilState(selectedChannelState);
-
-  useEffect(() => {
-    getChannelData();
-  }, []);
-
-  const getChannelData = async () => {
-    const { data }: { data: Channel[] } = await getChannels();
-
-    const eastEurope = data.filter(({ description }) => description === '동유럽');
-    const westEurope = data.filter(
-      ({ description }: { description: string }) => description === '서유럽'
-    );
-    const southEurope = data.filter(
-      ({ description }: { description: string }) => description === '남유럽'
-    );
-    const northEurope = data.filter(
-      ({ description }: { description: string }) => description === '북유럽'
-    );
-
-    setChannels({
-      eastEurope,
-      westEurope,
-      southEurope,
-      northEurope,
-    });
-  };
 
   const onClickChannel = (id: string) => {
     setSelectedChannel(id);
   };
 
+  const { data: channels } = useQuery(['channelList'], getChannels);
+
+  if (!channels) {
+    return (
+      <ChannelListContainer>
+        {Array.from(Array(4), (_, i) => (
+          <Skeleton.Paragraph line={4} style={{ padding: '10px' }} key={i} />
+        ))}
+      </ChannelListContainer>
+    );
+  }
+
   return (
     <ChannelListContainer>
-      {channels ? (
+      {channels && (
         <>
           <SortedChannels
             title="동유럽"
-            channels={channels?.eastEurope}
+            channels={channels.eastEurope}
             onClickChannel={onClickChannel}
           />
           <SortedChannels
@@ -66,10 +50,6 @@ const ChannelList = () => {
             onClickChannel={onClickChannel}
           />
         </>
-      ) : (
-        Array.from(Array(4), (_, i) => (
-          <Skeleton.Paragraph line={4} style={{ padding: '10px' }} key={i} />
-        ))
       )}
     </ChannelListContainer>
   );

@@ -1,12 +1,14 @@
+import { postUserLogin } from '@/apis/auth';
+import { userLoginButtonShowState, userLoginState } from '@/recoil/authState';
+import { ID, TOKEN, USER_IMAGE } from '@/utils/constants/auth';
+import { setStorage } from '@/utils/storage';
+import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { useCallback, useState, FormEvent, ChangeEvent } from 'react';
-import { userLoginButtonShowState, userLoginState } from '@/recoil/authState';
-import { postUserLogin } from '@/apis/auth';
 import {
   Fieldset,
   FormButton,
-  FormFailedText,
   FormLogin,
   FormLoginText,
   FormSignupText,
@@ -20,10 +22,10 @@ import {
 const Signin = () => {
   const navigate = useNavigate();
   const setLogin = useSetRecoilState(userLoginState);
+
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
-  const [isLoading, setLoading] = useState(false);
   const setLoginButton = useSetRecoilState(userLoginButtonShowState);
 
   const handleEmail = useCallback(
@@ -40,19 +42,26 @@ const Signin = () => {
     [password]
   );
 
+  const mutation = useMutation(postUserLogin, {
+    onSuccess: (response) => {
+      setLogin(true);
+
+      const { token } = response;
+      const { _id, image } = response.user;
+
+      setStorage(TOKEN, token);
+      setStorage(ID, _id);
+      setStorage(USER_IMAGE, image);
+      navigate('/main');
+    },
+    onError: () => {
+      throw new Error('로그인에 실패하였습니다');
+    },
+  });
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const res = await postUserLogin(email, password);
-
-      if (res?.status === 200) {
-        setLogin(true);
-        navigate('/main');
-      }
-    } catch (e) {
-      setLoading(true);
-      throw new Error('로그인 실패');
-    }
+    mutation.mutate({ email, password });
   };
 
   const handleClickSignUp = () => {
@@ -81,10 +90,6 @@ const Signin = () => {
             <FormButton type="submit" disabled={!email || !password}>
               로그인
             </FormButton>
-            <FormFailedText style={isLoading ? { color: 'red' } : { display: 'none' }}>
-              등록된 계정이 없습니다.
-            </FormFailedText>
-
             <FormSignupText>
               Don't have an account?{' '}
               <span onClick={handleClickSignUp} style={{ color: 'red', cursor: 'pointer' }}>

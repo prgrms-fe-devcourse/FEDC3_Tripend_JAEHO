@@ -17,6 +17,7 @@ import {
   SignupTitle,
   SignupWrapper,
 } from './style';
+import { useMutation } from 'react-query';
 
 const {
   NEED_INPUT,
@@ -29,6 +30,17 @@ const {
 
 const Signup = () => {
   const navigate = useNavigate();
+
+  const mutation = useMutation(signup, {
+    onSuccess: () => {
+      alert('회원가입에 성공하였습니다!');
+      navigate(`/`);
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
   const formik = useFormik<SignupFormValues>({
     initialValues: {
       userName: '',
@@ -53,16 +65,7 @@ const Signup = () => {
     }),
     onSubmit: async (values) => {
       values.userAge = values.userAge.replace(checkZeroOfFront, '');
-      try {
-        const response = await signup(values);
-        if (response) {
-          navigate(`/signup`);
-        } else {
-          navigate(`/`);
-        }
-      } catch (error) {
-        console.error(error);
-      }
+      mutation.mutate(values);
     },
   });
 

@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 import { useQuery } from 'react-query';
 import { getChannels } from '@/apis/post';
-
 import uploadIcon from '/assets/upload.svg';
 import usePostForm from '@/hooks/usePostForm';
 import ErrorText from './ErrorText';

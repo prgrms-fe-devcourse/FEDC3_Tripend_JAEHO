@@ -101,7 +101,7 @@ const UserPost = () => {
               <ModalTitle>게시글 수정</ModalTitle>
               <ModalTitleButton onClick={handlerModalClose}>x</ModalTitleButton>
             </ModalTitleWrapper>
-            <MyhomeModal postId={postId} imageValue={imageValue} />
+            <MyhomeModal postId={postId} />
           </Modal>
         )}
       </PostsWrapper>

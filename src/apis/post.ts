@@ -59,7 +59,6 @@ export const getChannelPosts = async (channelId: string) => {
 };
 
 export const createPost = async (data: any) => {
-  //usePostForm의 type으로 넣기
   try {
     return await postDataRequest.post(POST_URL.CREATE_POST, data);
   } catch (error) {

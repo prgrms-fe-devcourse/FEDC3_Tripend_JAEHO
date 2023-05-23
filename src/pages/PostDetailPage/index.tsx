@@ -12,7 +12,7 @@ const PostDetailPage = () => {
 
   useEffect(() => {
     setPostDetailModalVisible(false);
-    setSelectedPostId(postId);
+    setSelectedPostId(postId || '');
   }, [postId]);
 
   return (

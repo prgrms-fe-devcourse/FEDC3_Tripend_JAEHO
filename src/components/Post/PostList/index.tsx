@@ -12,7 +12,7 @@ import Skeleton from '@/components/Common/Skeleton';
 import Modal from '@/components/Common/Modal';
 import PostCard from '@/components/Post/PostCard';
 import PostDetail from '@/components/Post/PostDetail';
-import { getAllPosts, getChannelPosts, getChannels } from '@/apis/post';
+import { getAllPosts, getChannelPosts, getChannel } from '@/apis/post';
 import { NotFoundResultContainer, PostsContainer } from './style';
 import { Channel } from '@/types/channel/channel.interface';
 import { Post } from '@/types/post/post.interfaces';
@@ -35,9 +35,9 @@ const PostList = () => {
     }
   }, [useParamsId]);
 
-  const getChannelName = async (clickedId: string) => {
-    const { data } = await getChannels();
-    return data.filter((channels: Channel) => channels._id === clickedId)[0]?.name;
+  const getChannelName = async (channelId: string) => {
+    const data = await getChannel();
+    return data.filter((channel: Channel) => channel._id === channelId)[0]?.name;
   };
 
   const setChannelName = async (useParamsId: string) => {

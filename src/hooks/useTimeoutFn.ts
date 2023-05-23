@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react';
 
 const useTimeoutFn = (fn: () => void, ms: number) => {
-  const timeoutId = useRef(0);
+  const timeoutId = useRef<ReturnType<typeof setTimeout>>();
   const callback = useRef(fn);
 
   useEffect(() => {

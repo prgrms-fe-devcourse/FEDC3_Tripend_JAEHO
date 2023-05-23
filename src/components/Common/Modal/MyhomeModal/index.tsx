@@ -2,14 +2,11 @@ import UploadAndDisplayImage from '@/components/Post/PostCreate/UploadImage';
 
 import { getChannels, getMyPostDetail, updatePost } from '@/apis/post';
 import { InputWrapper, InputsAlign } from '@/components/Post/PostCreate/AddPostForm/style';
-import {
-  myHomeModalState,
-  updateTargetDataState,
-  uploadImageState,
-} from '@/recoil/uploadImageState';
+import { myHomeModalState, uploadImageState } from '@/recoil/uploadImageState';
 import { FORM_DATA } from '@/utils/constants/user';
-import { memo, useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { memo, useState } from 'react';
+import { useQuery } from 'react-query';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   Button,
   ImageUploader,
@@ -25,14 +22,12 @@ import {
   ModalTitle,
   ModalTitleWrapper,
 } from './style';
-import { useQuery } from 'react-query';
 
 interface myhomeModalProps {
   postId: string;
-  imageValue: string;
 }
 
-const MyhomeModal = memo(({ postId, imageValue }: myhomeModalProps) => {
+const MyhomeModal = memo(({ postId }: myhomeModalProps) => {
   const { isLoading } = useQuery(['userPostDetailData'], () => getMyPostDetail(postId), {
     enabled: !!postId,
     onSuccess: (data) => {
@@ -80,7 +75,7 @@ const MyhomeModal = memo(({ postId, imageValue }: myhomeModalProps) => {
   const [myId, setMyId] = useState('');
   const [profile, setProfile] = useState<string[]>([]);
   const [dateError, setDateError] = useState('');
-  const [selectedImage, setSelectedImage] = useRecoilState<any | null>(uploadImageState);
+  const selectedImage = useRecoilValue<any | null>(uploadImageState);
 
   const handleUserLoginData = (e: any) => {
     const { name, value } = e.target;
@@ -121,10 +116,10 @@ const MyhomeModal = memo(({ postId, imageValue }: myhomeModalProps) => {
     const formatData = new FormData();
 
     formatData.append(FORM_DATA.POST_ID, postId);
-    formatData.append(FORM_DATA.IMAGE, JSON.stringify(imageValue));
+    formatData.append(FORM_DATA.IMAGE, JSON.stringify(selectedImage));
     formatData.append(FORM_DATA.TITLE, JSON.stringify(title));
     formatData.append(FORM_DATA.CHANNEL_ID, myId);
-    console.log(selectedImage ? selectedImage : userLoginData.image);
+
     await updatePost(formatData);
 
     setVisible(false);

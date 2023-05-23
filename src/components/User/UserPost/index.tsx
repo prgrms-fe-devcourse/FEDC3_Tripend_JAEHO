@@ -1,17 +1,13 @@
 import { getUser } from '@/apis/auth';
-import { getMyPostDetail, removePost } from '@/apis/post';
+import { removePost } from '@/apis/post';
 import Modal from '@/components/Common/Modal';
 import MyhomeModal from '@/components/Common/Modal/MyhomeModal';
-import {
-  myHomeModalState,
-  updateTargetDataState,
-  uploadImageState,
-} from '@/recoil/uploadImageState';
+import { myHomeModalState, uploadImageState } from '@/recoil/uploadImageState';
 import { PostData } from '@/types/post/post.interfaces';
 import { ERROR_MESSAGE_SIGNIN, USER } from '@/utils/constants/auth';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import swal from 'sweetalert';
 import Pagination from './Pagination';
 import UserPosterItem from './UserPosteItem';
@@ -101,7 +97,7 @@ const UserPost = () => {
               <ModalTitle>게시글 수정</ModalTitle>
               <ModalTitleButton onClick={handlerModalClose}>x</ModalTitleButton>
             </ModalTitleWrapper>
-            <MyhomeModal postId={postId} imageValue={imageValue} />
+            <MyhomeModal postId={postId} />
           </Modal>
         )}
       </PostsWrapper>

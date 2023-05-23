@@ -6,7 +6,6 @@ import {
   UserInfoProfileWrapper,
   UserInfoWrapper,
 } from './style';
-
 interface Profile {
   fullName: string;
   image: string;

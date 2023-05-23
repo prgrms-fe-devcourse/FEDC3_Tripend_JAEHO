@@ -1,4 +1,4 @@
-import { POST_URL } from '../utils/constants/post';
+import { POST_URL } from '@/utils/constants/post';
 import { authRequest } from './core';
 
 export const createComment = async (postId: string, comment: string) => {

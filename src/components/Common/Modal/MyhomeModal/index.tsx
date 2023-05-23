@@ -2,14 +2,11 @@ import UploadAndDisplayImage from '@/components/Post/PostCreate/UploadImage';
 
 import { getChannels, getMyPostDetail, updatePost } from '@/apis/post';
 import { InputWrapper, InputsAlign } from '@/components/Post/PostCreate/AddPostForm/style';
-import {
-  myHomeModalState,
-  updateTargetDataState,
-  uploadImageState,
-} from '@/recoil/uploadImageState';
+import { myHomeModalState, uploadImageState } from '@/recoil/uploadImageState';
 import { FORM_DATA } from '@/utils/constants/user';
-import { memo, useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { memo, useState } from 'react';
+import { useQuery } from 'react-query';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   Button,
   ImageUploader,
@@ -25,7 +22,6 @@ import {
   ModalTitle,
   ModalTitleWrapper,
 } from './style';
-import { useQuery } from 'react-query';
 
 interface myhomeModalProps {
   postId: string;

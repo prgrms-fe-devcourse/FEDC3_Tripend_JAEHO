@@ -1,6 +1,6 @@
 import PersonIcon from '@mui/icons-material/Person';
 import { memo } from 'react';
-import Image from '../../../Common/Image';
+import Image from '@/components/Common/Image';
 import { AvatarWrapper, CommentContainer, CommentInfo } from './style';
 import { Author } from '@/types/post/post.interfaces';
 

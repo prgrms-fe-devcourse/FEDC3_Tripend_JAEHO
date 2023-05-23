@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
 import { getUser } from '@/apis/auth';
 import Avatar from '@/components/Common/Avatar';
-import { UserInfoContainer, UserInfoProfileWrapper, UserInfoWrapper } from './style';
 import { useQuery } from 'react-query';
+import { UserInfoContainer, UserInfoProfileWrapper, UserInfoWrapper } from './style';
 
 interface Profile {
   fullName: string;

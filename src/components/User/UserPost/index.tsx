@@ -25,8 +25,8 @@ import {
 } from './style';
 
 const UserPost = () => {
-  const { isLoading } = useQuery(['musicDetail'], getUser, {
-    onSuccess: ({ data }) => {
+  const { isLoading } = useQuery(['userPostsData'], getUser, {
+    onSuccess: (data) => {
       setPosts(data?.posts);
     },
   });
@@ -34,18 +34,12 @@ const UserPost = () => {
   const [posts, setPosts] = useState<PostData[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postId, setPostId] = useState('');
-
-  const setPostDetail = useSetRecoilState(updateTargetDataState);
+  const [modalVisible, setModalVisible] = useRecoilState(myHomeModalState);
   const [imageValue, setImageValue] = useRecoilState(uploadImageState);
 
-  const [modalVisible, setModalVisible] = useRecoilState(myHomeModalState);
-
   const handlePoster = async (id: string) => {
-    const getPostDetail = await getMyPostDetail(id);
-
     setModalVisible(true);
     setPostId(id);
-    setPostDetail(getPostDetail);
   };
 
   const handlerModalClose = () => {

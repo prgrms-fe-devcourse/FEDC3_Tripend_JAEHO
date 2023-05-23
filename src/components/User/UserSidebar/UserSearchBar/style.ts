@@ -21,7 +21,7 @@ export const UsersSearchBar = styled.input`
   background-color: var(--background-color);
 `;
 
-export const SearchResult = styled.div`
+export const SearchResultContainer = styled.div`
   list-style: none;
   margin: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);

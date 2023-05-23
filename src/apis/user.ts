@@ -3,7 +3,7 @@ import { baseRequest } from './core';
 
 export const getUsers = async () => {
   try {
-    const data = await baseRequest.get(USER_URL.GET_ALL_USER);
+    const { data } = await baseRequest.get(USER_URL.GET_ALL_USER);
 
     return data;
   } catch (error) {
@@ -13,7 +13,7 @@ export const getUsers = async () => {
 
 export const getUserInfo = async (keyword: string) => {
   try {
-    const data = await baseRequest.get(USER_URL.GET_SEARCHED_USER + keyword);
+    const { data } = await baseRequest.get(USER_URL.GET_SEARCHED_USER + keyword);
     return data;
   } catch (error) {
     console.error(error);

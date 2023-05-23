@@ -40,7 +40,8 @@ export const getUser = async () => {
     throw new Error(ERROR_MESSAGE_SIGNIN.EDIT_USER);
   }
   try {
-    return await authRequest.get(URL.AUTH_USER);
+    const { data } = await authRequest.get(URL.AUTH_USER);
+    return data;
   } catch (e) {
     throw new Error(ERROR_MESSAGE_SIGNIN.EDIT_USER);
   }

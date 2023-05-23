@@ -1,6 +1,10 @@
 import { Suspense } from 'react';
+import { useQuery } from 'react-query';
 import { getChannels } from '@/apis/post';
 
+import uploadIcon from '/assets/upload.svg';
+import usePostForm from '@/hooks/usePostForm';
+import ErrorText from './ErrorText';
 import {
   Description,
   FormContainer,
@@ -14,11 +18,6 @@ import {
   Title,
   UploadedImage,
 } from './style';
-
-import uploadIcon from '/assets/upload.svg';
-import usePostForm from '@/hooks/usePostForm';
-import ErrorText from './ErrorText';
-import { useQuery } from 'react-query';
 
 const AddPostForm = () => {
   const {
@@ -54,7 +53,9 @@ const AddPostForm = () => {
             <>
               <img src={uploadIcon} alt="upload-icon" />
               <Title>사진 업로드</Title>
-              <Description>png, jpeg, jpg 포맷 파일만 업로드할 수 있습니다.</Description>
+              <Description>
+                png, jpeg, jpg 포맷 파일만 업로드할 수 있습니다.
+              </Description>
             </>
           )}
         </ImageFileContent>
@@ -115,7 +116,12 @@ const AddPostForm = () => {
           </InputWrapper>
           <InputWrapper>
             <label htmlFor="gender">원하는 성별</label>
-            <select id="gender" name="gender" value={values.gender} onChange={handleValueChange}>
+            <select
+              id="gender"
+              name="gender"
+              value={values.gender}
+              onChange={handleValueChange}
+            >
               <option value={''}>=== 선택 ===</option>
               <option value="male">남자만</option>
               <option value="female">여자만</option>

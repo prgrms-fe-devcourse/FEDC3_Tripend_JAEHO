@@ -1,3 +1,5 @@
+import { useState, ChangeEvent, FormEvent } from 'react';
+import swal from 'sweetalert';
 import { putPasswordChange } from '@/apis/auth';
 import {
   Fieldset,
@@ -7,11 +9,7 @@ import {
   LoginWrapper,
 } from '@/components/Auth/Signin/style';
 import { ERROR_MESSAGE_SIGNIN, USER } from '@/utils/constants/auth';
-import { useState } from 'react';
-import swal from 'sweetalert';
 import { FormSettingText, Input, PasswordBlock, PasswordText } from './style';
-
-import { ChangeEvent, FormEvent } from 'react';
 
 interface Values {
   password: string;
@@ -39,7 +37,11 @@ const UserSettingPassword = () => {
     const res = await putPasswordChange(values.password);
 
     if (res.status === 200) {
-      swal(USER.CHANGE_PASSWORD_SUCCESS, '', ERROR_MESSAGE_SIGNIN.PASSWORD_SUCCESS);
+      swal(
+        USER.CHANGE_PASSWORD_SUCCESS,
+        '',
+        ERROR_MESSAGE_SIGNIN.PASSWORD_SUCCESS
+      );
     }
 
     setValues({
@@ -76,13 +78,16 @@ const UserSettingPassword = () => {
                 />
               </Fieldset>
 
-              {values.newPassword.length > 0 && values.password !== values.newPassword && (
-                <PasswordText>{USER.PASSWORD_FAILED}</PasswordText>
-              )}
+              {values.newPassword.length > 0 &&
+                values.password !== values.newPassword && (
+                  <PasswordText>{USER.PASSWORD_FAILED}</PasswordText>
+                )}
               <FormButton
                 type="submit"
                 disabled={
-                  !values.password || !values.newPassword || values.password !== values.newPassword
+                  !values.password ||
+                  !values.newPassword ||
+                  values.password !== values.newPassword
                 }
               >
                 비밀번호 변경

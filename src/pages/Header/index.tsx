@@ -14,7 +14,13 @@ import { MouseEvent, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { AlarmContainer, ButtonContainer, HeaderContainer, IconItem, LogoContainer } from './style';
+import {
+  AlarmContainer,
+  ButtonContainer,
+  HeaderContainer,
+  IconItem,
+  LogoContainer,
+} from './style';
 import logoIcon from '/assets/Logo.svg';
 
 const Header = () => {
@@ -33,7 +39,8 @@ const Header = () => {
   const setIsLogin = useSetRecoilState(userLoginState);
   const [isAlarmOpen, setIsAlarmOpen] = useState(false);
 
-  const [isVisibleModal, setIsVisibleModal] = useRecoilState(isVisibleModalState);
+  const [isVisibleModal, setIsVisibleModal] =
+    useRecoilState(isVisibleModalState);
   const handleOpenAddPostModal = () => {
     setIsVisibleModal(true);
   };
@@ -82,7 +89,12 @@ const Header = () => {
               <IconItem onClick={handleOpenAlarm}>
                 <Icon.Alarm />
                 {alarms !== undefined && alarms?.length > 0 && (
-                  <Badge top={'9px'} right={'18px'} size={'5px'} color={'#ff4741'} />
+                  <Badge
+                    top={'9px'}
+                    right={'18px'}
+                    size={'5px'}
+                    color={'#ff4741'}
+                  />
                 )}
               </IconItem>
             </AlarmContainer>

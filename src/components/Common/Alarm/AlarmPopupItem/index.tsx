@@ -1,9 +1,9 @@
+import { MouseEventHandler } from 'react';
 import Avatar from '@/components/Common/Avatar';
 import { ALARM } from '@/utils/constants/alarm';
 import { extractName } from '@/utils/validate/userList';
-import { MouseEventHandler } from 'react';
-import { AlarmImg, AlarmItem, AlarmText } from './style';
 import { Alarm } from '../types';
+import { AlarmImg, AlarmItem, AlarmText } from './style';
 interface AlarmPopupItemProps extends Alarm {
   alarm: Alarm;
   onClick: MouseEventHandler<HTMLElement>;
@@ -11,7 +11,8 @@ interface AlarmPopupItemProps extends Alarm {
 
 const AlarmPopupItem = ({ alarm, onClick }: AlarmPopupItemProps) => {
   const { author } = alarm;
-  const alarmCategory = alarm && alarm.comment ? ALARM.COMMENT : ALARM.ACCOMPANY;
+  const alarmCategory =
+    alarm && alarm.comment ? ALARM.COMMENT : ALARM.ACCOMPANY;
 
   let result;
   let alarmComment = 'zz';

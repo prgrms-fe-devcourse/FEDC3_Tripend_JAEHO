@@ -39,6 +39,7 @@ const ModalTitleButton = styled.button`
   cursor: pointer;
   outline: inherit;
 `;
+
 const ModalTitle = styled.h3``;
 
 export {

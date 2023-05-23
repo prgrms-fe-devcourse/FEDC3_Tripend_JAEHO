@@ -1,5 +1,5 @@
-import { authRequest } from './core';
 import { POST_URL } from '@/utils/constants/post';
+import { authRequest } from './core';
 
 export const createLike = async (postId: string) => {
   try {
@@ -9,6 +9,7 @@ export const createLike = async (postId: string) => {
 
     return data;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 };
@@ -23,6 +24,7 @@ export const deleteLike = async (id: string) => {
 
     return data;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 };

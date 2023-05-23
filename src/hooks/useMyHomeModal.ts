@@ -1,8 +1,11 @@
-import { getChannels, getMyPostDetail, updatePost } from '@/apis/post';
-import { myHomeModalState, updateTargetDataState } from '@/recoil/uploadImageState';
-import { FORM_DATA } from '@/utils/constants/user';
 import { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { getChannels, getMyPostDetail, updatePost } from '@/apis/post';
+import {
+  myHomeModalState,
+  updateTargetDataState,
+} from '@/recoil/uploadImageState';
+import { FORM_DATA } from '@/utils/constants/user';
 
 export const useMyHomeModal = (imageValue: File | null, postId: string) => {
   const detail = useRecoilValue(updateTargetDataState);
@@ -85,10 +88,18 @@ export const useMyHomeModal = (imageValue: File | null, postId: string) => {
 
     const getChannel = async () => {
       const { data } = await getChannels();
-      const eastEurope = data.filter(({ description }: any) => description === '동유럽');
-      const westEurope = data.filter(({ description }: any) => description === '서유럽');
-      const southEurope = data.filter(({ description }: any) => description === '남유럽');
-      const northEurope = data.filter(({ description }: any) => description === '북유럽');
+      const eastEurope = data.filter(
+        ({ description }: any) => description === '동유럽'
+      );
+      const westEurope = data.filter(
+        ({ description }: any) => description === '서유럽'
+      );
+      const southEurope = data.filter(
+        ({ description }: any) => description === '남유럽'
+      );
+      const northEurope = data.filter(
+        ({ description }: any) => description === '북유럽'
+      );
 
       setEurope({
         eastEurope,
@@ -120,7 +131,8 @@ export const useMyHomeModal = (imageValue: File | null, postId: string) => {
     formatData.append(FORM_DATA.IMAGE, JSON.stringify(imageValue));
     formatData.append(FORM_DATA.TITLE, JSON.stringify(title));
     formatData.append(FORM_DATA.CHANNEL_ID, myId);
-    const res = await updatePost(formatData);
+
+    await updatePost(formatData);
     setVisible(false);
   };
 

@@ -20,6 +20,7 @@ export const MyPost = styled.button`
 export const AccompanyButton = styled.button<{ clicked: boolean }>`
   ${LikeButtonStyleProps}
   background-color: var(--primary);
-  color: ${({ clicked }) => (clicked ? 'var(--background-color)' : 'var(--font-main-color)')};
+  color: ${({ clicked }) =>
+    clicked ? 'var(--background-color)' : 'var(--font-main-color)'};
   transition: color 0.5s;
 `;

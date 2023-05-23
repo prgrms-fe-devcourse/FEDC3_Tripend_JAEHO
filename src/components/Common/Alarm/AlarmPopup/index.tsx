@@ -1,9 +1,9 @@
-import useClickAway from '@/hooks/useClickAway';
-import { selectedPostState } from '@/recoil/postStates';
 import { useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import useClickAway from '@/hooks/useClickAway';
+import { selectedPostState } from '@/recoil/postStates';
 import AlarmPopupItem from '../AlarmPopupItem';
 import { Alarm } from '../types';
 import { AlarmList, AlarmNoItem, AlarmPopupContainer, Title } from './style';
@@ -14,7 +14,12 @@ interface AlarmPopupProps {
   onClose: () => void;
 }
 
-const AlarmPopup = ({ visible = false, onClose, target, alarms }: AlarmPopupProps) => {
+const AlarmPopup = ({
+  visible = false,
+  onClose,
+  target,
+  alarms,
+}: AlarmPopupProps) => {
   const navigate = useNavigate();
   const setPostId = useSetRecoilState(selectedPostState);
   const element = useMemo(() => document.createElement('div'), []);
@@ -40,7 +45,10 @@ const AlarmPopup = ({ visible = false, onClose, target, alarms }: AlarmPopupProp
   });
 
   return ReactDOM.createPortal(
-    <AlarmPopupContainer ref={ref} style={{ display: visible ? 'block' : 'none' }}>
+    <AlarmPopupContainer
+      ref={ref}
+      style={{ display: visible ? 'block' : 'none' }}
+    >
       <Title>알람</Title>
       <AlarmList>
         {alarms?.length ? (

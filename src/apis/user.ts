@@ -7,15 +7,19 @@ export const getUsers = async () => {
 
     return data;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 };
 
 export const getUserInfo = async (keyword: string) => {
   try {
-    const { data } = await baseRequest.get(USER_URL.GET_SEARCHED_USER + keyword);
+    const { data } = await baseRequest.get(
+      USER_URL.GET_SEARCHED_USER + keyword
+    );
     return data;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 };
@@ -25,6 +29,7 @@ export const getClickedUserInfo = async (userId: string) => {
     const data = await baseRequest.get(USER_URL.GET_CLICKED_USER + userId);
     return data;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 };

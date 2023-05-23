@@ -1,8 +1,8 @@
+import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { createAlarm } from '@/apis/alarm';
 import { createLike, deleteLike } from '@/apis/like';
 import { postStateFamily } from '@/recoil/postStates';
-import { useState } from 'react';
-import { useRecoilState } from 'recoil';
 import { AccompanyButton, MyPost } from './style';
 
 interface LikeProps {
@@ -44,13 +44,13 @@ const Like = ({ likeId, authorId, postId }: LikeProps) => {
   return userId === authorId ? (
     <MyPost>내가 작성한 글입니다</MyPost>
   ) : (
-    <div onClick={onClickLike}>
+    <button onClick={onClickLike}>
       {isLike ? (
         <AccompanyButton clicked={true}>동행 신청함</AccompanyButton>
       ) : (
         <AccompanyButton clicked={false}>동행 신청하기</AccompanyButton>
       )}
-    </div>
+    </button>
   );
 };
 

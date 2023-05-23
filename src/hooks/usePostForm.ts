@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { createPost } from '@/apis/post';
 import { isVisibleModalState } from '@/recoil/addPostStates';
-import { selectedChannelNameState, selectedChannelState } from '@/recoil/channelState';
+import {
+  selectedChannelNameState,
+  selectedChannelState,
+} from '@/recoil/channelState';
 import { ERROR_MESSAGE_POST_MODAL } from '@/utils/constants/post';
 import { imageToBinary } from '@/utils/imageConverter';
 import { getStorage } from '@/utils/storage';
@@ -65,7 +68,8 @@ const usePostForm = () => {
     try {
       return await imageCompression(fileSrc, options);
     } catch (error) {
-      console.log(error);
+      // eslint-disable-next-line no-console
+      console.error(error);
     }
   }, []);
 
@@ -75,7 +79,9 @@ const usePostForm = () => {
     const month = currentDate.getMonth() + 1;
     const date = currentDate.getDate();
 
-    return `${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`;
+    return `${year}-${month >= 10 ? month : '0' + month}-${
+      date >= 10 ? date : '0' + date
+    }`;
   };
 
   const validate = useCallback((values: formInputs) => {
@@ -99,7 +105,11 @@ const usePostForm = () => {
     Object.entries(values).forEach(([key, value]) => {
       if (!value) {
         const errorType = key.toUpperCase();
-        errors.push(ERROR_MESSAGE_POST_MODAL[errorType as keyof typeof ERROR_MESSAGE_POST_MODAL]);
+        errors.push(
+          ERROR_MESSAGE_POST_MODAL[
+            errorType as keyof typeof ERROR_MESSAGE_POST_MODAL
+          ]
+        );
       }
     });
 

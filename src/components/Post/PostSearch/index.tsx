@@ -61,7 +61,10 @@ const SearchPost = () => {
       {searchResult && (
         <SearchResultList>
           {searchResult.map((item) => (
-            <SearchResultItem key={item._id} onClick={() => handleClickItem(item._id)}>
+            <SearchResultItem
+              key={item._id}
+              onClick={() => handleClickItem(item._id)}
+            >
               <Title>{item.title}</Title>
               <Description>{item.country}</Description>
             </SearchResultItem>

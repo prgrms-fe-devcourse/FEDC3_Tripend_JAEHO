@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getStorage } from '@/utils/storage';
 import Signin from '@/components/Auth/Signin';
+import { getStorage } from '@/utils/storage';
 
 const SigninPage = () => {
   const navigate = useNavigate();
@@ -10,12 +10,8 @@ const SigninPage = () => {
     if (getStorage('Token')) {
       navigate('/main');
     }
-  }, []);
+  }, [navigate]);
 
-  return (
-    <>
-      <Signin />
-    </>
-  );
+  return <Signin />;
 };
 export default SigninPage;

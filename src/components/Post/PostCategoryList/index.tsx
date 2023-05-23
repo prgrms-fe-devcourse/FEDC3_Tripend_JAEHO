@@ -1,10 +1,10 @@
-import { useSetRecoilState } from 'recoil';
-import { selectedChannelState } from '@/recoil/channelState';
-import Skeleton from '@/components/Common/Skeleton';
-import SortedChannels from './SortedChannels';
-import { getChannels } from '@/apis/post';
-import { ChannelListContainer } from './style';
 import { useQuery } from 'react-query';
+import { useSetRecoilState } from 'recoil';
+import { getChannels } from '@/apis/post';
+import Skeleton from '@/components/Common/Skeleton';
+import { selectedChannelState } from '@/recoil/channelState';
+import SortedChannels from './SortedChannels';
+import { ChannelListContainer } from './style';
 
 const ChannelList = () => {
   const setSelectedChannel = useSetRecoilState(selectedChannelState);

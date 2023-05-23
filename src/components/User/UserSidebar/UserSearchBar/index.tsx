@@ -1,9 +1,9 @@
-import useDebounce from '@/hooks/useDebounce';
-import { encodeKeyword } from '@/utils/validate/userList';
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
-import { UserListTitle, UserSearchBarContainer, UsersSearchBar } from './style';
+import useDebounce from '@/hooks/useDebounce';
+import { encodeKeyword } from '@/utils/validate/userList';
 import SearchResult from './SearchResult';
+import { UserListTitle, UserSearchBarContainer, UsersSearchBar } from './style';
 
 const UserSearchBar = () => {
   const [tempKeyword, setTempKeyword] = useState('');

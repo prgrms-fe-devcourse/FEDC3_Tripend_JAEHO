@@ -18,6 +18,7 @@ interface UserPosterItemProps {
   handleDeletePoster(id: string): void;
 }
 
+// eslint-disable-next-line react/display-name
 const UserPosterItem = memo(function ({
   id,
   title,
@@ -35,7 +36,9 @@ const UserPosterItem = memo(function ({
     <PostItemContainer key={id}>
       <PostButton>
         <PosterButton onClick={() => handlePoster(id)}>수정</PosterButton>
-        <PosterDeleteButton onClick={() => handleDeletePoster(id)}>삭제</PosterDeleteButton>
+        <PosterDeleteButton onClick={() => handleDeletePoster(id)}>
+          삭제
+        </PosterDeleteButton>
       </PostButton>
       <PostTitle>
         <p>{title.title}</p>

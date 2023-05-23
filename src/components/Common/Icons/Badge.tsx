@@ -1,5 +1,5 @@
-import { CSSProperties } from 'react';
 import styled from '@emotion/styled';
+import { CSSProperties } from 'react';
 
 interface BadgeProps {
   top: CSSProperties['top'];
@@ -7,6 +7,7 @@ interface BadgeProps {
   color: CSSProperties['color'];
   size: CSSProperties['width' | 'height'];
 }
+
 const Badge = styled.div<BadgeProps>`
   position: absolute;
   top: ${({ top }) => top};

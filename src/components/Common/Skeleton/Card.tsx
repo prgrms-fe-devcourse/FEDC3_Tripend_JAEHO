@@ -7,9 +7,19 @@ const Card = ({ line = 3, ...props }: SkeletonProps) => {
     <CardContainer {...props}>
       {Array.from(Array(line), (_, index) =>
         index !== line - 1 ? (
-          <Box width="100%" height={30} key={index} style={{ margin: '5px 0' }} />
+          <Box
+            width="100%"
+            height={30}
+            key={index}
+            style={{ margin: '5px 0' }}
+          />
         ) : (
-          <Box width="64%" height={30} key={index} style={{ margin: '5px 0' }} />
+          <Box
+            width="64%"
+            height={30}
+            key={index}
+            style={{ margin: '5px 0' }}
+          />
         )
       )}
     </CardContainer>

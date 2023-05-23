@@ -1,8 +1,8 @@
 import PersonIcon from '@mui/icons-material/Person';
 import { memo } from 'react';
-import Image from '../../../Common/Image';
-import { AvatarWrapper, CommentContainer, CommentInfo } from './style';
+import Image from '@/components/Common/Image';
 import { Author } from '@/types/post/post.interfaces';
+import { AvatarWrapper, CommentContainer, CommentInfo } from './style';
 
 interface CommentProps {
   comment: string;
@@ -45,4 +45,7 @@ const Comment = ({ comment, author }: CommentProps) => {
   );
 };
 
-export default memo(Comment, (prev, next) => JSON.stringify(prev) === JSON.stringify(next));
+export default memo(
+  Comment,
+  (prev, next) => JSON.stringify(prev) === JSON.stringify(next)
+);

@@ -1,4 +1,4 @@
-import { POST_URL } from '../utils/constants/post';
+import { POST_URL } from '@/utils/constants/post';
 import { baseRequest } from './core';
 export const searchAll = async (keyword: string) => {
   try {

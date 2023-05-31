@@ -1,8 +1,11 @@
+import { useQuery } from 'react-query';
 import { getUser } from '@/apis/auth';
 import Avatar from '@/components/Common/Avatar';
-import { useQuery } from 'react-query';
-import { UserInfoContainer, UserInfoProfileWrapper, UserInfoWrapper } from './style';
-
+import {
+  UserInfoContainer,
+  UserInfoProfileWrapper,
+  UserInfoWrapper,
+} from './style';
 interface Profile {
   fullName: string;
   image: string;

@@ -19,13 +19,18 @@ import locationIcon from '/assets/Location.png';
 const PostDetail = () => {
   const userId = localStorage.getItem('id');
   const { post } = usePostDetail();
-  const likeId = post?.likes.find(({ user }: { user: string }) => user === userId)?._id;
+  const likeId = post?.likes.find(
+    ({ user }: { user: string }) => user === userId
+  )?._id;
 
   return post ? (
     <PostDetailContainer>
       <LeftImage src={post.image} width="50%" height="100%" />
       <RightContainer>
-        <RightContainerContent alignItem="flex-start" style={{ paddingBottom: '60px' }}>
+        <RightContainerContent
+          alignItem="flex-start"
+          style={{ paddingBottom: '60px' }}
+        >
           <Title>{post.title}</Title>
         </RightContainerContent>
 
@@ -35,13 +40,19 @@ const PostDetail = () => {
           alignItem="flex-end"
           style={{ paddingBottom: '20px' }}
         >
-          <AuthorInfo image={post.author.image} fullName={post.author.fullName} />
+          <AuthorInfo
+            image={post.author.image}
+            fullName={post.author.fullName}
+          />
           <Country>
             <img src={locationIcon} alt="location-icon" />
             <span>{post.country}</span>
           </Country>
         </RightContainerContent>
-        <RightContainerContent flexDirection="row" justifyContent="space-between">
+        <RightContainerContent
+          flexDirection="row"
+          justifyContent="space-between"
+        >
           <Tags
             date={post.date}
             gender={post.gender}
@@ -49,7 +60,11 @@ const PostDetail = () => {
             alignItem="flex-end"
           />
           <RightContainerContent flexDirection="row">
-            <Like likeId={likeId} authorId={post.author._id} postId={post._id} />
+            <Like
+              likeId={likeId}
+              authorId={post.author._id}
+              postId={post._id}
+            />
           </RightContainerContent>
         </RightContainerContent>
         <Content>{post.content}</Content>

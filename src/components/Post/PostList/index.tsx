@@ -1,29 +1,32 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { selectedPostState } from '@/recoil/postStates';
+import { getAllPosts, getChannelPosts, getChannel } from '@/apis/post';
+import Modal from '@/components/Common/Modal';
+import Skeleton from '@/components/Common/Skeleton';
+import PostCard from '@/components/Post/PostCard';
+import PostDetail from '@/components/Post/PostDetail';
 import {
   selectedChannelState,
   selectedChannelNameState,
   channelState,
 } from '@/recoil/channelState';
-import { postDetailModalState } from '@/recoil/postStates';
-import Skeleton from '@/components/Common/Skeleton';
-import Modal from '@/components/Common/Modal';
-import PostCard from '@/components/Post/PostCard';
-import PostDetail from '@/components/Post/PostDetail';
-import { getAllPosts, getChannelPosts, getChannel } from '@/apis/post';
-import { NotFoundResultContainer, PostsContainer } from './style';
+import { selectedPostState, postDetailModalState } from '@/recoil/postStates';
 import { Channel } from '@/types/channel/channel.interface';
 import { Post } from '@/types/post/post.interfaces';
+import { NotFoundResultContainer, PostsContainer } from './style';
 
 const PostList = () => {
-  const useParamsId = useParams().id!;
+  const useParamsId = useParams().id as string;
 
   const setSelectedPostId = useSetRecoilState(selectedPostState);
-  const [postList, setPostList] = useRecoilState(channelState(useParamsId ?? 'all'));
+  const [postList, setPostList] = useRecoilState(
+    channelState(useParamsId ?? 'all')
+  );
   const [visible, setVisible] = useRecoilState(postDetailModalState);
-  const [selectedChannelName, setSelectedChannelName] = useRecoilState(selectedChannelNameState);
+  const [selectedChannelName, setSelectedChannelName] = useRecoilState(
+    selectedChannelNameState
+  );
   const setSelectedChannelId = useSetRecoilState(selectedChannelState);
 
   useEffect(() => {
@@ -37,7 +40,8 @@ const PostList = () => {
 
   const getChannelName = async (channelId: string) => {
     const data = await getChannel();
-    return data.filter((channel: Channel) => channel._id === channelId)[0]?.name;
+    return data.filter((channel: Channel) => channel._id === channelId)[0]
+      ?.name;
   };
 
   const setChannelName = async (useParamsId: string) => {
@@ -93,7 +97,8 @@ const PostList = () => {
       </>
     ) : (
       <NotFoundResultContainer>
-        <strong>{selectedChannelName}</strong>의 글 목록이 아직 존재하지 않습니다. <br />
+        <strong>{selectedChannelName}</strong>의 글 목록이 아직 존재하지
+        않습니다. <br />
         <br />
         동행을 구하고 싶다면 포스트를 생성해보세요.
       </NotFoundResultContainer>

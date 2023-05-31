@@ -5,6 +5,7 @@ export const CommentContainer = styled.div`
   align-items: center;
   height: 60px;
 `;
+
 export const AvatarWrapper = styled.div`
   width: 40px;
   height: 40px;
@@ -16,6 +17,7 @@ export const AvatarWrapper = styled.div`
     transition: opacity 0.4s ease-out;
   }
 `;
+
 export const CommentInfo = styled.div`
   height: 80%;
   display: flex;

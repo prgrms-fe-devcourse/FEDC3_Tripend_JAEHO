@@ -1,15 +1,12 @@
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import AuthUserRoute from '@/components/Auth/RequireAuth';
 import Header from '@/pages/Header';
-import SigninPage from '@/pages/SigninPage';
-import SignupPage from '@/pages/SignupPage';
-
 import HomePage from '@/pages/HomePage';
 import MyHomePage from '@/pages/MyHomePage';
-
 import MissingPage from '@/pages/NotFound';
-
-import AuthUserRoute from '@/components/Auth/RequireAuth';
 import PostDetailPage from '@/pages/PostDetailPage';
+import SigninPage from '@/pages/SigninPage';
+import SignupPage from '@/pages/SignupPage';
 
 const AppRouter = () => {
   return (

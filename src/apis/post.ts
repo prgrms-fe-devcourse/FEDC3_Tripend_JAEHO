@@ -1,7 +1,7 @@
+import { Channel } from '@/types/channel/channel.interface';
 import { URL } from '@/utils/constants/auth';
 import { ERROR_MESSAGE_POST, POST_URL } from '@/utils/constants/post';
 import { authRequest, baseRequest, postDataRequest } from './core';
-import { Channel } from '@/types/channel/channel.interface';
 
 export const getChannel = async () => {
   try {
@@ -13,6 +13,7 @@ export const getChannel = async () => {
 
     return data.data;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 };
@@ -27,7 +28,9 @@ export const getChannels = async () => {
 
     const channels: Channel[] = data.data;
 
-    const eastEurope = channels.filter(({ description }) => description === '동유럽');
+    const eastEurope = channels.filter(
+      ({ description }) => description === '동유럽'
+    );
     const westEurope = channels.filter(
       ({ description }: { description: string }) => description === '서유럽'
     );
@@ -45,6 +48,7 @@ export const getChannels = async () => {
       northEurope,
     };
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 };
@@ -103,7 +107,6 @@ export const getMyPostDetail = async (postId: string) => {
 };
 
 export const updatePost = async (post: FormData) => {
-  console.log();
   const res = await authRequest.put(URL.MYPAGE_UPDATE, post);
 
   if (res.status === 200) {

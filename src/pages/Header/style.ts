@@ -15,7 +15,9 @@ export const HeaderContainer = styled.div<{ isRoot: boolean }>`
   box-sizing: border-box;
   z-index: 1;
   box-shadow: ${({ isRoot }) =>
-    isRoot ? '0px 4px 16px rgba(17, 34, 17, 0.15)' : '0px 4px 16px rgba(17, 34, 17, 0.05)'};
+    isRoot
+      ? '0px 4px 16px rgba(17, 34, 17, 0.15)'
+      : '0px 4px 16px rgba(17, 34, 17, 0.05)'};
 `;
 
 export const LogoContainer = styled.div`

@@ -21,8 +21,10 @@ export const RightContainerContent = styled.div<{
   alignItem?: string;
 }>`
   display: flex;
-  flex-direction: ${({ flexDirection }) => (flexDirection ? flexDirection : 'column')};
-  justify-content: ${({ justifyContent }) => (justifyContent ? justifyContent : 'start')};
+  flex-direction: ${({ flexDirection }) =>
+    flexDirection ? flexDirection : 'column'};
+  justify-content: ${({ justifyContent }) =>
+    justifyContent ? justifyContent : 'start'};
   align-items: ${({ alignItem }) => (alignItem ? alignItem : 'center')};
 `;
 

@@ -9,9 +9,19 @@ const Detail = ({ line = 3, ...props }: SkeletonProps) => {
       <div style={{ width: '50%', paddingLeft: '20px' }}>
         {Array.from(Array(line), (_, index) =>
           index !== line - 1 ? (
-            <Box width="100%" height={30} key={index} style={{ margin: '5px 0' }} />
+            <Box
+              width="100%"
+              height={30}
+              key={index}
+              style={{ margin: '5px 0' }}
+            />
           ) : (
-            <Box width="64%" height={30} key={index} style={{ margin: '5px 0' }} />
+            <Box
+              width="64%"
+              height={30}
+              key={index}
+              style={{ margin: '5px 0' }}
+            />
           )
         )}
       </div>

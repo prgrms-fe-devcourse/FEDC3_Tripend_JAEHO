@@ -1,3 +1,4 @@
+import swal from 'sweetalert';
 import { SignupFormValues, LoginProps } from '@/types/auth/auth.interfaces';
 import {
   USER as AUTH,
@@ -8,7 +9,6 @@ import {
   USER,
 } from '@/utils/constants/auth';
 import { getStorage } from '@/utils/storage';
-import swal from 'sweetalert';
 import { authRequest, baseRequest } from './core';
 
 const { DUPLICATE_EMAIL } = ERROR_MESSAGE_SIGNUP;

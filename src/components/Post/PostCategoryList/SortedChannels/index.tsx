@@ -1,6 +1,7 @@
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import { Channel } from '@/types/channel/channel.interface';
 import {
   ChannelItem,
   ChannelUl,
@@ -9,7 +10,6 @@ import {
   Icon,
   SortedChannelContainer,
 } from './style';
-import { Channel } from '@/types/channel/channel.interface';
 
 interface SortedChannelsProps {
   title: string;
@@ -17,7 +17,11 @@ interface SortedChannelsProps {
   onClickChannel: (channelId: string) => void;
 }
 
-const SortedChannels = ({ title, channels, onClickChannel }: SortedChannelsProps) => {
+const SortedChannels = ({
+  title,
+  channels,
+  onClickChannel,
+}: SortedChannelsProps) => {
   const useParamsId = useParams().id;
   const isFold = channels.filter(({ _id }) => _id === useParamsId).length === 0;
   const [fold, setFold] = useState(isFold || false);

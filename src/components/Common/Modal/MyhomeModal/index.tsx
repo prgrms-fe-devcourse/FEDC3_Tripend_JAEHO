@@ -1,12 +1,15 @@
-import UploadAndDisplayImage from '@/components/Post/PostCreate/UploadImage';
-
-import { getChannels, getMyPostDetail, updatePost } from '@/apis/post';
-import { InputWrapper, InputsAlign } from '@/components/Post/PostCreate/AddPostForm/style';
-import { myHomeModalState, uploadImageState } from '@/recoil/uploadImageState';
-import { FORM_DATA } from '@/utils/constants/user';
+/* eslint-disable react/display-name */
 import { memo, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { getChannels, getMyPostDetail, updatePost } from '@/apis/post';
+import {
+  InputWrapper,
+  InputsAlign,
+} from '@/components/Post/PostCreate/AddPostForm/style';
+import UploadAndDisplayImage from '@/components/Post/PostCreate/UploadImage';
+import { myHomeModalState, uploadImageState } from '@/recoil/uploadImageState';
+import { FORM_DATA } from '@/utils/constants/user';
 import {
   Button,
   ImageUploader,
@@ -28,32 +31,35 @@ interface myhomeModalProps {
 }
 
 const MyhomeModal = memo(({ postId }: myhomeModalProps) => {
-  const { isLoading } = useQuery(['userPostDetailData'], () => getMyPostDetail(postId), {
-    enabled: !!postId,
-    onSuccess: (data) => {
-      //setSelectedImage(data.image);
-      setProfile(data.author.fullName.split('/'));
+  const { isLoading } = useQuery(
+    ['userPostDetailData'],
+    () => getMyPostDetail(postId),
+    {
+      enabled: !!postId,
+      onSuccess: (data) => {
+        setProfile(data.author.fullName.split('/'));
 
-      if (data.title) {
-        const loginUserObject = JSON.parse(data.title);
+        if (data.title) {
+          const loginUserObject = JSON.parse(data.title);
 
-        setMyChannel(loginUserObject.country);
-        setMyId(data.channel._id);
-        setUserLoginData({
-          ...userLoginData,
-          country: loginUserObject.country,
-          dayEnd: loginUserObject.date.split(`~`)[1],
-          dayStart: loginUserObject.date.split('~')[0],
-          person: loginUserObject.personnel,
-          gender: loginUserObject.gender,
-          posterTitle: loginUserObject.title,
-          content: loginUserObject.content,
-          channel: data.channel._id,
-          image: data.image,
-        });
-      }
-    },
-  });
+          setMyChannel(loginUserObject.country);
+          setMyId(data.channel._id);
+          setUserLoginData({
+            ...userLoginData,
+            country: loginUserObject.country,
+            dayEnd: loginUserObject.date.split(`~`)[1],
+            dayStart: loginUserObject.date.split('~')[0],
+            person: loginUserObject.personnel,
+            gender: loginUserObject.gender,
+            posterTitle: loginUserObject.title,
+            content: loginUserObject.content,
+            channel: data.channel._id,
+            image: data.image,
+          });
+        }
+      },
+    }
+  );
 
   const { data: channels } = useQuery(['channelList'], getChannels);
 
@@ -148,7 +154,12 @@ const MyhomeModal = memo(({ postId }: myhomeModalProps) => {
         <ModalForm onSubmit={handleSendFileImage}>
           <InputWrapper>
             <label htmlFor="country">나라</label>
-            <select id="country" name="channel" value={myId} onChange={handlerCounter}>
+            <select
+              id="country"
+              name="channel"
+              value={myId}
+              onChange={handlerCounter}
+            >
               <option>=== 선택 ===</option>
               <optgroup label="동유럽">
                 {channels?.eastEurope &&

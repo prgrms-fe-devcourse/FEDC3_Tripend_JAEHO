@@ -20,7 +20,8 @@ const PageLi = styled.li<{ isCurrentPage: boolean }>`
   margin: 5px;
   padding: 5px 10px;
   font-weight: ${({ isCurrentPage }) => (isCurrentPage ? 'bold' : 'normal')};
-  color: ${({ isCurrentPage }) => (isCurrentPage ? 'var(--font-main-color)' : '#8D91A0')};
+  color: ${({ isCurrentPage }) =>
+    isCurrentPage ? 'var(--font-main-color)' : '#8D91A0'};
   cursor: pointer;
   &:hover {
     background-color: #dee2e6;

@@ -1,18 +1,22 @@
+import { memo } from 'react';
+import { useQuery } from 'react-query';
 import { getUserInfo } from '@/apis/user';
 import Avatar from '@/components/Common/Avatar';
-import { useQuery } from 'react-query';
-import { SearchResultContainer, UserInfo, UserName } from './style';
-import { memo } from 'react';
 import { UserInfos } from '../type';
+import { SearchResultContainer, UserInfo, UserName } from './style';
 
 interface SearchResultProps {
   keyword: string;
 }
 
 const SearchResult = ({ keyword }: SearchResultProps) => {
-  const { data: result, isLoading } = useQuery(['SearchResultData'], () => getUserInfo(keyword), {
-    enabled: !!keyword,
-  });
+  const { data: result, isLoading } = useQuery(
+    ['SearchResultData'],
+    () => getUserInfo(keyword),
+    {
+      enabled: !!keyword,
+    }
+  );
 
   if (isLoading) <>로딩중...</>;
 
@@ -40,4 +44,7 @@ const SearchResult = ({ keyword }: SearchResultProps) => {
   );
 };
 
-export default memo(SearchResult, (prev, next) => prev.keyword === next.keyword);
+export default memo(
+  SearchResult,
+  (prev, next) => prev.keyword === next.keyword
+);

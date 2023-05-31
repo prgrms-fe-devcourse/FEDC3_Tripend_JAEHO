@@ -9,6 +9,7 @@ export const PostsContainer = styled.div`
     display: none;
   }
 `;
+
 export const NotFoundResultContainer = styled.div`
   width: 500px;
   height: 50px;

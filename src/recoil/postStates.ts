@@ -1,4 +1,5 @@
-import { atomFamily, atom } from 'recoil';
+import { atom, atomFamily } from 'recoil';
+
 import { Post } from '@/types/post/post.interfaces';
 
 export const selectedPostState = atom({

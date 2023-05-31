@@ -1,6 +1,6 @@
-import useClickAway from '@/hooks/useClickAway';
-import React, { CSSProperties, ReactNode, useEffect, useMemo } from 'react';
+import { CSSProperties, ReactNode, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
+import useClickAway from '@/hooks/useClickAway';
 import { BackgroundDim, ModalContainer } from './style';
 
 interface ModalProps {
@@ -47,7 +47,11 @@ const Modal = ({
 
   return ReactDOM.createPortal(
     <BackgroundDim style={{ display: visible ? 'block' : 'none' }}>
-      <ModalContainer ref={ref} {...props} style={{ ...containerStyle, ...styles }}>
+      <ModalContainer
+        ref={ref}
+        {...props}
+        style={{ ...containerStyle, ...styles }}
+      >
         {children}
       </ModalContainer>
     </BackgroundDim>,

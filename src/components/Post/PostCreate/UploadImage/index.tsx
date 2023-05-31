@@ -1,7 +1,7 @@
 import { ImageFileInput } from '@/components/Post/PostCreate/AddPostForm/style';
 import { uploadImageState } from '@/recoil/uploadImageState';
 import { ERROR_MESSAGE, FILE } from '@/utils/constants/user';
-import { useCallback } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import swal from 'sweetalert';
 import {
@@ -14,10 +14,16 @@ import {
 import uploadIcon from '/assets/upload.svg';
 
 const UploadAndDisplayImage = () => {
-  const [selectedImage, setSelectedImage] = useRecoilState<any | null>(uploadImageState);
+  const [selectedImage, setSelectedImage] = useRecoilState<any | null>(
+    uploadImageState
+  );
 
   const checkImage = (file: File) => {
-    if (file.type === FILE.JPEG || file.type === FILE.SVG || file.type === FILE.PNG) {
+    if (
+      file.type === FILE.JPEG ||
+      file.type === FILE.SVG ||
+      file.type === FILE.PNG
+    ) {
       setSelectedImage(file);
     } else {
       swal(ERROR_MESSAGE.UPLOAD_IMAGE);
@@ -26,7 +32,7 @@ const UploadAndDisplayImage = () => {
   };
 
   const handleImageChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target.files !== null) {
         const file = e.target.files[0];
         checkImage(file);
@@ -61,7 +67,9 @@ const UploadAndDisplayImage = () => {
                 width: '300px',
               }}
             >
-              <UploadDescription>Supported formates: JPEG,PNG,SVG</UploadDescription>
+              <UploadDescription>
+                Supported formates: JPEG,PNG,SVG
+              </UploadDescription>
               <ImageFileInput type="file" onChange={handleImageChange} />
             </div>
           </UploadImageWrapper>

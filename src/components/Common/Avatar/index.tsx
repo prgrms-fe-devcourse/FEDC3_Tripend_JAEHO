@@ -1,10 +1,10 @@
-import { CSSProperties, HTMLAttributes, useEffect, useState } from 'react';
-import PersonIcon from '@mui/icons-material/Person';
-import ImageComponent from '../Image';
 import styled from '@emotion/styled';
+import PersonIcon from '@mui/icons-material/Person';
+import { CSSProperties, HTMLAttributes, useEffect, useState } from 'react';
+import ImageComponent from '../Image';
 
 interface AvatarWrapperProps {
-  shape: 'circle' | 'round' | 'square';
+  shape?: 'circle' | 'round' | 'square';
   size?: CSSProperties['width' | 'height'];
 }
 
@@ -27,7 +27,7 @@ const ShapeToCssValue = {
 const AvatarWrapper = styled.div<AvatarWrapperProps>`
   display: inline-block;
   border: 1px solid #dadada;
-  border-radius: ${({ shape }) => ShapeToCssValue[shape]};
+  border-radius: ${({ shape }) => ShapeToCssValue[shape || 'circle']};
   background-color: #eee;
   overflow: hidden;
   width: ${({ size }) => size};

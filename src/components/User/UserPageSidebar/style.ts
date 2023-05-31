@@ -33,10 +33,13 @@ const Text = styled.div<{ isClicked: boolean }>`
   margin: 0 10px;
   padding: 8px 10px;
   border-radius: 8px;
-  color: ${({ isClicked }) => (isClicked ? 'var(--font-main-color)' : '#8D91A0')};
-  background-color: ${({ isClicked }) => (isClicked ? '#EBEBEB' : 'var(--white)')};
+  color: ${({ isClicked }) =>
+    isClicked ? 'var(--font-main-color)' : '#8D91A0'};
+  background-color: ${({ isClicked }) =>
+    isClicked ? '#EBEBEB' : 'var(--white)'};
   &:hover {
-    background-color: ${({ isClicked }) => (isClicked ? '#EBEBEB' : 'var(--background-color)')};
+    background-color: ${({ isClicked }) =>
+      isClicked ? '#EBEBEB' : 'var(--background-color)'};
   }
 `;
 

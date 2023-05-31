@@ -5,6 +5,7 @@ export const UserListTitle = styled.div`
   font-size: 16px;
   font-weight: bold;
 `;
+
 export const UserSearchBarContainer = styled.div`
   display: flex;
   margin: 20px 20px 0 20px;

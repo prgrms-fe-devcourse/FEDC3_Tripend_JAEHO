@@ -1,11 +1,16 @@
+import { useFormik } from 'formik';
+import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { signup } from '@/apis/auth';
-import { useFormik } from 'formik';
-import { checkZeroOfFront, isValidAge, isValidId, isValidName } from '@/utils/validate/signup';
-import { ERROR_MESSAGE_SIGNUP } from '@/utils/constants/auth';
-import { USER_PLACEHOLDER } from '@/utils/constants/auth';
 import { SignupFormValues } from '@/types/auth/auth.interfaces';
+import { ERROR_MESSAGE_SIGNUP, USER_PLACEHOLDER } from '@/utils/constants/auth';
+import {
+  checkZeroOfFront,
+  isValidAge,
+  isValidId,
+  isValidName,
+} from '@/utils/validate/signup';
 import {
   FieldSet,
   FormSigninText,
@@ -17,7 +22,6 @@ import {
   SignupTitle,
   SignupWrapper,
 } from './style';
-import { useMutation } from 'react-query';
 
 const {
   NEED_INPUT,
@@ -37,6 +41,7 @@ const Signup = () => {
       navigate(`/`);
     },
     onError: (error) => {
+      // eslint-disable-next-line no-console
       console.error(error);
     },
   });
@@ -55,10 +60,16 @@ const Signup = () => {
         .min(2, INCORRECT_NAME)
         .matches(isValidName, INCORRECT_NAME)
         .required(NEED_INPUT),
-      userAge: Yup.string().matches(isValidAge, INCORRECT_AGE).required(NEED_INPUT),
+      userAge: Yup.string()
+        .matches(isValidAge, INCORRECT_AGE)
+        .required(NEED_INPUT),
       userGender: Yup.string().required(NEED_INPUT),
-      userId: Yup.string().matches(isValidId, INCORRECT_EMAIL).required(NEED_INPUT),
-      userPassword: Yup.string().min(6, INCORRECT_PASSWORD).required(NEED_INPUT),
+      userId: Yup.string()
+        .matches(isValidId, INCORRECT_EMAIL)
+        .required(NEED_INPUT),
+      userPassword: Yup.string()
+        .min(6, INCORRECT_PASSWORD)
+        .required(NEED_INPUT),
       userPasswordConfirm: Yup.string()
         .oneOf([Yup.ref('userPassword'), undefined], DIFFERENT_PASSWORD)
         .required(NEED_INPUT),
@@ -148,7 +159,9 @@ const Signup = () => {
               placeholder={USER_PLACEHOLDER.USER_ID}
             />
           </FieldSet>
-          {formik.touched.userId && formik.errors.userId ? <div>{formik.errors.userId}</div> : null}
+          {formik.touched.userId && formik.errors.userId ? (
+            <div>{formik.errors.userId}</div>
+          ) : null}
 
           <FieldSet className="form-el">
             <legend>비밀번호</legend>
@@ -178,13 +191,17 @@ const Signup = () => {
               placeholder={USER_PLACEHOLDER.USER_PASSWORD}
             />
           </FieldSet>
-          {formik.touched.userPasswordConfirm && formik.errors.userPasswordConfirm ? (
+          {formik.touched.userPasswordConfirm &&
+          formik.errors.userPasswordConfirm ? (
             <div>{formik.errors.userPasswordConfirm}</div>
           ) : null}
           <SignupButton type="submit">가입하기</SignupButton>
           <FormSigninText>
             Are you already a member?{' '}
-            <span onClick={() => navigate('/')} style={{ color: 'red', cursor: 'pointer' }}>
+            <span
+              onClick={() => navigate('/')}
+              style={{ color: 'red', cursor: 'pointer' }}
+            >
               로그인
             </span>
           </FormSigninText>

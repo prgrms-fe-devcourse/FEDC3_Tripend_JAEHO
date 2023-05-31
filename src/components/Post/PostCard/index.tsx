@@ -1,9 +1,8 @@
 import { memo } from 'react';
+import { Author, Like } from '@/types/post/post.interfaces';
 import AuthorInfo from './AuthorInfo';
 import LeftImage from './LeftImage';
 import LikeAndComment from './LikeAndComment';
-import Tags from './Tags';
-import { Author, Like } from '@/types/post/post.interfaces';
 import {
   BottomContainer,
   InfoContainer,
@@ -11,6 +10,7 @@ import {
   PostContainer,
   TravelName,
 } from './style';
+import Tags from './Tags';
 
 interface PostProps {
   id: string;
@@ -22,7 +22,15 @@ interface PostProps {
   onClickPost: (postId: string) => void;
 }
 
-const Post = ({ id, titleObject, image, author, likes, commentLength, onClickPost }: PostProps) => {
+const Post = ({
+  id,
+  titleObject,
+  image,
+  author,
+  likes,
+  commentLength,
+  onClickPost,
+}: PostProps) => {
   let title, date, gender, personnel;
 
   if (titleObject.includes('/')) {
@@ -50,11 +58,17 @@ const Post = ({ id, titleObject, image, author, likes, commentLength, onClickPos
         <Tags date={date} gender={gender} personnel={personnel} />
         <BottomContainer>
           <AuthorInfo image={author?.image} fullName={author?.fullName} />
-          <LikeAndComment likeLength={likes.length} commentLength={commentLength} />
+          <LikeAndComment
+            likeLength={likes.length}
+            commentLength={commentLength}
+          />
         </BottomContainer>
       </InfoContainer>
     </PostContainer>
   );
 };
 
-export default memo(Post, (prev, next) => JSON.stringify(prev) === JSON.stringify(next));
+export default memo(
+  Post,
+  (prev, next) => JSON.stringify(prev) === JSON.stringify(next)
+);

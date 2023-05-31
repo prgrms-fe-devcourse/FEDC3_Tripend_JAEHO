@@ -1,11 +1,11 @@
-import { postUserLogin } from '@/apis/auth';
-import { userLoginButtonShowState, userLoginState } from '@/recoil/authState';
-import { ID, TOKEN, USER_IMAGE } from '@/utils/constants/auth';
-import { setStorage } from '@/utils/storage';
 import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import { postUserLogin } from '@/apis/auth';
+import { userLoginButtonShowState, userLoginState } from '@/recoil/authState';
+import { ID, TOKEN, USER_IMAGE } from '@/utils/constants/auth';
+import { setStorage } from '@/utils/storage';
 import {
   Fieldset,
   FormButton,
@@ -91,8 +91,11 @@ const Signin = () => {
               로그인
             </FormButton>
             <FormSignupText>
-              Don't have an account?{' '}
-              <span onClick={handleClickSignUp} style={{ color: 'red', cursor: 'pointer' }}>
+              회원이 아니신가요?
+              <span
+                onClick={handleClickSignUp}
+                style={{ color: 'red', cursor: 'pointer' }}
+              >
                 회원가입
               </span>
             </FormSignupText>

@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import UserInfo from '@/components/User/UserInfo';
 import UserPageSidebar from '@/components/User/UserPageSidebar';
 import UserPost from '@/components/User/UserPost';
 import UserSettingPassword from '@/components/User/UserSettingPassword';
-import { useState } from 'react';
 import { Article, MyPosterContainer } from './style';
 
 const MyPosterPage = () => {

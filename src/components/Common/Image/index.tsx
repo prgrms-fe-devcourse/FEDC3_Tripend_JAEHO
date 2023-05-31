@@ -1,8 +1,15 @@
-import { CSSProperties, HTMLAttributes, useEffect, useRef, useState } from 'react';
+import {
+  CSSProperties,
+  HTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 let observer: IntersectionObserver | null = null;
 const LOAD_IMG_EVENT_TYPE = 'loadImage';
 
+// eslint-disable-next-line no-undef
 const onIntersection: IntersectionObserverCallback = (entries, io) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -58,10 +65,12 @@ const Image = ({
 
     const imgElement = imgRef.current;
 
-    imgElement && imgElement.addEventListener(LOAD_IMG_EVENT_TYPE, handleLoadImage);
+    imgElement &&
+      imgElement.addEventListener(LOAD_IMG_EVENT_TYPE, handleLoadImage);
 
     return () => {
-      imgElement && imgElement.removeEventListener(LOAD_IMG_EVENT_TYPE, handleLoadImage);
+      imgElement &&
+        imgElement.removeEventListener(LOAD_IMG_EVENT_TYPE, handleLoadImage);
     };
   }, [lazy]);
 

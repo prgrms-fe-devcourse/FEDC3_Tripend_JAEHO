@@ -8,6 +8,7 @@ export const createComment = async (postId: string, comment: string) => {
       postId,
     });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 };

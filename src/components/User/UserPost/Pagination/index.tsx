@@ -7,7 +7,12 @@ interface PaginationProps {
   paginate(number: number): void;
 }
 
-const Pagination = ({ totalPosts, postPerPage, currentPage, paginate }: PaginationProps) => {
+const Pagination = ({
+  totalPosts,
+  postPerPage,
+  currentPage,
+  paginate,
+}: PaginationProps) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
